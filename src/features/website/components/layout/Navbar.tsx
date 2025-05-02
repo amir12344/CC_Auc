@@ -391,7 +391,7 @@ const Navbar: React.FC = () => {
                 Join Us
               </button> */}
 
-              <Link
+              {/* <Link
                 href='/marketplace'
                 onClick={(e) => {
                   e.preventDefault();
@@ -400,7 +400,7 @@ const Navbar: React.FC = () => {
                 className={`block w-full px-3 py-2 rounded-md text-base font-medium ${activeSection?.id === 'hero' ? 'bg-[#43CD66] text-[#1C1E21]' : 'bg-[#43CD66] text-white'} hover:bg-opacity-90 font-geist transition-theme duration-400 text-center`}
               >
                 Marketplace
-              </Link>
+              </Link> */}
             </div>
           </motion.div>
         )}
