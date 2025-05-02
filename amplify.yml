@@ -7,13 +7,15 @@ backend:
         - yarn ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
-  preBuild:
+    preBuild:
       commands:
         - corepack enable
         - corepack prepare yarn@4.9.1 --activate
-  build:
+        - yarn install --frozen-lockfile
+    build:
       commands:
-        - yarn run build
+        - yarn build
+        - yarn ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
   artifacts:
     baseDirectory: .next
     files:
