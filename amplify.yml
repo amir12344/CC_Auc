@@ -10,7 +10,7 @@ frontend:
     preBuild:
       commands:
         - corepack enable
-        - corepack prepare yarn@4.9.1 --activate
+        - yarn set version stable
         - yarn install --frozen-lockfile
     build:
       commands:
@@ -19,7 +19,7 @@ frontend:
   artifacts:
     baseDirectory: .next
     files:
-      - "**/*"
+      - '**/*'
   cache:
     paths:
       - .next/cache/**/*
