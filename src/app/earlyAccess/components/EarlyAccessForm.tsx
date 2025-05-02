@@ -216,7 +216,7 @@ export default function EarlyAccessForm() {
           </div>
           <div className="ml-3 text-sm">
             <label htmlFor="termsAccepted" className="font-medium text-gray-700">
-              I agree to the <Link href="/terms" className="text-[#43CD66] hover:text-[#102D21]">Terms of Service</Link> and <Link href="/privacy" className="text-[#43CD66] hover:text-[#102D21]">Privacy Policy</Link>
+              I agree to the <Link href="/website/legal/terms" target="_blank" rel="noopener noreferrer" className="text-[#43CD66] hover:text-[#102D21]">Terms of Service</Link> and <Link href="/website/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#43CD66] hover:text-[#102D21]">Privacy Policy</Link>
             </label>
             {errors.termsAccepted && (
               <p className="mt-1.5 text-sm text-red-600 font-medium">{errors.termsAccepted.message}</p>

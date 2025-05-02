@@ -74,7 +74,7 @@ const FeaturesSection = () => (
                   src={feature.imagePath}
                   alt={feature.imageAlt}
                   fill
-                  quality={75}
+                  quality={80}
                   loading="lazy"
                   className="object-cover z-10"
                 />

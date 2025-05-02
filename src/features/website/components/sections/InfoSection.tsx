@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { FaBriefcase, FaShoppingBag, FaArrowRight } from 'react-icons/fa';
-import Link from 'next/link';
+import React, { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { FaBriefcase, FaShoppingBag, FaArrowRight } from 'react-icons/fa'
+import Link from 'next/link'
 
 const InfoSection: React.FC = () => {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const ref = useRef<HTMLElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
     <section id='stats' ref={ref} className='py-10 md:py-24 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center mb-16'>
-          <h2 className='text-4xl font-bold md:text-5xl mb-4'>
+        <div className='text-center mb-10 md:mb-16'>
+          <h2 className='text-3xl md:text-4xl font-bold md:text-5xl mb-4'>
             Where brand protection meets{' '}
             <span className='relative text-[#43cd66]'>
               buyer confidence
@@ -27,14 +27,21 @@ const InfoSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className='bg-white rounded-[24px] w-full max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto transition-shadow duration-300'
+            className='
+              bg-white rounded-[24px] w-full mx-auto
+              max-w-3xl md:max-w-4xl lg:max-w-5xl
+              p-[50px_30px] md:p-[88px_56px]
+              transition-shadow duration-300
+            '
             style={{
               boxShadow: '10px 10px 34px rgba(0,0,0,0.2)',
-              padding: '88px 56px 88px 56px',
             }}
           >
             <div className='text-[#43CD66] mb-6'>
-              <FaBriefcase className='w-12 h-12 text-[#43CD66]' aria-hidden='true' />
+              <FaBriefcase
+                className='w-12 h-12 text-[#43CD66]'
+                aria-hidden='true'
+              />
             </div>
             <h3 className='text-2xl font-[500] mb-4'>Sellers</h3>
             <p className='text-gray-600 text-lg leading-relaxed'>
@@ -55,14 +62,16 @@ const InfoSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className='bg-white rounded-[24px] w-full max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto p-8 transition-shadow duration-300'
+            className='bg-white rounded-[24px] w-full mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl p-[50px_30px] md:p-[88px_56px] transition-shadow duration-300'
             style={{
               boxShadow: '10px 10px 34px rgba(0,0,0,0.2)',
-              padding: '88px 56px 88px 56px',
             }}
           >
             <div className='text-[#43CD66] mb-6'>
-              <FaShoppingBag className='w-12 h-12 text-[#43CD66]' aria-hidden='true' />
+              <FaShoppingBag
+                className='w-12 h-12 text-[#43CD66]'
+                aria-hidden='true'
+              />
             </div>
             <h3 className='text-2xl font-[500] mb-4'>Buyers</h3>
             <p className='text-gray-600 text-lg leading-relaxed'>
@@ -81,6 +90,6 @@ const InfoSection: React.FC = () => {
       </div>
     </section>
   )
-};
+}
 
-export default InfoSection;
+export default InfoSection

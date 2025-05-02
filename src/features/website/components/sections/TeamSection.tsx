@@ -42,24 +42,24 @@ const TeamSection: React.FC = () => {
       name: 'Shivang Maheshwari',
       title: 'Co-Founder and CEO',
       imagePath:
-        '/images/Shivang.jpg',
+        '/images/Shivang.webp',
     },
     {
       name: 'Isaac Chung',
       title: 'Co-Founder and COO',
       imagePath:
-        '/images/Isaac.png',
+        '/images/Isaac.webp',
     },
     {
       name: 'Ahmed Aslam',
       title: 'Advisor',
       imagePath:
-        '/images/Ahmed.jpg',
+        '/images/Ahmed.webp',
     },    
     {
       name: 'Amir Sayyad',
       title: 'VP of Engineering',
-      imagePath: '/images/Amir.png',
+      imagePath: '/images/Amir.webp',
     },
     
     

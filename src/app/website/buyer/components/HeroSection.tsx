@@ -44,8 +44,9 @@ const HeroSection = () => (
               height={675}
               className="w-full object-cover rounded-t-[10px]"
               quality={70}
-              priority
-              loading='eager'
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="/images/marketplace3.webp"
             />
           </div>
         </motion.div>

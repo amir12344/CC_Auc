@@ -66,8 +66,8 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[0].imageAlt}
                 width={650}
                 height={400}
-                quality={75}
-                priority={true}
+                quality={65}
+                loading='lazy'
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
@@ -266,8 +266,8 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[3].imageAlt}
                 width={650}
                 height={400}
-                loading='lazy'
                 quality={65}
+                loading='lazy'
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
