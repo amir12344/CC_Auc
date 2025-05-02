@@ -1,0 +1,31 @@
+import type { Metadata } from 'next';
+import SellerPageClient from './page-client';
+
+// SEO metadata for the seller page
+export const metadata: Metadata = {
+  title: 'Sell Excess Inventory | Commerce Central',
+  description: 'Commerce Central helps brands recover margin from excess and returned inventory without sacrificing control or brand integrity.',
+  openGraph: {
+    title: 'Make Your Inventory Work for You | Commerce Central',
+    description: 'Recover more value from surplus inventory with brand protection, channel control, and automated resale processes.',
+    images: [
+      {
+        url: 'https://www.commercecentral.io/images/seller-og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Commerce Central Seller Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Recover More. Risk Less. Reclaim Control.',
+    description: 'Commerce Central is your brand-safe execution layer for turning surplus into cash.',
+    images: ['https://www.commercecentral.io/images/seller-twitter-image.jpg'],
+  },
+};
+
+// Server Component wrapper that renders the client component
+export default function SellerPage() {
+  return <SellerPageClient />;
+} 

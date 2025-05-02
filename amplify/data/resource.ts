@@ -1,17 +1,27 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
+/*
+ * Define an EarlyAccessRegistration model for storing early access form submissions
+ * This model replaces the Todo example and is configured for public access
+ * to allow unauthenticated users to submit the form
+ */
 const schema = a.schema({
-  Todo: a
+  EarlyAccessRegistration: a
     .model({
-      content: a.string(),
+      firstName: a.string().required(),
+      lastName: a.string().required(),
+      companyName: a.string().required(),
+      email: a.string().required(),
+      phoneNumber: a.string().required(),
+      termsAccepted: a.boolean().required(),
+      registrationDate: a.datetime().required(),
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [
+      // Allow public access for creating and reading records
+      allow.publicApiKey().to(['create', 'read']),
+      // Restrict other operations to admin users only
+      // This ensures only authorized users can update, or delete records
+    ]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -31,7 +41,7 @@ Go to your frontend source code. From your client-side code, generate a
 Data client to make CRUDL requests to your table. (THIS SNIPPET WILL ONLY
 WORK IN THE FRONTEND CODE FILE.)
 
-Using JavaScript or Next.js React Server Components, Middleware, Server 
+Using JavaScript or Next.js React Server Components, Middleware, Server
 Actions or Pages Router? Review how to generate Data clients for those use
 cases: https://docs.amplify.aws/gen2/build-a-backend/data/connect-to-API/
 =========================================================================*/
