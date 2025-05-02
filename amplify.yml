@@ -1,6 +1,11 @@
 version: 1
-backend:
+frontend:
   phases:
+    preBuild:
+      commands:
+        - corepack enable
+        - corepack prepare yarn@4.9.1 --activate
+        - yarn install
     build:
       commands:
         - yarn install --frozen-lockfile

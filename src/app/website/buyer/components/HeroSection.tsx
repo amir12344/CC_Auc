@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import heroImage from '../public/images/marketplace3.webp';
 
 const HeroSection = () => (
   <section className="w-full relative text-white pt-16 md:pt-24 z-10 pb-0">
@@ -38,7 +39,7 @@ const HeroSection = () => (
         >
           <div className="relative top-[1px] overflow-hidden border border-neutral-800 bg-neutral-900">
             <Image
-              src="/images/marketplace3.webp"
+              src={heroImage}
               alt="Commerce Central Seller Dashboard Preview"
               width={1920}
               height={675}
@@ -46,7 +47,6 @@ const HeroSection = () => (
               quality={70}
               loading="lazy"
               placeholder="blur"
-              blurDataURL="/images/marketplace3.webp"
             />
           </div>
         </motion.div>
