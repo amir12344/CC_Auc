@@ -67,51 +67,72 @@ const TeamSection: React.FC = () => {
 
   return (
     <section
-      id='team'
-      ref={ref}
-      className='relative py-16 md:py-24 overflow-hidden bg-white transition-theme duration-400 min-h-[100dvh]'
-    >
-      {/* Blurred grid pattern background */}
-      <div
-        className='absolute inset-0 transition-theme duration-400'
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-          backgroundColor: 'white',
-          filter: 'blur(0.5px)',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Edge blur gradients */}
-      <div
-        className='absolute inset-0 pointer-events-none transition-theme duration-400'
-        style={{
-          background: `
-            radial-gradient(circle at center, transparent 70%, white 100%),
-            radial-gradient(circle at top left, white 0%, transparent 35%),
-            radial-gradient(circle at top right, white 0%, transparent 35%),
-            radial-gradient(circle at bottom left, white 0%, transparent 35%),
-            radial-gradient(circle at bottom right, white 0%, transparent 35%)
-          `,
-        }}
-        aria-hidden="true"
-      />
-
-      <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' style={{marginTop: '5rem'}}>
-        <motion.div
-          className='text-center mb-16'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          id='team'
+          ref={ref}
+          className='relative py-24 md:py-36 overflow-hidden bg-gradient-to-b from-white to-gray-50 transition-theme duration-400 min-h-[100dvh]'
         >
-          <h2 className='text-3xl md:text-5xl mb-6 font-[500] text-[#43CD66] tracking-tight transition-theme duration-400'>
-          Join us on a revolution to transform how surplus inventory is sold and bought.{' '}
-          </h2>
-
-        </motion.div>
+          {/* Enhanced grid pattern background with subtle green accent */}
+          <div
+            className='absolute inset-0 transition-theme duration-400'
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(67, 205, 102, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(67, 205, 102, 0.07) 1px, transparent 1px)`,
+              backgroundSize: '40px 40px',
+              backgroundColor: 'transparent',
+              filter: 'blur(0.5px)',
+            }}
+            aria-hidden='true'
+          />
+    
+          {/* Enhanced edge blur gradients with subtle green tint */}
+          <div
+            className='absolute inset-0 pointer-events-none transition-theme duration-400'
+            style={{
+              background: `
+                radial-gradient(circle at center, transparent 60%, rgba(240, 240, 240, 0.8) 100%),
+                radial-gradient(circle at top left, rgba(67, 205, 102, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at top right, rgba(67, 205, 102, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at bottom left, rgba(67, 205, 102, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at bottom right, rgba(67, 205, 102, 0.08) 0%, transparent 40%)
+              `,
+            }}
+            aria-hidden='true'
+          />
+    
+          {/* Enhanced dot pattern overlay */}
+          <div
+            className='absolute inset-0 opacity-10 pointer-events-none'
+            style={{
+              backgroundImage: 'radial-gradient(#43CD66 1px, transparent 1px)',
+              backgroundSize: '30px 30px'
+            }}
+            aria-hidden='true'
+          />
+    
+          {/* Additional decorative elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-[#43CD66] rounded-full opacity-5 -translate-x-1/3 -translate-y-1/3" aria-hidden="true"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#43CD66] rounded-full opacity-5 translate-x-1/3 translate-y-1/3" aria-hidden="true"></div>
+    
+          <div
+            className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+          >
+            <motion.div
+              className='text-center mb-24'
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center justify-center mb-4 mt-2">
+                <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#43CD66]/70"></div>
+                <span className='inline-block text-[#43CD66] font-semibold text-lg mx-3 tracking-wide'>OUR TEAM</span>
+                <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#43CD66]/70"></div>
+              </div>
+              <h2 className='text-3xl md:text-5xl mb-8 font-[600] text-[#1C1E21] transition-theme duration-400 max-w-4xl mx-auto leading-tight'>
+                Join us on a revolution to transform how surplus inventory is sold
+                and bought
+              </h2>
+            </motion.div>
 
         {/* Team members - grid for small teams, horizontal scroll for larger teams */}
         <div
@@ -136,11 +157,11 @@ const TeamSection: React.FC = () => {
                   className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
                 />
               </div>
-              <div className='bg-white p-4 transition-theme duration-400'>
-                <h3 className='text-lg text-[#43CD66] font-[500] mb-1 transition-theme duration-400 group-hover:text-primary'>
+              <div className='p-4 transition-theme duration-400'>
+                <h3 className='text-xl text-[#43CD66] font-[500] mb-1 transition-theme duration-400 group-hover:text-primary'>
                   {member.name}
                 </h3>
-                <p className='text-sm text-gray-600 transition-theme duration-400'>
+                <p className='text-md text-gray-600 transition-theme duration-400'>
                   {member.title}
                 </p>
               </div>

@@ -32,7 +32,7 @@ const HeroSectionClient = () => {
         <div className='grow flex items-center justify-center pt-0 md:pt-0 pb-4 md:pb-6'>
           <div className='mx-auto w-full lg:w-11/12 xl:w-10/12 pt-4 md:pt-6 lg:pt-8 xl:pt-12 text-center'>
             <motion.h1
-              className='text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 lg:mb-5 xl:mb-6 text-[#43CD66] leading-tight max-w-5xl mx-auto'
+              className='text-4xl font-geist sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 lg:mb-5 xl:mb-6 text-[#43CD66] leading-tight max-w-5xl mx-auto'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -42,7 +42,7 @@ const HeroSectionClient = () => {
             </motion.h1>
 
             <motion.div
-              className='text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-700 mb-4 md:mb-5 lg:mb-6 xl:mb-8 mx-auto space-y-1 sm:space-y-2 md:space-y-2 lg:space-y-3 max-w-3xl'
+              className='text-md sm:text-lg md:text-xl xl:text-2xl mb-4 md:mb-5 lg:mb-6 xl:mb-8 mx-auto space-y-1 sm:space-y-2 lg:space-y-3 max-w-3xl leading-relaxed'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}

@@ -15,11 +15,11 @@ interface FeaturesSectionProps {
 
 export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
   <section id="features" className="w-full py-10 md:py-20 relative z-20 mt-0 bg-white">
-     <div className="text-center mb-16">
+    <div className="text-center mb-16">
       <h2 className="text-4xl font-bold md:text-5xl font-bold text-[#1C1E21] mb-4">
-            Recover More.<span className="text-[#43CD66] underline"> Risk Less. Reclaim Control </span>
-            </h2>
-          </div>
+        Recover More.<span className="text-[#43CD66] underline"> Risk Less. Reclaim Control </span>
+      </h2>
+    </div>
     {/* Feature 1: Act Before Inventory Becomes a Liability */}
     <div className="relative mb-32">
       {/* Background decoration */}
@@ -66,7 +66,9 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[0].imageAlt}
                 width={650}
                 height={400}
-                quality={90}
+                quality={75}
+                priority={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
               {/* Floating stats card */}
@@ -94,7 +96,9 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[1].imageAlt}
                 width={650}
                 height={400}
-                quality={90}
+                quality={65}
+                loading='lazy'
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
               {/* Floating controls card */}
@@ -129,7 +133,7 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                     <span className="text-sm font-medium">10%+ of MSRP</span>
                   </div>
                   <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#43CD66] rounded-full" style={{width: '40%'}}></div>
+                    <div className="h-full bg-[#43CD66] rounded-full" style={{ width: '40%' }}></div>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -227,7 +231,9 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[2].imageAlt}
                 width={650}
                 height={400}
-                quality={90}
+                quality={65}
+                loading='lazy'
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
               {/* Floating automation card */}
@@ -260,7 +266,9 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[3].imageAlt}
                 width={650}
                 height={400}
-                quality={90}
+                loading='lazy'
+                quality={65}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
               {/* Floating document card */}
@@ -349,7 +357,7 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-[#43CD66] h-2.5 rounded-full" style={{width: '35%'}}></div>
+                      <div className="bg-[#43CD66] h-2.5 rounded-full" style={{ width: '35%' }}></div>
                     </div>
                     <span className="text-xs font-medium">35%</span>
                   </div>
@@ -367,7 +375,7 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '65%'}}></div>
+                      <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '65%' }}></div>
                     </div>
                     <span className="text-xs font-medium">65%</span>
                   </div>
@@ -389,7 +397,9 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 alt={features[4].imageAlt}
                 width={650}
                 height={400}
-                quality={90}
+                quality={65}
+                loading='lazy'
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
                 className="w-full relative z-10"
               />
               {/* Floating channel card */}

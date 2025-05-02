@@ -104,7 +104,7 @@ const TestimonialsSection: React.FC = () => {
     >
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-0">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <motion.h2
             className="text-4xl font-bold md:text-5xl tracking-tight mb-4 text-[#1C1E21]"
             initial={{ opacity: 0, y: 20 }}
@@ -136,7 +136,7 @@ const TestimonialsSection: React.FC = () => {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                   <motion.div
-                    className="bg-white rounded-xl border shadow-md p-8 relative flex flex-col h-full transition-all duration-300  hover:-translate-y-1"
+                    className="bg-white rounded-xl borde p-8 relative flex flex-col h-full transition-all duration-300  hover:-translate-y-1"
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}

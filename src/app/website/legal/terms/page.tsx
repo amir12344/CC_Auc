@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <article className='prose prose-lg max-w-none mt-8 font-geist'>
+    <article className='prose prose-lg max-w-none mt-8 font-geist mt-10'>
       <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6 font-geist'>
         Terms & Conditions
       </h1>

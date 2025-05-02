@@ -6,7 +6,7 @@ import { footerNavigation } from '../../../website/data/navigation';
 const Footer: React.FC = () => {
   return (
     <footer
-      className='text-[#D8F4CC] py-12 border border-r-0 border-l-0'
+      className='text-[#D8F4CC] py-12 border border-r-0 border-l-0 border-b-0'
       style={{ backgroundColor: 'rgb(16 45 33)' }}
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>

@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   description: "Browse exclusive surplus inventory from top retailers for resale. Connect with trusted sellers and find premium wholesale lots on our B2B platform.",
   keywords: "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers",
   metadataBase: new URL('https://www.commercecentral.io'),
+  icons: {
+    icon: '/commerce_central_logo.svg',
+    shortcut: '/commerce_central_logo.svg',
+    apple: '/commerce_central_logo.svg',
+  },
   openGraph: {
     title: 'Commerce Central - Premium Surplus Inventory Marketplace',
     description: 'Connect with trusted retailers to access exclusive surplus inventory and wholesale lots for your business.',
@@ -23,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Commerce Central',
     images: [
       {
-        url: 'https://www.commercecentral.io/images/og-image.jpg',
+        url: '/images/CommerceCentral_LogoV2_dark.png',
         width: 1200,
         height: 630,
         alt: 'Commerce Central Marketplace',
@@ -36,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Surplus Inventory Marketplace',
     description: 'Browse exclusive surplus inventory from top retailers for resale.',
-    images: ['https://www.commercecentral.io/images/twitter-image.jpg'],
+    images: ['/images/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -71,6 +76,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://www.commercecentral.io" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.commercecentral.io" />
+
+        {/* Explicit Favicon Links (in addition to metadata) */}
+        <link rel="icon" href="/commerce_central_logo.svg" type="image/svg+xml" sizes="any" />
+        <link rel="apple-touch-icon" href="/commerce_central_logo.svg" />
       </head>
       <body suppressHydrationWarning>
         <StyleProvider />

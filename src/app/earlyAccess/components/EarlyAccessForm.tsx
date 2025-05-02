@@ -81,13 +81,12 @@ export default function EarlyAccessForm() {
       <div className="mb-10">
         <div className="relative flex flex-col items-center justify-center py-8 px-6 rounded-2xl bg-white/80 ring-1 ring-[#43cd66]/20 backdrop-blur-md animate-fade-in-up">
           <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-linear-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10">Early Access</span>
-          <h2 className="text-3xl mb-4 tracking-tight" style={{ fontWeight: 800 }}>
+          <h2 className="text-2xl md:text-3xl mb-4 tracking-tight" style={{ fontWeight: 800 }}>
             <span className="relative inline-block">
               RESERVE YOUR ACCESS
               <span className="absolute -bottom-1 left-0 w-full h-1 bg-[#43CD66]"></span>
             </span>
           </h2>
-          <p className="text-[#1C1E21] mb-2 text-lg font-medium text-center">Loads from the world&apos;s <span className="text-[#102D21] font-semibold">best brands</span> are waiting on the other side.</p>
           <p className="text-[#1C1E21] mb-0 text-base text-center">This is a highly sought after opportunity. Don&apos;t drop the ball.</p>
         </div>
       </div>

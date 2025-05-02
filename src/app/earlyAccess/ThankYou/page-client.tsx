@@ -65,7 +65,7 @@ export default function ThankYouPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#fafffe] p-4">
+    <div className="min-h-screen flex flex-col items-center justify-start bg-[#fafffe] p-4 pt-24 sm:pt-16 sm:justify-center">
       {/* Background decorative elements - preserved animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -105,10 +105,9 @@ export default function ThankYouPage() {
                     delay: Math.random() * 0.5,
                     ease: "easeOut"
                   }}
-                  className={`absolute w-3 h-3 rounded-full ${
-                    i % 3 === 0 ? "bg-[#43CD66]" :
-                    i % 3 === 1 ? "bg-[#2196f3]" : "bg-[#102D21]"
-                  }`}
+                  className={`absolute w-3 h-3 rounded-full ${i % 3 === 0 ? "bg-[#43CD66]" :
+                      i % 3 === 1 ? "bg-[#2196f3]" : "bg-[#102D21]"
+                    }`}
                   style={{ opacity: Math.random() * 0.5 + 0.2 }}
                 />
               ))}
@@ -117,14 +116,14 @@ export default function ThankYouPage() {
         </AnimatePresence>
       </div>
 
-      {/* Logo at the top */}
+      {/* Logo at the top - moved to a fixed position rather than absolute for better mobile support */}
       <motion.div
-        className="absolute top-8 left-8"
+        className="fixed top-4 left-4 sm:absolute sm:top-8 sm:left-8 z-20"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Logo variant="dark" size={50} />
+        <Logo variant="dark" size={40} minWidth={120} />
       </motion.div>
 
       {/* Main content */}
@@ -132,7 +131,7 @@ export default function ThankYouPage() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-3xl w-full"
+        className="relative z-10 max-w-3xl w-full mt-8 sm:mt-0"
       >
         {/* Success checkmark - preserved animations */}
         <motion.div
@@ -184,17 +183,17 @@ export default function ThankYouPage() {
         </motion.div>
 
         {/* Thank you message */}
-        <motion.div className="text-center mb-12">
+        <motion.div className="text-center mb-8 sm:mb-12">
           <motion.h1
             variants={itemVariants}
-            className="text-3xl md:text-4xl font-bold text-[#102D21] mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#102D21] mb-3 sm:mb-4"
           >
             Thank You!
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-700 max-w-lg mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-700 max-w-lg mx-auto px-2"
           >
             Thank you for stepping up to shape the future of surplus.
           </motion.p>
@@ -203,23 +202,23 @@ export default function ThankYouPage() {
         {/* Message box - clean design */}
         <motion.div
           variants={itemVariants}
-          className="bg-white rounded-xl shadow-sm p-10 mb-12 text-center relative overflow-hidden"
+          className="bg-white rounded-xl shadow-sm p-6 sm:p-10 mb-8 sm:mb-12 text-center relative overflow-hidden"
           whileHover={{ y: -3, boxShadow: '0 10px 25px rgba(0,0,0,0.05)', transition: { duration: 0.3 } }}
         >
           {/* Subtle accent at top */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-[#43CD66]"></div>
 
-          <div className="space-y-8">
-            <p className="text-gray-700 text-lg leading-relaxed">
+          <div className="space-y-6 sm:space-y-8">
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
               Our platform is under construction and will go live on <span className="font-bold relative inline-block">
                 July 10, 2025
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#43CD66]/70"></span>
               </span>. We&apos;re excited to have business leaders like you leading the way.
             </p>
 
-            <div className="flex items-center justify-center pt-6 border-t border-gray-100">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 pt-4 sm:pt-6 border-t border-gray-100">
               <Logo size="small" variant="dark" minWidth={100} />
-              <p className="ml-3 font-bold text-gray-800">
+              <p className="sm:ml-3 font-bold text-gray-800 text-sm sm:text-base">
                 The Commerce Central Team
               </p>
             </div>
@@ -241,7 +240,7 @@ export default function ThankYouPage() {
                 // Use window.location for a direct navigation without client-side routing
                 window.location.href = homeUrl;
               }}
-              className="bg-gradient-to-r cursor-pointer from-[#43CD66] to-[#2ab149] text-white font-medium py-3.5 px-10 rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-gradient-to-r cursor-pointer from-[#43CD66] to-[#2ab149] text-white font-medium py-3 px-8 sm:py-3.5 sm:px-10 rounded-full transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
             >
               Return to Home
             </button>
@@ -262,11 +261,11 @@ export default function ThankYouPage() {
                     text: 'Join me in shaping the future of surplus with Commerce Central!',
                     url: window.location.origin + '/earlyAccess',
                   })
-                  .catch((error) => console.log('Error sharing:', error));
+                    .catch((error) => console.log('Error sharing:', error));
                 } else {
                   // Fallback for browsers that don't support navigator.share
                   alert("Your browser doesn't support sharing. Please copy this link: " +
-                        window.location.origin + "/earlyAccess");
+                    window.location.origin + "/earlyAccess");
                 }
               }}
               className="bg-white cursor-pointer border border-[#43CD66] text-[#43CD66] font-medium py-3.5 px-10 rounded-full transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2"

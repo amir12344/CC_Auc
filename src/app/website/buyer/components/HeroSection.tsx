@@ -43,8 +43,9 @@ const HeroSection = () => (
               width={1920}
               height={675}
               className="w-full object-cover rounded-t-[10px]"
-              quality={100}
+              quality={70}
               priority
+              loading='eager'
             />
           </div>
         </motion.div>

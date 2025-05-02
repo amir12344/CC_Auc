@@ -91,7 +91,7 @@ const SellersFeaturesSection: React.FC = () => {
             SELLERS
           </motion.p>
           <motion.h2
-            className='mt-2 text-4xl font-bold md:text-5xl font-bold tracking-tight'
+            className='mt-2 text-3xl font-bold md:text-5xl font-bold tracking-tight'
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}

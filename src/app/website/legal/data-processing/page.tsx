@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function DataProcessingPage() {
   return (
-    <article className="prose prose-lg max-w-none">
+    <article className="prose prose-lg max-w-none mt-4">
       <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Data Processing Information</h1>
       
       <div className="text-sm text-gray-500 mb-8">
