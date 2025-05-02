@@ -1,15 +1,19 @@
 version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - yarn install --frozen-lockfile
+        - yarn ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
-    preBuild:
+  preBuild:
       commands:
         - corepack enable
         - corepack prepare yarn@4.9.1 --activate
-        - yarn install --frozen-lockfile
-    build:
+  build:
       commands:
-        - yarn build
-        - yarn ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+        - yarn run build
   artifacts:
     baseDirectory: .next
     files:
