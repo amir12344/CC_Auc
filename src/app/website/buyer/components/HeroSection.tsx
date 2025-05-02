@@ -38,7 +38,7 @@ const HeroSection = () => (
         >
           <div className="relative top-[1px] overflow-hidden border border-neutral-800 bg-neutral-900">
             <Image
-              src="/images/marketplace3.png"
+              src="/images/marketplace3.webp"
               alt="Commerce Central Seller Dashboard Preview"
               width={1920}
               height={675}

@@ -4,12 +4,12 @@ import React from 'react';
 import Image from 'next/image';
 
 const productCategories = [
-  { name: "Houseware", imageUrl: "/images/KitchenHouseware.png" },
-  { name: "Appliances", imageUrl: "/images/SmallAppliances.png" },
-  { name: "Electronics", imageUrl: "/images/ConsumerElectronics.png" },
-  { name: "Beauty", imageUrl: "/images/beauty_products.png" },
-  { name: "CPG", imageUrl: "/images/CleaningSupplies_Option2.png" },
-  { name: "Furniture", imageUrl: "/images/Furnitures.png" },
+  { name: "Houseware", imageUrl: "/images/KitchenHouseware.webp" },
+  { name: "Appliances", imageUrl: "/images/SmallAppliances.webp" },
+  { name: "Electronics", imageUrl: "/images/ConsumerElectronics.webp" },
+  { name: "Beauty", imageUrl: "/images/beauty_products.webp" },
+  { name: "CPG", imageUrl: "/images/CleaningSupplies_Option2.webp" },
+  { name: "Furniture", imageUrl: "/images/Furnitures.webp" },
 ];
 
 export default function ProductCategories() {

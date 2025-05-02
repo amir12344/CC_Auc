@@ -17,35 +17,35 @@ const SellerPageClient = () => {
       title: 'Act Before Inventory Becomes a Liability',
       description: 'Detect aging or returned stock early and move it before markdowns, write-offs, or warehouse gridlock erode your margins.',
       icon: <FaChartLine className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/inventoryChart.png',
+      imagePath: '/images/inventoryChart.webp',
       imageAlt: 'Control tower dashboard showing $ value and space tied to returned inventory at each location'
     },
     {
       title: 'Protect Brand, Pricing, and Channels',
       description: 'Decide who can buy, how much, and where it sells. Guardrails like pricing floors, buyer types, and resale geography keep your brand perception and retail relationships intact.',
       icon: <FaLock className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/dashboard3.png',
+      imagePath: '/images/dashboard3.webp',
       imageAlt: 'Guardrails dashboard with pricing floor and buyer type controls'
     },
     {
       title: 'Run Resale on Autopilot',
       description: 'Set your resale parameters — we handle the rest. From buyer outreach and deal flow to payment, logistics, and tax handling. Your team stays focused on growth, not firefighting.',
       icon: <FaRocket className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/OrderDashboard.png',
+      imagePath: '/images/OrderDashboard.webp',
       imageAlt: 'Order dashboard showing different status of transactions'
     },
     {
       title: 'Always Audit-Ready',
       description: 'Every transaction comes with buyer identity, resale terms, and fulfillment proof giving Finance and Legal a compliant, documented trail for every exit.',
       icon: <FaFileAlt className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/audit.png',
+      imagePath: '/images/audit.webp',
       imageAlt: 'Documentation and audit trail for inventory transactions'
     },
     {
       title: 'Monetize Across Channels Without Conflict',
       description: 'Sell D2C for higher margins, or move in bulk to vetted B2B buyers. Every exit honors your retail relationships and pricing power.',
       icon: <FaStore className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/Inventory_flow.png',
+      imagePath: '/images/Inventory_flow.webp',
       imageAlt: 'Visualization of inventory flowing to B2B and D2C channels'
     }
   ];
