@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import Logo from '../ui/Logo';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
@@ -176,7 +175,7 @@ const Navbar: React.FC = () => {
     router.prefetch('/website/seller');
     router.prefetch('/website/buyer');
     router.prefetch('/website/team');
-    router.prefetch('/earlyAccess');
+    router.prefetch('/early-access');
     router.prefetch('/marketplace');
   }, [router]);
 
@@ -259,8 +258,8 @@ const Navbar: React.FC = () => {
     <>
       <header
         className={`fixed w-full z-50 transition-all duration-300 ${isLegalPage ? 'bg-[#102D21] backdrop-blur-md shadow-md' :
-            isTeamPage ? 'bg-[#102D21] backdrop-blur-md shadow-md' :
-              scrolled ? getNavbarStyle() : 'bg-transparent'
+          isTeamPage ? 'bg-[#102D21] backdrop-blur-md shadow-md' :
+            scrolled ? getNavbarStyle() : 'bg-transparent'
           } ${scrolled || isTeamPage || isLegalPage ? 'shadow-md' : ''}`}
       >
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full m-[0.5rem]'>
@@ -294,10 +293,10 @@ const Navbar: React.FC = () => {
               </Link>
 
               <Link
-                href='/earlyAccess'
+                href='/early-access'
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavigation('/earlyAccess');
+                  handleNavigation('/early-access');
                 }}
                 className={`px-6 py-2 rounded-full ${getButtonStyle()} font-medium hover:opacity-90 transition-all duration-200 shadow-xs`}
               >
@@ -394,8 +393,8 @@ const Navbar: React.FC = () => {
                     <div className="border-t border-[#43CD66]/20 p-6">
                       <SheetClose asChild>
                         <Link
-                          href='/earlyAccess'
-                          onClick={() => handleNavigation('/earlyAccess')}
+                          href='/early-access'
+                          onClick={() => handleNavigation('/early-access')}
                           className="flex h-12 w-full items-center justify-center rounded-full bg-[#43CD66] font-medium text-[#102D21] shadow-sm hover:bg-[#43CD66]/90 transition-colors"
                         >
                           Early Access
