@@ -12,7 +12,7 @@ const HeroSectionClient = () => {
   return (
     <section
       id='hero'
-      className='relative min-h-[600px] md:min-h-[700px] h-screen flex flex-col justify-between overflow-hidden bg-gradient-to-b from-[#102D21] to-[#0F2A1F] transition-all duration-700'
+      className='relative min-h-[600px] md:min-h-[700px] h-screen flex flex-col justify-between overflow-hidden bg-[#0B2016] transition-all duration-700'
     >
       {/* Enhanced grid pattern overlay with animation */}
       <div
@@ -39,20 +39,20 @@ const HeroSectionClient = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="mb-6 md:mb-8 lg:mb-10 inline-block"
+              className="mb-4 md:mb-6 lg:mb-8 inline-block"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="px-4 py-1.5 bg-[#43CD66]/10 rounded-full mb-4 backdrop-blur-sm border border-[#43CD66]/20"
+                className="px-4 py-1.5 bg-[#43CD66]/10 rounded-full backdrop-blur-sm border border-[#43CD66]/20"
               >
                 <span className="text-sm md:text-base font-medium text-[#43CD66]">Commerce Central</span>
               </motion.div>
             </motion.div>
 
             <motion.h1
-              className='text-4xl font-geist sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-5 md:mb-6 lg:mb-7 xl:mb-8 text-[#43CD66] leading-[1.1] tracking-tight max-w-5xl mx-auto'
+              className='text-4xl font-geist sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-5 md:mb-6 lg:mb-8 text-[#43CD66] leading-[1.1] tracking-tight max-w-5xl mx-auto'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
@@ -62,7 +62,7 @@ const HeroSectionClient = () => {
             </motion.h1>
 
             <motion.div
-              className='text-md sm:text-lg md:text-xl xl:text-2xl mb-8 md:mb-10 lg:mb-12 xl:mb-14 mx-auto space-y-3 sm:space-y-4 lg:space-y-5 max-w-3xl leading-relaxed'
+              className='text-md sm:text-lg md:text-xl xl:text-xl mb-6 md:mb-8 lg:mb-10 mx-auto space-y-3 sm:space-y-4 lg:space-y-4 max-w-3xl leading-relaxed'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -110,7 +110,7 @@ const HeroSectionClient = () => {
             >
               <Link
                 href='/early-access'
-                className='group relative px-6 sm:px-8 md:px-10 py-3.5 md:py-4.5 rounded-full bg-[#43CD66] text-[#102D21] font-semibold transition-all duration-300 text-base sm:text-lg shadow-[0_0_20px_rgba(67,205,102,0.3)] hover:shadow-[0_0_30px_rgba(67,205,102,0.5)] hover:-translate-y-1 flex items-center justify-center hover:bg-[#50E575] overflow-hidden'
+                className='group relative px-6 sm:px-8 md:px-10 py-3.5 md:py-4 rounded-full bg-[#43CD66] text-[#0A2418] font-semibold transition-all duration-300 text-base sm:text-lg shadow-[0_0_20px_rgba(67,205,102,0.3)] hover:shadow-[0_0_30px_rgba(67,205,102,0.5)] hover:-translate-y-1 flex items-center justify-center hover:bg-[#50E575] overflow-hidden'
               >
                 <span className="relative z-10 flex items-center">
                   <span className="mr-2">Early Access</span>
@@ -133,8 +133,8 @@ const HeroSectionClient = () => {
             </motion.div>
           </div>
         </div>
-
-          {/* commenting for now but will un-comment once we have the values for the stats */}
+        
+        {/* commenting for now but will un-comment once we have the values for the stats */}
         {/* Stats Section */}
         {/* <div
           ref={statsRef}
