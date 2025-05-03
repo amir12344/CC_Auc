@@ -24,7 +24,7 @@ const HeroSection = () => (
               href='/early-access'
               className='px-4 sm:px-5 md:px-6 py-2.5 md:py-3 rounded-full bg-[#43CD66] text-[#1C1E21] font-medium transition-all duration-300 text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center hover:bg-[#43CD66] hover:text-[#ffff]'
             >
-              <span>Buy on Commerce Central</span>
+              <span>Early Access</span>
               <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
             </Link>
           </div>

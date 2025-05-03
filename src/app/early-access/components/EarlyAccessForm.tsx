@@ -94,7 +94,7 @@ export default function EarlyAccessForm() {
               RESERVE YOUR ACCESS
             </span>
 
-            <div className='block md:hidden h-1 w-24 md:w-24 bg-[#43CD66] rounded-full mt-1'></div>
+            <div className='block md:hidden h-1 w-22 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
             <span className='hidden md:block'>
               This is a highly sought after opportunity. Don&apos;t drop the
               ball.

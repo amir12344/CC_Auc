@@ -18,8 +18,8 @@ const FinalCTASection = () => (
         <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white">
           With Commerce Central, you&apos;re no longer chasing deals. You&apos;re leading the game.
         </p>
-        <Link href="/earlyAccess" className="bg-[#43CD66] hover:bg-[#3ab558] text-[#102D21] font-medium py-4 px-12 rounded-full inline-flex items-center transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg">
-          Buy on Commerce Central
+        <Link href="/early-access" className="bg-[#43CD66] hover:bg-[#3ab558] text-[#102D21] font-medium py-4 px-12 rounded-full inline-flex items-center transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg">
+          Early Access
           <FaArrowRight className="ml-3" />
         </Link>
       </motion.div>

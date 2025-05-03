@@ -85,27 +85,13 @@ const HeroSectionClient = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               style={{ willChange: 'transform, opacity' }}
             >
-              <Link
-                href='/earlyAccess'
-                className='px-4 sm:px-5 md:px-6 py-2.5 md:py-3 rounded-full bg-[#43CD66] font-medium transition-all duration-300 text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center'
-              >
-                <span>Sell on Commerce Central</span>
-                <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
-              </Link>
-              {/* <Link
-                href='/marketplace'
-                className='px-4 sm:px-5 md:px-6 py-2.5 md:py-3 rounded-full bg-white text-[#1C1E21] font-medium transition-all duration-300 text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center hover:bg-[#43CD66] hover:text-[#ffff]'
-              >
-                <span>Buy on Commerce Central</span>
-                <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
-              </Link> */}
-              <Link
-                href='/earlyAccess'
-                className='px-4 sm:px-5 md:px-6 py-2.5 md:py-3 rounded-full bg-white text-[#1C1E21] font-medium transition-all duration-300 text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center hover:bg-[#43CD66] hover:text-[#ffff]'
-              >
-                <span>Buy on Commerce Central</span>
-                <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
-              </Link>
+                <Link
+                href='/early-access'
+                  className='px-6 sm:px-7 md:px-8 py-3 md:py-4 rounded-full bg-[#43CD66] text-[#1C1E21] font-semibold transition-all duration-300 text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center hover:bg-[#50E575] group'
+                >
+                  <span>Early Access</span>
+                  <FaArrowRight className='w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1' aria-hidden='true' />
+                </Link>
             </motion.div>
           </div>
         </div>

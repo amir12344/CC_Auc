@@ -13,7 +13,7 @@ const InfoSection: React.FC = () => {
     <section id='stats' ref={ref} className='py-10 md:py-24 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='text-center mb-10 md:mb-16'>
-          <h2 className='text-3xl md:text-4xl font-bold md:text-5xl mb-4'>
+          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
             Where brand protection meets{' '}
             <span className='relative text-[#43cd66]'>
               buyer confidence
@@ -50,10 +50,10 @@ const InfoSection: React.FC = () => {
               sells.
             </p>
             <Link
-              href='/earlyAccess'
+              href='/early-access'
               className=' mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-[#43CD66] border border-[#43CD66] text-[#ffffff] font-medium rounded-full transition'
             >
-              Sell on Commerce Central
+              Early Access
               <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
             </Link>
           </motion.div>
@@ -79,10 +79,10 @@ const InfoSection: React.FC = () => {
               to avoid bad loads and finally trust what shows up.
             </p>
             <Link
-              href='/earlyAccess'
-              className='hover:text-[white] mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-white border border-[#43CD66] hover:bg-[#43CD66] hover:text-white text-[#43CD66] font-medium rounded-full transition'
+              href='/early-access'
+              className='mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-white border border-[#43CD66] hover:bg-[#43CD66] hover:text-white text-[#43CD66] font-medium rounded-full transition'
             >
-              <span>Buy on Commerce Central</span>
+              <span>Early Access</span>
               <FaArrowRight className='w-5 h-5 ml-2 ' aria-hidden='true' />
             </Link>
           </motion.div>
