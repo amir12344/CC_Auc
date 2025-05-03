@@ -10,7 +10,7 @@ export default function EarlyAccessPage() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-linear-to-br from-gray-50 to-white">
       {/* Left side with form */}
-      <div className="relative w-full lg:w-1/2 min-h-screen bg-white overflow-y-auto">
+      <div className="relative w-full lg:w-1/2 bg-white overflow-y-auto">
         {/* Logo positioned at top left corner */}
         <LogoHeader />
 
@@ -26,7 +26,7 @@ export default function EarlyAccessPage() {
 
         {/* Main content area with padding */}
         <div className="p-4 pt-24 lg:p-10 lg:pt-24 relative z-10">
-          <div className="relative z-10 mx-auto w-full px-0 md:px-4 md:px-8">
+          <div className="relative z-10 mx-auto w-full px-0 md:px-4">
             <EarlyAccessForm />
           </div>
         </div>

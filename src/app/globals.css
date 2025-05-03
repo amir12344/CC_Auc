@@ -366,3 +366,14 @@
 .hover\:scale-102:hover {
   transform: scale(1.02);
 }
+
+/* styles.css */
+.mobile-card {
+  @apply w-full space-y-4 bg-transparent shadow-none ring-0 backdrop-blur-none px-4 py-5 mt-0 pt-[10px] rounded-2xl;
+}
+
+@media (min-width: 768px) {
+  .mobile-card {
+    @apply space-y-6 bg-white/80 shadow-lg ring-1 ring-[#43cd66]/20 backdrop-blur-md px-8 py-10;
+  }
+}
