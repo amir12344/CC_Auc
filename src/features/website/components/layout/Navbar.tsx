@@ -384,22 +384,18 @@ const Navbar: React.FC = () => {
                                 <ChevronRight className="ml-auto h-5 w-5 text-[#43CD66] opacity-0 group-hover:opacity-100 transition-opacity" />
                               </Link>
                             </SheetClose>
+                            <SheetClose asChild>
+                              <Link
+                                href='/early-access'
+                                onClick={() => handleNavigation('/early-access')}
+                                className="flex h-12 w-full items-center justify-center rounded-full bg-[#43CD66] font-medium text-[#102D21] shadow-sm hover:bg-[#43CD66]/90 transition-colors"
+                              >
+                                Early Access
+                              </Link>
+                            </SheetClose>
                           </nav>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Footer with Action Button */}
-                    <div className="border-t border-[#43CD66]/20 p-6">
-                      <SheetClose asChild>
-                        <Link
-                          href='/early-access'
-                          onClick={() => handleNavigation('/early-access')}
-                          className="flex h-12 w-full items-center justify-center rounded-full bg-[#43CD66] font-medium text-[#102D21] shadow-sm hover:bg-[#43CD66]/90 transition-colors"
-                        >
-                          Early Access
-                        </Link>
-                      </SheetClose>
                     </div>
                   </div>
                 </SheetContent>
