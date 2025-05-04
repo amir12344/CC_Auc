@@ -118,7 +118,7 @@ const NoJunkPlanSection = () => (
           </div>
           
           <div className="text-center mt-20">
-        <Link href="/early-access" className="bg-[#43CD66] hover:bg-[#3ab558] text-[#102D21] font-medium py-4 px-10 rounded-full inline-flex items-center transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        <Link href="/earlyaccess" className="bg-[#43CD66] hover:bg-[#3ab558] text-[#102D21] font-medium py-4 px-10 rounded-full inline-flex items-center transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Early Access
               <FaArrowRight className="ml-3" />
             </Link>

@@ -259,13 +259,13 @@ export default function ThankYouPage() {
                   navigator.share({
                     title: 'Commerce Central - Early Access',
                     text: 'Join me in shaping the future of surplus with Commerce Central!',
-                    url: window.location.origin + '/early-access',
+                    url: window.location.origin + '/earlyaccess',
                   })
                     .catch((error) => console.log('Error sharing:', error));
                 } else {
                   // Fallback for browsers that don't support navigator.share
                   alert("Your browser doesn't support sharing. Please copy this link: " +
-                    window.location.origin + "/early-access");
+                    window.location.origin + "/earlyaccess");
                 }
               }}
               className="bg-white cursor-pointer border border-[#43CD66] text-[#43CD66] font-medium py-3.5 px-10 rounded-full transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2"

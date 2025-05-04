@@ -29,7 +29,7 @@ export const FinalCTASection = () => (
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-5">
           <Link
-            href='/early-access'
+            href='/earlyaccess'
             className='px-8 sm:px-10 py-4 rounded-full bg-[#43CD66] font-medium transition-all duration-300 text-base md:text-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group'
           >
             <span>Early Access</span>

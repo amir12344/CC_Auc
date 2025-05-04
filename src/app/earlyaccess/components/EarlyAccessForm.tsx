@@ -69,7 +69,7 @@ export default function EarlyAccessForm() {
 
     if (result.success) {
       reset();
-      router.push('/early-access/thankyou');
+      router.push('/earlyaccess/thankyou');
     } else {
       setErrorMessage(result.message || 'An unexpected error occurred.');
     }

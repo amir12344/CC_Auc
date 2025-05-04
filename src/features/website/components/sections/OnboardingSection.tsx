@@ -298,7 +298,7 @@ const TestimonialsSection: React.FC = () => {
           </motion.p>
           <div className='mt-4'>
             <Link
-              href='/early-access'
+              href='/earlyaccess'
               className='p-4 rounded-full bg-[#102D21] hover:bg-[#43CD66] text-white font-medium transition-all duration-200 hover:shadow-md'
               prefetch={true}
             >

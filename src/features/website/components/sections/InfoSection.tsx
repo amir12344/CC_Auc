@@ -50,7 +50,7 @@ const InfoSection: React.FC = () => {
               sells.
             </p>
             <Link
-              href='/early-access'
+              href='/earlyaccess'
               className=' mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-[#43CD66] border border-[#43CD66] text-[#ffffff] font-medium rounded-full transition'
             >
               Early Access
@@ -79,7 +79,7 @@ const InfoSection: React.FC = () => {
               to avoid bad loads and finally trust what shows up.
             </p>
             <Link
-              href='/early-access'
+              href='/earlyaccess'
               className='mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-white border border-[#43CD66] hover:bg-[#43CD66] hover:text-white text-[#43CD66] font-medium rounded-full transition'
             >
               <span>Early Access</span>
