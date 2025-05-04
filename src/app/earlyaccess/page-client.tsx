@@ -25,7 +25,7 @@ export default function EarlyAccessPage() {
         </div>
 
         {/* Main content area with padding */}
-        <div className="p-4 pt-24 lg:p-10 lg:pt-24 relative z-10">
+        <div className="p-4 pt-16 lg:p-10 lg:pt-24 relative z-10">
           <div className="relative z-10 mx-auto w-full px-0 md:px-4">
             <EarlyAccessForm />
           </div>

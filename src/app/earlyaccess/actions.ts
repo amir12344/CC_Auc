@@ -15,10 +15,13 @@ const formSchema = z.object({
   companyName: z.string().min(1, { message: "Company name is required" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phoneNumber: z.string()
-    .min(10, { message: "Mobile number must be at least 10 characters" })
-    .refine(value => /\d{10,}/.test(value.replace(/\D/g, '')), {
-      message: "Mobile number must contain at least 10 digits"
-    }),
+  .min(1, { message: "Phone number is required" })
+  .refine((val) => {
+    const digitsOnly = val.replace(/\D/g, ""); // remove non-digits
+    return /^\d{10}$/.test(digitsOnly); // must be exactly 10 digits
+  }, {
+    message: "Phone number must be exactly 10 digits"
+  }),
   termsAccepted: z.boolean().refine(value => value === true, {
     message: "You must accept the terms and conditions"
   })

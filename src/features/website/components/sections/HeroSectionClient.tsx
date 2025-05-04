@@ -12,7 +12,7 @@ const HeroSectionClient = () => {
   return (
     <section
       id='hero'
-      className='relative min-h-[600px] md:min-h-[700px] h-screen flex flex-col justify-between overflow-hidden bg-[#0B2016] transition-all duration-700'
+      className='relative min-h-[600px] md:min-h-[700px] h-screen flex flex-col justify-between overflow-hidden bg-[#102D21] transition-all duration-700'
     >
       {/* Enhanced grid pattern overlay with animation */}
       <div
@@ -21,7 +21,7 @@ const HeroSectionClient = () => {
           backgroundImage: `
             linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
+          backgroundSize: '20px 20px',
           backgroundPosition: '0 0',
           filter: 'blur(0.5px)',
         }}

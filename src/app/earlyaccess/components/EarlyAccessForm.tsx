@@ -25,12 +25,12 @@ const formSchema = z.object({
   companyName: z.string().min(1, { message: "Company name is required" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phoneNumber: z.string()
+    .min(1, { message: "Phone number is required" })
     .refine((val) => {
-      if (!val || val.trim() === "") return true; // allow empty
-      const phoneRegex = /^\+?\d{10,15}$/;
-      return phoneRegex.test(val.replace(/\D/g, ""));
+      const digitsOnly = val.replace(/\D/g, ""); // remove all non-digit characters
+      return /^\d{10}$/.test(digitsOnly);
     }, {
-      message: "Please enter a valid phone number (10-15 digits)"
+      message: "Phone number must be exactly 10 digits"
     }),
   termsAccepted: z.boolean().refine(value => value === true, {
     message: "You must accept the terms and conditions"
@@ -80,18 +80,18 @@ export default function EarlyAccessForm() {
       {/* Welcome text */}
       <div className='mb-0 md:mb-4'>
         <div
-          className='relative flex flex-col items-start justify-center bg-transparent border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
+          className='relative flex flex-col items-start justify-center bg-transparent mt-8 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
 '
         >
-          <span className='absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
+          <span className='md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
             Early Access
           </span>
           <h2 className='text-xl md:text-4xl mb-2 md:mb-4 tracking-tight font-bold'>
             Welcome to Commerce Central
           </h2>
           <div className='text-[#1C1E21] mb-0 text-sm md:text-base text-center'>
-            <span className='block md:hidden font-[500]'>
-              RESERVE YOUR ACCESS
+            <span className="block text-start md:hidden font-[500]">
+              This is a highly sought after opportunity.<br /> Don&apos;t drop the ball.
             </span>
 
             <div className='block md:hidden h-1 w-22 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
