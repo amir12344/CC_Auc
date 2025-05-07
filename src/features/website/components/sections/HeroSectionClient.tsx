@@ -35,62 +35,41 @@ const HeroSectionClient = () => {
       <div className='container mx-auto px-5 sm:px-6 lg:px-10 relative z-10 flex flex-col justify-between h-full pt-8 md:pt-10 pb-0 max-w-(--breakpoint-xl)'>
         <div className='grow flex items-center justify-center pt-0 md:pt-0 pb-6 md:pb-8'>
           <div className='mx-auto w-full lg:w-11/12 xl:w-9/12 pt-6 md:pt-8 lg:pt-10 xl:pt-12 text-center'>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
+            <div
               className="mb-4 md:mb-6 lg:mb-8 inline-block"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+              <div
                 className="px-4 py-1.5 bg-[#43CD66]/10 rounded-full backdrop-blur-sm border border-[#43CD66]/20"
               >
                 <span className="text-sm md:text-base font-medium text-[#43CD66]">Commerce Central</span>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
-            <motion.h1
+            <h1
               className='text-4xl font-geist sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-5 md:mb-6 lg:mb-8 text-[#43CD66] leading-[1.1] tracking-tight max-w-5xl mx-auto'
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
               style={{ willChange: 'transform, opacity' }}
             >
               The go-to platform to move and source surplus inventory
-            </motion.h1>
+            </h1>
 
-            <motion.div
+            <div
               className='text-md sm:text-lg md:text-xl xl:text-xl mb-6 md:mb-8 lg:mb-10 mx-auto space-y-3 sm:space-y-4 lg:space-y-4 max-w-3xl leading-relaxed'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
               style={{ willChange: 'opacity' }}
             >
-              <motion.p
+              <p
                 className='font-medium text-[#FFFFFF] flex items-center justify-center gap-1.5'
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#43CD66]"></span>
                 Smart brands stay in control and recover more.
-              </motion.p>
-              <motion.p
+              </p>
+              <p
                 className='font-medium text-[#FFFFFF] flex items-center justify-center gap-1.5'
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#43CD66]"></span>
                 Smart buyers source better and skip the chaos.
-              </motion.p>
-              <motion.p
+              </p>
+              <p
                 className='font-medium text-[#FFFFFF] flex items-center justify-center gap-1.5'
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
               >
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#43CD66]"></span>
                 <span className='relative'>
@@ -98,14 +77,11 @@ const HeroSectionClient = () => {
                   <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#25D366] rounded-full opacity-70'></span>
                 </span>{' '}
                 makes it all happen.
-              </motion.p>
-            </motion.div>
+              </p>
+            </div>
 
-            <motion.div
+            <div
               className='flex flex-col sm:flex-row gap-5 mb-8 lg:mb-10 xl:mb-12 justify-center max-w-3xl mx-auto'
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
               style={{ willChange: 'transform, opacity' }}
             >
               <Link
@@ -114,23 +90,18 @@ const HeroSectionClient = () => {
               >
                 <span className="relative z-10 flex items-center">
                   <span className="mr-2">Early Access</span>
-                  <motion.span
+                  <span
                     className="inline-block"
-                    initial={{ opacity: 1 }}
-                    whileHover={{
-                      x: [0, 5, 0],
-                      transition: { repeat: Infinity, duration: 1 }
-                    }}
                   >
                     <FaArrowRight
                       className='w-5 h-5 transition-transform duration-300 group-hover:translate-x-1'
                       aria-hidden='true'
                     />
-                  </motion.span>
+                  </span>
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#43CD66] to-[#50E575] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
         

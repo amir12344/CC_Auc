@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'Recover more value from surplus inventory with brand protection, channel control, and automated resale processes.',
     images: [
       {
-        url: 'https://www.commercecentral.io/images/seller-og-image.jpg',
+        url: 'https://www.commercecentral.io',
         width: 1200,
         height: 630,
         alt: 'Commerce Central Seller Platform',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Recover More. Risk Less. Reclaim Control.',
     description: 'Commerce Central is your brand-safe execution layer for turning surplus into cash.',
-    images: ['https://www.commercecentral.io/images/seller-twitter-image.jpg'],
+    images: ['https://www.commercecentral.io'],
   },
 };
 

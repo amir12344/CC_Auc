@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'Thank you for your interest in Commerce Central. We\'ll be in touch soon!',
     images: [
       {
-        url: 'https://www.commercecentral.io/images/early-access-og-image.jpg',
+        url: 'https://www.commercecentral.io',
         width: 1200,
         height: 630,
         alt: 'Commerce Central Early Access',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Registration Confirmed',
     description: 'Thank you for your interest in Commerce Central. We\'ll be in touch soon!',
-    images: ['https://www.commercecentral.io/images/early-access-twitter-image.jpg'],
+    images: ['https://www.commercecentral.io'],
   },
 };
 

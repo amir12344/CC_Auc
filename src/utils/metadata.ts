@@ -89,7 +89,7 @@ export const defaultOpenGraph: OpenGraph = {
   siteName: 'Commerce Central',
   images: [
     {
-      url: 'https://www.commercecentral.io/images/og-image.jpg',
+      url: 'https://www.commercecentral.io',
       width: 1200,
       height: 630,
       alt: 'Commerce Central - Maximize Your Inventory Value',
@@ -104,7 +104,7 @@ export const defaultTwitter: Twitter = {
   card: 'summary_large_image',
   site: '@CommerceCentral',
   creator: '@CommerceCentral',
-  images: ['https://www.commercecentral.io/images/twitter-image.jpg'],
+  images: ['https://www.commercecentral.io'],
 };
 
 // Generate structured data for the organization
@@ -115,9 +115,7 @@ export const getOrganizationSchema = (): SchemaOrg => {
     name: 'Commerce Central',
     url: 'https://www.commercecentral.io',
     sameAs: [
-      'https://twitter.com/CommerceCentral',
-      'https://www.linkedin.com/company/commerce-central',
-      'https://www.facebook.com/CommerceCentral',
+      'https://www.linkedin.com/company/commercecentral',
     ],
     contactPoint: {
       '@type': 'ContactPoint',

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'Connect with vetted buyers and sellers to maximize your inventory value. Join the most trusted B2B surplus platform.',
     images: [
       {
-        url: 'https://www.commercecentral.io/images/home-og-image.jpg',
+        url: 'https://www.commercecentral.io',
         width: 1200,
         height: 630,
         alt: 'Commerce Central Homepage',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Unlock Your Inventory\'s Potential',
     description: 'The only private surplus distribution platform built for trusted Buyers and Sellers.',
-    images: ['https://www.commercecentral.io/images/home-twitter-image.jpg'],
+    images: ['https://www.commercecentral.io'],
   },
 };
 

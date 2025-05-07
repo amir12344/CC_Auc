@@ -41,11 +41,8 @@ const TestimonialsSection: React.FC = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative'>
         {/* LEFT COLUMN PROFILES */}
         {/* Asian man with glasses - top left */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[14%] left-[5%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
         >
           <Image
             src={profiles[0]}
@@ -55,14 +52,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Man in black shirt - top left */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-0 left-[15%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15 }}
         >
           <Image
             src={profiles[1]}
@@ -72,14 +66,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Woman with brown top - bottom left */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[41%] left-[5%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2 }}
         >
           <Image
             src={profiles[2]}
@@ -89,14 +80,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Man in white shirt - middle left */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[27%] left-[15%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.25 }}
         >
           <Image
             src={profiles[3]}
@@ -106,14 +94,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Man with glasses in blue shirt */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[10%] left-[25%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
         >
           <Image
             src={profiles[4]}
@@ -123,15 +108,12 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* MIDDLE SECTION PROFILES */}
         {/* Man with crossed arms blue shirt */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[0%] left-[35%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.35 }}
         >
           <Image
             src={profiles[5]}
@@ -141,14 +123,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Man in suit */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[10%] left-[45%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4 }}
         >
           <Image
             src={profiles[6]}
@@ -158,14 +137,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Woman with brown jacket */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[0%] left-[55%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.45 }}
         >
           <Image
             src={profiles[7]}
@@ -175,14 +151,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Woman at desk */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[10%] left-[65%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
         >
           <Image
             src={profiles[8]}
@@ -192,14 +165,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Man in green/gray shirt */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[0%] left-[75%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.55 }}
         >
           <Image
             src={profiles[9]}
@@ -209,15 +179,12 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* RIGHT COLUMN PROFILES */}
         {/* Woman with curly hair */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[14%] right-[6%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6 }}
         >
           <Image
             src={profiles[10]}
@@ -227,14 +194,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Asian man in suit */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[27%] right-[16%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.65 }}
         >
           <Image
             src={profiles[11]}
@@ -244,14 +208,11 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Man in blue blazer */}
-        <motion.div
+        <div
           className='absolute w-[7rem] h-[8rem] top-[41%] right-[6%] rounded-xl overflow-hidden hidden md:block'
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.7 }}
         >
           <Image
             src={profiles[12]}
@@ -261,23 +222,17 @@ const TestimonialsSection: React.FC = () => {
             className='w-full h-full object-cover'
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
         {/* Central content */}
         <div className='text-center max-w-3xl mx-auto z-20 relative pt-0 sm:pt-[13rem] pb-20'>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <h2
             className='text-4xl font-bold md:text-5xl text-[#1C1E21] mb-2'
           >
             Unlock your inventory’s
-          </motion.h2>
+          </h2>
 
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <h3
             className='text-4xl md:text-5xl font-normal text-primary mb-8 text-[#43CD66]'
           >
             
@@ -285,17 +240,14 @@ const TestimonialsSection: React.FC = () => {
               full potential.
               <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#43cd66] rounded-full opacity-80'></span>
             </span>
-          </motion.h3>
+          </h3>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <p
             className='text-lg text-[#1C1E21] w-[24rem] mx-auto mb-8'
           >
             Join the only private surplus distribution platform built for trusted Buyers and Sellers.
 
-          </motion.p>
+          </p>
           <div className='mt-4'>
             <Link
               href='/earlyaccess'

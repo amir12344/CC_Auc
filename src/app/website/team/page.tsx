@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: 'Meet the Commerce Central team - the experts behind our AI-powered inventory management solutions.',
     images: [
       {
-        url: 'https://www.commercecentral.io/images/team-og.jpg',
+        url: 'https://www.commercecentral.io',
         width: 1200,
         height: 630,
         alt: 'Commerce Central Team',

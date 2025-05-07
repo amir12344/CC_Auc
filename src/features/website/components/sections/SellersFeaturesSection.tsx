@@ -82,26 +82,20 @@ const SellersFeaturesSection: React.FC = () => {
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='text-center mb-20'>
-          <motion.p
+          <p
             className='text-lg font-medium uppercase tracking-wider text-[#43CD66]'
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
           >
             SELLERS
-          </motion.p>
-          <motion.h2
+          </p>
+          <h2
             className='mt-2 text-3xl font-bold md:text-5xl font-bold tracking-tight'
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
           >
             <span className='relative inline-block'>
               The Problem You Know.
               <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#43cd66] rounded-full opacity-80'></span>
             </span>{' '}
             <span className='whitespace-nowrap'>The Fix You Need.</span>
-          </motion.h2>
+          </h2>
         </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16'>
@@ -121,11 +115,8 @@ const SellersFeaturesSection: React.FC = () => {
               
               <div className='space-y-14'>
                 {comparisonItems.map((item, index) => (
-                  <motion.div
+                  <div
                     key={`problem-${index}`}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
                     className='relative'
                   >
                     <div className='absolute left-0 top-1.5'>
@@ -144,7 +135,7 @@ const SellersFeaturesSection: React.FC = () => {
                         {item.problem.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -166,11 +157,8 @@ const SellersFeaturesSection: React.FC = () => {
               
               <div className='space-y-14'>
                 {comparisonItems.map((item, index) => (
-                  <motion.div
+                  <div
                     key={`solution-${index}`}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
                     className='relative'
                   >
                     <div className='absolute left-0 top-1.5'>
@@ -189,7 +177,7 @@ const SellersFeaturesSection: React.FC = () => {
                         {item.solution.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>

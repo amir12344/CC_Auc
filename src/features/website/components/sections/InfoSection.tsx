@@ -23,10 +23,7 @@ const InfoSection: React.FC = () => {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+          <div
             className='
               bg-white rounded-[24px] w-full mx-auto
               max-w-3xl md:max-w-4xl lg:max-w-5xl
@@ -56,12 +53,9 @@ const InfoSection: React.FC = () => {
               Early Access
               <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <div
             className='bg-white rounded-[24px] w-full mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl p-[50px_30px] md:p-[88px_56px] transition-shadow duration-300'
             style={{
               boxShadow: '10px 10px 34px rgba(0,0,0,0.2)',
@@ -85,7 +79,7 @@ const InfoSection: React.FC = () => {
               <span>Early Access</span>
               <FaArrowRight className='w-5 h-5 ml-2 ' aria-hidden='true' />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
