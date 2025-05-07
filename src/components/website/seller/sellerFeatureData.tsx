@@ -1,13 +1,13 @@
 import React from 'react';
-import { SellerFeatureItemProps } from '@/src/components/common/features';
-import { 
-  createFloatingCard, 
+import { SellerFeatureItemProps } from '@/src/components/common/features/index';
+import {
+  createFloatingCard,
   createInventoryAgeVisualization,
   createBrandProtectionVisualization,
   createOrderStatusVisualization,
   createComplianceVisualization,
   createChannelDistributionVisualization
-} from '@/src/components/common/features';
+} from '@/src/components/common/features/index';
 
 /**
  * Feature data for the seller website section
