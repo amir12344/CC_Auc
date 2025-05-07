@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
@@ -158,7 +159,6 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
         </div>
       </div>
     </div>
-
     {/* Feature 3: Run Resale on Autopilot */}
     <div className="relative mb-32">
       <div className="container mx-auto px-4">

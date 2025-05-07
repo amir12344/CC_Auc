@@ -5,11 +5,11 @@ import {
   type CarouselApi,
 } from "@/src/components/ui/carousel";
 
-import { HeroSection } from './components/HeroSection';
-import { DashboardPreview } from './components/DashboardPreview';
-import { FeaturesSection } from './components/FeaturesSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { FinalCTASection } from './components/FinalCTASection';
+import { HeroSection } from '@/src/components/website/seller/HeroSection';
+import { DashboardPreview } from '@/src/components/website/seller/DashboardPreview';
+import { FeaturesSection } from '@/src/components/website/seller/FeaturesSection';
+import { TestimonialsSection } from '@/src/components/website/seller/TestimonialsSection';
+import { FinalCTASection } from '@/src/components/website/seller/FinalCTASection';
 
 const SellerPageClient = () => {
   const features = [

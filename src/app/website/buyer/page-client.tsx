@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import type { CarouselApi } from "@/src/components/ui/carousel";
-import HeroSection from './components/HeroSection';
-import FeaturesSection from './components/FeaturesSection';
-import NoJunkPlanSection from './components/NoJunkPlanSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import FinalCTASection from './components/FinalCTASection';
+import HeroSection from '@/src/components/website/buyer/HeroSection';
+import FeaturesSection from '@/src/components/website/buyer/FeaturesSection';
+import NoJunkPlanSection from '@/src/components/website/buyer/NoJunkPlanSection';
+import TestimonialsSection from '@/src/components/website/buyer/TestimonialsSection';
+import FinalCTASection from '@/src/components/website/buyer/FinalCTASection';
 
 const BuyerPageClient = () => {
   const [api, setApi] = useState<CarouselApi>();
