@@ -12,16 +12,17 @@ configureAmplify();
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
-  companyName: z.string().min(1, { message: "Company name is required" }),
+  companyName: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phoneNumber: z.string()
-  .min(1, { message: "Phone number is required" })
-  .refine((val) => {
-    const digitsOnly = val.replace(/\D/g, ""); // remove non-digits
-    return /^\d{10}$/.test(digitsOnly); // must be exactly 10 digits
-  }, {
-    message: "Phone number must be exactly 10 digits"
-  }),
+    .optional()
+    .refine((val) => {
+      if (val === undefined || val.trim() === "") return true; // Allow empty or undefined for optional field
+      const digitsOnly = val.replace(/\D/g, "");
+      return /^\d{10}$/.test(digitsOnly);
+    }, {
+      message: "If provided, phone number must be exactly 10 digits"
+    }),
   termsAccepted: z.boolean().refine(value => value === true, {
     message: "You must accept the terms and conditions"
   })
@@ -69,14 +70,16 @@ export async function submitEarlyAccessForm(data: FormData): Promise<ActionResul
     console.log('Email not found, proceeding with registration.');
 
     // 2. If email does not exist, create the record
-    const formattedPhoneNumber = `+1${validatedData.phoneNumber.replace(/\D/g, '')}`;
+    // Format phone number only if provided
+    const phoneNumberInput = validatedData.phoneNumber?.replace(/\D/g, '');
+    const formattedPhoneNumber = phoneNumberInput && phoneNumberInput.length > 0 ? `+1${phoneNumberInput}` : undefined;
 
     const { data: newRegistration, errors: createErrors } = await serverClient.models.EarlyAccessRegistration.create({
       firstName: validatedData.firstName,
       lastName: validatedData.lastName,
-      companyName: validatedData.companyName,
+      companyName: validatedData.companyName || undefined, // Pass undefined if empty or not provided
       email: validatedData.email,
-      phoneNumber: formattedPhoneNumber,
+      phoneNumber: formattedPhoneNumber, // Pass formatted or undefined
       termsAccepted: validatedData.termsAccepted,
       registrationDate: new Date().toISOString(),
     });

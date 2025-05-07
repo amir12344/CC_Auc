@@ -10,9 +10,9 @@ const schema = a.schema({
     .model({
       firstName: a.string().required(),
       lastName: a.string().required(),
-      companyName: a.string().required(),
+      companyName: a.string(),
       email: a.string().required(),
-      phoneNumber: a.string().required(),
+      phoneNumber: a.string(),
       termsAccepted: a.boolean().required(),
       registrationDate: a.datetime().required(),
     })

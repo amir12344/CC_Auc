@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
-import { submitEarlyAccessForm } from '../actions';
 // Import Lucide icons
 import {
   User,
@@ -17,20 +16,22 @@ import {
   X,
   Loader2
 } from 'lucide-react';
+import { submitEarlyAccessForm } from '@/src/app/earlyaccess/actions';
 
 // Define Zod schema for form validation
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
-  companyName: z.string().min(1, { message: "Company name is required" }),
+  companyName: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phoneNumber: z.string()
-    .min(1, { message: "Phone number is required" })
+    .optional()
     .refine((val) => {
-      const digitsOnly = val.replace(/\D/g, ""); // remove all non-digit characters
+      if (val === undefined || val.trim() === "") return true;
+      const digitsOnly = val.replace(/\D/g, "");
       return /^\d{10}$/.test(digitsOnly);
     }, {
-      message: "Phone number must be exactly 10 digits"
+      message: "If provided, phone number must be exactly 10 digits"
     }),
   termsAccepted: z.boolean().refine(value => value === true, {
     message: "You must accept the terms and conditions"
@@ -80,24 +81,23 @@ export default function EarlyAccessForm() {
       {/* Welcome text */}
       <div className='mb-0 md:mb-4'>
         <div
-          className='relative flex flex-col items-start justify-center bg-transparent mt-8 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
+          className='relative flex flex-col justify-center bg-transparent mt-8 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
 '
         >
           <span className='md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
             Early Access
           </span>
-          <h2 className='text-xl md:text-4xl mb-2 md:mb-4 tracking-tight font-bold'>
-            Welcome to Commerce Central
+          <h2 className='text-2xl leading-tight text-center md:text-4xl mb-2 md:mb-4 font-bold'>
+            Secure Early Access to <br />Exclusive Closeouts
           </h2>
           <div className='text-[#1C1E21] mb-0 text-sm md:text-base text-center'>
             <span className="block text-start md:hidden font-[500]">
-              This is a highly sought after opportunity.<br /> Don&apos;t drop the ball.
+              Join FREE before our new platform launches to access brand-direct inventory at 95% off.
             </span>
 
             <div className='block md:hidden h-1 w-22 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
             <span className='hidden md:block'>
-              This is a highly sought after opportunity. Don&apos;t drop the
-              ball.
+              Join FREE before our new platform goes live to access authentic, brand-direct inventory at over 95% off—exclusive to early buyers.
             </span>
             <div className='hidden md:block h-1 md:w-full bg-[#43CD66] rounded-full mt-1'></div>
           </div>
@@ -162,35 +162,6 @@ export default function EarlyAccessForm() {
           </div>
         </div>
 
-        {/* Company Name */}
-        <div>
-          <label
-            htmlFor='companyName'
-            className='block text-md md:text-sm font-medium text-gray-700 mb-1'
-          >
-            Company Name
-          </label>
-          <div className='relative'>
-            <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-              <Building className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
-            </div>
-            <input
-              type='text'
-              id='companyName'
-              spellCheck={false}
-              {...register('companyName')}
-              className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.companyName ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
-              placeholder='Your Company LLC'
-            />
-          </div>
-          {errors.companyName && (
-            <p className='mt-1 text-xs md:text-sm text-red-600'>
-              {errors.companyName.message}
-            </p>
-          )}
-        </div>
-
         {/* Email */}
         <div>
           <label
@@ -219,19 +190,48 @@ export default function EarlyAccessForm() {
           )}
         </div>
 
+        {/* Company Name */}
+        <div>
+          <label
+            htmlFor='companyName'
+            className='block text-md md:text-sm font-medium text-gray-700 mb-1'
+          >
+            Company Name (Optional)
+          </label>
+          <div className='relative'>
+            <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
+              <Building className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+            </div>
+            <input
+              type='text'
+              id='companyName'
+              spellCheck={false}
+              {...register('companyName')}
+              className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.companyName ? 'border-red-500' : 'border-gray-300'
+                } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+              placeholder='Your Company LLC'
+            />
+          </div>
+          {errors.companyName && (
+            <p className='mt-1 text-xs md:text-sm text-red-600'>
+              {errors.companyName.message}
+            </p>
+          )}
+        </div>
+
         {/* Phone Number */}
         <div>
           <label
             htmlFor='phoneNumber'
             className='block text-md md:text-sm font-medium text-gray-700 mb-1'
           >
-            Phone number
+            Phone number (Optional)
           </label>
           <div className='relative'>
             <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
               <Phone className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
             </div>
-            <span className='absolute inset-Y-0 left-9 md:left-10 top-2.5 md:top-3 flex items-center text-gray-500 font-medium select-none pointer-events-none text-sm md:text-base'>
+            <span className='absolute inset-Y-0 left-9 md:left-10 top-2.5 flex items-center text-[#43CD66] font-medium select-none pointer-events-none text-sm md:text-base'>
               +1
             </span>
             <input
@@ -403,8 +403,8 @@ export default function EarlyAccessForm() {
             type='submit'
             disabled={isSubmitting}
             className={`w-full ${isSubmitting
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#43CD66] hover:bg-[#3ab859]'
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-[#43CD66] hover:bg-[#3ab859]'
               } text-white font-medium py-2.5 md:py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center`}
           >
             {isSubmitting ? (
@@ -416,7 +416,12 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-              'Reserve Access'
+              <div>
+                <p className='hidden md:block'>
+                  Join FREE for Exclusive Access to Surplus Deals
+                </p>
+                <p className='md:hidden'>Get FREE Early Access</p>
+              </div>
             )}
           </button>
         </div>

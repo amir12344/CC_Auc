@@ -68,7 +68,7 @@ export default function TestimonialSlider() {
           <svg aria-hidden="true" className="w-6 h-6 inline-block text-[#43cd66] mb-2 mr-1" fill="currentColor" viewBox="0 0 24 24">
             <path d="M7.17 17A5.001 5.001 0 0 1 2 12V7a5 5 0 0 1 5-5h.17A3.001 3.001 0 0 1 10 5v2a3 3 0 0 1-3 3H5v2a3 3 0 0 0 3 3h.17A3.001 3.001 0 0 1 10 17v2a3 3 0 0 1-3 3H7a5 5 0 0 1-5-5v-2h5.17z" />
           </svg>
-          “{testimonial.quote}”
+          "{testimonial.quote}"
         </blockquote>
         <div className="flex items-center justify-center gap-3 mt-4">
           <div className="h-11 w-11 overflow-hidden rounded-full">
