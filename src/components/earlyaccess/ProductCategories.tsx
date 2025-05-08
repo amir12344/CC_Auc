@@ -45,20 +45,6 @@ export default function ProductCategories() {
     return () => clearInterval(interval);
   }, []);
 
-  // Function to scroll to form
-  const scrollToForm = () => {
-    const formElement = document.getElementById('contact-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // If form element doesn't exist yet, scroll to bottom of page
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   // Function to manually change active slide
   const setSlide = (index: number) => {
     setActiveIndex(index);
@@ -107,10 +93,10 @@ export default function ProductCategories() {
                 <div
                   key={index}
                   className={`absolute top-0 left-0 w-full transition-all duration-700 ease-in-out ${index === activeIndex
-                      ? 'opacity-100 translate-x-0'
-                      : index < activeIndex
-                        ? 'opacity-0 -translate-x-full'
-                        : 'opacity-0 translate-x-full'
+                    ? 'opacity-100 translate-x-0'
+                    : index < activeIndex
+                      ? 'opacity-0 -translate-x-full'
+                      : 'opacity-0 translate-x-full'
                     }`}
                 >
                   <div className='flex flex-col items-center text-center'>
@@ -137,8 +123,8 @@ export default function ProductCategories() {
                   key={index}
                   onClick={() => setSlide(index)}
                   className={`transition-all duration-500 outline-none focus:outline-none focus:ring-1 focus:ring-[#43CD66] ${index === activeIndex
-                      ? 'w-8 h-2 bg-[#43CD66] rounded-full shadow-[0_0_8px_rgba(67,205,102,0.5)]'
-                      : 'w-2 h-2 bg-[#43CD66]/30 rounded-full hover:bg-[#43CD66]/60'
+                    ? 'w-8 h-2 bg-[#43CD66] rounded-full shadow-[0_0_8px_rgba(67,205,102,0.5)]'
+                    : 'w-2 h-2 bg-[#43CD66]/30 rounded-full hover:bg-[#43CD66]/60'
                     }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -244,8 +230,68 @@ export default function ProductCategories() {
       {showScrollButton && (
         <div
           className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 cursor-pointer animate-bounce"
-          onClick={scrollToForm}
-          aria-label="Scroll to contact form"
+          onClick={() => {
+            requestAnimationFrame(() => {
+              let targetElement: HTMLElement | null = null;
+              let scrollOffset = 20; // Default offset from the top of the viewport
+
+              // Selector for the specific "Early Access" span based on its unique classes
+              const earlyAccessSpanSelector = 'span[class*="from-[#102d21]"][class*="to-[#43cd66]"]';
+
+              // Attempt 1: Find the form, then the specific span within it
+              const formElement = document.getElementById('contact-form') as HTMLElement | null;
+              if (formElement) {
+                targetElement = formElement.querySelector(earlyAccessSpanSelector) as HTMLElement | null;
+                if (targetElement) {
+                  scrollOffset = 20; // Position the span nicely
+                } else {
+                  // Span not found in form, target top of form itself
+                  targetElement = formElement;
+                  scrollOffset = 20;
+                }
+              }
+
+              // Attempt 2: If form or span in form not found, global search for the specific span
+              if (!targetElement) {
+                targetElement = document.querySelector(earlyAccessSpanSelector) as HTMLElement | null;
+                if (targetElement) {
+                  scrollOffset = 20;
+                }
+              }
+
+              // Attempt 3: If specific span is still not found, search for a general "Reserve Access" button
+              if (!targetElement) {
+                const buttons = Array.from(document.querySelectorAll('button'));
+                const reserveButton = buttons.find(btn =>
+                  btn.textContent &&
+                  (btn.textContent.trim().toLowerCase().includes('reserve access') ||
+                    btn.textContent.trim().toLowerCase().includes('early access') ||
+                    btn.textContent.trim().toLowerCase().includes('get access'))
+                );
+                if (reserveButton) {
+                  targetElement = reserveButton as HTMLElement;
+                  scrollOffset = 60; // Give more space above a button
+                }
+              }
+
+              // Execute scroll if a target was found
+              if (targetElement) {
+                const rect = targetElement.getBoundingClientRect();
+                const absoluteElementTop = window.pageYOffset + rect.top;
+                window.scrollTo({
+                  top: absoluteElementTop - scrollOffset,
+                  behavior: 'smooth'
+                });
+              } else {
+                // Final Fallback: Scroll towards the bottom of the page
+                window.scrollTo({
+                  top: document.body.scrollHeight - window.innerHeight - 50, // 50px buffer
+                  behavior: 'smooth'
+                });
+              }
+            });
+          }}
+          aria-label="Scroll to relevant section"
         >
           <div className="bg-[#43CD66] p-3 rounded-full shadow-lg hover:bg-[#3AB857] transition-colors duration-300">
             <ChevronDown className="text-black w-5 h-5" />
