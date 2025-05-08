@@ -4,28 +4,6 @@ import React, { useRef, memo } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 
-// Optimized image component with lazy loading
-const OptimizedImage = memo(({ src, alt, width, height, className }: {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  className: string;
-}) => (
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    className={className}
-    loading="lazy"
-    placeholder="blur"
-    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAEDQIHq4C7aQAAAABJRU5ErkJggg=="
-  />
-));
-
-// Add this line to fix the display name error
-OptimizedImage.displayName = 'OptimizedImage';
 
 interface TeamMember {
   name: string;
@@ -149,11 +127,14 @@ const TeamSection: React.FC = () => {
               whileHover={{ y: -5 }}
             >
               <div className='relative h-80 bg-gray-100 overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300'>
-                <OptimizedImage
+                <Image
                   src={member.imagePath}
                   alt={member.name}
                   width={400}
                   height={533}
+                  unoptimized
+                  quality={70}
+                  priority
                   className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
                 />
               </div>

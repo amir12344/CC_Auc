@@ -65,7 +65,7 @@ const FeaturesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
-            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16`}
+            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-0 md:gap-16`}
           >
             <div className="w-full md:w-1/2">
               <div className="relative w-full aspect-4/3 overflow-hidden rounded-xl">
