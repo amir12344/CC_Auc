@@ -81,23 +81,23 @@ export default function EarlyAccessForm() {
       {/* Welcome text */}
       <div className='mb-0 md:mb-4'>
         <div
-          className='relative flex flex-col justify-center bg-transparent mt-8 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
-'
+          className='relative flex flex-col justify-center bg-transparent mt-0 md:mt-4 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up'
         >
           <span className='md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
             Early Access
           </span>
-          <h2 className='text-2xl leading-tight text-center md:text-4xl mb-2 md:mb-4 font-bold'>
-            Secure Early Access to <br />Exclusive Closeouts
+          <h2 className='text-3xl text-start md:text-center md:text-5xl mb-2 md:mb-4 font-bold'>
+            Secure Access to <br />Exclusive Deals
           </h2>
           <div className='text-[#1C1E21] mb-0 text-sm md:text-base text-center'>
             <span className="block text-start md:hidden font-[500]">
-              Join FREE before our new platform launches to access brand-direct inventory at 95% off.
+              This is a highly sought after opportunity.<br /> Don&apos;t drop the ball.
             </span>
 
             <div className='block md:hidden h-1 w-22 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
             <span className='hidden md:block'>
-              Join FREE before our new platform goes live to access authentic, brand-direct inventory at over 95% off—exclusive to early buyers.
+              This is a highly sought after opportunity. Don&apos;t drop the
+              ball.
             </span>
             <div className='hidden md:block h-1 md:w-full bg-[#43CD66] rounded-full mt-1'></div>
           </div>
@@ -405,7 +405,7 @@ export default function EarlyAccessForm() {
             className={`w-full ${isSubmitting
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-[#43CD66] hover:bg-[#3ab859]'
-              } text-white font-medium py-2.5 md:py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center`}
+              } text-white cursor-pointer font-medium py-2.5 md:py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center`}
           >
             {isSubmitting ? (
               <>
@@ -416,12 +416,7 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-              <div>
-                <p className='hidden md:block'>
-                  Join FREE for Exclusive Access to Surplus Deals
-                </p>
-                <p className='md:hidden'>Get FREE Early Access</p>
-              </div>
+              'Reserve Access'
             )}
           </button>
         </div>

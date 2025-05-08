@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { CheckCircle2, ChevronDown } from 'lucide-react'
 
@@ -13,35 +13,64 @@ const productCategories = [
   { name: 'Furniture', imageUrl: '/images/Furnitures.webp' },
 ]
 
+const valueProps = [
+  "Access to verified, brand-direct surplus and returns.",
+  "Fully manifested loaded with transparent pricing.",
+  "Streamlined logistics and reliable delivery, every time."
+]
+
 export default function ProductCategories() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-scroll for mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % valueProps.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className="bg-[#102D21] py-8">
       {/* Value proposition with separate mobile/desktop versions */}
       <div className='mb-12'>
         {/* Mobile version - Enhanced with better visual design */}
-        <div className='md:hidden mx-4'>
-          <div className='bg-[#102D21] p-6 rounded-lg border border-[#43CD66]/20 shadow-sm relative overflow-hidden'>
-            {/* Decorative element */}
-            <div className='absolute top-0 right-0 w-24 h-24 bg-[#43CD66]/5 rounded-full -mr-8 -mt-8 blur-[30px]'></div>
-            <div className='absolute bottom-0 left-0 w-16 h-16 bg-[#43CD66]/5 rounded-full -ml-4 -mb-4 blur-[20px]'></div>
-
-            {/* Icon at the top */}
-            <div className='flex justify-center mb-3'>
-              <div className='bg-[#102D21] p-2 rounded-full border border-[#43CD66]/30 shadow-sm'>
-                <CheckCircle2 className='text-[#43CD66] w-6 h-6' />
-              </div>
+        <div className='md:hidden'>
+          <div className='relative overflow-hidden py-6'>
+            {/* Animated indicator dots */}
+            <div className='flex justify-center mb-6 space-x-2'>
+              {valueProps.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
+                      ? 'w-8 bg-[#43CD66]'
+                      : 'w-2 bg-[#43CD66]/30'
+                    }`}
+                >
+                </div>
+              ))}
             </div>
 
-            <h3 className='text-center text-white text-lg font-semibold mb-2'>
-              Verified, brand-direct surplus and returns
-            </h3>
-            <p className='text-center text-[#43CD66] font-medium text-base'>
-              Fully manifested, transparently priced, and reliably delivered.
-            </p>
+            {/* Auto-scrolling text carousel */}
+            <div className='relative h-16'>
+              {valueProps.map((text, index) => (
+                <div
+                  key={index}
+                  className={`absolute top-0 left-0 w-full text-center transition-all duration-500 ${index === activeIndex
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-4'
+                    }`}
+                >
+                  <p className='text-[#95E5A3] font-medium text-lg px-4'>
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
 
-            {/* Visual separator */}
-            <div className='flex items-center justify-center mt-4'>
-              <div className='h-1 w-16 bg-gradient-to-r from-transparent via-[#43CD66]/40 to-transparent rounded-full'></div>
+            {/* Decorative elements */}
+            <div className='flex justify-center mt-6'>
+              <div className='w-16 h-1 bg-gradient-to-r from-transparent via-[#43CD66]/40 to-transparent rounded-full'></div>
             </div>
           </div>
         </div>
@@ -107,6 +136,9 @@ export default function ProductCategories() {
             <span className='absolute bottom-0 left-0 w-full h-1 bg-[#43CD66]'></span>
           </span>
         </h2>
+        <p className="mb-2 mt-2 text-[#D8F4CC] font-semibold text-center">
+          Get access to surplus and returned inventory from the brands consumers love,<br /> from mass market to designer.
+        </p>
       </div>
       <div className='grid grid-cols-3 gap-3 md:gap-1 lg:gap-2 mb-8 border-none max-w-4xl mx-auto px-4'>
         {productCategories.map((category, index) => (
@@ -123,11 +155,12 @@ export default function ProductCategories() {
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw'
                   className='object-cover border-none'
                   priority={index < 3}
+                  unoptimized
                 />
               </div>
             </div>
             <div className='py-1 text-center rounded-lg'>
-              <span className='text-xs md:text-sm text-gray-300'>
+              <span className='text-md md:text-lg text-[#F1E9DE]'>
                 {category.name}
               </span>
             </div>
