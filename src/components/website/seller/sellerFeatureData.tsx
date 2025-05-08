@@ -29,7 +29,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
       'bottom-right'
     )
   },
-  
+
   // Feature 2: Protect Brand, Pricing, and Channels
   {
     title: 'Protect Brand, Pricing, and Channels',
@@ -56,7 +56,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
       'top-left'
     )
   },
-  
+
   // Feature 3: Run Resale on Autopilot
   {
     title: 'Run Resale on Autopilot',
@@ -75,7 +75,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
       'top-right'
     )
   },
-  
+
   // Feature 4: Always Audit-Ready
   {
     title: 'Always Audit-Ready',
@@ -102,7 +102,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
       'top-left'
     )
   },
-  
+
   // Feature 5: Monetize Across Channels Without Conflict
   {
     title: 'Monetize Across Channels Without Conflict',

@@ -14,7 +14,7 @@ export const createFloatingCard = (
     'bottom-left': 'bottom-6 left-6',
     'bottom-right': 'bottom-6 right-6',
   }[position];
-  
+
   return (
     <div className={`absolute ${positionClass} bg-white rounded-lg shadow-lg p-4 z-20`}>
       <div className="text-sm font-medium text-text-primary mb-2">{title}</div>
@@ -28,27 +28,104 @@ export const createFloatingCard = (
  */
 export const createInventoryAgeVisualization = () => (
   <div className="bg-gray-50 p-6 rounded-xl mb-8">
-    <h4 className="font-medium mb-4 text-text-primary">Inventory Age Distribution</h4>
-    <div className="flex items-end h-32 gap-3">
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full bg-primary-300 rounded-t-md h-[20%]"></div>
-        <span className="text-xs mt-2 text-text-secondary">0-60 days</span>
+    <h4 className="font-medium mb-5 text-text-primary">Inventory Age Distribution</h4>
+
+    <div className="space-y-4">
+      {/* Age category bars */}
+      <div className="space-y-3">
+        <div>
+          <div className="flex justify-between mb-1.5">
+            <span className="text-sm text-text-secondary">0-20 days</span>
+            <span className="text-sm font-medium">30%</span>
+          </div>
+          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-full bg-blue-500 rounded-full" style={{ width: '30%' }}></div>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex justify-between mb-1.5">
+            <span className="text-sm text-text-secondary">21-40 days</span>
+            <span className="text-sm font-medium">25%</span>
+          </div>
+          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-full bg-blue-500 rounded-full" style={{ width: '25%' }}></div>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex justify-between mb-1.5">
+            <span className="text-sm text-text-secondary">41-60 days</span>
+            <span className="text-sm font-medium">20%</span>
+          </div>
+          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-full bg-blue-500 rounded-full" style={{ width: '20%' }}></div>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex justify-between mb-1.5">
+            <span className="text-sm text-text-secondary">61-80 days</span>
+            <span className="text-sm font-medium">15%</span>
+          </div>
+          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-full bg-indigo-500 rounded-full" style={{ width: '15%' }}></div>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex justify-between mb-1.5">
+            <span className="text-sm text-text-secondary">81-100 days</span>
+            <span className="text-sm font-medium">10%</span>
+          </div>
+          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-full bg-purple-500 rounded-full" style={{ width: '10%' }}></div>
+          </div>
+        </div>
       </div>
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full bg-primary-400 rounded-t-md h-[40%]"></div>
-        <span className="text-xs mt-2 text-text-secondary">61-100 days</span>
+
+      {/* Distribution chart verification */}
+      <div className="flex justify-between text-xs text-text-secondary px-1">
+        <span>Maximum: 100 days</span>
+        <span className="flex items-center gap-1">
+          <svg className="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+          </svg>
+          Total: 100%
+        </span>
       </div>
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full bg-primary-500 rounded-t-md h-[60%]"></div>
-        <span className="text-xs mt-2 text-text-secondary">101-180 days</span>
+
+      {/* Total indicator */}
+      <div className="bg-white p-4 rounded-lg mt-4 shadow-sm">
+        <div className="flex justify-between items-center">
+          <div>
+            <span className="text-xs text-text-secondary block">Average Age</span>
+            <span className="text-lg font-medium">42 days</span>
+          </div>
+          <div className="h-12 w-12 rounded-full border-4 border-primary-200 flex items-center justify-center relative">
+            <div className="absolute inset-0 rounded-full border-4 border-primary overflow-hidden" style={{
+              clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+              clip: 'rect(0px, 48px, 48px, 24px)'
+            }}></div>
+            <span className="text-sm font-medium">42%</span>
+          </div>
+        </div>
       </div>
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full bg-primary-600 rounded-t-md h-[80%]"></div>
-        <span className="text-xs mt-2 text-text-secondary">181-270 days</span>
-      </div>
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full bg-primary-700 rounded-t-md h-[100%]"></div>
-        <span className="text-xs mt-2 text-text-secondary">270+ days</span>
+
+      {/* Key metrics */}
+      <div className="grid grid-cols-3 gap-4 mt-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="text-xs text-text-secondary mb-1">New<br />(0-30 days)</div>
+          <div className="text-lg font-medium">45%</div>
+        </div>
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="text-xs text-text-secondary mb-1">Standard<br />(31-70 days)</div>
+          <div className="text-lg font-medium">40%</div>
+        </div>
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="text-xs text-text-secondary mb-1">Aging<br />(71-100 days)</div>
+          <div className="text-lg font-medium">15%</div>
+        </div>
       </div>
     </div>
   </div>
@@ -58,32 +135,124 @@ export const createInventoryAgeVisualization = () => (
  * Creates a visualization for brand protection controls
  */
 export const createBrandProtectionVisualization = () => (
-  <div className="bg-white p-6 rounded-xl shadow-sm mb-8">
-    <h4 className="font-medium mb-4 text-text-primary">Brand Protection Controls</h4>
-    <div className="space-y-4">
-      <div>
-        <div className="flex justify-between mb-1">
-          <span className="text-sm text-text-secondary">Pricing Floor</span>
-          <span className="text-sm font-medium">10%+ of MSRP</span>
+  <div className="bg-gray-50 p-6 rounded-xl mb-8">
+    <h4 className="font-medium mb-5 text-text-primary">Brand Protection Controls</h4>
+
+    <div className="space-y-5">
+      {/* Pricing Floor */}
+      <div className="bg-white rounded-lg p-4 shadow-sm">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h5 className="font-medium text-sm">Pricing Floor</h5>
+            <p className="text-xs text-text-secondary">Protects your brand value in the market</p>
+          </div>
         </div>
-        <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-          <div className="h-full bg-primary rounded-full" style={{width: '40%'}}></div>
+
+        <div className="mb-1 flex justify-between items-center">
+          <span className="text-xs text-text-secondary">Minimum 10% of MSRP</span>
+          <span className="text-xs font-medium text-primary">Strong Protection</span>
+        </div>
+
+        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div className="h-full bg-primary rounded-full" style={{ width: '85%' }}></div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-2">
-        <span className="text-sm text-text-secondary w-full mb-1">Approved Buyer Types</span>
-        <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">Amazon Seller</span>
-        <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">Discount Stores</span>
-        <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">Wholesaler</span>
-        <span className="px-3 py-1 bg-gray-100 text-gray-400 text-xs rounded-full">Liquidator</span>
+
+      {/* Approved Buyer Types */}
+      <div className="bg-white rounded-lg p-4 shadow-sm">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h5 className="font-medium text-sm">Approved Buyer Types</h5>
+            <p className="text-xs text-text-secondary">Control who can purchase your inventory</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 mb-1">
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-primary rounded-sm mr-2"></div>
+            <span className="text-xs">Amazon Seller</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-primary rounded-sm mr-2"></div>
+            <span className="text-xs">Discount Stores</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-primary rounded-sm mr-2"></div>
+            <span className="text-xs">Wholesaler</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-gray-300 rounded-sm mr-2"></div>
+            <span className="text-xs text-gray-400">Liquidator</span>
+          </div>
+        </div>
       </div>
-      <div>
-        <span className="text-sm text-text-secondary block mb-1">Geography</span>
-        <div className="grid grid-cols-2 gap-2">
-          <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">US Northeast</span>
-          <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">US Midwest</span>
-          <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">US South</span>
-          <span className="px-3 py-1 bg-primary-100 text-primary text-xs rounded-full">US West</span>
+
+      {/* Geography */}
+      <div className="bg-white rounded-lg p-4 shadow-sm">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+            <svg className="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h5 className="font-medium text-sm">Approved Geography</h5>
+            <p className="text-xs text-text-secondary">Limit sales to specific regions</p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-primary-50 text-primary-700 text-xs">
+            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
+            </svg>
+            US Northeast
+          </span>
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-primary-50 text-primary-700 text-xs">
+            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
+            </svg>
+            US Midwest
+          </span>
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-primary-50 text-primary-700 text-xs">
+            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
+            </svg>
+            US South
+          </span>
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-primary-50 text-primary-700 text-xs">
+            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
+            </svg>
+            US West
+          </span>
+        </div>
+      </div>
+
+      {/* Summary */}
+      <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+        <div className="flex">
+          <div className="flex-shrink-0">
+            <svg className="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div className="ml-3">
+            <h3 className="text-sm font-medium text-green-800">Your brand is protected</h3>
+            <div className="mt-1 text-xs text-green-700">
+              Your current settings provide strong brand protection across all channels
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -208,7 +377,7 @@ export const createChannelDistributionVisualization = () => (
         </div>
         <div className="flex items-center gap-3">
           <div className="w-full bg-gray-200 rounded-full h-2.5">
-            <div className="bg-primary h-2.5 rounded-full" style={{width: '35%'}}></div>
+            <div className="bg-primary h-2.5 rounded-full" style={{ width: '35%' }}></div>
           </div>
           <span className="text-xs font-medium">35%</span>
         </div>
@@ -226,7 +395,7 @@ export const createChannelDistributionVisualization = () => (
         </div>
         <div className="flex items-center gap-3">
           <div className="w-full bg-gray-200 rounded-full h-2.5">
-            <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '65%'}}></div>
+            <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '65%' }}></div>
           </div>
           <span className="text-xs font-medium">65%</span>
         </div>

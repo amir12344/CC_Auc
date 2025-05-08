@@ -1,5 +1,4 @@
 'use client';
-import { FaChartLine, FaLock, FaRocket, FaFileAlt, FaStore } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import {
   type CarouselApi,
@@ -10,46 +9,9 @@ import { DashboardPreview } from '@/src/components/website/seller/DashboardPrevi
 import { FeaturesSection } from '@/src/components/website/seller/FeaturesSection';
 import { TestimonialsSection } from '@/src/components/website/seller/TestimonialsSection';
 import { FinalCTASection } from '@/src/components/website/seller/FinalCTASection';
+import { sellerFeatures } from '@/src/components/website/seller/sellerFeatureData';
 
 const SellerPageClient = () => {
-  const features = [
-    {
-      title: 'Act Before Inventory Becomes a Liability',
-      description: 'Detect aging or returned stock early and move it before markdowns, write-offs, or warehouse gridlock erode your margins.',
-      icon: <FaChartLine className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/inventoryChart.webp',
-      imageAlt: 'Control tower dashboard showing $ value and space tied to returned inventory at each location'
-    },
-    {
-      title: 'Protect Brand, Pricing, and Channels',
-      description: 'Decide who can buy, how much, and where it sells. Guardrails like pricing floors, buyer types, and resale geography keep your brand perception and retail relationships intact.',
-      icon: <FaLock className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/dashboard3.webp',
-      imageAlt: 'Guardrails dashboard with pricing floor and buyer type controls'
-    },
-    {
-      title: 'Run Resale on Autopilot',
-      description: 'Set your resale parameters — we handle the rest. From buyer outreach and deal flow to payment, logistics, and tax handling. Your team stays focused on growth, not firefighting.',
-      icon: <FaRocket className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/OrderDashboard.webp',
-      imageAlt: 'Order dashboard showing different status of transactions'
-    },
-    {
-      title: 'Always Audit-Ready',
-      description: 'Every transaction comes with buyer identity, resale terms, and fulfillment proof giving Finance and Legal a compliant, documented trail for every exit.',
-      icon: <FaFileAlt className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/audit.webp',
-      imageAlt: 'Documentation and audit trail for inventory transactions'
-    },
-    {
-      title: 'Monetize Across Channels Without Conflict',
-      description: 'Sell D2C for higher margins, or move in bulk to vetted B2B buyers. Every exit honors your retail relationships and pricing power.',
-      icon: <FaStore className="h-6 w-6 text-[#43CD66]" />,
-      imagePath: '/images/Inventory_flow.webp',
-      imageAlt: 'Visualization of inventory flowing to B2B and D2C channels'
-    }
-  ];
-
   const testimonials = [
     {
       quote: "With the amount of product moving I can't afford to have excess crowding my shelves. We finally have a simple solution to make our operations better and more profitable.",
@@ -94,13 +56,11 @@ const SellerPageClient = () => {
       return;
     }
 
-    // Update button states based on carousel position
     const onSelect = () => {
       setCanScrollPrev(api.canScrollPrev());
       setCanScrollNext(api.canScrollNext());
     };
 
-    // Call once and then listen for changes
     onSelect();
     api.on("select", onSelect);
     api.on("reInit", onSelect);
@@ -121,7 +81,7 @@ const SellerPageClient = () => {
       </div>
       <HeroSection />
       <DashboardPreview />
-      <FeaturesSection features={features} />
+      <FeaturesSection features={sellerFeatures} />
       <TestimonialsSection
         testimonials={testimonials}
         setApi={setApi}
@@ -134,4 +94,3 @@ const SellerPageClient = () => {
 };
 
 export default SellerPageClient;
-
