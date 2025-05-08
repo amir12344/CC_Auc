@@ -16,35 +16,35 @@ const features: Feature[] = [
     icon: <FaFileAlt className="h-6 w-6 text-[#43CD66]" />,
     title: "Know What You're Buying Before You Pay",
     description: "Every load is brand-approved, fully manifested, and resale-ready. See MSRP, SKU count, shipping estimate, and condition up front. No blurry manifests. No surprises.",
-    imagePath: "/images/01_Manifest_Details_Stamped_Warehouse.webp",
+    imagePath: "/images/01_Manifest.webp",
     imageAlt: 'Load details showing manifest and pricing information'
   },
   {
     icon: <FaLock className="h-6 w-6 text-[#43CD66]" />,
     title: "Skip Shady Brokers. Buy Direct from Trusted Sellers",
     description: "Only verified brands, retailers, and distributors list on Commerce Central. That means no Telegram roulette, ghost loads, or rep games — just clean, traceable inventory.",
-    imagePath: "/images/02_Seller_Profile_Laptop.webp",
+    imagePath: "/images/02_seller_Profile.webp",
     imageAlt: 'Seller profiles showing trust scores and verification'
   },
   {
     icon: <FaSearch className="h-6 w-6 text-[#43CD66]" />,
     title: "Only See Loads That Fit Your Business",
     description: "Filter by brand, category, MSRP %, resale channel, or region. We match you with the right loads based on your profile — so you spend less time clicking, more time flipping.",
-    imagePath: "/images/03_Filter_Warehouse.webp",
+    imagePath: "/images/03_Filter.webp",
     imageAlt: 'Filtering interface for inventory loads'
   },
   {
     icon: <FaCogs className="h-6 w-6 text-[#43CD66]" />,
     title: "We Handle the Messy Stuff — So You Don't Have To",
     description: "POs, payments, shipping — we take care of it all. You just browse, buy, and restock. No more back-and-forth texts, no middlemen, no markup games.",
-    imagePath: "/images/04_OrderStatus_Tablet.webp",
+    imagePath: "/images/04_orderStatus.webp",
     imageAlt: 'Workflow tracker for order processing'
   },
   {
     icon: <FaStore className="h-6 w-6 text-[#43CD66]" />,
     title: "First Dibs, Not Leftovers",
     description: "Set reminders to be notified the minute your preferred type of deals go live. Get a head start on the loads that actually flip — clean, shelf-ready inventory priced to move.",
-    imagePath: "/images/05_Alert_Phone.webp",
+    imagePath: "/images/05_alert.webp",
     imageAlt: 'Notifications and alert settings panel'
   }
 ];
