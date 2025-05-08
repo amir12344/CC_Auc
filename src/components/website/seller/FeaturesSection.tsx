@@ -35,12 +35,12 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: '-100px' }}
-        className={`relative mb-10 md:mb-20 md:mb-32 ${index % 2 === 1 ? 'bg-gray-50 py-16 md:py-24' : 'py-8 md:py-12'
+        className={`relative mb-10 md:mb-32 ${index % 2 === 1 ? 'bg-gray-50 py-5 md:py-24' : 'py-8 md:py-12'
           }`}
       >
         <div className='container mx-auto px-4'>
           <div
-            className={`flex flex-col lg:flex-row items-center gap-10 md:gap-12`}
+            className={`flex flex-col lg:flex-row items-center gap-1 md:gap-12`}
           >
             {/* Text Content Area */}
             <div
@@ -48,11 +48,11 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
                 }`}
             >
               <div className='flex flex-col md:flex-row md:gap-8 h-full'>
-                <div className='md:flex-1 mb-0 md:mb-0'>
-                  <h3 className='text-xl md:text-3xl lg:text-5xl font-semibold text-[#1C1E21] mb-4 md:mb-6'>
+                <div className='md:flex-1 mb-0'>
+                  <h3 className='text-2xl md:text-3xl lg:text-5xl font-semibold text-[#1C1E21] mb-2 md:mb-4 md:mb-6'>
                     {feature.title}
                   </h3>
-                  <p className='text-lg md:text-xl text-[#1C1E21] mb-0 md:mb-6 leading-relaxed '>
+                  <p className='text-lg md:text-xl text-[#1C1E21]/70 mb-4 md:mb-6 leading-relaxed '>
                     {feature.description}
                   </p>
                 </div>
@@ -61,7 +61,7 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
 
             {/* Image Section */}
             <div
-              className={`w-full lg:w-1/2 mt-0 md:mt-8 lg:mt-0 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'
+              className={`w-full lg:w-1/2 mt-0 lg:mt-0 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'
                 }`}
             >
               <div className='relative rounded-xl overflow-hidden shadow-lg border border-gray-100 transform transition-transform duration-500 hover:scale-[1.02]'>
