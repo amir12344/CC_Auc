@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { CheckCircle2, ChevronDown } from 'lucide-react'
+import { CheckCircle2, ChevronDown, ArrowRight } from 'lucide-react'
 
 const productCategories = [
   { name: 'Houseware', imageUrl: '/images/KitchenHouseware.webp' },
@@ -14,13 +14,27 @@ const productCategories = [
 ]
 
 const valueProps = [
-  "Access to verified, brand-direct surplus and returns.",
-  "Fully manifested loaded with transparent pricing.",
-  "Streamlined logistics and reliable delivery, every time."
+  {
+    text: "Access to verified, brand-direct surplus and returns.",
+    icon: "/images/verified-icon.svg", // You can replace with appropriate icons
+    color: "#43CD66"
+  },
+  {
+    text: "Fully manifested loaded with transparent pricing.",
+    icon: "/images/price-icon.svg",
+    color: "#43CD66"
+  },
+  {
+    text: "Streamlined logistics and reliable delivery, every time.",
+    icon: "/images/delivery-icon.svg",
+    color: "#43CD66"
+  }
 ]
 
 export default function ProductCategories() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showScrollButton, setShowScrollButton] = useState(true);
+  const componentRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll for mobile
   useEffect(() => {
@@ -30,47 +44,105 @@ export default function ProductCategories() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Function to scroll to form
+  const scrollToForm = () => {
+    const formElement = document.getElementById('contact-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // If form element doesn't exist yet, scroll to bottom of page
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Function to manually change active slide
+  const setSlide = (index: number) => {
+    setActiveIndex(index);
+  };
+
+  // Add scroll listener to show/hide button based on visibility of the form
+  useEffect(() => {
+    const handleScroll = () => {
+      const formElement = document.getElementById('contact-form');
+      if (formElement) {
+        const formRect = formElement.getBoundingClientRect();
+        const isFormVisible = formRect.top < window.innerHeight && formRect.bottom >= 0;
+        setShowScrollButton(!isFormVisible);
+      } else {
+        // If no form is found, show button until we're close to the bottom of the page
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        setShowScrollButton(scrollPosition < documentHeight - 200);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="bg-[#102D21] py-8">
+    <div className="bg-[#102D21] py-8" ref={componentRef}>
       {/* Value proposition with separate mobile/desktop versions */}
       <div className='mb-12'>
         {/* Mobile version - Enhanced with better visual design */}
-        <div className='md:hidden'>
-          <div className='relative overflow-hidden py-6'>
-            {/* Animated indicator dots */}
-            <div className='flex justify-center mb-6 space-x-2'>
+        <div className='md:hidden px-4'>
+          {/* Modern, glass-effect card container */}
+          <div className='backdrop-blur-sm bg-gradient-to-br from-[#102D21]/80 to-[#0A1F16]/90 rounded-xl p-6 shadow-lg border border-[#43CD66]/20 overflow-hidden relative'>
+
+            {/* Title for the carousel */}
+            <h3 className='text-white font-semibold text-lg mb-6 text-center relative z-10'>
+              Our <span className='text-[#43CD66]'>Value Proposition</span>
+            </h3>
+
+            {/* Animated value props carousel with improved layout */}
+            <div className='relative h-[150px] overflow-hidden mb-5 z-10'>
+              {valueProps.map((prop, index) => (
+                <div
+                  key={index}
+                  className={`absolute top-0 left-0 w-full transition-all duration-700 ease-in-out ${index === activeIndex
+                      ? 'opacity-100 translate-x-0'
+                      : index < activeIndex
+                        ? 'opacity-0 -translate-x-full'
+                        : 'opacity-0 translate-x-full'
+                    }`}
+                >
+                  <div className='flex flex-col items-center text-center'>
+                    {/* Modern icon container with subtle shadow */}
+                    <div className='flex items-center justify-center w-14 h-14 mb-5 rounded-full bg-[#0A1F16]/80 shadow-[0_0_15px_rgba(67,205,102,0.15)] border border-[#43CD66]/30'>
+                      <CheckCircle2
+                        className='text-[#43CD66] w-7 h-7'
+                      />
+                    </div>
+
+                    {/* Text with improved typography */}
+                    <p className='text-[#D8F4CC] font-medium text-lg px-2 leading-relaxed'>
+                      {prop.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Modern dot indicators with subtle animation */}
+            <div className='flex justify-center items-center space-x-3 relative z-10'>
               {valueProps.map((_, index) => (
-                <div
+                <button
                   key={index}
-                  className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
-                      ? 'w-8 bg-[#43CD66]'
-                      : 'w-2 bg-[#43CD66]/30'
+                  onClick={() => setSlide(index)}
+                  className={`transition-all duration-500 outline-none focus:outline-none focus:ring-1 focus:ring-[#43CD66] ${index === activeIndex
+                      ? 'w-8 h-2 bg-[#43CD66] rounded-full shadow-[0_0_8px_rgba(67,205,102,0.5)]'
+                      : 'w-2 h-2 bg-[#43CD66]/30 rounded-full hover:bg-[#43CD66]/60'
                     }`}
-                >
-                </div>
+                  aria-label={`Go to slide ${index + 1}`}
+                />
               ))}
-            </div>
-
-            {/* Auto-scrolling text carousel */}
-            <div className='relative h-16'>
-              {valueProps.map((text, index) => (
-                <div
-                  key={index}
-                  className={`absolute top-0 left-0 w-full text-center transition-all duration-500 ${index === activeIndex
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-4'
-                    }`}
-                >
-                  <p className='text-[#95E5A3] font-medium text-lg px-4'>
-                    {text}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Decorative elements */}
-            <div className='flex justify-center mt-6'>
-              <div className='w-16 h-1 bg-gradient-to-r from-transparent via-[#43CD66]/40 to-transparent rounded-full'></div>
             </div>
           </div>
         </div>
@@ -168,12 +240,18 @@ export default function ProductCategories() {
         ))}
       </div>
 
-      {/* Mobile-only scroll indicator */}
-      <div className="md:hidden flex justify-center mt-4 mb-2 animate-bounce">
-        <div className="bg-[#43CD66]/10 p-2 rounded-full border border-[#43CD66]/30 shadow-sm">
-          <ChevronDown className="text-[#43CD66] w-5 h-5" />
+      {/* Sticky Mobile-only scroll indicator button */}
+      {showScrollButton && (
+        <div
+          className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 cursor-pointer animate-bounce"
+          onClick={scrollToForm}
+          aria-label="Scroll to contact form"
+        >
+          <div className="bg-[#43CD66] p-3 rounded-full shadow-lg hover:bg-[#3AB857] transition-colors duration-300">
+            <ChevronDown className="text-black w-5 h-5" />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

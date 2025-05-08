@@ -86,7 +86,7 @@ export default function EarlyAccessForm() {
           <span className='md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
             Early Access
           </span>
-          <h2 className='text-3xl text-start md:text-center md:text-5xl mb-2 md:mb-4 font-bold'>
+          <h2 className='text-3xl text-center md:text-center md:text-5xl mb-2 md:mb-4 font-bold'>
             Secure Access to <br />Exclusive Deals
           </h2>
           <div className='text-[#1C1E21] mb-0 text-sm md:text-base text-center'>
