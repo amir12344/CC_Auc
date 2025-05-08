@@ -88,11 +88,11 @@ export default function ProductCategories() {
   }, []);
 
   return (
-    <div className="bg-[#102D21] py-8" ref={componentRef}>
+    <div className="bg-[#102D21] md:py-8 pt-8 pb-0" ref={componentRef}>
       {/* Value proposition with separate mobile/desktop versions */}
       <div className='mb-12'>
         {/* Mobile version - Enhanced with better visual design */}
-        <div className='md:hidden px-4'>
+        <div className='md:hidden p-0'>
           {/* Modern, glass-effect card container */}
           <div className='backdrop-blur-sm bg-gradient-to-br from-[#102D21]/80 to-[#0A1F16]/90 rounded-xl p-6 shadow-lg border border-[#43CD66]/20 overflow-hidden relative'>
 
@@ -208,11 +208,11 @@ export default function ProductCategories() {
             <span className='absolute bottom-0 left-0 w-full h-1 bg-[#43CD66]'></span>
           </span>
         </h2>
-        <p className="mb-2 mt-2 text-[#D8F4CC] font-semibold text-center">
-          Get access to surplus and returned inventory from the brands consumers love,<br /> from mass market to designer.
+        <p className="mb-2 mt-2 text-lg text-[#D8F4CC] font-semibold text-center">
+          Get access to surplus and returned inventory from the brands consumers love, from mass market to designer.
         </p>
       </div>
-      <div className='grid grid-cols-3 gap-3 md:gap-1 lg:gap-2 mb-8 border-none max-w-4xl mx-auto px-4'>
+      <div className='grid grid-cols-3 gap-3 md:gap-1 lg:gap-2 mb-0 md:mb-8 border-none max-w-4xl mx-auto md:px-4 p-0 md:py-4'>
         {productCategories.map((category, index) => (
           <div key={index} className='mb-2 border-none'>
             <div

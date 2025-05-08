@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useRouter } from 'next/navigation';
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { useRouter } from 'next/navigation'
 // Import Lucide icons
 import {
   User,
@@ -14,43 +14,47 @@ import {
   Phone,
   AlertCircle,
   X,
-  Loader2
-} from 'lucide-react';
-import { submitEarlyAccessForm } from '@/src/app/earlyaccess/actions';
+  Loader2,
+} from 'lucide-react'
+import { submitEarlyAccessForm } from '@/src/app/earlyaccess/actions'
 
 // Define Zod schema for form validation
 const formSchema = z.object({
-  firstName: z.string().min(1, { message: "First name is required" }),
-  lastName: z.string().min(1, { message: "Last name is required" }),
+  firstName: z.string().min(1, { message: 'First name is required' }),
+  lastName: z.string().min(1, { message: 'Last name is required' }),
   companyName: z.string().optional(),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  phoneNumber: z.string()
+  email: z.string().email({ message: 'Please enter a valid email address' }),
+  phoneNumber: z
+    .string()
     .optional()
-    .refine((val) => {
-      if (val === undefined || val.trim() === "") return true;
-      const digitsOnly = val.replace(/\D/g, "");
-      return /^\d{10}$/.test(digitsOnly);
-    }, {
-      message: "If provided, phone number must be exactly 10 digits"
-    }),
-  termsAccepted: z.boolean().refine(value => value === true, {
-    message: "You must accept the terms and conditions"
-  })
-});
+    .refine(
+      (val) => {
+        if (val === undefined || val.trim() === '') return true
+        const digitsOnly = val.replace(/\D/g, '')
+        return /^\d{10}$/.test(digitsOnly)
+      },
+      {
+        message: 'If provided, phone number must be exactly 10 digits',
+      }
+    ),
+  termsAccepted: z.boolean().refine((value) => value === true, {
+    message: 'You must accept the terms and conditions',
+  }),
+})
 
 // Create type from schema
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof formSchema>
 
 export default function EarlyAccessForm() {
-  const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    setError
+    setError,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -59,42 +63,44 @@ export default function EarlyAccessForm() {
       email: '',
       phoneNumber: '',
       companyName: '',
-      termsAccepted: false
-    }
-  });
+      termsAccepted: false,
+    },
+  })
 
   const processForm = async (data: FormData) => {
-    setErrorMessage(null);
+    setErrorMessage(null)
 
-    const result = await submitEarlyAccessForm(data);
+    const result = await submitEarlyAccessForm(data)
 
     if (result.success) {
-      reset();
-      router.push('/earlyaccess/thankyou');
+      reset()
+      router.push('/earlyaccess/thankyou')
     } else {
-      setErrorMessage(result.message || 'An unexpected error occurred.');
+      setErrorMessage(result.message || 'An unexpected error occurred.')
     }
-  };
+  }
 
   return (
     <div className='mx-auto'>
       {/* Welcome text */}
       <div className='mb-0 md:mb-4'>
         <div
-          className='relative flex flex-col justify-center bg-transparent mt-0 md:mt-4 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up'
+          className='relative flex flex-col justify-center bg-transparent mt-0 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
+'
         >
           <span className='md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
             Early Access
           </span>
-          <h2 className='text-3xl text-center md:text-center md:text-5xl mb-2 md:mb-4 font-bold'>
-            Secure Access to <br />Exclusive Deals
+          <h2 className='text-3xl text-center md:text-4xl mb-2 md:mb-4 font-bold'>
+            Secure Access to Exclusive Deals
           </h2>
-          <div className='text-[#1C1E21] mb-0 text-sm md:text-base text-center'>
-            <span className="block text-start md:hidden font-[500]">
-              This is a highly sought after opportunity.<br /> Don&apos;t drop the ball.
+          <div className='text-[#1C1E21] mb-0 text-sm md:text-base'>
+            <span className='block text-center md:hidden font-[500]' style={{ fontSize: 'larger' }}>
+              This is a highly sought after opportunity.
+              <br /> Don&apos;t drop the ball.
             </span>
 
-            <div className='block md:hidden h-1 w-22 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
+            <div className='block md:hidden mx-auto h-1 w-27 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
             <span className='hidden md:block'>
               This is a highly sought after opportunity. Don&apos;t drop the
               ball.
@@ -255,7 +261,7 @@ export default function EarlyAccessForm() {
         </div>
 
         {/* Terms Checkbox */}
-        <div className='flex items-start'>
+        <div className='flex items-start' style={{ marginBottom: '10px' }}>
           <div className='flex items-center h-5'>
             <input
               id='termsAccepted'
@@ -403,8 +409,8 @@ export default function EarlyAccessForm() {
             type='submit'
             disabled={isSubmitting}
             className={`w-full ${isSubmitting
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-[#43CD66] hover:bg-[#3ab859]'
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-[#43CD66] hover:bg-[#3ab859]'
               } text-white cursor-pointer font-medium py-2.5 md:py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center`}
           >
             {isSubmitting ? (
@@ -423,7 +429,7 @@ export default function EarlyAccessForm() {
       </form>
 
       {/* Privacy note - only show on desktop */}
-      <div className='mt-6 text-center text-xs md:text-sm text-gray-600 md:block'>
+      <div className='mt-0 md:mt-6 text-center text-xs md:text-sm text-gray-600 md:block'>
         Rest assured, your information will be kept in the strictest confidence
         and will only be used to provide information about Commerce Central
         Buyer Membership.
