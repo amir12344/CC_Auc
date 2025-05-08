@@ -53,7 +53,7 @@ const HeroSectionClient = () => {
             </h1>
 
             <div
-              className='text-md sm:text-lg md:text-xl xl:text-xl mb-6 md:mb-8 lg:mb-10 mx-auto space-y-3 sm:space-y-4 lg:space-y-4 max-w-3xl leading-relaxed'
+              className='text-sm sm:text-lg md:text-xl xl:text-xl mb-6 md:mb-8 lg:mb-10 mx-auto space-y-3 sm:space-y-4 lg:space-y-4 max-w-3xl leading-relaxed'
               style={{ willChange: 'opacity' }}
             >
               <p
@@ -104,96 +104,6 @@ const HeroSectionClient = () => {
             </div>
           </div>
         </div>
-        
-        {/* commenting for now but will un-comment once we have the values for the stats */}
-        {/* Stats Section */}
-        {/* <div
-          ref={statsRef}
-          className='bg-[#F1E9DE]/90 backdrop-blur-lg py-5 sm:py-5 md:py-6 lg:py-7 xl:py-8 rounded-t-[32px] shadow-2xl border-t border-gray-100/20 w-full mt-6 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12'
-        >
-          <div className='container mx-auto max-w-(--breakpoint-xl)'>
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 text-center'>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5 }}
-                className='flex flex-col items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300'
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
-                style={{ willChange: 'transform, opacity' }}
-              >
-                <span className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1F2328]'>
-                  {isStatsInView && (
-                    <CountUp end={500} duration={2} separator=',' />
-                  )}
-                  +
-                </span>
-                <span className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-[#1C1E21] mt-2 md:mt-2 lg:mt-3 font-medium'>
-                  Verified Sellers
-                </span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className='flex flex-col items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300'
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
-                style={{ willChange: 'transform, opacity' }}
-              >
-                <span className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#43CD66]'>
-                  {isStatsInView && (
-                    <CountUp end={25} duration={2} />
-                  )}M+
-                </span>
-                <span className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-[#1C1E21] mt-2 md:mt-2 lg:mt-3 font-medium'>
-                  Products Moved
-                </span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className='flex flex-col items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300'
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
-                style={{ willChange: 'transform, opacity' }}
-              >
-                <span className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1C1E21]'>
-                  {isStatsInView && (
-                    <CountUp end={98} duration={2} decimals={1} suffix='%' />
-                  )}
-                </span>
-                <span className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-[#1C1E21] mt-2 md:mt-2 lg:mt-3 font-medium'>
-                  Satisfaction Rate
-                </span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.45 }}
-                className='flex flex-col items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300'
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
-                style={{ willChange: 'transform, opacity' }}
-              >
-                <span className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#43CD66]'>
-                  {isStatsInView && (
-                    <CountUp
-                      end={150}
-                      duration={2}
-                      prefix='$'
-                      separator=','
-                    />
-                  )}
-                  M
-                </span>
-                <span className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-[#1C1E21] mt-2 md:mt-2 lg:mt-3 font-medium'>
-                  Transaction Volume
-                </span>
-              </motion.div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
   )
