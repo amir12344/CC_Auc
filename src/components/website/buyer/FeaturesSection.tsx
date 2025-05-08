@@ -16,35 +16,35 @@ const features: Feature[] = [
     icon: <FaFileAlt className="h-6 w-6 text-[#43CD66]" />,
     title: "Know What You're Buying Before You Pay",
     description: "Every load is brand-approved, fully manifested, and resale-ready. See MSRP, SKU count, shipping estimate, and condition up front. No blurry manifests. No surprises.",
-    imagePath: "https://images.unsplash.com/photo-1610374792793-f016b77ca51a?q=80&w=1000&auto=format&fit=crop",
+    imagePath: "/images/01_Manifest_Details_Stamped_Warehouse.webp",
     imageAlt: 'Load details showing manifest and pricing information'
   },
   {
     icon: <FaLock className="h-6 w-6 text-[#43CD66]" />,
     title: "Skip Shady Brokers. Buy Direct from Trusted Sellers",
     description: "Only verified brands, retailers, and distributors list on Commerce Central. That means no Telegram roulette, ghost loads, or rep games — just clean, traceable inventory.",
-    imagePath: "https://images.unsplash.com/photo-1556742111-a301076d9d18?q=80&w=1000&auto=format&fit=crop",
+    imagePath: "/images/02_Seller_Profile_Laptop.webp",
     imageAlt: 'Seller profiles showing trust scores and verification'
   },
   {
     icon: <FaSearch className="h-6 w-6 text-[#43CD66]" />,
     title: "Only See Loads That Fit Your Business",
     description: "Filter by brand, category, MSRP %, resale channel, or region. We match you with the right loads based on your profile — so you spend less time clicking, more time flipping.",
-    imagePath: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    imagePath: "/images/03_Filter_Warehouse.webp",
     imageAlt: 'Filtering interface for inventory loads'
   },
   {
     icon: <FaCogs className="h-6 w-6 text-[#43CD66]" />,
     title: "We Handle the Messy Stuff — So You Don't Have To",
     description: "POs, payments, shipping — we take care of it all. You just browse, buy, and restock. No more back-and-forth texts, no middlemen, no markup games.",
-    imagePath: "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=1000&auto=format&fit=crop",
+    imagePath: "/images/04_OrderStatus_Tablet.webp",
     imageAlt: 'Workflow tracker for order processing'
   },
   {
     icon: <FaStore className="h-6 w-6 text-[#43CD66]" />,
     title: "First Dibs, Not Leftovers",
     description: "Set reminders to be notified the minute your preferred type of deals go live. Get a head start on the loads that actually flip — clean, shelf-ready inventory priced to move.",
-    imagePath: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1000&auto=format&fit=crop",
+    imagePath: "/images/05_Alert_Phone.webp",
     imageAlt: 'Notifications and alert settings panel'
   }
 ];
@@ -74,9 +74,9 @@ const FeaturesSection = () => (
                   src={feature.imagePath}
                   alt={feature.imageAlt}
                   fill
-                  quality={80}
-                  loading="lazy"
+                  quality={70}
                   className="object-cover z-10"
+                  unoptimized
                 />
                 <div className={`absolute ${index % 2 === 0 ? '-right-3 md:-right-6' : '-left-3 md:-left-6'} -bottom-3 md:-bottom-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#43CD66] flex items-center justify-center shadow-lg z-20`}>
                   <div className="text-white scale-75 md:scale-100">
