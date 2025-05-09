@@ -7,6 +7,7 @@ import FeaturesSection from '@/src/components/website/buyer/FeaturesSection';
 import NoJunkPlanSection from '@/src/components/website/buyer/NoJunkPlanSection';
 import TestimonialsSection from '@/src/components/website/buyer/TestimonialsSection';
 import FinalCTASection from '@/src/components/website/buyer/FinalCTASection';
+import SharedBackgroundPattern from '@/src/components/common/SharedBackgroundPattern';
 
 const BuyerPageClient = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -29,13 +30,8 @@ const BuyerPageClient = () => {
   }, [api]);
 
   return (
-    <main className="flex flex-col items-center bg-white">
-      {/* Background pattern */}
-      <div className="absolute top-0 w-full h-[1000px] overflow-hidden z-0">
-        <div className="absolute inset-0 bg-[#102D21] opacity-95"></div>
-        <div className="absolute inset-0 bg-linear-to-b from-[#102D21] to-[#102D21]/70"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-      </div>
+    <main className="flex flex-col items-center bg-white relative">
+      <SharedBackgroundPattern className="h-[1000px]" />
       <HeroSection />
       <FeaturesSection />
       <NoJunkPlanSection />

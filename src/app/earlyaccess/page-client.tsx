@@ -13,7 +13,7 @@ export default function EarlyAccessPage() {
       <div className="flex flex-col lg:flex-row">
         {/* Categories Section (Top on Mobile, Right on LG) */}
         <div className="relative w-full lg:w-1/2 min-h-screen bg-[#102D21] overflow-y-auto lg:order-2">
-          <div className="w-full flex flex-col px-6 py-12 pt-14 lg:px-8 lg:pt-8 max-w-4xl xl:max-w-5xl mx-auto" style={{ minHeight: 'calc(100dvh - 40px)' }}>
+          <div className="w-full flex flex-col px-6 py-12 pt-14 lg:px-8 lg:pt-8 max-w-4xl xl:max-w-5xl mx-auto min-h-[calc(100dvh-40px)]">
             <div className="flex flex-col h-full justify-between">
               <ProductCategories />
             </div>

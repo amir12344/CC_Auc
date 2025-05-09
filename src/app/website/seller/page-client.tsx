@@ -10,6 +10,7 @@ import { FeaturesSection } from '@/src/components/website/seller/FeaturesSection
 import { TestimonialsSection } from '@/src/components/website/seller/TestimonialsSection';
 import { FinalCTASection } from '@/src/components/website/seller/FinalCTASection';
 import { sellerFeatures } from '@/src/components/website/seller/sellerFeatureData';
+import SharedBackgroundPattern from '@/src/components/common/SharedBackgroundPattern';
 
 const SellerPageClient = () => {
   const testimonials = [
@@ -72,13 +73,8 @@ const SellerPageClient = () => {
   }, [api]);
 
   return (
-    <main className="flex flex-col items-center bg-white">
-      {/* Background pattern (unchanged) */}
-      <div className="absolute top-0 w-full h-[939px] overflow-hidden z-0">
-        <div className="absolute inset-0 bg-[#102D21] opacity-95"></div>
-        <div className="absolute inset-0 bg-linear-to-b from-[#102D21] to-[#102D21]/70"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-      </div>
+    <main className="flex flex-col items-center bg-white relative">
+      <SharedBackgroundPattern className="h-[939px]" />
       <HeroSection />
       <DashboardPreview />
       <FeaturesSection features={sellerFeatures} />
