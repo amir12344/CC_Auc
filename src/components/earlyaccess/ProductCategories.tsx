@@ -90,7 +90,7 @@ export default function ProductCategories() {
               <span className='absolute bottom-0 left-0 w-full h-1 bg-[#43CD66]'></span>
             </span>
           </h2>
-          <p className="mb-2 mt-2 text-lg text-[#D8F4CC] font-semibold text-center">
+          <p className="mb-2 mt-2 text-lg text-[white] font-semibold text-center">
             Get access to surplus and returned inventory from the brands consumers love,<br className='hidden md:block' />
             from mass market to designer.
           </p>
@@ -127,7 +127,7 @@ export default function ProductCategories() {
         <div className='hidden md:block'>
           <div className='max-w-4xl mx-auto p-6 bg-[#102D21] rounded-xl shadow-lg border border-[#43CD66]/20'>
             <h2 className='text-center text-white text-2xl font-bold mb-6'>
-              Our <span className='text-[#43CD66]'>Value Proposition</span>
+              Built for <span className='text-[#43CD66]'>Serious Buyers</span>
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
               <div className='group hover:bg-[#102D21]/80 p-4 rounded-lg transition-all duration-300'>
@@ -203,7 +203,7 @@ export default function ProductCategories() {
                   </div>
 
                   {/* Text with improved typography */}
-                  <p className='text-[#D8F4CC] font-medium text-lg px-2 leading-relaxed'>
+                  <p className='text-[white] font-medium text-lg px-2 leading-relaxed'>
                     {prop.text}
                   </p>
                 </div>
@@ -227,7 +227,7 @@ export default function ProductCategories() {
           </div>
         </div>
       </div>
-      
+
 
       {/* Sticky Mobile-only scroll indicator button */}
       {showScrollButton && (
