@@ -29,16 +29,16 @@ const TeamSection: React.FC = () => {
         '/images/Isaac.webp',
     },
     {
-      name: 'Ahmed Aslam',
-      title: 'Advisor',
-      imagePath:
-        '/images/Ahmed.webp',
-    },    
-    {
       name: 'Amir Sayyad',
       title: 'VP of Engineering',
       imagePath: '/images/Amir.webp',
     },
+    {
+      name: 'Ahmed Aslam',
+      title: 'Advisor',
+      imagePath:
+        '/images/Ahmed.webp',
+    },   
     
     
   ];
@@ -47,7 +47,7 @@ const TeamSection: React.FC = () => {
     <section
           id='team'
           ref={ref}
-          className='relative py-24 md:py-36 overflow-hidden bg-gradient-to-b from-white to-gray-50 transition-theme duration-400 min-h-[100dvh]'
+          className='relative py-24 md:py-36 overflow-hidden transition-theme duration-400 min-h-[100dvh]'
         >
           {/* Enhanced grid pattern background with subtle green accent */}
           <div
@@ -126,7 +126,7 @@ const TeamSection: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.1 * index }}
               whileHover={{ y: -5 }}
             >
-              <div className='relative h-80 bg-gray-100 overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300'>
+              <div className='relative h-80 overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300'>
                 <Image
                   src={member.imagePath}
                   alt={member.name}
@@ -142,7 +142,7 @@ const TeamSection: React.FC = () => {
                 <h3 className='text-xl text-[#43CD66] font-[500] mb-1 transition-theme duration-400 group-hover:text-primary'>
                   {member.name}
                 </h3>
-                <p className='text-md text-gray-600 transition-theme duration-400'>
+                <p className='text-md text-[#1C1E21] transition-theme duration-400'>
                   {member.title}
                 </p>
               </div>
