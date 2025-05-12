@@ -9,6 +9,6 @@ export const DashboardPreview = () => (
     animate={{ opacity: 100, scale: 1 }}
     transition={{ duration: 0.4, delay: 0.3 }}
   >
-    <Image src="/images/dashboard_preview.png" alt="Dashboard Preview" className='' width={1000} quality={80} height={500} />
+    <Image src="/images/dashboard_preview.webp" alt="Dashboard Preview" unoptimized width={1000} quality={100} height={500} />
   </motion.div>
 );

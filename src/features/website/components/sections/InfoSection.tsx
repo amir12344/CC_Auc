@@ -4,16 +4,21 @@ import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FaBriefcase, FaShoppingBag, FaArrowRight } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const InfoSection: React.FC = () => {
   const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id='stats' ref={ref} className='py-10 md:py-24 bg-white'>
+    <section
+      id='stats'
+      ref={ref}
+      className='py-16 md:py-28 bg-white'
+    >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center mb-10 md:mb-16'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+        <div className='text-center mb-16 md:mb-20'>
+          <h2 className='text-3xl md:text-5xl font-bold'>
             Where brand protection meets{' '}
             <span className='relative text-[#43cd66]'>
               buyer confidence
@@ -22,64 +27,120 @@ const InfoSection: React.FC = () => {
           </h2>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
-          <div
-            className='
-              bg-white rounded-[24px] w-full mx-auto
-              max-w-3xl md:max-w-4xl lg:max-w-5xl
-              p-[50px_30px] md:p-[88px_56px]
-              transition-shadow duration-300
-            '
-            style={{
-              boxShadow: '10px 10px 34px rgba(0,0,0,0.2)',
-            }}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20'>
+          {/* Sellers Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className='relative group'
           >
-            <div className='text-[#43CD66] mb-6'>
-              <FaBriefcase
-                className='w-12 h-12 text-[#43CD66]'
-                aria-hidden='true'
-              />
-            </div>
-            <h3 className='text-2xl font-[500] mb-4'>Sellers</h3>
-            <p className='text-gray-600 text-lg leading-relaxed'>
-              Brands and retailers list surplus on Commerce Central to recover
-              more while staying in full control of where, how, and to whom it
-              sells.
-            </p>
-            <Link
-              href='/earlyaccess'
-              className=' mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-[#43CD66] border border-[#43CD66] text-[#ffffff] font-medium rounded-full transition'
-            >
-              Early Access
-              <FaArrowRight className='w-5 h-5 ml-2' aria-hidden='true' />
-            </Link>
-          </div>
+            {/* Card with image overlay */}
+            <div className='relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 h-full'>
+              {/* Background gradient */}
+              <div className='absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 z-0'></div>
 
-          <div
-            className='bg-white rounded-[24px] w-full mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl p-[50px_30px] md:p-[88px_56px] transition-shadow duration-300'
-            style={{
-              boxShadow: '10px 10px 34px rgba(0,0,0,0.2)',
-            }}
-          >
-            <div className='text-[#43CD66] mb-6'>
-              <FaShoppingBag
-                className='w-12 h-12 text-[#43CD66]'
-                aria-hidden='true'
-              />
+              {/* Single person smiling photo */}
+              <div className='absolute top-0 right-0 w-full md:w-3/5 h-full overflow-hidden z-10'>
+                <div className='relative w-full h-full'>
+                  <Image
+                    src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Smiling business person"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white opacity-100"></div>
+                </div>
+              </div>
+
+              {/* Content section */}
+              <div className='relative p-10 md:p-12 flex flex-col h-full z-20'>
+                <div className='w-full md:w-3/5 z-10'>
+                  <div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#ecfdf3] shadow-sm mb-6'>
+                    <FaBriefcase
+                      className='w-7 h-7 text-[#43CD66]'
+                      aria-hidden='true'
+                    />
+                  </div>
+                  <h3 className='text-3xl font-bold text-gray-800 mb-6'>Sellers</h3>
+                  <p className='text-gray-700 text-lg leading-relaxed mb-8'>
+                    Brands and retailers list surplus on Commerce Central to recover
+                    more while staying in full control of where, how, and to whom it
+                    sells.
+                  </p>
+                  <div className="transition-transform duration-300 group-hover:translate-x-2">
+                    <Link
+                      href='/earlyaccess'
+                      className='inline-flex items-center justify-center px-7 py-3.5 bg-[#43CD66] text-[#ffffff] font-medium rounded-full transition-all duration-300 hover:bg-[#38b158] hover:shadow-lg hover:shadow-[#43CD66]/30'
+                    >
+                      Early Access
+                      <FaArrowRight className='w-4 h-4 ml-2.5 transition-transform duration-300 group-hover:translate-x-1' aria-hidden='true' />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 className='text-2xl font-[500] mb-4'>Buyers</h3>
-            <p className='text-gray-600 text-lg leading-relaxed'>
-              Manually vetted buyers purchase inventory with tools and support
-              to avoid bad loads and finally trust what shows up.
-            </p>
-            <Link
-              href='/earlyaccess'
-              className='mt-6 inline-flex items-center justify-center px-5 py-2.5 bg-white border border-[#43CD66] hover:bg-[#43CD66] hover:text-white text-[#43CD66] font-medium rounded-full transition'
-            >
-              <span>Early Access</span>
-              <FaArrowRight className='w-5 h-5 ml-2 ' aria-hidden='true' />
-            </Link>
-          </div>
+          </motion.div>
+
+          {/* Buyers Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className='relative group'
+          >
+            {/* Card with image overlay */}
+            <div className='relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 h-full'>
+              {/* Background gradient */}
+              <div className='absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 z-0'></div>
+
+              {/* Single person smiling photo */}
+              <div className='absolute top-0 right-0 w-full md:w-3/5 h-full overflow-hidden z-10'>
+                <div className='relative w-full h-full'>
+                  <Image
+                    src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                    alt="Smiling shopping person"
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'center left' }}
+                    className="transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white opacity-100"></div>
+                </div>
+              </div>
+
+              {/* Content section */}
+              <div className='relative p-10 md:p-12 flex flex-col h-full z-20'>
+                <div className='w-full md:w-3/5 z-10'>
+                  <div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#ecfdf3] shadow-sm mb-6'>
+                    <FaShoppingBag
+                      className='w-7 h-7 text-[#43CD66]'
+                      aria-hidden='true'
+                    />
+                  </div>
+                  <h3 className='text-3xl font-bold text-gray-800 mb-6'>Buyers</h3>
+                  <p className='text-gray-700 text-lg leading-relaxed mb-8'>
+                    Manually vetted buyers purchase inventory with tools and support
+                    to avoid bad loads and finally trust what shows up.
+                  </p>
+                  <div className="transition-transform duration-300 group-hover:translate-x-2">
+                    <Link
+                      href='/earlyaccess'
+                      className='inline-flex items-center justify-center px-7 py-3.5 bg-white border border-[#43CD66] text-[#43CD66] font-medium rounded-full transition-all duration-300 hover:bg-[#43CD66] hover:text-white hover:shadow-lg hover:shadow-[#43CD66]/30'
+                    >
+                      Early Access
+                      <FaArrowRight className='w-4 h-4 ml-2.5 transition-transform duration-300 group-hover:translate-x-1' aria-hidden='true' />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </motion.div>
         </div>
       </div>
     </section>
