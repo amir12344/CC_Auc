@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
             <div>
               <Logo showFullOnMobile={true} />
             </div>
-            <p className='text-[#F1E9DE] mb-4'>Smart Tools. Smarter Loads</p>
+            <p className='text-[#F1E9DE] mb-4'>The Trusted Channel For Surplus</p>
             <div className='flex space-x-3'>
               {footerNavigation.social.map((social, index) => {
                 let iconPath
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                     href={social.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='h-8 w-8 rounded-full bg-gray-800 flex items-center justify-center text-[#F1E9DE] hover:text-blue-400 transition-colors'
+                    className='h-8 w-8 rounded-full bg-gray-800 flex items-center justify-left text-[#F1E9DE] hover:text-blue-400 transition-colors'
                     aria-label={social.label}
                   >
                     <svg

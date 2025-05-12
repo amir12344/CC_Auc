@@ -12,17 +12,17 @@ const profiles: string[] = [
   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
   'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
   'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
-  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
-  'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
+  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
 
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
-  'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
-  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
+  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
   'https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
 
-  'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80', 
+  'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=300&q=80',
   'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80',
 ];
 
@@ -36,7 +36,7 @@ const TestimonialsSection: React.FC = () => {
     <section
       id='testimonials'
       ref={ref}
-      className='pt-[5rem] bg-[#F1E9DE] transition-all duration-400 relative overflow-hidden'
+      className='pt-2 md:pt-[5rem] bg-[#F1E9DE] transition-all duration-400 relative overflow-hidden'
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative'>
         {/* LEFT COLUMN PROFILES */}
@@ -225,23 +225,32 @@ const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* Central content */}
-        <div className='text-center max-w-3xl mx-auto z-20 relative pt-0 sm:pt-[13rem] pb-20'>
+        <div className='text-center max-w-3xl mx-auto z-20 relative pt-0 pt-[2rem] md:pt-[13rem] pb-15'>
           <h2
-            className='text-4xl font-bold md:text-5xl text-[#1C1E21] mb-2'
+            className='hidden md:block text-4xl font-bold md:text-4xl lg:text-5xl text-[#1C1E21] mb-2'
           >
             Unlock your inventory’s
           </h2>
 
           <h3
-            className='text-4xl md:text-5xl font-normal text-primary mb-8 text-[#43CD66]'
+            className='hidden md:block text-4xl md:text-5xl font-normal text-primary mb-8 text-[#43CD66]'
           >
-            
-            <span className='text-4xl font-bold md:text-5xl relative inline-block text-[#43cd66]'>
-              full potential.
+
+            <span className='text-4xl font-bold md:text-4xl lg:text-5xl relative inline-block text-[#43cd66]'>
+              full potential
               <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#43cd66] rounded-full opacity-80'></span>
             </span>
           </h3>
 
+          <h2
+            className='md:hidden text-3xl font-bold text-[#1C1E21] mb-2'
+          >
+            Unlock your inventory’s
+            <span className='text-3xl font-bold md:text-4xl lg:text-5xl relative inline-block text-[#43cd66]'>
+              full potential
+              <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#43cd66] rounded-full opacity-80'></span>
+            </span>
+          </h2>
           <p
             className='text-lg text-[#1C1E21] w-[24rem] mx-auto mb-8'
           >
@@ -258,7 +267,7 @@ const TestimonialsSection: React.FC = () => {
             </Link>
           </div>
         </div>
-        
+
       </div>
     </section>
   );

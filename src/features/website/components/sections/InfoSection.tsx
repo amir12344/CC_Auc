@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { FaBriefcase, FaShoppingBag, FaArrowRight } from 'react-icons/fa'
+import { FaBriefcase, FaShoppingBag } from 'react-icons/fa'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -14,7 +14,7 @@ const InfoSection: React.FC = () => {
     <section
       id='stats'
       ref={ref}
-      className='py-16 md:py-28 bg-white'
+      className='py-12 md:py-16 bg-white'
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='text-center mb-16 md:mb-20'>
@@ -44,10 +44,10 @@ const InfoSection: React.FC = () => {
               <div className='absolute top-0 right-0 w-full md:w-3/5 h-full overflow-hidden z-10'>
                 <div className='relative w-full h-full'>
                   <Image
-                    src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1633367583895-08545d733dfe?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Smiling business person"
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center left' }}
                     className="transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
@@ -77,7 +77,6 @@ const InfoSection: React.FC = () => {
                       className='inline-flex items-center justify-center px-7 py-3.5 bg-[#43CD66] text-[#ffffff] font-medium rounded-full transition-all duration-300 hover:bg-[#38b158] hover:shadow-lg hover:shadow-[#43CD66]/30'
                     >
                       Early Access
-                      <FaArrowRight className='w-4 h-4 ml-2.5 transition-transform duration-300 group-hover:translate-x-1' aria-hidden='true' />
                     </Link>
                   </div>
                 </div>
@@ -101,7 +100,7 @@ const InfoSection: React.FC = () => {
               <div className='absolute top-0 right-0 w-full md:w-3/5 h-full overflow-hidden z-10'>
                 <div className='relative w-full h-full'>
                   <Image
-                    src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                    src="https://images.unsplash.com/photo-1592275772614-ec71b19e326f?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Smiling shopping person"
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'center left' }}
@@ -133,7 +132,6 @@ const InfoSection: React.FC = () => {
                       className='inline-flex items-center justify-center px-7 py-3.5 bg-white border border-[#43CD66] text-[#43CD66] font-medium rounded-full transition-all duration-300 hover:bg-[#43CD66] hover:text-white hover:shadow-lg hover:shadow-[#43CD66]/30'
                     >
                       Early Access
-                      <FaArrowRight className='w-4 h-4 ml-2.5 transition-transform duration-300 group-hover:translate-x-1' aria-hidden='true' />
                     </Link>
                   </div>
                 </div>
