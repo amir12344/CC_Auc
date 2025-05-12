@@ -15,7 +15,7 @@ import {
 export const sellerFeatures: SellerFeatureItemProps[] = [
   // Feature 1: Act Before Inventory Becomes a Liability
   {
-    title: 'Act Before Inventory Becomes a Liability',
+    title: 'Act before inventory becomes a liability',
     description: 'Detect aging or returned stock early and move it before markdowns, write-offs, or warehouse gridlock erode your margins.',
     imagePath: '/images/inventoryChart.png',
     imageAlt: 'Control tower dashboard showing $ value and space tied to returned inventory at each location',
@@ -32,7 +32,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
 
   // Feature 2: Protect Brand, Pricing, and Channels
   {
-    title: 'Protect Brand, Pricing, and Channels',
+    title: 'Protect brand, pricing, and channels',
     description: 'Set guardrails for who can buy your products, at what price, and where they can sell them. Maintain brand integrity while still moving inventory.',
     imagePath: '/images/brandProtection.png',
     imageAlt: 'Dashboard showing brand protection settings and controls',
@@ -59,7 +59,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
 
   // Feature 3: Run Resale on Autopilot
   {
-    title: 'Run Resale on Autopilot',
+    title: 'Run resale on autopilot',
     description: 'Set your terms once, then let our platform handle everything from buyer verification to payment processing, shipping coordination, and documentation.',
     imagePath: '/images/automationDashboard.png',
     imageAlt: 'Automation dashboard showing order processing workflow',
@@ -78,7 +78,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
 
   // Feature 4: Always Audit-Ready
   {
-    title: 'Always Audit-Ready',
+    title: 'Always audit-ready',
     description: 'Every transaction is documented with verified buyer information, explicit resale terms, and proof of fulfillment. No more scrambling when auditors come knocking.',
     imagePath: '/images/complianceDashboard.png',
     imageAlt: 'Compliance dashboard showing audit documentation',
@@ -105,7 +105,7 @@ export const sellerFeatures: SellerFeatureItemProps[] = [
 
   // Feature 5: Monetize Across Channels Without Conflict
   {
-    title: 'Monetize Across Channels Without Conflict',
+    title: 'Monetize across channels without conflict',
     description: 'Segment your inventory by channel, price point, or geography. Sell the same products through different channels without creating channel conflict.',
     imagePath: '/images/channelManagement.png',
     imageAlt: 'Channel management dashboard showing distribution across different sales channels',

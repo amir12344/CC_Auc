@@ -44,7 +44,7 @@ const TestimonialsSection = ({ canScrollPrev, canScrollNext, setApi }: Testimoni
   <section className="w-full py-10 bg-white">
     <div className="mx-auto px-4">
       <div className="flex flex-col items-center justify-center mb-14">
-        <h2 className="text-4xl font-bold md:text-5xl text-center text-[#1C1E21] leading-tight max-w-3xl">
+        <h2 className="text-4xl font-semibold md:text-5xl text-center text-[#1C1E21] leading-tight max-w-3xl">
           Trusted by innovators and
           <span className='text-[#43CD66]'> Industry leaders</span>
         </h2>

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 export const FinalCTASection = () => (
@@ -33,7 +32,6 @@ export const FinalCTASection = () => (
             className='px-8 sm:px-10 py-4 rounded-full bg-[#43CD66] font-medium transition-all duration-300 text-base md:text-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group'
           >
             <span>Early Access</span>
-            <FaArrowRight className='w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform' aria-hidden='true' />
           </Link>
         </div>
       </motion.div>
