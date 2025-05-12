@@ -78,64 +78,54 @@ export default function ProductCategories() {
       {/* Value proposition with separate mobile/desktop versions */}
       <div className='mb-12'>
         {/* Mobile version - Enhanced with better visual design */}
-        <div className='md:hidden p-0'>
-          {/* Modern, glass-effect card container */}
-          <div className='backdrop-blur-sm bg-gradient-to-br from-[#102D21]/80 to-[#0A1F16]/90 rounded-xl p-6 shadow-lg border border-[#43CD66]/20 overflow-hidden relative'>
 
-            {/* Title for the carousel */}
-            <h3 className='text-white font-semibold text-lg mb-6 text-center relative z-10'>
-              Our <span className='text-[#43CD66]'>Value Proposition</span>
-            </h3>
-
-            {/* Animated value props carousel with improved layout */}
-            <div className='relative h-[150px] overflow-hidden mb-5 z-10'>
-              {valueProps.map((prop, index) => (
-                <div
-                  key={index}
-                  className={`absolute top-0 left-0 w-full transition-all duration-700 ease-in-out ${index === activeIndex
-                    ? 'opacity-100 translate-x-0'
-                    : index < activeIndex
-                      ? 'opacity-0 -translate-x-full'
-                      : 'opacity-0 translate-x-full'
-                    }`}
-                >
-                  <div className='flex flex-col items-center text-center'>
-                    {/* Modern icon container with subtle shadow */}
-                    <div className='flex items-center justify-center w-14 h-14 mb-5 rounded-full bg-[#0A1F16]/80 shadow-[0_0_15px_rgba(67,205,102,0.15)] border border-[#43CD66]/30'>
-                      <CheckCircle2
-                        className='text-[#43CD66] w-7 h-7'
-                      />
-                    </div>
-
-                    {/* Text with improved typography */}
-                    <p className='text-[#D8F4CC] font-medium text-lg px-2 leading-relaxed'>
-                      {prop.text}
-                    </p>
-                  </div>
+        <div className='mb-6'>
+          <h2
+            className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl pb-4 text-[#ffffff] text-center'
+            style={{ fontWeight: 900 }}
+          >
+            Products from the World&apos;s <br />
+            <span className='text-[#43CD66] relative inline-block'>
+              best brands
+              <span className='absolute bottom-0 left-0 w-full h-1 bg-[#43CD66]'></span>
+            </span>
+          </h2>
+          <p className="mb-2 mt-2 text-lg text-[#D8F4CC] font-semibold text-center">
+            Get access to surplus and returned inventory from the brands consumers love,<br className='hidden md:block' />
+            from mass market to designer.
+          </p>
+        </div>
+        <div className='grid grid-cols-3 gap-3 md:gap-1 lg:gap-2 mb-0 md:mb-8 border-none max-w-4xl mx-auto md:px-4 p-0 md:py-4'>
+          {productCategories.map((category, index) => (
+            <div key={index} className='mb-2 border-none'>
+              <div
+                className='mx-auto max-w-[120px] sm:max-w-[140px] md:max-w-[160px] bg-white shadow-xs overflow-hidden border-none transform transition-transform duration-300 hover:scale-105'
+                style={{ borderRadius: '8px' }}
+              >
+                <div className='border-none relative aspect-square rounded-sm overflow-hidden'>
+                  <Image
+                    src={category.imageUrl}
+                    alt={category.name}
+                    fill
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw'
+                    className='object-cover border-none'
+                    priority={index < 3}
+                    unoptimized
+                  />
                 </div>
-              ))}
+              </div>
+              <div className='py-1 text-center rounded-lg'>
+                <span className='text-md md:text-lg text-[#F1E9DE]'>
+                  {category.name}
+                </span>
+              </div>
             </div>
-
-            {/* Modern dot indicators with subtle animation */}
-            <div className='flex justify-center items-center space-x-3 relative z-10'>
-              {valueProps.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSlide(index)}
-                  className={`transition-all duration-500 outline-none focus:outline-none focus:ring-1 focus:ring-[#43CD66] ${index === activeIndex
-                    ? 'w-8 h-2 bg-[#43CD66] rounded-full shadow-[0_0_8px_rgba(67,205,102,0.5)]'
-                    : 'w-2 h-2 bg-[#43CD66]/30 rounded-full hover:bg-[#43CD66]/60'
-                    }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Desktop version */}
         <div className='hidden md:block'>
-          <div className='max-w-3xl mx-auto p-6 bg-[#102D21] rounded-xl shadow-lg border border-[#43CD66]/20'>
+          <div className='max-w-4xl mx-auto p-6 bg-[#102D21] rounded-xl shadow-lg border border-[#43CD66]/20'>
             <h2 className='text-center text-white text-2xl font-bold mb-6'>
               Our <span className='text-[#43CD66]'>Value Proposition</span>
             </h2>
@@ -183,48 +173,61 @@ export default function ProductCategories() {
         </div>
       </div>
 
-      <div className='mb-6'>
-        <h2
-          className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl pb-4 text-[#ffffff] text-center'
-          style={{ fontWeight: 900 }}
-        >
-          Products from the World&apos;s <br />
-          <span className='text-[#43CD66] relative inline-block'>
-            best brands
-            <span className='absolute bottom-0 left-0 w-full h-1 bg-[#43CD66]'></span>
-          </span>
-        </h2>
-        <p className="mb-2 mt-2 text-lg text-[#D8F4CC] font-semibold text-center">
-          Get access to surplus and returned inventory from the brands consumers love, from mass market to designer.
-        </p>
-      </div>
-      <div className='grid grid-cols-3 gap-3 md:gap-1 lg:gap-2 mb-0 md:mb-8 border-none max-w-4xl mx-auto md:px-4 p-0 md:py-4'>
-        {productCategories.map((category, index) => (
-          <div key={index} className='mb-2 border-none'>
-            <div
-              className='mx-auto max-w-[120px] sm:max-w-[140px] md:max-w-[160px] bg-white shadow-xs overflow-hidden border-none transform transition-transform duration-300 hover:scale-105'
-              style={{ borderRadius: '8px' }}
-            >
-              <div className='border-none relative aspect-square rounded-sm overflow-hidden'>
-                <Image
-                  src={category.imageUrl}
-                  alt={category.name}
-                  fill
-                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw'
-                  className='object-cover border-none'
-                  priority={index < 3}
-                  unoptimized
-                />
+      <div className='md:hidden p-0'>
+        {/* Modern, glass-effect card container */}
+        <div className='backdrop-blur-sm bg-gradient-to-br from-[#102D21]/80 to-[#0A1F16]/90 rounded-xl p-6 shadow-lg border border-[#43CD66]/20 overflow-hidden relative'>
+
+          {/* Title for the carousel */}
+          <h3 className='text-white font-semibold text-lg mb-6 text-center relative z-10'>
+            Our <span className='text-[#43CD66]'>Value Proposition</span>
+          </h3>
+
+          {/* Animated value props carousel with improved layout */}
+          <div className='relative h-[150px] overflow-hidden mb-5 z-10'>
+            {valueProps.map((prop, index) => (
+              <div
+                key={index}
+                className={`absolute top-0 left-0 w-full transition-all duration-700 ease-in-out ${index === activeIndex
+                  ? 'opacity-100 translate-x-0'
+                  : index < activeIndex
+                    ? 'opacity-0 -translate-x-full'
+                    : 'opacity-0 translate-x-full'
+                  }`}
+              >
+                <div className='flex flex-col items-center text-center'>
+                  {/* Modern icon container with subtle shadow */}
+                  <div className='flex items-center justify-center w-14 h-14 mb-5 rounded-full bg-[#0A1F16]/80 shadow-[0_0_15px_rgba(67,205,102,0.15)] border border-[#43CD66]/30'>
+                    <CheckCircle2
+                      className='text-[#43CD66] w-7 h-7'
+                    />
+                  </div>
+
+                  {/* Text with improved typography */}
+                  <p className='text-[#D8F4CC] font-medium text-lg px-2 leading-relaxed'>
+                    {prop.text}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className='py-1 text-center rounded-lg'>
-              <span className='text-md md:text-lg text-[#F1E9DE]'>
-                {category.name}
-              </span>
-            </div>
+            ))}
           </div>
-        ))}
+
+          {/* Modern dot indicators with subtle animation */}
+          <div className='flex justify-center items-center space-x-3 relative z-10'>
+            {valueProps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setSlide(index)}
+                className={`transition-all duration-500 outline-none focus:outline-none focus:ring-1 focus:ring-[#43CD66] ${index === activeIndex
+                  ? 'w-8 h-2 bg-[#43CD66] rounded-full shadow-[0_0_8px_rgba(67,205,102,0.5)]'
+                  : 'w-2 h-2 bg-[#43CD66]/30 rounded-full hover:bg-[#43CD66]/60'
+                  }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
+      
 
       {/* Sticky Mobile-only scroll indicator button */}
       {showScrollButton && (
