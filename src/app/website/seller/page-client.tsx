@@ -74,7 +74,7 @@ const SellerPageClient = () => {
 
   return (
     <main className="flex flex-col items-center bg-white relative">
-      <SharedBackgroundPattern className="h-[939px]" />
+      <SharedBackgroundPattern className="h-[1000px]" />
       <HeroSection />
       <DashboardPreview />
       <FeaturesSection features={sellerFeatures} />

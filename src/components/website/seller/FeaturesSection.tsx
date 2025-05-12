@@ -1,8 +1,8 @@
 import React from 'react'
-import Image from 'next/image'
 // Import the correct prop type from the common features index
 import { SellerFeatureItemProps } from '@/src/components/common/features/index'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 // The component now expects an array of SellerFeatureItemProps
 interface FeaturesSectionProps {
@@ -21,10 +21,10 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
         transition={{ duration: 0.6 }}
         className='text-3xl font-bold md:text-5xl text-[#1C1E21] mb-4'
       >
-        Recover More.
+        Recover More. Risk Less.
         <span className='text-[#43CD66] underline'>
           {' '}
-          Risk Less. Reclaim Control{' '}
+          Reclaim Control{' '}
         </span>
       </motion.h2>
     </div>
@@ -49,14 +49,22 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => (
             >
               <div className='flex flex-col md:flex-row md:gap-8 h-full'>
                 <div className='md:flex-1 mb-0'>
-                  <h3 className='text-2xl md:text-3xl lg:text-5xl font-semibold text-[#1C1E21] mb-2 md:mb-4 md:mb-6'>
+                  <h3 className='text-2xl md:text-3xl lg:text-5xl font-semibold text-[#1C1E21] mb-2 md:mb-4 md:mb-6 text-center md:text-left'>
                     {feature.title}
                   </h3>
-                  <p className='text-lg md:text-xl text-[#1C1E21]/70 mb-4 md:mb-6 leading-relaxed '>
+                  <p className='text-md md:text-xl text-[#1C1E21]/70 mb-4 md:mb-6 leading-relaxed text-center md:text-left'>
                     {feature.description}
                   </p>
                 </div>
               </div>
+              <div className="text-center md:text-left pt-3 md:pt-0 md:pb-0 pb-6">
+                               <Link
+                                 href="/earlyaccess"
+                                 className="inline-block px-4 sm:px-3 md:px-6 py-2 md:py-2 rounded-full bg-[#43CD66] text-white font-medium text-sm sm:text-base md:text-lg transition duration-300 transform hover:scale-115"
+                               >
+                                 <span>Early Access</span>
+                               </Link>
+                             </div>
             </div>
 
             {/* Image Section */}

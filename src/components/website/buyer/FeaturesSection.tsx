@@ -95,7 +95,7 @@ const FeaturesSection = () => (
                  </div>
                </div>
 
-               <div className="text-center md:text-left pt-3 pb-6">
+               <div className="text-center md:text-left pt-3 md:pt-0 md:pb-0 pb-6">
                  <Link
                    href="/earlyaccess"
                    className="inline-block px-4 sm:px-3 md:px-6 py-2 md:py-2 rounded-full bg-[#43CD66] text-white font-medium text-sm sm:text-base md:text-lg transition duration-300 transform hover:scale-115"
