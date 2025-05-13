@@ -23,9 +23,12 @@ export const metadata: Metadata = {
   keywords: "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers",
   metadataBase: new URL('https://www.commercecentral.io'),
   icons: {
-    icon: '/commerce_central_logo.svg',
-    shortcut: '/commerce_central_logo.svg',
-    apple: '/commerce_central_logo.svg',
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/commerce_central_logo.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png', // Prefer PNG for Apple devices (create this file if needed)
   },
   openGraph: {
     title: 'Commerce Central - Premium Surplus Inventory Marketplace',
@@ -83,10 +86,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.commercecentral.io" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.commercecentral.io" />
 
-        {/* Explicit Favicon Links (in addition to metadata) */}
-        <link rel="icon" href="/commerce_central_logo.svg" type="image/svg+xml" sizes="any" />
-        <link rel="apple-touch-icon" href="/commerce_central_logo.svg" />
+        {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#102D21" />
+
         {/* JSON-LD Structured Data */}
         <Script type="application/ld+json" id="ld-org" strategy="beforeInteractive">
           {JSON.stringify(getOrganizationSchema())}
