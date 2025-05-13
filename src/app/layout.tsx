@@ -7,6 +7,12 @@ import { DynamicClientProvidersWrapper } from "@/src/components/providers/Dynami
 import { StyleProvider } from "@/src/components/providers/StyleProvider";
 import Script from "next/script";
 import { Suspense } from "react";
+import {
+  getOrganizationSchema,
+  getWebsiteSchema,
+  getPageSchema,
+} from "@/src/utils/metadata";
+import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
 
 // Configure Geist font with display swap
 const geist = GeistSans;
@@ -58,7 +64,7 @@ export const metadata: Metadata = {
     google: 'google-site-verification-code',
   },
   alternates: {
-    canonical: 'www.commercecentral.io',
+    canonical: 'https://www.commercecentral.io',
   },
 };
 
@@ -80,6 +86,17 @@ export default function RootLayout({
         {/* Explicit Favicon Links (in addition to metadata) */}
         <link rel="icon" href="/commerce_central_logo.svg" type="image/svg+xml" sizes="any" />
         <link rel="apple-touch-icon" href="/commerce_central_logo.svg" />
+        <meta name="theme-color" content="#102D21" />
+        {/* JSON-LD Structured Data */}
+        <Script type="application/ld+json" id="ld-org" strategy="beforeInteractive">
+          {JSON.stringify(getOrganizationSchema())}
+        </Script>
+        <Script type="application/ld+json" id="ld-website" strategy="beforeInteractive">
+          {JSON.stringify(getWebsiteSchema())}
+        </Script>
+        <Script type="application/ld+json" id="ld-page" strategy="beforeInteractive">
+          {JSON.stringify(getPageSchema("Home"))}
+        </Script>
       </head>
       <body suppressHydrationWarning>
         <StyleProvider />
@@ -102,30 +119,8 @@ export default function RootLayout({
             </Suspense>
           </DynamicClientProvidersWrapper>
         </ErrorBoundary>
-        {/* LinkedIn Insight Tag */}
-        {/* Commented out LinkedIn script for debugging */}
-
-        <Script id="linkedin-insight-tag" strategy="afterInteractive">
-          {`
-            _linkedin_partner_id = "7173748";
-            window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-            window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-            (function(l) {
-              if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-              window.lintrk.q=[]}
-              var s = document.getElementsByTagName("script")[0];
-              var b = document.createElement("script");
-              b.type = "text/javascript";b.async = true;
-              b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-              s.parentNode.insertBefore(b, s);
-            })(window.lintrk);
-          `}
-        </Script>
-        <noscript>
-          <img height="1" width="1" style={{ display: "none" }} alt="" src="https://px.ads.linkedin.com/collect/?pid=7173748&fmt=gif" />
-        </noscript>
-
-        {/* End LinkedIn Insight Tag */}
+        {/* LinkedIn Insights */}
+        <LinkedInInsight />
       </body>
     </html>
   );
