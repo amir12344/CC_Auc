@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/CC_Logo.png',
-        width: 1000,
-        height: 1000,
+        width: 1200,
+        height: 630,
         alt: 'Commerce Central Homepage',
       },
     ],
