@@ -270,7 +270,7 @@ export default function EarlyAccessForm() {
               className='focus:ring-[#43CD66] h-4 w-4 text-[#43CD66] border-gray-300 rounded'
             />
           </div>
-          <div className='ml-3 text-xs md:text-sm'>
+          <div className='ml-3 mt-0.5 md:mt-0 text-xs md:text-sm'>
             <label
               htmlFor='termsAccepted'
               className='font-medium text-gray-700'
@@ -422,7 +422,7 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-              'Reserve Access'
+              'Reserve Access — It’s Free & Fast'
             )}
           </button>
         </div>
