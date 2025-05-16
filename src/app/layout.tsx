@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/CC_opengraph.png',
-        width: 1200,
-        height: 364,
+        width: 500,
+        height: 500,
         alt: 'Commerce Central Logo',
       },
     ],
