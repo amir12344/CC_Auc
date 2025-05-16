@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     description: 'Join our exclusive early access program and be the first to experience the most trusted B2B surplus platform.',
     images: [
       {
-        url: '/CC_Logo.png',
+        url: '/CC_opengraph.png',
         width: 1200,
-        height: 630,
+        height: 364,
         alt: 'Commerce Central Logo',
       },
     ],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Request Early Access',
     description: 'Join our exclusive early access program for Commerce Central.',
-    images: ['/CC_Logo.png'],
+    images: ['/CC_opengraph.png'],
   },
 };
 

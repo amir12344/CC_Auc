@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     description: 'Terms of Service and conditions for using Commerce Central platform',
     images: [
       {
-        url: '/CC_Logo.png',
+        url: '/CC_opengraph.png',
         width: 1200,
-        height: 630,
+        height: 364,
         alt: 'Commerce Central Logo',
       },
     ],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Terms of Service | Commerce Central',
     description: 'Terms of Service and conditions for using Commerce Central platform',
-    images: ['/CC_Logo.png'],
+    images: ['/CC_opengraph.png'],
   },
 };
 

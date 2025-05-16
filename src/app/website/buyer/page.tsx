@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     description: 'Source smarter with direct access to brand-approved excess and returns — fully manifested and ready to move.',
     images: [
       {
-        url: '/CC_Logo.png',
+        url: '/CC_opengraph.png',
         width: 1200,
-        height: 630,
+        height: 364,
         alt: 'Commerce Central Logo',
       }
     ],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central for Buyers',
     description: 'Source smarter with direct access to brand-approved excess and returns — fully manifested and ready to move.',
-    images: ['/CC_Logo.png'],
+    images: ['/CC_opengraph.png'],
   },
 };
 

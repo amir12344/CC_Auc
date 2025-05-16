@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     description: 'Meet the Commerce Central team.',
     images: [
       {
-        url: '/CC_Logo.png',
+        url: '/CC_opengraph.png',
         width: 1200,
-        height: 630,
+        height: 364,
         alt: 'Commerce Central Logo',
       },
     ],
