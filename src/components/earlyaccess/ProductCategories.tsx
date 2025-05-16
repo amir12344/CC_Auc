@@ -179,7 +179,7 @@ export default function ProductCategories() {
 
           {/* Title for the carousel */}
           <h3 className='text-white font-semibold text-lg mb-6 text-center relative z-10'>
-            Our <span className='text-[#43CD66]'>Value Proposition</span>
+            Built for <span className='text-[#43CD66]'>Serious Buyers</span>
           </h3>
 
           {/* Animated value props carousel with improved layout */}

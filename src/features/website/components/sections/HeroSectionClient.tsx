@@ -23,20 +23,20 @@ const HeroSectionClient = () => {
             </h1>
 
             <div
-              className='text-md sm:text-lg md:text-xl xl:text-xl mb-6 md:mb-8 lg:mb-10 mx-auto space-y-3 sm:space-y-4 lg:space-y-4 max-w-3xl leading-relaxed'
-              style={{ willChange: 'opacity' }}
+              className="text-[clamp(1rem,2vw,1.5rem)] md:text-[clamp(1.25rem,2.5vw,2rem)] mb-6 md:mb-8 lg:mb-10 mx-auto space-y-3 sm:space-y-4 lg:space-y-4 max-w-3xl leading-relaxed"
+              style={{ willChange: "opacity" }}
             >
-              <p className='font-medium text-[#FFFFFF] flex items-center justify-center gap-1.5'>
+              <p className="text-white flex items-center justify-center gap-1.5">
                 Smart brands stay in control and recover more.
               </p>
-              <p className='font-medium text-[#FFFFFF] flex items-center justify-center gap-1.5'>
+              <p className="text-white flex items-center justify-center gap-1.5">
                 Smart buyers source better and skip the chaos.
               </p>
-              <p className='font-medium text-[#FFFFFF] flex items-center justify-center gap-1.5'>
-                <span className='relative'>
+              <p className="font-normal text-white flex items-center justify-center gap-1.5">
+                <span className="relative font-semibold text-[#43CD66]">
                   Commerce Central
-                  <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#25D366] rounded-full opacity-70'></span>
-                </span>{' '}
+                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-[#25D366] rounded-full opacity-70"></span>
+                </span>
                 makes it all happen.
               </p>
             </div>
