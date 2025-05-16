@@ -90,7 +90,7 @@ export default function ProductCategories() {
               <span className='absolute bottom-0 left-0 w-full h-1 bg-[#43CD66]'></span>
             </span>
           </h2>
-          <p className="mb-2 mt-2 text-lg text-[white] font-semibold text-center">
+          <p className="mb-2 mt-2 text-lg md:text-xl text-[white] font-[400] md:font-semibold text-center">
             Get access to surplus and returned inventory from the brands consumers love,<br className='hidden md:block' />
             from mass market to designer.
           </p>

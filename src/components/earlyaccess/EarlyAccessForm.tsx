@@ -422,7 +422,7 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-              'Reserve Access — It’s Free & Fast'
+                <span className='text-[#1C1E21]'>Reserve Access — It’s Free & Fast</span>
             )}
           </button>
         </div>
