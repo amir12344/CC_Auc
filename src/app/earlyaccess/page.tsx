@@ -5,15 +5,18 @@ import EarlyAccessClient from './page-client';
 export const metadata: Metadata = {
   title: 'Early Access - Commerce Central',
   description: 'Get early access to Commerce Central - the premier surplus inventory marketplace. Join our exclusive network of buyers and sellers.',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/earlyaccess'
+  },
   openGraph: {
     title: 'Commerce Central - Request Early Access',
     description: 'Join our exclusive early access program and be the first to experience the most trusted B2B surplus platform.',
     images: [
       {
-        url: 'https://www.commercecentral.io',
-        width: 1200,
-        height: 630,
-        alt: 'Commerce Central Early Access',
+        url: '/CC_Logo.png',
+        width: 1000,
+        height: 1000,
+        alt: 'Commerce Central Logo',
       },
     ],
   },
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Request Early Access',
     description: 'Join our exclusive early access program for Commerce Central.',
-    images: ['https://www.commercecentral.io'],
+    images: ['/CC_Logo.png'],
   },
 };
 

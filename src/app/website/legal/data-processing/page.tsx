@@ -3,22 +3,44 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Data Processing | Commerce Central',
   description: 'Data Processing information for Commerce Central platform',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/website/legal/data-processing'
+  },
+  openGraph: {
+    url: 'https://www.commercecentral.io/website/legal/data-processing',
+    title: 'Data Processing | Commerce Central',
+    description: 'Data Processing information for Commerce Central platform',
+    images: [
+      {
+        url: '/CC_Logo.png',
+        width: 1000,
+        height: 1000,
+        alt: 'Commerce Central Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Data Processing | Commerce Central',
+    description: 'Data Processing information for Commerce Central platform',
+    images: ['/CC_Logo.png'],
+  },
 };
 
 export default function DataProcessingPage() {
   return (
     <article className="prose prose-lg max-w-none mt-4">
       <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Data Processing Information</h1>
-      
+
       <div className="text-sm text-gray-500 mb-8">
         Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
       </div>
-      
+
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
         <p>
-          This Data Processing document describes how Commerce Central processes personal data 
-          in connection with the services we provide to our customers. It outlines our data processing 
+          This Data Processing document describes how Commerce Central processes personal data
+          in connection with the services we provide to our customers. It outlines our data processing
           activities, security measures, and compliance with applicable data protection laws.
         </p>
       </section>
@@ -29,8 +51,8 @@ export default function DataProcessingPage() {
           "Personal Data" means any information relating to an identified or identifiable natural person.
         </p>
         <p className="mt-4">
-          "Processing" means any operation performed on Personal Data, such as collection, recording, 
-          organization, structuring, storage, adaptation or alteration, retrieval, consultation, use, 
+          "Processing" means any operation performed on Personal Data, such as collection, recording,
+          organization, structuring, storage, adaptation or alteration, retrieval, consultation, use,
           disclosure, dissemination, or otherwise making available.
         </p>
         <p className="mt-4">
@@ -73,7 +95,7 @@ export default function DataProcessingPage() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">5. Data Security Measures</h2>
         <p>
-          Commerce Central implements appropriate technical and organizational measures to ensure a level 
+          Commerce Central implements appropriate technical and organizational measures to ensure a level
           of security appropriate to the risk, including:
         </p>
         <ul className="list-disc pl-6 mt-4">
@@ -88,8 +110,8 @@ export default function DataProcessingPage() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">6. Data Retention</h2>
         <p>
-          Commerce Central retains Personal Data only for as long as necessary to fulfill the purposes 
-          for which it was collected, including for the purposes of satisfying any legal, accounting, 
+          Commerce Central retains Personal Data only for as long as necessary to fulfill the purposes
+          for which it was collected, including for the purposes of satisfying any legal, accounting,
           or reporting requirements.
         </p>
       </section>
@@ -97,7 +119,7 @@ export default function DataProcessingPage() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">7. Data Subject Rights</h2>
         <p>
-          Commerce Central respects the rights of data subjects and will assist Data Controllers in 
+          Commerce Central respects the rights of data subjects and will assist Data Controllers in
           responding to requests from data subjects to exercise their rights under applicable data protection laws.
         </p>
       </section>

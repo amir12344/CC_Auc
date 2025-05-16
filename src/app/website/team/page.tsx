@@ -19,17 +19,21 @@ const TeamPageClient = dynamic(() => import('@/src/features/website/components/p
 export const metadata: Metadata = {
   ...defaultMetadata,
   title: 'Our Team - Commerce Central',
-  description: 'Meet the Commerce Central team - the experts behind our AI-powered inventory management solutions.',
+  description: 'Meet the Commerce Central team.',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/website/team'
+  },
   openGraph: {
     ...defaultOpenGraph,
+    url: 'https://www.commercecentral.io/website/team',
     title: 'Our Team - Commerce Central',
-    description: 'Meet the Commerce Central team - the experts behind our AI-powered inventory management solutions.',
+    description: 'Meet the Commerce Central team.',
     images: [
       {
-        url: 'https://www.commercecentral.io',
-        width: 1200,
-        height: 630,
-        alt: 'Commerce Central Team',
+        url: '/CC_Logo.png',
+        width: 1000,
+        height: 1000,
+        alt: 'Commerce Central Logo',
       },
     ],
   },

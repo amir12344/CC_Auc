@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     siteName: 'Commerce Central',
     images: [
       {
-        url: '/images/CommerceCentral_LogoV2_dark.png',
-        width: 1200,
-        height: 630,
-        alt: 'Commerce Central Marketplace',
+        url: '/CC_Logo.png',
+        width: 1000,
+        height: 1000,
+        alt: 'Commerce Central Logo',
       },
     ],
     locale: 'en_US',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Surplus Inventory Marketplace',
     description: 'Browse exclusive surplus inventory from top retailers for resale.',
-    images: ['/images/og-image.jpg'],
+    images: ['/CC_Logo.png'],
   },
   robots: {
     index: true,
@@ -85,6 +85,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://www.commercecentral.io" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.commercecentral.io" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
 
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#102D21" />

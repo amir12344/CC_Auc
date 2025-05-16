@@ -3,6 +3,28 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Data Processing Addendum (DPA) | Commerce Central',
   description: 'Data Processing Addendum (DPA) for Commerce Central platform',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/website/legal/addendum'
+  },
+  openGraph: {
+    url: 'https://www.commercecentral.io/website/legal/addendum',
+    title: 'Data Processing Addendum (DPA) | Commerce Central',
+    description: 'Data Processing Addendum (DPA) for Commerce Central platform',
+    images: [
+      {
+        url: '/CC_Logo.png',
+        width: 1000,
+        height: 1000,
+        alt: 'Commerce Central Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Data Processing Addendum (DPA) | Commerce Central',
+    description: 'Data Processing Addendum (DPA) for Commerce Central platform',
+    images: ['/CC_Logo.png'],
+  },
 };
 
 export default function AddendumPage() {

@@ -3,6 +3,28 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Commerce Central',
   description: 'Privacy Policy for Commerce Central platform',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/website/legal/privacy-policy'
+  },
+  openGraph: {
+    url: 'https://www.commercecentral.io/website/legal/privacy-policy',
+    title: 'Privacy Policy | Commerce Central',
+    description: 'Privacy Policy for Commerce Central platform',
+    images: [
+      {
+        url: '/CC_Logo.png',
+        width: 1000,
+        height: 1000,
+        alt: 'Commerce Central Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | Commerce Central',
+    description: 'Privacy Policy for Commerce Central platform',
+    images: ['/CC_Logo.png'],
+  },
 };
 
 export default function PrivacyPolicyPage() {
@@ -178,54 +200,54 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section className='mb-8'>
-  <h2 className='text-2xl font-semibold mb-4'>California Resident Rights</h2>
-  <>
-    <p>
-      If you are a California resident, you have the rights set forth in this section. Please see the “Exercising Your Rights” section below for instructions regarding how to exercise these rights. If there are any conflicts between this section and any other provision of this Privacy Policy and you are a California resident, the portion that is more protective of Personal Data shall control to the extent of such.
-    </p>
-    <p>
-      If you have any questions about this section or whether any of the following rights apply to you, please contact us at support@Commerce Central.com.
-    </p>
-    <p>
-      If we are processing your Personal Data as a service provider, you should contact the entity that collected your Personal Data in the first instance to address your rights with respect to such data.
-    </p>
-    <p>
-      <strong>Access</strong> - You have the right to request certain information about our collection and use of your Personal Data over the past 12 months. In response, we will provide you with the following information:
-    </p>
-    <ul>
-      <li>The categories of Personal Data that we have collected about you.</li>
-      <li>The categories of sources from which that Personal Data was collected.</li>
-      <li>The business or commercial purpose for collecting or selling your Personal Data.</li>
-      <li>The categories of third parties with whom we have shared your Personal Data.</li>
-      <li>The specific pieces of Personal Data that we have collected about you.</li>
-    </ul>
-    <p>
-      If we have disclosed your Personal Data to any third parties for a business purpose over the past 12 months, we will identify the categories of Personal Data shared with each category of third party recipient. If we have sold your Personal Data over the past 12 months, we will identify the categories of Personal Data sold to each category of third party recipient.
-    </p>
-    <p>
-      <strong>Deletion</strong> - You have the right to request that we delete the Personal Data that we have collected about you. Under the CCPA, this right is subject to certain exceptions: for example, we may need to retain your Personal Data to provide you with the Services or complete a transaction or other action you have requested. If your deletion request is subject to one of these exceptions, we may deny your deletion request.
-    </p>
-    <p>
-      <strong>Exercising Your Rights</strong> - To exercise the rights described above, you or your Authorized Agent (defined below) must:
-    </p>
-    <ol>
-      <li>Send a request to support@commercecentral.io from your email account that you used to register and create an account with Commerce Central to allow us to verify that you are the person about whom we have collected Personal Data, and</li>
-      <li>Describe your request in sufficient detail to allow us to understand, evaluate and respond to it.</li>
-    </ol>
-    <p>
-      Each request that meets both of these criteria will be considered a “Valid Request.” We may not respond to requests that do not meet these criteria. We will only use Personal Data provided in a Valid Request to verify your identity and complete your request. We will work to respond to your Valid Request within 45 days of receipt. We will not charge you a fee for making a Valid Request unless your Valid Request(s) is excessive, repetitive or manifestly unfounded. If we determine that your Valid Request warrants a fee, we will notify you of the fee and explain that decision before completing your request.
-    </p>
-    <p>
-      You may also authorize an agent (an “Authorized Agent”) to exercise your rights on your behalf. To do this, you must provide your Authorized Agent with written permission to exercise your rights on your behalf, and we may request a copy of this written permission from your Authorized Agent when they make a request on your behalf.
-    </p>
-    <p>
-      <strong>Personal Data Sales Opt-Out and Opt-In</strong> - We will not sell your Personal Data and have not done so over the last 12 months.
-    </p>
-    <p>
-      <strong>We Will Not Discriminate Against You for Exercising Your Rights Under the CCPA</strong> - We will not discriminate against you for exercising your rights under the CCPA. We will not deny you our goods or services, charge you different prices or rates, or provide you a lower quality of goods and services if you exercise your rights under the CCPA. However, we may offer different tiers of our Services as allowed by applicable data privacy laws (including the CCPA) with varying prices, rates or levels of quality of the goods or services you receive related to the value of Personal Data that we receive from you.
-    </p>
-  </>
-</section>
+        <h2 className='text-2xl font-semibold mb-4'>California Resident Rights</h2>
+        <>
+          <p>
+            If you are a California resident, you have the rights set forth in this section. Please see the “Exercising Your Rights” section below for instructions regarding how to exercise these rights. If there are any conflicts between this section and any other provision of this Privacy Policy and you are a California resident, the portion that is more protective of Personal Data shall control to the extent of such.
+          </p>
+          <p>
+            If you have any questions about this section or whether any of the following rights apply to you, please contact us at support@Commerce Central.com.
+          </p>
+          <p>
+            If we are processing your Personal Data as a service provider, you should contact the entity that collected your Personal Data in the first instance to address your rights with respect to such data.
+          </p>
+          <p>
+            <strong>Access</strong> - You have the right to request certain information about our collection and use of your Personal Data over the past 12 months. In response, we will provide you with the following information:
+          </p>
+          <ul>
+            <li>The categories of Personal Data that we have collected about you.</li>
+            <li>The categories of sources from which that Personal Data was collected.</li>
+            <li>The business or commercial purpose for collecting or selling your Personal Data.</li>
+            <li>The categories of third parties with whom we have shared your Personal Data.</li>
+            <li>The specific pieces of Personal Data that we have collected about you.</li>
+          </ul>
+          <p>
+            If we have disclosed your Personal Data to any third parties for a business purpose over the past 12 months, we will identify the categories of Personal Data shared with each category of third party recipient. If we have sold your Personal Data over the past 12 months, we will identify the categories of Personal Data sold to each category of third party recipient.
+          </p>
+          <p>
+            <strong>Deletion</strong> - You have the right to request that we delete the Personal Data that we have collected about you. Under the CCPA, this right is subject to certain exceptions: for example, we may need to retain your Personal Data to provide you with the Services or complete a transaction or other action you have requested. If your deletion request is subject to one of these exceptions, we may deny your deletion request.
+          </p>
+          <p>
+            <strong>Exercising Your Rights</strong> - To exercise the rights described above, you or your Authorized Agent (defined below) must:
+          </p>
+          <ol>
+            <li>Send a request to support@commercecentral.io from your email account that you used to register and create an account with Commerce Central to allow us to verify that you are the person about whom we have collected Personal Data, and</li>
+            <li>Describe your request in sufficient detail to allow us to understand, evaluate and respond to it.</li>
+          </ol>
+          <p>
+            Each request that meets both of these criteria will be considered a “Valid Request.” We may not respond to requests that do not meet these criteria. We will only use Personal Data provided in a Valid Request to verify your identity and complete your request. We will work to respond to your Valid Request within 45 days of receipt. We will not charge you a fee for making a Valid Request unless your Valid Request(s) is excessive, repetitive or manifestly unfounded. If we determine that your Valid Request warrants a fee, we will notify you of the fee and explain that decision before completing your request.
+          </p>
+          <p>
+            You may also authorize an agent (an “Authorized Agent”) to exercise your rights on your behalf. To do this, you must provide your Authorized Agent with written permission to exercise your rights on your behalf, and we may request a copy of this written permission from your Authorized Agent when they make a request on your behalf.
+          </p>
+          <p>
+            <strong>Personal Data Sales Opt-Out and Opt-In</strong> - We will not sell your Personal Data and have not done so over the last 12 months.
+          </p>
+          <p>
+            <strong>We Will Not Discriminate Against You for Exercising Your Rights Under the CCPA</strong> - We will not discriminate against you for exercising your rights under the CCPA. We will not deny you our goods or services, charge you different prices or rates, or provide you a lower quality of goods and services if you exercise your rights under the CCPA. However, we may offer different tiers of our Services as allowed by applicable data privacy laws (including the CCPA) with varying prices, rates or levels of quality of the goods or services you receive related to the value of Personal Data that we receive from you.
+          </p>
+        </>
+      </section>
 
       <section className='mb-8'>
         <h2 className='text-2xl font-semibold mb-4'>Other State Law Privacy Rights</h2>
