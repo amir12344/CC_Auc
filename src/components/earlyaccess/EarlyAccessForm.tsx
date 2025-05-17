@@ -409,9 +409,9 @@ export default function EarlyAccessForm() {
             type='submit'
             disabled={isSubmitting}
             className={`w-full ${isSubmitting
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#43CD66] hover:bg-[#3ab859]'
-              } text-white cursor-pointer font-medium py-2.5 md:py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center`}
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-[#43CD66] hover:bg-[#3ab859]'
+              } text-white border border-[#1c1e21] cursor-pointer font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center`}
           >
             {isSubmitting ? (
               <>
@@ -422,7 +422,7 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-                <span className='text-[#1C1E21]'>Reserve Access — It’s Free & Fast</span>
+              <span className='text-[#1C1E21]'>Reserve Access — It’s Free & Fast</span>
             )}
           </button>
         </div>

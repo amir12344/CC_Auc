@@ -16,10 +16,10 @@ const HeroSectionClient = () => {
         <div className='grow flex items-center justify-center pt-0 md:pt-0 pb-6 md:pb-8'>
           <div className='mx-auto w-full lg:w-11/12 xl:w-9/12 pt-6 md:pt-8 lg:pt-10 xl:pt-12 text-center'>
             <h1
-              className='text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-xl  md:mb-6 lg:mb-8 text-[#43CD66] tracking-tight max-w-5xl mx-auto'
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight md:mb-6 lg:mb-8 text-[#43CD66] tracking-tight max-w-5xl mx-auto"
               style={{ willChange: 'transform, opacity' }}
             >
-              The go-to platform to move and source surplus inventory
+              The Go-To Platform to Move and Source <span className="italic text-[#D8F4CC]">Surplus Inventory</span>
             </h1>
 
             <div
