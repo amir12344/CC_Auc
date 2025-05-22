@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GeistSans } from 'geist/font/sans';
 import { ErrorBoundary } from "@/src/components/ErrorBoundary";
 import { LoadingIndicatorClient } from "@/src/components/ui/LoadingIndicatorClient";
 import { DynamicClientProvidersWrapper } from "@/src/components/providers/DynamicClientProvidersWrapper";
@@ -14,8 +13,6 @@ import {
 } from "@/src/utils/metadata";
 import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
 
-// Configure Geist font with display swap
-const geist = GeistSans;
 
 export const metadata: Metadata = {
   title: "Commerce Central - Surplus Inventory Marketplace",
@@ -50,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commerce Central - Surplus Inventory Marketplace',
     description: 'Browse exclusive surplus inventory from top retailers for resale.',
-    images: ['/CC_Logo.png'],
+    images: ['/CC_opengraph.png'],
   },
   robots: {
     index: true,
@@ -71,7 +68,6 @@ export const metadata: Metadata = {
   },
 };
 
-// This is a Server Component by default
 export default function RootLayout({
   children,
 }: {
@@ -99,6 +95,12 @@ export default function RootLayout({
         </Script>
         <Script type="application/ld+json" id="ld-page" strategy="beforeInteractive">
           {JSON.stringify(getPageSchema("Home"))}
+        </Script>
+
+        <Script id="reddit-pixel" strategy="afterInteractive">
+          {`
+            !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_gzm0k495zr8s');rdt('track', 'PageVisit');
+          `}
         </Script>
       </head>
       <body suppressHydrationWarning>
