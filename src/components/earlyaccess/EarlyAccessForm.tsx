@@ -87,7 +87,10 @@ export default function EarlyAccessForm() {
         window.rdt('track', 'earlyAccess', eventData);
       }
       reset();
-      router.push('/earlyaccess/thankyou')
+      // Added a small delay to allow the Reddit pixel to fire before redirecting
+      setTimeout(() => {
+        router.push('/earlyaccess/thankyou');
+      }, 500); // 500 milliseconds delay
     } else {
       setErrorMessage(result.message || 'An unexpected error occurred.')
     }
@@ -423,7 +426,7 @@ export default function EarlyAccessForm() {
             disabled={!isValid || isSubmitting}
             onClick={() => {
               if (typeof window !== 'undefined' && typeof window.rdt === 'function') {
-                window.rdt('track', 'ButtonClick', { buttonName: 'ReserveAccessEarlyAccessForm' });
+                window.rdt('track', 'EarlyAccessButtonClick', { buttonName: 'ReserveAccessEarlyAccessForm' });
               }
             }}
             className={`w-full bg-[#43CD66] hover:bg-[#3ab859] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center ${(!isValid || isSubmitting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
