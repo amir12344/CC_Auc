@@ -1,3 +1,4 @@
+/// <reference path="../../types/global.d.ts" />
 'use client'
 
 import React, { useState } from 'react'
@@ -52,7 +53,7 @@ export default function EarlyAccessForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
     reset,
     setError,
   } = useForm<FormData>({
@@ -73,7 +74,19 @@ export default function EarlyAccessForm() {
     const result = await submitEarlyAccessForm(data)
 
     if (result.success) {
-      reset()
+      // Reddit Pixel SignUp Event Tracking
+      if (typeof window !== 'undefined' && typeof window.rdt === 'function') {
+        const eventData = {
+          fn: data.firstName,
+          ln: data.lastName,
+          em: data.email,
+          ph: data.phoneNumber || '', // Ensure phone is always a string
+          company: data.companyName || '', // Ensure company is always a string
+          // Add any other relevant fields you collect
+        };
+        window.rdt('track', 'earlyAccess', eventData);
+      }
+      reset();
       router.push('/earlyaccess/thankyou')
     } else {
       setErrorMessage(result.message || 'An unexpected error occurred.')
@@ -407,11 +420,13 @@ export default function EarlyAccessForm() {
         <div className='pt-3 md:pt-6'>
           <button
             type='submit'
-            disabled={isSubmitting}
-            className={`w-full ${isSubmitting
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-[#43CD66] hover:bg-[#3ab859]'
-              } text-white border border-[#1c1e21] cursor-pointer font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center`}
+            disabled={!isValid || isSubmitting}
+            onClick={() => {
+              if (typeof window !== 'undefined' && typeof window.rdt === 'function') {
+                window.rdt('track', 'ButtonClick', { buttonName: 'ReserveAccessEarlyAccessForm' });
+              }
+            }}
+            className={`w-full bg-[#43CD66] hover:bg-[#3ab859] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center ${(!isValid || isSubmitting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
           >
             {isSubmitting ? (
               <>
@@ -422,7 +437,7 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-              <span className='text-[#1C1E21]'>Reserve Access — It’s Free & Fast</span>
+              <span className='text-[#1C1E21] text-md md:text-lg'>Reserve Access — It’s Free & Fast</span>
             )}
           </button>
         </div>
