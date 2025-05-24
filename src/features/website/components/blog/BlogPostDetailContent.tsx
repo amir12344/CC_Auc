@@ -41,7 +41,8 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
             alt={post.title}
             fill
             priority
-            quality={85}
+            unoptimized
+            quality={75}
           />
           <div className="absolute inset-0 bg-[#102D21] opacity-60"></div>
         </div>
