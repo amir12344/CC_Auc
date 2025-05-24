@@ -445,7 +445,7 @@ const Navbar: React.FC = () => {
                                 />
                               </button>
                               <div className={`pl-2 space-y-6 overflow-hidden transition-all duration-300 ${isMediaExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                <SheetClose asChild>
+                                {/* <SheetClose asChild>
                                   <Link
                                     href='/website/podcast'
                                     onClick={() => handleNavigation('/website/podcast')}
@@ -462,8 +462,8 @@ const Navbar: React.FC = () => {
                                         Learn from industry experts and brands on The ReCommerce Podcast
                                       </div>
                                     </div> */}
-                                  </Link>
-                                </SheetClose>
+                                  {/* </Link> */}
+                                {/* </SheetClose> */} 
 
                                 <SheetClose asChild>
                                   <Link

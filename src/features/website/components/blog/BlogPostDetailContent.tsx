@@ -84,13 +84,12 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
                 <h3 className="text-lg font-medium mb-3">Tags:</h3>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag, index) => (
-                    <Link
+                    <div
                       key={index}
-                      href={`/website/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="px-3 py-1 bg-[#E0D6C2] text-[#102D21] rounded-full text-sm hover:bg-[#D8F4CC] transition-colors duration-200"
+                      className="px-3 py-1 bg-[#E0D6C2] text-[#102D21] rounded-full text-sm duration-200"
                     >
                       {tag}
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>
