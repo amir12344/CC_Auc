@@ -17,9 +17,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'source.unsplash.com' },
-      { protocol: 'https', hostname: 'www.commercecentral.io' },
+      { protocol: 'https', hostname: 'www.commerce-central.com' },
       { protocol: 'https', hostname: 'randomuser.me' },
-      { protocol: 'https', hostname: 'upload.wikimedia.org' }
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'unsplash.com' },
+      { protocol: 'https', hostname: 'plus.unsplash.com' },
+      { protocol: 'https', hostname: 'images.pexels.com' },
     ],
     formats: ['image/avif', 'image/webp'],
   },

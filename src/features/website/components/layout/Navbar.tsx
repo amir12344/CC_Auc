@@ -12,7 +12,13 @@ import {
   SheetTitle,
   SheetDescription
 } from '@/src/components/ui/sheet';
-import { ChevronRight, X } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/src/components/ui/dropdown-menu';
+import { ChevronRight, X, ChevronDown, Calendar, Clock, Tag, Share2, ArrowLeft, Headphones, BookOpen, Users } from 'lucide-react';
 
 interface Section {
   id: string;
@@ -23,8 +29,37 @@ interface Section {
   variant?: 'light' | 'dark';
 }
 
+interface DropdownItemProps {
+  href: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const DropdownItem: React.FC<DropdownItemProps> = ({ href, icon, title, description }) => (
+  <DropdownMenuItem asChild className="focus:bg-[#F9F9F9] focus:outline-none">
+    <Link
+      href={href}
+      className="flex items-start gap-5 px-6 py-5 w-full hover:bg-[#F9F9F9] transition-all duration-300 cursor-pointer group rounded-xl"
+    >
+      <div className="text-[#43CD66] flex items-center justify-center mt-1 transition-transform duration-300 group-hover:scale-110">
+        {icon}
+      </div>
+      <div className="flex-1">
+        <div className="font-[600] text-[17px] text-[#102D21] mb-1.5 group-hover:text-[#43CD66] transition-colors duration-300">
+          {title}
+        </div>
+        <div className="text-[#475467] text-[15.5px] font-normal leading-relaxed">
+          {description}
+        </div>
+      </div>
+    </Link>
+  </DropdownMenuItem>
+);
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMediaExpanded, setIsMediaExpanded] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<Section | null>(null);
   const [isTeamPage, setIsTeamPage] = useState<boolean>(false);
@@ -175,6 +210,7 @@ const Navbar: React.FC = () => {
     router.prefetch('/website/seller');
     router.prefetch('/website/buyer');
     router.prefetch('/website/team');
+    router.prefetch('/website/podcast');
     router.prefetch('/earlyaccess');
     router.prefetch('/marketplace');
   }, [router]);
@@ -285,12 +321,35 @@ const Navbar: React.FC = () => {
                 Buyers
               </Link>
 
-              <Link
-                href='/website/team'
-                className={`font-[500] ${getTextColorStyle()} hover:underline font-geist transition-theme duration-400`}
-              >
-                Company
-              </Link>
+              {/* Media Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className={`font-[500] ${getTextColorStyle()} hover:underline font-geist transition-theme duration-400 flex items-center gap-1 bg-transparent border-none outline-none focus:outline-none`}>
+                  Media
+                  <ChevronDown className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[420px] bg-white border border-[#E0D6C2] shadow-xl rounded-[13.632px] p-2.5">
+                  {/* <DropdownItem
+                    href="/website/podcast"
+                    icon={<Headphones className="h-[22px] w-[22px] stroke-[2px]" />}
+                    title="Podcast"
+                    description="Learn from industry experts and brands on The ReCommerce Podcast"
+                  /> */}
+                  {/* <div className="h-[1px] bg-[#E0D6C2]/70 mx-4 my-1" /> */}
+                  <DropdownItem
+                    href="/website/blog"
+                    icon={<BookOpen className="h-[22px] w-[22px] stroke-[2px]" />}
+                    title="Blog"
+                    description="Articles and resources"
+                  />
+                  <div className="h-[1px] bg-[#E0D6C2]/70 mx-4 my-1" />
+                  <DropdownItem
+                    href="/website/team"
+                    icon={<Users className="h-[22px] w-[22px] stroke-[2px]" />}
+                    title="Meet the team"
+                    description="Meet the team behind Commerce Cental"
+                  />
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               <Link
                 href='/earlyaccess'
@@ -374,16 +433,80 @@ const Navbar: React.FC = () => {
                               </Link>
                             </SheetClose>
 
-                            <SheetClose asChild>
-                              <Link
-                                href='/website/team'
-                                onClick={() => handleNavigation('/website/team')}
-                                className="group flex items-center text-lg font-medium text-white hover:text-[#43CD66] transition-colors"
+                            {/* Media Section in Mobile */}
+                            <div className="space-y-4">
+                              <button
+                                onClick={() => setIsMediaExpanded(!isMediaExpanded)}
+                                className="w-full flex items-center justify-between text-lg font-medium text-[#43CD66] group"
                               >
-                                <span>Company</span>
-                                <ChevronRight className="ml-auto h-5 w-5 text-[#43CD66] opacity-0 group-hover:opacity-100 transition-opacity" />
-                              </Link>
-                            </SheetClose>
+                                <span>Media</span>
+                                <ChevronDown
+                                  className={`h-5 w-5 transition-transform duration-200 ${isMediaExpanded ? 'rotate-180' : ''}`}
+                                />
+                              </button>
+                              <div className={`pl-2 space-y-6 overflow-hidden transition-all duration-300 ${isMediaExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <SheetClose asChild>
+                                  <Link
+                                    href='/website/podcast'
+                                    onClick={() => handleNavigation('/website/podcast')}
+                                    className="flex items-start gap-4 group"
+                                  >
+                                    <div className="text-[#43CD66] mt-1">
+                                      <Headphones className="h-5 w-5 stroke-[2px]" />
+                                    </div>
+                                    {/* <div className="flex-1">
+                                      <div className="font-medium text-white group-hover:text-[#43CD66] transition-colors">
+                                        Podcast
+                                      </div>
+                                      <div className="text-sm text-[#D8F4CC]/80">
+                                        Learn from industry experts and brands on The ReCommerce Podcast
+                                      </div>
+                                    </div> */}
+                                  </Link>
+                                </SheetClose>
+
+                                <SheetClose asChild>
+                                  <Link
+                                    href='/website/blog'
+                                    onClick={() => handleNavigation('/website/blog')}
+                                    className="flex items-start gap-4 group"
+                                  >
+                                    <div className="text-[#43CD66] mt-1">
+                                      <BookOpen className="h-5 w-5 stroke-[2px]" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="font-medium text-white group-hover:text-[#43CD66] transition-colors">
+                                        Blog
+                                      </div>
+                                      <div className="text-sm text-[#D8F4CC]/80">
+                                        Articles and resources
+                                      </div>
+                                    </div>
+                                  </Link>
+                                </SheetClose>
+
+                                <SheetClose asChild>
+                                  <Link
+                                    href='/website/team'
+                                    onClick={() => handleNavigation('/website/team')}
+                                    className="flex items-start gap-4 group"
+                                  >
+                                    <div className="text-[#43CD66] mt-1">
+                                      <Users className="h-5 w-5 stroke-[2px]" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="font-medium text-white group-hover:text-[#43CD66] transition-colors">
+                                        Meet the team
+                                      </div>
+                                      <div className="text-sm text-[#D8F4CC]/80">
+                                        Meet the team behind Commerce Central
+                                      </div>
+                                    </div>
+                                  </Link>
+                                </SheetClose>
+                              </div>
+                            </div>
+
                             <SheetClose asChild>
                               <Link
                                 href='/earlyaccess'
