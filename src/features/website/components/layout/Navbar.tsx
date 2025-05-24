@@ -64,6 +64,7 @@ const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section | null>(null);
   const [isTeamPage, setIsTeamPage] = useState<boolean>(false);
   const [isLegalPage, setIsLegalPage] = useState<boolean>(false);
+  const [isHiddenPage, setIsHiddenPage] = useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -131,10 +132,16 @@ const Navbar: React.FC = () => {
   )
 
 
-  // Update team page detection using pathname
+  // Update page type detection using pathname
   useEffect(() => {
-    setIsTeamPage(pathname.includes('/website/team'));
-    setIsLegalPage(pathname.includes('/legal'));
+    const currentPath = pathname;
+    setIsTeamPage(currentPath.includes('/website/team'));
+    setIsLegalPage(currentPath.includes('/legal'));
+    setIsHiddenPage(
+      currentPath.startsWith('/wholesale-pallet-liquidation') ||
+      currentPath.startsWith('/online-liquidation-auctions') ||
+      currentPath.startsWith('/wholesale-liquidation-platform')
+    );
 
     // Close mobile menu on route change
     setIsOpen(false);
@@ -229,74 +236,63 @@ const Navbar: React.FC = () => {
 
   // Get background style based on active section
   const getNavbarStyle = () => {
-    // Handle legal pages - always use solid dark background
-    if (isLegalPage) {
-      return 'bg-[#102D21] backdrop-blur-md';
-    }
-
-    // For team/company page, use solid dark background
-    if (isTeamPage) {
-      return 'bg-[#102D21] backdrop-blur-md';
-    }
-
-    if (!scrolled) {
+    // This function now primarily handles scroll-based changes for multi-section pages
+    // Solid backgrounds for specific page types are handled directly in the <header> className
+    if (!scrolled && !(isLegalPage || isTeamPage || isHiddenPage)) {
       return 'bg-transparent';
     }
 
-    if (activeSection) {
-      // For the hero section, add opacity and blur for better visibility
+    if (activeSection && !(isLegalPage || isTeamPage || isHiddenPage)) {
       if (activeSection.id === 'hero') {
         return 'bg-[#102D21]/90 backdrop-blur-md';
       }
-
-      // For other sections, use their background color with some opacity and blur
       return `${activeSection.bgColor.replace('bg-', '')}/90 backdrop-blur-md`;
     }
 
-    return 'bg-white/90 backdrop-blur-md';
+    // Fallback for scrolled state on multi-section pages if no other condition met,
+    // or if it's a page type that should not be transparent at the top
+    if (scrolled && !(isLegalPage || isTeamPage || isHiddenPage)) {
+      return 'bg-white/90 backdrop-blur-md';
+    }
+
+    return ''; // Return empty if background is handled by specific page type logic in header
   };
 
   // Get text color style based on active section
   const getTextColorStyle = () => {
-    // Handle legal pages - always use light text similar to team page
-    if (isLegalPage) {
-      return 'text-[#D8F4CC]';
-    }
-
-    if (isTeamPage) {
+    if (isLegalPage || isTeamPage || isHiddenPage) {
       return 'text-[#D8F4CC]';
     }
 
     if (activeSection) {
       return activeSection.textColor;
     }
-    return 'text-[#D8F4CC]';
+    return 'text-[#D8F4CC]'; // Default for hero or initially transparent states
   };
 
   // Get button style based on active section
   const getButtonStyle = () => {
-    // Handle legal pages - always use team page button style
-    if (isLegalPage) {
-      return 'bg-[#43CD66] text-[#1C1E21]';
-    }
-
-    if (isTeamPage) {
+    if (isLegalPage || isTeamPage || isHiddenPage) {
       return 'bg-[#43CD66] text-[#1C1E21]';
     }
 
     if (activeSection) {
       return `${activeSection.buttonBgColor} ${activeSection.buttonTextColor}`;
     }
-    return 'bg-[#43CD66] text-[#1C1E21]';
+    return 'bg-[#43CD66] text-[#1C1E21]'; // Default button style
   };
+
+  // Determine base class for header, applying solid dark theme if needed
+  let headerBaseClass = 'bg-[#102D21] backdrop-blur-md shadow-md';
+  let headerDynamicClass = getNavbarStyle();
 
   return (
     <>
       <header
-        className={`fixed w-full z-50 transition-all duration-300 ${isLegalPage ? 'bg-[#102D21] backdrop-blur-md shadow-md' :
-          isTeamPage ? 'bg-[#102D21] backdrop-blur-md shadow-md' :
-            scrolled ? getNavbarStyle() : 'bg-transparent'
-          } ${scrolled || isTeamPage || isLegalPage ? 'shadow-md' : ''}`}
+        className={`fixed w-full z-50 transition-all duration-300 ${isLegalPage || isTeamPage || isHiddenPage
+            ? headerBaseClass // Always dark for these pages
+            : scrolled ? headerDynamicClass : 'bg-transparent' // Dynamic for others
+          } ${scrolled || isTeamPage || isLegalPage || isHiddenPage ? 'shadow-md' : ''}`}
       >
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full m-[0.5rem]'>
           <div className='flex justify-between items-center py-4 w-full'>
@@ -462,8 +458,8 @@ const Navbar: React.FC = () => {
                                         Learn from industry experts and brands on The ReCommerce Podcast
                                       </div>
                                     </div> */}
-                                  {/* </Link> */}
-                                {/* </SheetClose> */} 
+                                {/* </Link> */}
+                                {/* </SheetClose> */}
 
                                 <SheetClose asChild>
                                   <Link

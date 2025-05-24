@@ -43,6 +43,10 @@ export const footerNavigation: {
            { label: 'Sellers', href: '/website/seller' },
            { label: 'Buyers', href: '/website/buyer' },
            { label: 'Company', href: '/website/team' },
+           {
+             label: 'Blog',
+             href: '/website/Blog',
+           },
          ],
 
          // ---- Resources ----

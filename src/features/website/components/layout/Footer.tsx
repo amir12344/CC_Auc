@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                     href={social.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='h-8 w-8 rounded-full bg-gray-800 flex items-center justify-left text-[#F1E9DE] hover:text-blue-400 transition-colors'
+                    className='h-8 w-8 rounded-full bg-gray-800 flex items-center justify-left text-[#F1E9DE] hover:text-[#43cd66] transition-colors'
                     aria-label={social.label}
                   >
                     <svg
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className='text-[#F1E9DE] hover:text-primary'
+                    className='text-[#F1E9DE] hover:text-[#43cd66]'
                     {...(link.target ? { target: link.target } : {})}
                     {...(link.target === '_blank' ? { rel: 'noopener noreferrer' } : {})}
                   >
@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className='text-[#F1E9DE] hover:text-primary'
+                    className='text-[#F1E9DE] hover:text-[#43cd66]'
                     {...(link.target ? { target: link.target } : {})}
                     {...(link.target === '_blank' ? { rel: 'noopener noreferrer' } : {})}
                   >
