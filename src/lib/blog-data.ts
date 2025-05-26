@@ -10,10 +10,10 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
-    content: `
+         {
+           id: 1,
+           title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
+           content: `
       <h2>Why Inventory Buying Feels Risky — and How to Buy Smarter</h2>
       <p><em>Smart pallet liquidation sales: A game changer for U.S. resellers</em></p>
       <h3>The High-Stakes Game of Traditional Inventory Sourcing</h3>
@@ -93,16 +93,20 @@ export const blogPosts: BlogPost[] = [
         <a href="https://www.verifiedmarketresearch.com/product/liquidation-service-market/">verifiedmarketresearch.com</a>
       </p>
     `,
-    date: 'May 24, 2025',
-    image: '/images/banner1.webp',
-    category: 'Liquidation',
-    tags: ['Liquidation', 'Inventory Sourcing', 'Reselling', 'Pallet Sales'],
-  },
-  {
-    id: 2,
-    title:
-      "How to Avoid Getting Burned Buying Liquidation Inventory",
-    content: `
+           date: 'May 24, 2025',
+           image: '/images/banner1.webp',
+           category: 'Liquidation',
+           tags: [
+             'Liquidation',
+             'Inventory Sourcing',
+             'Reselling',
+             'Pallet Sales',
+           ],
+         },
+         {
+           id: 2,
+           title: 'How to Avoid Getting Burned Buying Liquidation Inventory',
+           content: `
       <h2>How to Avoid Getting Burned Buying Liquidation Inventory: A Smart Buyer\'s Guide</h2>
       <p>Buying <strong>wholesale liquidation pallets</strong> can feel like hitting the jackpot – pallet auctions often promise brand-new or high-value items at crazy-low prices. As a reseller, you\'re the hero hunting those deals. But buyer beware: not every "<em>pallets for sale</em>" listing is legit​. Some bad actors twist manifests or cherry-pick the best goods and pack your pallet with junk. In this guide we\'ll share real advice from U.S. buyers – from small discount store owners to online resellers – on spotting scams, fake manifests and junk loads. We\'ll also explain how tools like <strong>Commerce Central</strong> can help you stick to safe <em>liquidation channels</em> and source inventory more reliably.</p>
       <h3>Know the Risks of Liquidation Deals</h3>
@@ -135,12 +139,108 @@ export const blogPosts: BlogPost[] = [
       </ul>
       <p>By following these steps, you\'ll protect yourself from scams and junk loads, and focus on real opportunities. You\'re already doing the smart thing by learning – now you can buy more confidently. Stick to known pallet auctions and trusted sellers, double-check manifests, and remember that tools like Commerce Central exist to help you find good deals. With care and persistence, you\'ll keep your business profitable and avoid getting burned by bad liquidation inventory.</p>
     `,
-    date: 'May 23, 2025',
-    image: '/images/banner2.webp',
-    category: 'Liquidation',
-    tags: ['Liquidation', 'Buyer Guide', 'Reselling Tips', 'Pallet Sourcing'],
-  },
-]
+           date: 'May 23, 2025',
+           image: '/images/banner2.webp',
+           category: 'Liquidation',
+           tags: [
+             'Liquidation',
+             'Buyer Guide',
+             'Reselling Tips',
+             'Pallet Sourcing',
+           ],
+         },
+         {
+           id: 3,
+           title: 'How to Spot Real Closeout Deals',
+           content: `
+      <h2>How to Spot Real Closeout Deals (and Avoid Getting Burned)</h2>
+      <p>Not every deal is a deal.</p>
+      <p>If you've ever shopped at a liquidation sale, you've seen it: bold signs saying "60% OFF!" or "Everything Must Go!" But sometimes, those offers hide tricks like raised prices, missing parts, or outright scams.</p>
+      <p>This guide shows how to separate real closeout bargains from the junk. Whether you're stocking your discount store, buying a pallet for resale, or just trying to score honest savings, here's how to protect yourself and shop smarter.</p>
+      <h3>1. Check the Real Price, Not Just the Tag</h3>
+      <p>A big red sticker doesn't always mean big savings.</p>
+      <p>At some liquidation sales, stores raise the price before offering a small discount. A blender marked "10% OFF" at a store closing might still be more expensive than buying it online at full price.</p>
+      <p>Do this instead: Before you buy, pull out your phone. Use price comparison tools or check other retail sites. You'll quickly see if that "deal" is really a deal.</p>
+      <p>Rule of thumb: If it's not at least 30–50% cheaper than market price, it may not be worth the risk — especially if the item is a final sale.</p>
+      <h3>2. Watch Out for "Too Good to Be True" Loads</h3>
+      <p>If someone's selling a pallet of iPads for $100, stop.</p>
+      <p>Scammers prey on buyers looking for liquidation steals. Fake platforms advertise amazing loads — electronics, name-brand clothing, sealed beauty goods — for prices that make no sense.</p>
+      <p><strong>Red flags to avoid:</strong></p>
+      <ul>
+        <li>The website has no customer reviews or a brand-new domain</li>
+        <li>Seller insists on payment through wire transfer, Zelle, or gift cards</li>
+        <li>The price is way below the resale value with no clear explanation</li>
+        <li>No manifest or vague description of what's inside</li>
+      </ul>
+      <p><strong>Stick to platforms that offer:</strong></p>
+      <ul>
+        <li>Real photos</li>
+        <li>Clear manifests</li>
+        <li>Buyer protection (credit cards, PayPal)</li>
+        <li>Verified seller profiles</li>
+      </ul>
+      <p>Don't rush. A real deal will still be there after a few minutes of research. A scammer won't.</p>
+      <h3>3. Don't Fall for Staged Hype</h3>
+      <p>Some bin stores or warehouses use tricks to make cheap stock look better.</p>
+      <p>One experienced reseller described how a bin store owner placed a $500 item (like a new power tool) on top of a bin full of low-value junk. That item made the whole bin seem like a goldmine — even though most of it wasn't worth $1.</p>
+      <p><strong>What smart buyers do:</strong></p>
+      <ul>
+        <li>Look beyond the one shiny item</li>
+        <li>Sort through multiple bins or boxes</li>
+        <li>Ask for a manifest (if buying by the pallet)</li>
+        <li>Read the fine print, not just the featured photo</li>
+      </ul>
+      <p>Don't let one good item distract you from 100 bad ones.</p>
+      <h3>4. Inspect the Condition (Everything Final Sale)</h3>
+      <p>Most liquidation purchases are final sale. That means if it's broken, missing parts, or doesn't work — it's your problem.</p>
+      <p>Always inspect the item, even if it's sealed.</p>
+      <p><strong>In-person?</strong></p>
+      <ul>
+        <li>Open the box if allowed</li>
+        <li>Check for missing manuals, cords, or damage</li>
+        <li>Look for "AS IS" or "DISPLAY" labels</li>
+        <li>For electronics, ask to plug them in and test</li>
+      </ul>
+      <p><strong>Buying online?</strong></p>
+      <ul>
+        <li>Ask for actual photos, not stock images</li>
+        <li>Look for notes about returns or open box items</li>
+        <li>Watch for signs of repackaging or customer damage</li>
+        <li>For health or beauty items, check expiration dates</li>
+      </ul>
+      <p>If you buy sealed makeup that's already expired, that's not a deal — that's a loss.</p>
+      <h3>5. Vet the Seller or Source</h3>
+      <p>There are a lot of new "liquidation platforms" popping up. Some are real. Many are not.</p>
+      <p><strong>Before you trust anyone with your money, check their background:</strong></p>
+      <ul>
+        <li>How long have they been in business?</li>
+        <li>Do they list a real address and phone number?</li>
+        <li>Can you find positive buyer reviews?</li>
+        <li>Have they been flagged on BBB, Trustpilot, or scam forums?</li>
+      </ul>
+      <p>Quick test: Search "[Company Name] + scam" or "[Company Name] + reviews."</p>
+      <p>If anything feels off — walk away.</p>
+      <p>Reputable platforms are transparent. If someone's hiding basic info, they're not worth your time.</p>
+      <h3>6. Trust Your Gut and Walk Away When Needed</h3>
+      <p>Sometimes, the biggest trap is pressure.</p>
+      <p>Pushy salespeople, fake urgency signs ("TODAY ONLY!"), Limited-time offers are designed to make you move fast. But if something feels off — it probably is.</p>
+      <p><strong>Smart closeout buyers know:</strong></p>
+      <ul>
+        <li>There will always be another deal</li>
+        <li>Walking away from one bad load can save your whole business</li>
+        <li>The goal is to make money, not lose it chasing hype</li>
+      </ul>
+      <p>Take a breath. Check the price. Ask questions. Then decide.</p>
+      <h3>Want to Buy Smarter? We Can Help.</h3>
+      <p>At <a href="https://www.commercecentral.io/">Commerce Central</a>, we help buyers avoid the traps and find clean, verified deals that actually move.</p>
+      <p>We don't just list random pallets. We show real photos, expiration dates (when applicable), and full manifests before you buy. You stay in control. We stay in the background.</p>
+    `,
+           date: 'May 25, 2025',
+           image: '/images/How-to-Spot-Real-Closeout-Deals.webp',
+           category: 'Liquidation',
+           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+         },
+       ]
 
 // Helper function to generate a slug from a title
 export function generateSlug(title: string): string {
