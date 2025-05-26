@@ -57,10 +57,6 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
               <span>{post.date}</span>
             </div>
             <div className="flex items-center">
-              <Clock size={16} className="mr-2" />
-              <span>{post.readTime}</span>
-            </div>
-            <div className="flex items-center">
               <Tag size={16} className="mr-2" />
               <span>{post.category}</span>
             </div>
@@ -105,7 +101,7 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
                     <Link
                       key={relatedPost.id}
                       href={`/website/blog/${relatedPost.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}`}
-                      className="block group w-96"
+                      className="block group w-80"
                     >
                       <article
                         className="bg-white rounded-xl overflow-hidden transition-all duration-300 relative hover:-translate-y-1 hover:translate-x-1 hover:shadow-[10px_10px_0px_0px_rgba(67,205,102,0.8)]"
@@ -126,19 +122,14 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
 
                         {/* Post Details */}
                         <div className="p-6">
-                          <h3 className="text-lg font-[600] text-[#102D21] mb-2 line-clamp-2">
+                          <h3 className="text-lg font-[500] text-[#102D21] mb-2 line-clamp-2">
                             {relatedPost.title}
                           </h3>
-
-                          <p className="text-gray-600 mb-4 line-clamp-2">
-                            {relatedPost.excerpt}
-                          </p>
-
                           <div className="flex items-center text-sm text-gray-500">
-                            <Calendar size={14} className="mr-1" />
-                            <span className="mr-4">{relatedPost.date}</span>
-                            <Clock size={14} className="mr-1" />
-                            <span>{relatedPost.readTime}</span>
+                            <span className="flex items-center justify-center w-5 h-5 bg-[#43CD66] text-white rounded-full mr-2">
+                              <Calendar size={14} />
+                            </span>
+                            {relatedPost.date}
                           </div>
                         </div>
                       </article>
@@ -149,7 +140,7 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
             )}
           </div>
         </div>
-        <div className="mx-auto text-center">
+        <div className="text-center">
           <Link
             href="/website/blog"
             className="inline-flex items-center text-[#43CD66] text-xl mb-6 hover:underline"

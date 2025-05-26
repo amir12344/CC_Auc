@@ -2,9 +2,7 @@ export interface BlogPost {
   id: number
   title: string
   content: string
-  excerpt: string
   date: string
-  readTime: string
   image: string
   category: string
   tags?: string[]
@@ -14,9 +12,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: 'Why Inventory Buying Feels Risky — and How to Buy Smarter',
-    excerpt:
-      'Smart pallet liquidation sales: A game changer for U.S. resellers. Learn how to avoid junk and buy with confidence.',
+    title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
     content: `
       <h2>Why Inventory Buying Feels Risky — and How to Buy Smarter</h2>
       <p><em>Smart pallet liquidation sales: A game changer for U.S. resellers</em></p>
@@ -98,7 +94,6 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     date: 'May 24, 2025',
-    readTime: '7 min read',
     image: '/images/banner1.webp',
     category: 'Liquidation',
     tags: ['Liquidation', 'Inventory Sourcing', 'Reselling', 'Pallet Sales'],
@@ -106,9 +101,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 2,
     title:
-      "How to Avoid Getting Burned Buying Liquidation Inventory: A Smart Buyer's Guide",
-    excerpt:
-      "A reseller's guide to spotting scams, fake manifests, and junk loads in pallet liquidation. Learn to source inventory reliably.",
+      "How to Avoid Getting Burned Buying Liquidation Inventory",
     content: `
       <h2>How to Avoid Getting Burned Buying Liquidation Inventory: A Smart Buyer\'s Guide</h2>
       <p>Buying <strong>wholesale liquidation pallets</strong> can feel like hitting the jackpot – pallet auctions often promise brand-new or high-value items at crazy-low prices. As a reseller, you\'re the hero hunting those deals. But buyer beware: not every "<em>pallets for sale</em>" listing is legit​. Some bad actors twist manifests or cherry-pick the best goods and pack your pallet with junk. In this guide we\'ll share real advice from U.S. buyers – from small discount store owners to online resellers – on spotting scams, fake manifests and junk loads. We\'ll also explain how tools like <strong>Commerce Central</strong> can help you stick to safe <em>liquidation channels</em> and source inventory more reliably.</p>
@@ -143,7 +136,6 @@ export const blogPosts: BlogPost[] = [
       <p>By following these steps, you\'ll protect yourself from scams and junk loads, and focus on real opportunities. You\'re already doing the smart thing by learning – now you can buy more confidently. Stick to known pallet auctions and trusted sellers, double-check manifests, and remember that tools like Commerce Central exist to help you find good deals. With care and persistence, you\'ll keep your business profitable and avoid getting burned by bad liquidation inventory.</p>
     `,
     date: 'May 23, 2025',
-    readTime: '8 min read',
     image: '/images/banner2.webp',
     category: 'Liquidation',
     tags: ['Liquidation', 'Buyer Guide', 'Reselling Tips', 'Pallet Sourcing'],

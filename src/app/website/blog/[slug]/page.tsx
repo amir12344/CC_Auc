@@ -19,13 +19,11 @@ export async function generateMetadata(
 
   return {
     title: `${post.title} | Commerce Central Blog`,
-    description: post.excerpt,
     alternates: {
       canonical: `https://www.commercecentral.io/website/blog/${slug}`
     },
     openGraph: {
       title: `${post.title} | Commerce Central Blog`,
-      description: post.excerpt,
       url: `https://www.commercecentral.io/website/blog/${slug}`,
       type: 'article',
       publishedTime: new Date(post.date).toISOString(),
@@ -41,7 +39,6 @@ export async function generateMetadata(
     twitter: {
       card: 'summary_large_image',
       title: `${post.title} | Commerce Central Blog`,
-      description: post.excerpt,
       images: [post.image],
     },
   };
@@ -66,7 +63,6 @@ export default async function BlogPostPage({ params: paramsPromise }: { params: 
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    description: post.excerpt,
     image: post.image,
     author: {
       '@type': 'Person',
