@@ -10,9 +10,9 @@ import {
   getOrganizationSchema,
   getWebsiteSchema,
   getPageSchema,
+  getMainPagesBreadcrumb,
 } from "@/src/utils/metadata";
 import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
-
 
 export const metadata: Metadata = {
   title: "Commerce Central - Surplus Inventory Marketplace",
@@ -61,12 +61,14 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-code',
+    google: 'VstZpIvk8ZtH9QHwmmnQnb9KeTY_wCTnT_WrbzAAjsc',
   },
   alternates: {
     canonical: 'https://www.commercecentral.io',
   },
 };
+
+// This is a Server Component by default
 
 export default function RootLayout({
   children,
@@ -96,11 +98,26 @@ export default function RootLayout({
         <Script type="application/ld+json" id="ld-page" strategy="beforeInteractive">
           {JSON.stringify(getPageSchema("Home"))}
         </Script>
+        <Script type="application/ld+json" id="ld-breadcrumb" strategy="beforeInteractive">
+          {JSON.stringify(getMainPagesBreadcrumb())}
+        </Script>
+
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-S3VL5X0CSQ" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-S3VL5X0CSQ');
+          `}
+        </Script>
 
         <Script id="reddit-pixel" strategy="afterInteractive">
           {`
             !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_gzm0k495zr8s');rdt('track', 'PageVisit');
           `}
+
         </Script>
       </head>
       <body suppressHydrationWarning>

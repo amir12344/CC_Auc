@@ -27,7 +27,7 @@ interface Twitter {
 interface SchemaOrg {
   '@context': string;
   '@type': string;
-  [key: string]: string | number | boolean | string[] | Record<string, unknown> | SchemaOrg;
+  [key: string]: any;
 }
 
 // Default metadata for the site
@@ -113,13 +113,13 @@ export const getOrganizationSchema = (): SchemaOrg => {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Commerce Central',
-    url: 'https://www.commercecentral.io',
+    url: 'https://www.commercecentral.io/',
+    logo: 'https://www.commercecentral.io/commerce_central_logo.svg',
     sameAs: [
       'https://www.linkedin.com/company/commercecentral',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-555-123-4567',
       contactType: 'customer service',
       availableLanguage: ['English'],
     },
@@ -154,4 +154,32 @@ export const getPageSchema = (
     description: pageDescription || defaultMetadata.description as string,
     url: `https://www.commercecentral.io/${pageName.toLowerCase().replace(/\s+/g, '-')}`,
   };
+};
+
+// Generate breadcrumb structured data
+export const getBreadcrumbSchema = (breadcrumbs: Array<{name: string, url: string}>): SchemaOrg => {
+  return {
+    '@context': 'https://schema.org/',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+};
+
+// Predefined breadcrumbs for main pages
+export const getMainPagesBreadcrumb = (): SchemaOrg => {
+  const breadcrumbs = [
+    { name: 'Commerce Central', url: 'https://www.commercecentral.io/' },
+    { name: 'Seller', url: 'https://www.commercecentral.io/website/seller' },
+    { name: 'Buyer', url: 'https://www.commercecentral.io/website/buyer' },
+    { name: 'Team', url: 'https://www.commercecentral.io/website/team' },
+    { name: 'Blog', url: 'https://www.commercecentral.io/website/blog' },
+    { name: 'Early Access', url: 'https://www.commercecentral.io/earlyaccess' },
+  ];
+  
+  return getBreadcrumbSchema(breadcrumbs);
 };
