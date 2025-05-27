@@ -18,7 +18,7 @@ const BlogHeroSection = () => {
           style={{ objectFit: 'cover' }}
           priority
           unoptimized
-          quality={75}
+          quality={70}
         />
         <div className="absolute inset-0 bg-[#102D21] opacity-60"></div>
       </div>

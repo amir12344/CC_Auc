@@ -3,7 +3,8 @@ export interface BlogPost {
   title: string
   content: string
   date: string
-  image: string
+  bannerImage: string
+  thumbnailImage: string
   category: string
   tags?: string[]
   relatedPosts?: Omit<BlogPost, 'relatedPosts'>[]
@@ -86,7 +87,7 @@ export const blogPosts: BlogPost[] = [
         <li>Maximize ROI</li>
       </ul>
       <h3>Ready to Start Sourcing Smarter?</h3>
-      <p>Visit <a href="https://www.commercecentral.io/">Commerce Central</a> to browse real pallets with real manifests—and start buying inventory that works for your business.</p>
+      <p>Visit <a href="https://www.commercecentral.io/">Commerce Central</a> to browse real pallets with real manifest and start buying inventory that works for your business.</p>
       <p><strong>Sources:</strong><br>
         <a href="https://nrf.com/research/2023-consumer-returns-retail-industry">nrf.com</a><br>
         <a href="https://sellercloud.com/news/returns-cost-retailers-743-billion-in-2023/">sellercloud.com</a><br>
@@ -94,7 +95,8 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
            date: 'May 24, 2025',
-           image: '/images/banner1.webp',
+           bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
+           thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
            category: 'Liquidation',
            tags: [
              'Liquidation',
@@ -140,7 +142,9 @@ export const blogPosts: BlogPost[] = [
       <p>By following these steps, you\'ll protect yourself from scams and junk loads, and focus on real opportunities. You\'re already doing the smart thing by learning – now you can buy more confidently. Stick to known pallet auctions and trusted sellers, double-check manifests, and remember that tools like Commerce Central exist to help you find good deals. With care and persistence, you\'ll keep your business profitable and avoid getting burned by bad liquidation inventory.</p>
     `,
            date: 'May 23, 2025',
-           image: '/images/banner2.webp',
+           bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
+           thumbnailImage:
+             '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
            category: 'Liquidation',
            tags: [
              'Liquidation',
@@ -236,9 +240,104 @@ export const blogPosts: BlogPost[] = [
       <p>We don't just list random pallets. We show real photos, expiration dates (when applicable), and full manifests before you buy. You stay in control. We stay in the background.</p>
     `,
            date: 'May 25, 2025',
-           image: '/images/How-to-Spot-Real-Closeout-Deals.webp',
+           bannerImage:
+             '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
+           thumbnailImage:
+             '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
            category: 'Liquidation',
            tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+         },
+         {
+           id: 4,
+           title: 'How to Buy Apparel Liquidation Deals',
+           content: `
+            <h2>How to Buy Apparel Liquidation Deals</h2>
+            <p>Buying clothes on closeout can feel like a treasure hunt. Sometimes you find name-brand jeans, shoes, or jackets for pennies on the dollar. Other times, you open a box and find 50 shirts no one can wear, or returns that smell like perfume and regret.</p>
+            <p>If you run a discount store, flea market booth, bin store, or resell online, apparel closeouts can offer great value, but only if you know what you're doing.</p>
+            <p>This guide walks you through the smart way to buy clothing closeouts, what to watch out for, and how to turn tricky pallets into profit.</p>
+            
+            <h3>Why So Many Clothes Go on Closeout</h3>
+            <p>Fashion moves fast. Retailers are always bringing in new styles, seasons, or packaging. What doesn't sell like winter coats in spring, red dresses after Valentine's Day, or last year's denim cut has to go somewhere. That "somewhere" is often the liquidation world.</p>
+            <p>Stores also pull items that didn't move, change display layouts, or mark down items with damaged packaging or tags. If the product is still in good shape, it gets packed into boxes and sent out as closeout inventory.</p>
+            <p>This means clothing closeouts can be a goldmine or a headache. The key is knowing what you're getting and what questions to ask before buying.</p>
+      
+            <h3>Always Read the Manifest (If There Is One)</h3>
+            <p>If you're buying a pallet or case of clothing, try to get a manifest — a list of what's inside. Some listings will give detailed breakdowns (sizes, brands, condition), while others are vague.</p>
+            <p><strong>Here's what to look for:</strong></p>
+            <ul>
+              <li>Are these shelf pulls (store extras), overstock (brand new), or customer returns?</li>
+              <li>Are they all one brand or a mix?</li>
+              <li>Are the sizes assorted or all XXL or XS?</li>
+              <li>Are tags still on the items?</li>
+            </ul>
+            <p>One reseller expected a mix of summer clothes but got 40 formal gowns. Another buyer thought they were getting activewear but received all holiday sweaters.</p>
+            <p>Always read the label. If there's no clear info, assume there may be surprises and price your bid accordingly.</p>
+      
+            <h3>Expect a Few Duds</h3>
+            <p>Even in a clean-looking load, not every item will be perfect.</p>
+            <p>Maybe one shirt is missing a button. A jacket has a tiny stain. A shoe is missing its lace. This is normal. Most liquidation sellers know some percentage of every apparel lot won't be resellable.</p>
+            <p>Smart buyers plan for this. They figure: "Even if I lose 10% of the load to defects, can I still profit from the rest?"</p>
+            <p>One flea market vendor found a torn jacket in his shipment. Instead of tossing it, he listed it for $5 "as-is." It was sold to a shopper who just wanted the zipper. Not every item is a loss — but every item should be inspected.</p>
+      
+            <h3>Watch the Calendar</h3>
+            <p>Apparel is seasonal. That's why it ends up in closeout sales in the first place.</p>
+            <p>If you buy winter coats in March, you'll likely have to sit on them until fall. Same with swimsuits in October. This isn't bad but you need storage space and patience.</p>
+            <p>Some resellers do great buying off-season and storing for next year. Just be careful about trends. A plain black coat will sell next year. A shirt with "Class of 2023" on it? Probably not.</p>
+            <p>One reseller picked up a load of Halloween shirts in November and made great money the following October. But they also had to sit on that inventory for 11 months. If cash flow is tight, avoid large off-season buys unless you have a plan.</p>
+      
+            <h3>Mind the Size Mix</h3>
+            <p>A common surprise in apparel pallets: odd sizes.</p>
+            <p>Retailers often liquidate what didn't sell. That means lots of small and extra-large sizes, and fewer mediums or larges. You might open a box and find 60% of the items are 3XL, or all the shoes are size 5 or 13.</p>
+            <p>This doesn't mean it's a bad load but it does mean you'll need a way to move those sizes.</p>
+            <p>Some discount stores build "big and tall" or "petite" racks. Some resellers group same-size items into bundles. One clever bin store made a special rack of odd-size designer jeans and called it the "rare fit" section and it sold fast.</p>
+            <p>Be flexible. And remember: just because you can't wear it doesn't mean someone else won't love it.</p>
+      
+            <h3>Know the Brands</h3>
+            <p>Brand matters. A box full of Levi's or Nike sells faster than a box of no-name shirts, even if the condition is the same.</p>
+            <p>If you're buying branded apparel, make sure:</p>
+            <ul>
+              <li>Tags are intact</li>
+              <li>They're real (beware counterfeits on certain marketplaces)</li>
+              <li>The brands are still in demand</li>
+            </ul>
+            <p>But don't write off unknown brands entirely. Many discount shoppers care more about price and condition than the label, especially for basics like t-shirts, socks, or pajamas.</p>
+            <p>One reseller shared they flipped a full pallet of unknown brand hoodies, new with tags at $7 each. They had no brand recognition, but the quality and pricing were right. They sold out at a community pop-up event in three days.</p>
+      
+            <h3>Start Small, Then Scale</h3>
+            <p>Apparel can move fast, but it can also be slow. Listing one by one on Poshmark or eBay takes time. Sorting sizes, photographing items, and writing descriptions all add up.</p>
+            <p>If you're new to clothing closeouts, start small. Try a single case or one pallet. Learn what sells in your store or area. Watch which sizes fly off the rack and which ones linger.</p>
+            <p>One reseller bought five mixed cases and got overwhelmed listing them all. She later realized she could make more by sticking to her niche, which was kids' clothing and only buying those loads going forward.</p>
+            <p>Start focused. Then grow.</p>
+      
+            <h3>Smart Buyers Always Have a Backup Plan</h3>
+            <p>You won't sell every item. That's just how this works.</p>
+            <p><strong>Have a plan for the leftovers:</strong></p>
+            <ul>
+              <li>Donate to a local shelter</li>
+              <li>Bundle similar items into clearance packs</li>
+              <li>Host a sidewalk sale</li>
+              <li>Trade with other resellers</li>
+              <li>Use them as giveaways to build goodwill</li>
+            </ul>
+            <p>One buyer held a "fill a bag for $5" event to clear out slow-selling pieces. It created space — and drew in new customers.</p>
+      
+            <h3>A Smarter Way to Source</h3>
+            <p>If you're tired of guessing what's in the pallet, or ending up with clothes you can't sell, Commerce Central is here to help.</p>
+            <p>We give you verified, shelf-ready apparel with clear manifests and real photos — not stock images. You'll see what brands, sizes, and styles are inside before you buy.</p>
+            <p>No more mystery boxes. No more crushed returns. Just clean deals you can move with confidence.</p>
+          `,
+           date: 'May 27, 2025',
+           bannerImage: '/images/blog/apparel-liquidation-banner.webp',
+           thumbnailImage:
+             '/images/blog/apparel-liquidation-thumb.webp',
+           category: 'Liquidation',
+           tags: [
+             'Apparel',
+             'Liquidation',
+             'Reselling',
+             'Fashion',
+             'Buying Guide',
+           ],
          },
        ]
 
@@ -262,7 +361,7 @@ export function getRelatedPosts(currentPost: BlogPost): BlogPost[] {
   )
 
   // Return up to 2 related posts
-  return relatedPosts.slice(0, 2)
+  return relatedPosts.slice(0, 3)
 }
 
 // Helper function to get a post by its slug

@@ -29,7 +29,7 @@ export async function generateMetadata(
       publishedTime: new Date(post.date).toISOString(),
       images: [
         {
-          url: post.image,
+          url: post.thumbnailImage,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -39,7 +39,7 @@ export async function generateMetadata(
     twitter: {
       card: 'summary_large_image',
       title: `${post.title} | Commerce Central Blog`,
-      images: [post.image],
+      images: [post.thumbnailImage],
     },
   };
 }
@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params: paramsPromise }: { params: 
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    image: post.image,
+    image: post.thumbnailImage,
     author: {
       '@type': 'Person',
       name: 'Commerce Central',
