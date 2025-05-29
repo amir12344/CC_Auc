@@ -11,10 +11,10 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
-         {
-           id: 1,
-           title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
-           content: `
+  {
+    id: 1,
+    title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
+    content: `
       <h2>Why Inventory Buying Feels Risky — and How to Buy Smarter</h2>
       <p><em>Smart pallet liquidation sales: A game changer for U.S. resellers</em></p>
       <h3>The High-Stakes Game of Traditional Inventory Sourcing</h3>
@@ -94,21 +94,16 @@ export const blogPosts: BlogPost[] = [
         <a href="https://www.verifiedmarketresearch.com/product/liquidation-service-market/">verifiedmarketresearch.com</a>
       </p>
     `,
-           date: 'May 24, 2025',
-           bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
-           thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
-           category: 'Liquidation',
-           tags: [
-             'Liquidation',
-             'Inventory Sourcing',
-             'Reselling',
-             'Pallet Sales',
-           ],
-         },
-         {
-           id: 2,
-           title: 'How to Avoid Getting Burned Buying Liquidation Inventory',
-           content: `
+    date: 'May 24, 2025',
+    bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
+    thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Inventory Sourcing', 'Reselling', 'Pallet Sales'],
+  },
+  {
+    id: 2,
+    title: 'How to Avoid Getting Burned Buying Liquidation Inventory',
+    content: `
       <h2>How to Avoid Getting Burned Buying Liquidation Inventory: A Smart Buyer\'s Guide</h2>
       <p>Buying <strong>wholesale liquidation pallets</strong> can feel like hitting the jackpot – pallet auctions often promise brand-new or high-value items at crazy-low prices. As a reseller, you\'re the hero hunting those deals. But buyer beware: not every "<em>pallets for sale</em>" listing is legit​. Some bad actors twist manifests or cherry-pick the best goods and pack your pallet with junk. In this guide we\'ll share real advice from U.S. buyers – from small discount store owners to online resellers – on spotting scams, fake manifests and junk loads. We\'ll also explain how tools like <strong>Commerce Central</strong> can help you stick to safe <em>liquidation channels</em> and source inventory more reliably.</p>
       <h3>Know the Risks of Liquidation Deals</h3>
@@ -141,22 +136,16 @@ export const blogPosts: BlogPost[] = [
       </ul>
       <p>By following these steps, you\'ll protect yourself from scams and junk loads, and focus on real opportunities. You\'re already doing the smart thing by learning – now you can buy more confidently. Stick to known pallet auctions and trusted sellers, double-check manifests, and remember that tools like Commerce Central exist to help you find good deals. With care and persistence, you\'ll keep your business profitable and avoid getting burned by bad liquidation inventory.</p>
     `,
-           date: 'May 23, 2025',
-           bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
-           thumbnailImage:
-             '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
-           category: 'Liquidation',
-           tags: [
-             'Liquidation',
-             'Buyer Guide',
-             'Reselling Tips',
-             'Pallet Sourcing',
-           ],
-         },
-         {
-           id: 3,
-           title: 'How to Spot Real Closeout Deals',
-           content: `
+    date: 'May 23, 2025',
+    bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
+    thumbnailImage: '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Buyer Guide', 'Reselling Tips', 'Pallet Sourcing'],
+  },
+  {
+    id: 3,
+    title: 'How to Spot Real Closeout Deals',
+    content: `
       <h2>How to Spot Real Closeout Deals (and Avoid Getting Burned)</h2>
       <p>Not every deal is a deal.</p>
       <p>If you've ever shopped at a liquidation sale, you've seen it: bold signs saying "60% OFF!" or "Everything Must Go!" But sometimes, those offers hide tricks like raised prices, missing parts, or outright scams.</p>
@@ -239,18 +228,17 @@ export const blogPosts: BlogPost[] = [
       <p>At <a href="https://www.commercecentral.io/">Commerce Central</a>, we help buyers avoid the traps and find clean, verified deals that actually move.</p>
       <p>We don't just list random pallets. We show real photos, expiration dates (when applicable), and full manifests before you buy. You stay in control. We stay in the background.</p>
     `,
-           date: 'May 25, 2025',
-           bannerImage:
-             '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-         {
-           id: 4,
-           title: 'How to Buy Apparel Liquidation Deals',
-           content: `
+    date: 'May 25, 2025',
+    bannerImage: '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+  {
+    id: 4,
+    title: 'How to Buy Apparel Liquidation Deals',
+    content: `
             <h2>How to Buy Apparel Liquidation Deals</h2>
             <p>Buying clothes on closeout can feel like a treasure hunt. Sometimes you find name-brand jeans, shoes, or jackets for pennies on the dollar. Other times, you open a box and find 50 shirts no one can wear, or returns that smell like perfume and regret.</p>
             <p>If you run a discount store, flea market booth, bin store, or resell online, apparel closeouts can offer great value, but only if you know what you're doing.</p>
@@ -326,23 +314,16 @@ export const blogPosts: BlogPost[] = [
             <p>We give you verified, shelf-ready apparel with clear manifests and real photos — not stock images. You'll see what brands, sizes, and styles are inside before you buy.</p>
             <p>No more mystery boxes. No more crushed returns. Just clean deals you can move with confidence.</p>
           `,
-           date: 'May 27, 2025',
-           bannerImage: '/images/blog/apparel-liquidation-banner.webp',
-           thumbnailImage: '/images/blog/apparel-liquidation-thumb.webp',
-           category: 'Liquidation',
-           tags: [
-             'Apparel',
-             'Liquidation',
-             'Reselling',
-             'Fashion',
-             'Buying Guide',
-           ],
-         },
-         {
-           id: 5,
-           title:
-             'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
-           content: `
+    date: 'May 27, 2025',
+    bannerImage: '/images/blog/apparel-liquidation-banner.webp',
+    thumbnailImage: '/images/blog/apparel-liquidation-thumb.webp',
+    category: 'Liquidation',
+    tags: ['Apparel', 'Liquidation', 'Reselling', 'Fashion', 'Buying Guide'],
+  },
+  {
+    id: 5,
+    title: 'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
+    content: `
      <h2>How to Score Real Liquidation Deals in Electronics (Not E-Waste)</h2>
 <p>Electronics are exciting to buy and fun to sell. From Bluetooth speakers and tablets to kitchen gadgets and smartwatches, people love a tech deal. That&rsquo;s why electronics are one of the most popular categories in closeout sales.</p>
 <p>But they&rsquo;re also one of the riskiest.</p>
@@ -403,22 +384,27 @@ export const blogPosts: BlogPost[] = [
 <h2><strong>Smart Example to Learn From</strong></h2>
 <p>A reseller in Texas bought 50 Bluetooth speakers from a liquidation supplier. They were sealed, but last year&rsquo;s model. The new model had just launched but wasn&rsquo;t a major upgrade.</p>
 <p>He tested five random units, listed them as &ldquo;brand new closeout &mdash; last year&rsquo;s model&rdquo; at $30 each (retail was $60). They sold out in two weeks. He turned a $1,000 pallet into $2,000+ in sales.</p>
-<p><strong>Why did it work?</strong><br /> :heavy_check_mark: Known brand<br /> :heavy_check_mark: Tested items<br /> :heavy_check_mark: Honest description<br /> :heavy_check_mark: Clear value for the buyer</p>
+<p><strong>Why did it work?</strong></p>
+<ul>
+  <li>Known brand</li>
+  <li>Tested items</li>
+  <li>Honest description</li>
+  <li>Clear value for the buyer</li>
+</ul>
 <p>That&rsquo;s the closeout hero playbook.</p>
 <h2><strong>A Smarter Way to Source</strong></h2>
 <p>If you&rsquo;re tired of buying mystery loads, guessing what works, or dealing with missing parts, <a href="https://www.commercecentral.io/">Commerce Central</a> is here to help.</p>
 <p>We verify sellers, list actual photos, and provide clear manifests before you buy &mdash; so you know what you&rsquo;re getting.</p>
 <p>We focus on shelf-ready, working electronics that real buyers want &mdash; no junk, no hidden surprises.</p>
    `,
-           date: 'May 28, 2025',
-           bannerImage:
-             '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Electronics-banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Electronic-thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-       ]
+    date: 'May 28, 2025',
+    bannerImage: '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+]
 
 // Helper function to generate a slug from a title
 export function generateSlug(title: string): string {
