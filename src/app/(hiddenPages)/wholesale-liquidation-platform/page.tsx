@@ -269,7 +269,7 @@ const PlatformPage = () => {
                 Get Early Access (Free)
               </Button>
             </Link>
-            <p className="mt-4 text-sm text-gray-300">Contact: amir@commercecentral.ai</p>
+            <p className="mt-4 text-sm text-gray-300">Contact: team@commercecentral.io</p>
           </div>
         </div>
       </section>

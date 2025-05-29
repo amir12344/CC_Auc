@@ -290,8 +290,8 @@ const Navbar: React.FC = () => {
     <>
       <header
         className={`fixed w-full z-50 transition-all duration-300 ${isLegalPage || isTeamPage || isHiddenPage
-            ? headerBaseClass // Always dark for these pages
-            : scrolled ? headerDynamicClass : 'bg-transparent' // Dynamic for others
+          ? headerBaseClass // Always dark for these pages
+          : scrolled ? headerDynamicClass : 'bg-transparent' // Dynamic for others
           } ${scrolled || isTeamPage || isLegalPage || isHiddenPage ? 'shadow-md' : ''}`}
       >
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full m-[0.5rem]'>
@@ -324,13 +324,13 @@ const Navbar: React.FC = () => {
                   <ChevronDown className="h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-[420px] bg-white border border-[#E0D6C2] shadow-xl rounded-[13.632px] p-2.5">
-                  {/* <DropdownItem
+                  <DropdownItem
                     href="/website/podcast"
                     icon={<Headphones className="h-[22px] w-[22px] stroke-[2px]" />}
                     title="Podcast"
                     description="Learn from industry experts and brands on The ReCommerce Podcast"
-                  /> */}
-                  {/* <div className="h-[1px] bg-[#E0D6C2]/70 mx-4 my-1" /> */}
+                  />
+                  <div className="h-[1px] bg-[#E0D6C2]/70 mx-4 my-1" />
                   <DropdownItem
                     href="/website/blog"
                     icon={<BookOpen className="h-[22px] w-[22px] stroke-[2px]" />}
@@ -441,7 +441,7 @@ const Navbar: React.FC = () => {
                                 />
                               </button>
                               <div className={`pl-2 space-y-6 overflow-hidden transition-all duration-300 ${isMediaExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                {/* <SheetClose asChild>
+                                <SheetClose asChild>
                                   <Link
                                     href='/website/podcast'
                                     onClick={() => handleNavigation('/website/podcast')}
@@ -450,16 +450,16 @@ const Navbar: React.FC = () => {
                                     <div className="text-[#43CD66] mt-1">
                                       <Headphones className="h-5 w-5 stroke-[2px]" />
                                     </div>
-                                    {/* <div className="flex-1">
+                                    <div className="flex-1">
                                       <div className="font-medium text-white group-hover:text-[#43CD66] transition-colors">
                                         Podcast
                                       </div>
                                       <div className="text-sm text-[#D8F4CC]/80">
                                         Learn from industry experts and brands on The ReCommerce Podcast
                                       </div>
-                                    </div> */}
-                                {/* </Link> */}
-                                {/* </SheetClose> */}
+                                    </div>
+                                  </Link>
+                                </SheetClose>
 
                                 <SheetClose asChild>
                                   <Link

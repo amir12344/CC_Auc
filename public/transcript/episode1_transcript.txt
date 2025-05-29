@@ -1,0 +1,179 @@
+Shivang (00:11)
+Hello and welcome to the first episode of the ReCommerce show. This is a show about retail where we analyze it through the world of ReCommerce. I'm your host, Shivang Maheshwari. Super excited to be here. A little bit about myself. I'm the co-founder and CEO of Commerce Central. Commerce Central is an AI-powered inventory distribution platform where we help retailers and brands take care of their surplus and return inventory with complete intelligence and control. Before this, I used to work at Amazon where I led machine learning and analytics initiatives.
+
+across three different divisions, Kindle, Seller, and Prime. That's where I met Cat for the first time. And what I did over there was build systems that influence billions in revenue across technologies like demand planning, inventory, forecasting, as well as consumer insights. Before that, I spent some time at FedEx building machine learning algorithms to optimize their B2C network. Most recently, I started a third party logistics company called Ship Maestro.
+
+And that's where I got a first-hand seat into the efficiencies and the guest work that goes into the reverse logistics side of the business. So I'm super excited to be here and welcome Cat
+
+Cat La (01:18)
+Yeah, and I'm super excited to be here as well. I currently lead growth marketing at Commerce Central where Shivang and I work together. And before this, I work in marketing at Primes where I met Shivang for the first time. And before that, I was in operation at Amazon and I'm excited to be part of this.
+
+So since this is our first episode, we want to set up the agenda. So what do we mean by ReCommerce? Why does it matter? What pain points does it solve? What is our intention with the show and who is this show for? And what do you expect from future episode? So with that being said, what do we mean by ReCommerce, Shivang?
+
+Shivang (01:57)
+Yeah, definitely, Cat. So, ReCommerce is a short form for resale commerce or reverse commerce. And what it refers to in the retail industry where you would see examples of where you bought a power drill and you returned it. That needs to go somewhere. A retailer designed a new clothing line and never got sold. That's sitting in a warehouse and eating dust. An electronics company designed a new box of gadgets.
+
+and it never got picked up and that's sitting in a warehouse. And all of these products eventually end up in a warehouse sitting and eating dust and ReCommerce is the industry that helps them find helps find these retail goods a new home. So resale industry logistics, know, resale industry, liquidation industry, donations industry, recycling industry, refurbishment industry, those are all loosely coupled but essentially related terms to the ReCommerce industry.
+
+Cat La (02:39)
+Gotcha.
+
+Shivang (02:52)
+All they are doing is making sure that products are reaching more homes versus more landfills. And different vehicles for the ReCommerce industry could be used good markets that we see all across the US. Bin stores, flea markets, and B2B liquidation platforms similar to what Commerce Central is where, you know, like small businesses can buy surplus and return inventory from brands and retailers. But if I have to say in short, the ReCommerce industry is essentially about
+
+turning surplus goods into cash versus waste.
+
+Cat La (03:26)
+Gotcha. Yeah, now we know what ReCommerce means. So why does it matter? Why should brands and businesses care about ReCommerce?
+
+Shivang (03:35)
+Yeah, definitely. you know, if you ask a brand on retail, they would definitely relate with it. But if I have to say retail has a huge waste problem, and by waste, I mean both financial and environmental waste and breaking it down into breaking it down into different problems. Let's look at the first problem, which is the aging and the overstocking problem. That's where brands and retailers overestimate the amount of goods they would need through a season, through an year or in general. So,
+
+Cat La (03:48)
+Gotcha.
+
+Okay.
+
+Shivang (04:04)
+It could be a forecasting error, could be that essentially demand patterns change, they launch five products out of them, two of them never got sold but the other one picked up. So the two that did not get sold end up sitting in a warehouse and at some point they age and at some point there is no particular use for them and they're just sitting there and eating dust, right? So that's the aging problem that most brands and retailers have.
+
+Cat La (04:10)
+Mm-hmm.
+
+Shivang (04:30)
+It's estimated to be about $800 billion worth of goods that never make it to their first home and just keep on sitting. And yes, definitely. That's a huge number. And, you know, I was estimating a few couple of weeks ago, and that's that's more than the United States defense budget. So there's a huge amount of value that just sits in a warehouse and never, never, never, never finds never never finds a consumer to take care of. Right. And
+
+Cat La (04:37)
+Wow, that's a huge number.
+
+Wow.
+
+Mm-hmm.
+
+Shivang (04:59)
+In the clothing industry, it's said that about 40 % of the goods that are created, that are produced, never go out to consumers. So that's one out of two products, one out of two fashion apparel, a clothing and product never goes to a consumer. That's wasted material, that's wasted labor, that's wasted shipping, fuel and all of those things that went into producing that piece of cloth and never reaching a single customer itself.
+
+That's a huge financial problem because from a brand's perspective, half of the money they put into their inventory procurement goes to waste. And on top of that, it just essentially increases their storage costs, creates an operational overhead for their teams, their operations teams or their supply teams or the logistics teams that have to manage it. So aging inventory and overstocked inventory, if have to summarize, is a huge problem itself.
+
+Cat La (05:37)
+Mm-hmm.
+
+Shivang (05:55)
+The second problem, the flip side of this problem is the returned products, right? So we live in 2025 and we all can relate with the fact that we buy products quite, you know, unconsciously these days that you would buy a product even without thinking or even making a very confident decision whether you need it or not. And because you have this confidence coming from retailers and brands that you'd be able to return it back and
+
+you would not have a problem at all if you want to return it. that has accelerated the trend of returns. And especially around COVID, you would find that more and more consumers are now shopping online. it could be you don't like the size, you don't like the color. In some cases, some people would just buy five products and try them on and then return them four. And all of these products go back to a warehouse for someone to take care of.
+
+Cat La (06:28)
+Yeah.
+
+Shivang (06:50)
+And that's estimated to be about $890 billion worth of return goods sitting in a warehouse. know, in total, across the aging and the return problem, there's about $1.6 to $1.7 trillion worth of inventory, retail inventory that's sitting in US warehouses right now with no home, no, you know, like with no clear, clear, clear next step, essentially. And when you flip it to from a perspective of what happens when a product
+
+goes back to a warehouse, somebody has to open it up, somebody has to inspect it, somebody has to see if it's working, somebody has to see whether the product is damaged, is there any defect with it, and then decide whether it should be reshelved, to be resold to a new customer, should it be refurbished, should it be discarded, what should be done with it? And that itself is a cost for a brand or a retailer. So that's estimated to be about 25 to 30 % of the cost going into
+
+Cat La (07:29)
+Mm-hmm.
+
+Shivang (07:47)
+just taking care of a return product. So between producing the product, shipping it to the customer, taking it back from the customer and reshelving it, almost all the time, know, 100 % of the cost or 100 % of the retail price of the product is already gone. So retailers don't have an incentive to take care of them. And that's why you would see a lot of retailers having these, you know, huge mountains of return inventory just sitting.
+
+Cat La (08:04)
+Yeah.
+
+Shivang (08:15)
+And they don't want to take care of it because they don't see much value in it. So that's a huge problem. when you look at it in Europe, it even increases more in Europe where the labor is more expensive. The shipping is more expensive. Sometimes, know, retailers and brands would even make a loss by taking care of the return inventory. So for them, it becomes so convenient to just, you know, discard it and write it off and not take care of it. So, you know, those are the two.
+
+big problems that exist in the retail industry.
+
+Cat La (08:45)
+Yeah,
+
+yeah, I definitely see those two points. I mean, I see myself firsthand. I was working in Amazon operation during COVID. So I definitely see the return problem that you described. Like during that time, like you probably can relate, you probably remember during that time as well. know, people were stuck at home. A lot of people were buying online. It really accelerated. E-commerce was booming. But on the flip side, like a lot of people were
+
+just buying and just returning. And basically at my warehouse, like we basically just ran out of space. Like 20 % of our warehouse was just filled with returns and leadership at the time didn't have plan to what to do with it when it was happening. And at the same time, know, our warehouse operation continued to run and we continue to get new and new shipment in, but there was not enough space. So we basically have to
+
+have a bunch of our inventory in the yard sitting in trucks because we just couldn't unpack them. So yeah, definitely see it's a huge problem and seeing firsthand what is happening in the industry.
+
+Shivang (09:51)
+Yeah, I mean, that's just one Amazon warehouse. But think of, know, multiple Amazon warehouse, Target warehouse, Costco warehouse, third party logistics companies in general. So I have never met a warehouse operator that does not have a secluded side in their operations. And myself, being a 3PIL operator, 40 % of my space was already and always sitting with products that would never move. And I had a dark corner of
+
+returned goods that were still packed into these UPS boxes and the USPS boxes that would only open six months or seven months later. And what most people would do is throw them into the landfill. And that's another problem that the industry has, the sustainability problem. How are we impacting the environment with these decisions that we are taking? Some estimates say that about 8 billion pounds
+
+Cat La (10:31)
+Yeah.
+
+Yeah.
+
+Shivang (10:45)
+worth of return goods were landfilled in 2023 alone. that's about 23 Empire State buildings worth of return goods that we just dumped into the ground and impacted the planet. So these aging inventory and returned inventory are not just a financial problem, but also a problem for the planet.
+
+Cat La (10:48)
+Wow, that's a lot.
+
+Wow.
+
+Shivang (11:10)
+And that's where the ReCommerce industry comes in. ReCommerce industry is essentially, you can consider it a vehicle to solve these problems. the innovations and the people that work in the ReCommerce industry essentially make sure that these products find a new home. They don't go into a landfill. At the same time, are innovations, like we ourselves are trying to innovate and building products that make sure that it's very efficient for a
+
+for a warehouse operator or a brand operator to sort products easily, find them, decide whether it needs to go for a donation bin, for a resale bin, for a reshelving bin, for a clearance and for an outlet build and whatnot. So the ReCommerce industry is essentially the umbrella of industry that makes sure that we can efficiently and hopefully profitably take care of these products.
+
+Cat La (11:57)
+Yeah.
+
+Shivang (11:59)
+and find them a new home at the same time not impact the environment. you know, like as these problems of aging and return inventory would continue to increase, ReCommerce would play a bigger and bigger role in the retail industry where it would make sure that brands recover as much value as they can, as well as make sure that they don't impact the environment in the process.
+
+Cat La (12:12)
+Mm-hmm.
+
+Shivang (12:23)
+That gives me lot of hope and excitement about the industry and super blessed to be working in the industry, per se.
+
+Cat La (12:30)
+Yeah, no, like, I definitely, definitely hear you like sustainability is a huge thing now with, you know, the younger generation of consumer. And definitely see like, if you describe the, you know, with all the waste that go into the industry, it's definitely a huge problem that now we should bring more attention to, and hopefully, you know, have good discussion with different leader, different operator, and
+
+and yeah, just to shed more light into the issue. But with that being said, what is the mission and the intention for our show? And going forward, what should people expect from us?
+
+Shivang (13:15)
+Yeah, definitely, Cat. So we created the ReCommerce show to fill a clear gap. There are hundreds of retail marketing shows where marketing gurus would tell about how to do better marketing for your retail. There are a few shows that kind of touch into the fact of supply chain, retail supply chains, but there are no shows that touch on this final frontier, the backend problem. you know, like apparently the back office problem of retail with
+
+when it comes to world of reverse logistics, liquidation, returns, resales and whatnot. So the goal of our show is essentially to spotlight those professionals that are silently working in the background, keeping products out of landfill, making sure more value is derived from returns. And then they take it to a scale of, you know, like millions and millions of products. So these are inspiring individuals, but their stories are never told. So this show is essentially to spotlight them.
+
+as well as giving other professionals an opportunity to learn from their playbooks, from their experience, so that they feel motivated and inspired to lead and build in this space. Because at the same time, is lack of innovation that goes into this space as well. Everyone's trying to use artificial intelligence to optimize inventory forecasting, demand planning, fulfillment.
+
+know, cartonization and whatnot, but this part of the industry is still on pen and paper and most likely on Excel. So there's a lack of innovation as well in this space and our intention with this show is to highlight that innovation as well as the people that make it possible. So yeah, that's about like, that's what our, you know, like the, that's what our intention with the show is. If I have to say like,
+
+who should watch this show. I would say if you work in supply chain, if you work in retail, if you work in the logistics industry, if you work in the warehousing industry, or if you're someone who just has to take care of returns on behalf of your brand or retailer, this show is essentially for you. You would be able to learn from other people's experience. We are making it a candid conversational format where leaders in their natural...
+
+Cat La (15:03)
+Mm-hmm, yeah.
+
+Shivang (15:26)
+surroundings are dropping nuggets of insights and value which then you can apply or take inspiration from in your day to day.
+
+Cat La (15:35)
+Yeah, that's great to hear. just sneak peek into the future. What do you expect from what do listener expect from future episode? If you can discuss a little bit about that.
+
+Shivang (15:48)
+Yeah, definitely. So we have a great lineup of guests and topics that are coming up. And if I have to summarize the kind of guests that you would see in the future episodes, you would hear from supply chain leaders who have designed returns or refurbishment programs in their specific, you know, retailer brand organization. You would hear from liquidation and closeout leaders that essentially make sure that the products are bought and then resold.
+
+in secondary markets, you would hear from 3PL operators who basically take care of inventory on behalf of brands and have to deal with this problem more closely. And you'll also hear from analysts and journalists that keep track of policy shifts and sustainability trends. So, you know, like to give you an example, you know, one week you might hear of how a leader reduced 80 % of their returns problem and how
+
+how they use creative, you know, like problem solving and manpower to be able to deal with that. Next episode, you might hear from a liquidation leader who bought, you know, X million dollars worth of shampoos and found a new home for them in Mexico, New Zealand, Africa, and whatnot. Next week, you might hear from three pure operators who created, you know, like creative programs of how their warehousing teams can sort and make sure that
+
+Cat La (17:00)
+Yeah.
+
+Shivang (17:09)
+When a product is returned, how does it reach the right channel for it? So those kind of episodes our audience can expect. Every show is going to be about 30 to 45 minutes. So it can easily fit into a commute, a lunch break, or a warehouse walkthrough.
+
+Cat La (17:13)
+Mm-hmm.
+
+Yeah, and yeah, I mean, I'm excited to have our different guests on the show. And lastly, I just want to thank all of our listeners for joining us on this first episode and helping us lay the foundation. And if you found this episode useful, we'd love for you to subscribe, share it with someone who worked in this space. And if you got any feedback, question for future show, we'd love to hear that as well.
+
+Until next time, keep innovating and remember every product deserves a second chance. And this is Cat with Shivang signing off from the ReCommerce Show.
+
+Shivang (18:04)
+Love it. I love the last line. Every product deserves a second chance. It definitely does. Well, thanks for the audience chiming in and tuning in. As Cat said, we'd love your feedback. We'd love to hear what you think we can improve. And super excited to start this journey. And we'll see you in the next episode. Thank you.
+

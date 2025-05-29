@@ -13,7 +13,7 @@ const HeroSectionClient = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="images/heroBanner.webp"
+          src="/images/heroBanner.webp"
           alt="Modern warehouse and logistics" 
           fill 
           style={{ objectFit: 'cover' }}
