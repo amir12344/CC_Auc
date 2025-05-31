@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Commerce Central - Surplus Inventory Marketplace',
+    name: 'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
     short_name: 'Commerce Central',
-    description: 'Connect with trusted retailers to access premium surplus inventory and wholesale lots. The most trusted B2B surplus platform.',
+    description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
@@ -55,9 +55,9 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     shortcuts: [
       {
-        name: 'Buyer Platform',
+        name: 'Buy Surplus & Returned Pallets Online | Commerce Central',
         short_name: 'Buyers',
-        description: 'Access brand-approved excess inventory',
+        description: 'Shop verified surplus pallets with full manifests on Commerce Central. No junk, no surprises — just clean inventory from trusted sellers.',
         url: '/website/buyer',
         icons: [
           {
@@ -68,9 +68,9 @@ export default function manifest(): MetadataRoute.Manifest {
         ],
       },
       {
-        name: 'Seller Platform',
+        name: 'Liquidate Excess Inventory Easily | Commerce Central for Sellers',
         short_name: 'Sellers',
-        description: 'Sell excess inventory with brand protection',
+        description: 'Effortlessly liquidate your excess and returned inventory with Commerce Central. Sell wholesale pallets directly to verified buyers — no middlemen, no surprises. Faster processing, higher recovery, and full resale control',
         url: '/website/seller',
         icons: [
           {
@@ -81,9 +81,9 @@ export default function manifest(): MetadataRoute.Manifest {
         ],
       },
       {
-        name: 'Early Access',
-        short_name: 'Join',
-        description: 'Request early access to the platform',
+        name: 'Trusted Access to Wholesale Pallets & Returns | Commerce Central',
+        short_name: 'Early Access',
+        description: 'Securely source surplus products and wholesale pallets from trusted sellers. Commerce Central connects resellers with verified inventory at scale.',
         url: '/earlyaccess',
         icons: [
           {

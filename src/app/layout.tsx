@@ -13,11 +13,12 @@ import {
   getMainPagesBreadcrumb,
 } from "@/src/utils/metadata";
 import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
+import ConfigureAmplifyClientSide from "./ConfigureAmplifyClientSide";
 
 export const metadata: Metadata = {
-  title: "Commerce Central - Surplus Inventory Marketplace",
-  description: "Browse exclusive surplus inventory from top retailers for resale. Connect with trusted sellers and find premium wholesale lots on our B2B platform.",
-  keywords: "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers",
+  title: "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
+  description: "Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.",
+  keywords: "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction",
   metadataBase: new URL('https://www.commercecentral.io'),
   icons: {
     icon: [
@@ -28,8 +29,8 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png', // Prefer PNG for Apple devices (create this file if needed)
   },
   openGraph: {
-    title: 'Commerce Central - Premium Surplus Inventory Marketplace',
-    description: 'Connect with trusted retailers to access exclusive surplus inventory and wholesale lots for your business.',
+    title: "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
+    description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
     url: 'https://www.commercecentral.io',
     siteName: 'Commerce Central',
     images: [
@@ -45,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Commerce Central - Surplus Inventory Marketplace',
-    description: 'Browse exclusive surplus inventory from top retailers for resale.',
+    title: 'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+    description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
     images: ['/CC_opengraph.png'],
   },
   robots: {
@@ -121,6 +122,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body suppressHydrationWarning>
+        <ConfigureAmplifyClientSide />
         <StyleProvider />
         <ErrorBoundary>
           <DynamicClientProvidersWrapper>

@@ -2,28 +2,28 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Commerce Central',
-  description: 'Terms of Service and conditions for using Commerce Central platform',
+  title: 'Terms & Conditions of Services | Commerce Central',
+  description: 'Read Commerce Central’s Terms & Conditions to understand your rights, platform rules, and responsibilities when buying or selling on our platform.',
   alternates: {
     canonical: 'https://www.commercecentral.io/website/legal/terms'
   },
   openGraph: {
     url: 'https://www.commercecentral.io/website/legal/terms',
-    title: 'Terms of Service | Commerce Central',
-    description: 'Terms of Service and conditions for using Commerce Central platform',
+    title: 'Terms & Conditions of Services | Commerce Central',
+    description: 'Read Commerce Central’s Terms & Conditions to understand your rights, platform rules, and responsibilities when buying or selling on our platform.',
     images: [
       {
         url: '/CC_opengraph.png',
         width: 500,
-        height: 500,
+      height: 500,
         alt: 'Commerce Central Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Terms of Service | Commerce Central',
-    description: 'Terms of Service and conditions for using Commerce Central platform',
+    title: 'Terms & Conditions of Services | Commerce Central',
+    description: 'Read Commerce Central’s Terms & Conditions to understand your rights, platform rules, and responsibilities when buying or selling on our platform.',
     images: ['/CC_opengraph.png'],
   },
 };

@@ -3,27 +3,27 @@ import EarlyAccessClient from './page-client';
 
 // SEO metadata for the early access page
 export const metadata: Metadata = {
-  title: 'Early Access - Commerce Central',
-  description: 'Get early access to Commerce Central - the premier surplus inventory marketplace. Join our exclusive network of buyers and sellers.',
+  title: 'Trusted Access to Wholesale Pallets & Returns | Commerce Central',
+  description: 'Securely source surplus products and wholesale pallets from trusted sellers. Commerce Central connects resellers with verified inventory at scale.',
   alternates: {
     canonical: 'https://www.commercecentral.io/earlyaccess'
   },
   openGraph: {
-    title: 'Commerce Central - Request Early Access',
-    description: 'Join our exclusive early access program and be the first to experience the most trusted B2B surplus platform.',
+    title: 'Trusted Access to Wholesale Pallets & Returns | Commerce Central',
+    description: 'Securely source surplus products and wholesale pallets from trusted sellers. Commerce Central connects resellers with verified inventory at scale.',
     images: [
       {
         url: '/CC_opengraph.png',
         width: 500,
-        height: 500,
+      height: 500,
         alt: 'Commerce Central Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Commerce Central - Request Early Access',
-    description: 'Join our exclusive early access program for Commerce Central.',
+    title: 'Trusted Access to Wholesale Pallets & Returns | Commerce Central',
+    description: 'Securely source surplus products and wholesale pallets from trusted sellers. Commerce Central connects resellers with verified inventory at scale.',
     images: ['/CC_opengraph.png'],
   },
 };

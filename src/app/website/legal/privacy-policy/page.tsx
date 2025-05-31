@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Commerce Central',
-  description: 'Privacy Policy for Commerce Central platform',
+  title: 'Privacy & Data Use Policy | Commerce Central',
+  description: 'Learn how Commerce Central collects, uses, and safeguards your data across our B2B liquidation platform. Read our full Privacy Policy for details.',
   alternates: {
     canonical: 'https://www.commercecentral.io/website/legal/privacy-policy'
   },
   openGraph: {
     url: 'https://www.commercecentral.io/website/legal/privacy-policy',
-    title: 'Privacy Policy | Commerce Central',
-    description: 'Privacy Policy for Commerce Central platform',
+    title: 'Privacy & Data Use Policy | Commerce Central',
+    description: 'Learn how Commerce Central collects, uses, and safeguards your data across our B2B liquidation platform. Read our full Privacy Policy for details.',
     images: [
       {
         url: '/CC_opengraph.png',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Privacy Policy | Commerce Central',
-    description: 'Privacy Policy for Commerce Central platform',
+    title: 'Privacy & Data Use Policy | Commerce Central',
+    description: 'Learn how Commerce Central collects, uses, and safeguards your data across our B2B liquidation platform. Read our full Privacy Policy for details.',
     images: ['/CC_opengraph.png'],
   },
 };
@@ -35,25 +35,25 @@ export default function PrivacyPolicyPage() {
         <h1 className="text-3xl font-bold mb-6 text-center">Commerce Central Privacy Policy</h1>
 
         <div className="mb-4">
-          <p className="mb-4">
-            <strong>Effective date: May 01, 2025</strong>
-          </p>
+        <p className="mb-4">
+          <strong>Effective date: May 01, 2025</strong>
+        </p>
 
-          <p className="mb-4">
-            At Commerce Central, we take your privacy seriously. Please read this Privacy Policy to learn how we treat your personal data. By using or accessing our Services in any manner, you acknowledge that you accept the practices and policies outlined below, and you hereby consent that we will collect, use and share your information as described in this Privacy Policy.
-          </p>
+        <p className="mb-4">
+          At Commerce Central, we take your privacy seriously. Please read this Privacy Policy to learn how we treat your personal data. By using or accessing our Services in any manner, you acknowledge that you accept the practices and policies outlined below, and you hereby consent that we will collect, use and share your information as described in this Privacy Policy.
+        </p>
 
-          <p className="mb-4">
-            Remember that your use of Commerce Central's Services is at all times subject to our <Link href="/website/legal/terms" target='_blank'
-              rel='noopener noreferrer' className="text-blue-600 hover:text-blue-800">Terms of Use</Link>, which incorporates this Privacy Policy. Any terms we use in this Policy without defining them have the definitions given to them in the Terms of Use.
-          </p>
+        <p className="mb-4">
+          Remember that your use of Commerce Central's Services is at all times subject to our <Link href="/website/legal/terms" target='_blank'
+            rel='noopener noreferrer' className="text-blue-600 hover:text-blue-800">Terms of Use</Link>, which incorporates this Privacy Policy. Any terms we use in this Policy without defining them have the definitions given to them in the Terms of Use.
+        </p>
 
-          <p className="mb-4">
-            You may print a copy of this Privacy Policy at any time.
-          </p>
+        <p className="mb-4">
+          You may print a copy of this Privacy Policy at any time.
+        </p>
 
-          <p className="mb-4">
-            As we continually work to improve our Services, we may need to change this Privacy Policy from time to time. Upon such changes, we will alert you to any such changes by placing a notice on the Commerce Central website, by sending you an email and/or by some other means. Please note that if you’ve opted not to receive legal notice emails from us (or you haven’t provided us with your email address), those legal notices will still govern your use of the Services, and you are still responsible for reading and understanding them. If you use the Services after any changes to the Privacy Policy have been posted, that means you agree to all of the changes.</p>
+        <p className="mb-4">
+          As we continually work to improve our Services, we may need to change this Privacy Policy from time to time. Upon such changes, we will alert you to any such changes by placing a notice on the Commerce Central website, by sending you an email and/or by some other means. Please note that if you’ve opted not to receive legal notice emails from us (or you haven’t provided us with your email address), those legal notices will still govern your use of the Services, and you are still responsible for reading and understanding them. If you use the Services after any changes to the Privacy Policy have been posted, that means you agree to all of the changes.</p>
         </div>
 
         <section className="mt-8">

@@ -2,19 +2,19 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Data Processing Addendum (DPA) | Commerce Central',
-  description: 'Data Processing Addendum (DPA) for Commerce Central platform',
+  description: 'Learn how Commerce Central processes and protects data under GDPR and other laws in our official Data Processing Addendum (DPA).',
   alternates: {
     canonical: 'https://www.commercecentral.io/website/legal/addendum'
   },
   openGraph: {
     url: 'https://www.commercecentral.io/website/legal/addendum',
     title: 'Data Processing Addendum (DPA) | Commerce Central',
-    description: 'Data Processing Addendum (DPA) for Commerce Central platform',
+    description: 'Learn how Commerce Central processes and protects data under GDPR and other laws in our official Data Processing Addendum (DPA).',
     images: [
       {
         url: '/CC_opengraph.png',
-        width: 500,
-        height: 500,
+          width: 1200,
+          height: 364,
         alt: 'Commerce Central Logo',
       },
     ],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Data Processing Addendum (DPA) | Commerce Central',
-    description: 'Data Processing Addendum (DPA) for Commerce Central platform',
+    description: 'Learn how Commerce Central processes and protects data under GDPR and other laws in our official Data Processing Addendum (DPA).',
     images: ['/CC_opengraph.png'],
   },
 };

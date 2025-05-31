@@ -3,15 +3,15 @@ import BuyerPageClient from './page-client';
 
 // SEO metadata for the buyer page
 export const metadata: Metadata = {
-  title: 'Commerce Central - Buyer Platform',
-  description: 'Access brand-approved excess inventory and returns with full transparency. Buy directly from verified sellers with complete manifests and no surprises.',
+  title: 'Buy Surplus & Returned Pallets Online | Commerce Central',
+  description: 'Shop verified surplus pallets with full manifests on Commerce Central. No junk, no surprises — just clean inventory from trusted sellers.',
   alternates: {
     canonical: 'https://www.commercecentral.io/website/buyer'
   },
   openGraph: {
     url: 'https://www.commercecentral.io/website/buyer',
-    title: 'Commerce Central for Buyers',
-    description: 'Source smarter with direct access to brand-approved excess and returns — fully manifested and ready to move.',
+    title: 'Buy Surplus & Returned Pallets Online | Commerce Central',
+    description: 'Shop verified surplus pallets with full manifests on Commerce Central. No junk, no surprises — just clean inventory from trusted sellers.',
     images: [
       {
         url: '/CC_opengraph.png',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Commerce Central for Buyers',
-    description: 'Source smarter with direct access to brand-approved excess and returns — fully manifested and ready to move.',
+    title: 'Buy Surplus & Returned Pallets Online | Commerce Central',
+    description: 'Shop verified surplus pallets with full manifests on Commerce Central. No junk, no surprises — just clean inventory from trusted sellers.',
     images: ['/CC_opengraph.png'],
   },
 };
