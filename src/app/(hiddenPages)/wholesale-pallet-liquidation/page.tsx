@@ -42,7 +42,7 @@ const Page = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900">The Problem with Most Pallet Auctions</h2>
 
             <p className="text-lg mb-8 text-gray-700">
-              If you've ever tried to buy pallets from traditional pallet auctions, you already know the pain:
+              If you've ever tried to <Link href="https://www.commercecentral.io/website/blog/how-to-buy-apparel-liquidation-deals" className="text-blue-600 no-underline hover:underline">buy pallets</Link> from traditional <Link href="https://www.commercecentral.io/online-liquidation-auctions" className="text-blue-600 no-underline hover:underline">pallet auctions</Link>, you already know the pain:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
@@ -234,7 +234,7 @@ const Page = () => {
               <div className="bg-gray-50 p-6 rounded-xl text-center">
                 <div className="h-12 w-12 rounded-full bg-[#102D21] text-white flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">Buy or Bid With Confidence</h3>
-                <p className="text-gray-700">Choose from fixed-price deals or live pallet auctions — both fully transparent.</p>
+                <p className="text-gray-700">Choose from fixed-price deals or live <Link href="https://www.commercecentral.io/wholesale-pallet-liquidation" className="text-blue-600 no-underline hover:underline">pallet auctions</Link> — both fully transparent.</p>
               </div>
             </div>
 
@@ -339,7 +339,7 @@ const Page = () => {
               Whether you're scaling up or just looking for wholesale pallets for sale you can trust, Commerce Central gives you the tools to source clean inventory, protect your margin, and grow faster.
             </p>
             <p className="text-lg mb-12 text-gray-700">
-              Commerce Central is a modern sourcing platform offering verified pallet liquidation wholesale opportunities. Browse clean, shelf-ready inventory through curated pallet auctions, trusted pallet liquidation sales, and exclusive wholesale pallets for sale. Whether you're a reseller, store owner, or online seller looking to buy pallets, Commerce Central helps you source smarter—without the risk.
+              Commerce Central is a modern sourcing platform offering verified pallet <Link href="https://www.commercecentral.io/wholesale-liquidation-platform" className="text-blue-600 no-underline hover:underline">liquidation wholesale</Link> opportunities. Browse clean, shelf-ready inventory through curated <Link href="https://www.commercecentral.io/online-liquidation-auctions" className="text-blue-600 no-underline hover:underline">pallet auctions</Link>, trusted pallet liquidation sales, and exclusive wholesale pallets for sale. Whether you're a reseller, store owner, or online seller looking to <Link href="https://www.commercecentral.io/website/blog/how-to-buy-apparel-liquidation-deals" className="text-blue-600 no-underline hover:underline">buy pallets</Link>, Commerce Central helps you source smarter—without the risk.
             </p>
             <p className="text-xl font-medium mb-8 text-gray-900">
               👉 Join the smarter pallet buyers at

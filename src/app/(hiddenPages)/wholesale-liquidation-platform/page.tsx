@@ -25,7 +25,7 @@ const PlatformPage = () => {
               Finally — A Wholesale Liquidation Platform That Puts Buyers First
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto">
-              No more mystery boxes. No more shady brokers. Just clean, verified liquidation pallets from trusted brands and authorized distributors.
+              No more mystery boxes. No more shady brokers. Just clean, verified <Link href="https://www.commercecentral.io/wholesale-pallet-liquidation" className="text-[#43CD66] hover:underline">wholesale liquidation pallets</Link> from trusted brands and authorized distributors.
             </p>
             <Link href="/earlyaccess" className="inline-block">
               <Button className="bg-[#43CD66] hover:bg-[#3BB959] font-[400] cursor-pointer text-black text-lg px-8 py-3 h-auto rounded-full">
@@ -81,7 +81,7 @@ const PlatformPage = () => {
             <p className="text-lg mb-10 text-gray-700">
               Every day, we post new liquidation pallets from brand-name suppliers across the U.S.—including shelf pulls, overstocks, and returned items that are ready to resell.
             </p>
-            
+
             <h3 className="text-xl font-semibold mb-6 text-gray-800">All listings include:</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
               <li className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm">
@@ -142,7 +142,7 @@ const PlatformPage = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">Wholesale Liquidation Pallets from Trusted Sellers</h2>
             <p className="text-lg mb-6 text-gray-700">
-              Unlike other platforms, we vet every seller before they list. That means when you browse wholesale liquidation pallets on Commerce Central, you know you're sourcing from real businesses—not fly-by-night resellers.
+              Unlike other platforms, we vet every seller before they list. That means when you browse <Link href="https://www.commercecentral.io/wholesale-pallet-liquidation" className="text-blue-600 no-underline hover:underline">wholesale liquidation pallets</Link> on Commerce Central, you know you're sourcing from real businesses—not fly-by-night resellers.
             </p>
             <p className="text-xl font-medium text-gray-900 mb-10">
               It's wholesale without the wild west.
@@ -155,9 +155,9 @@ const PlatformPage = () => {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">Return Liquidation, Done Right</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">Return Liquidation Done Right</h2>
             <p className="text-lg mb-6 text-gray-700">
-              Returns can be gold—or garbage. That's why we built Commerce Central to make return liquidation more transparent.
+              Returns can be gold—or garbage. That's why we built Commerce Central to make <Link href="https://www.commercecentral.io/online-liquidation-auctions" className="text-blue-600 no-underline hover:underline">return liquidation</Link> more transparent.
             </p>
             <p className="text-lg mb-10 text-gray-700">
               We ask sellers to clearly flag return rates and condition levels up front. If there's ever a mismatch between what was listed and what arrives, we make it right.
@@ -174,7 +174,7 @@ const PlatformPage = () => {
             <p className="text-lg mb-8 text-gray-700">
               For serious buyers, we offer truckload liquidation options from our network of sellers nationwide. These loads come with:
             </p>
-            
+
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3">
                 <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
@@ -209,7 +209,7 @@ const PlatformPage = () => {
                 <span className="text-gray-700">Direct support for delivery logistics</span>
               </li>
             </ul>
-            
+
             <p className="text-lg font-medium text-gray-900 mb-10">
               If you're tired of rolling the dice on blind truckloads, this is a smarter way to buy.
             </p>
@@ -225,7 +225,7 @@ const PlatformPage = () => {
             <p className="text-lg mb-8 text-gray-700">
               Is Commerce Central the best liquidation website? Our buyers seem to think so—and here's why:
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">Vetted inventory</h3>
@@ -248,9 +248,9 @@ const PlatformPage = () => {
                 <p className="text-gray-700">A team that picks up the phone and solves problems quickly.</p>
               </div>
             </div>
-            
+
             <p className="text-lg text-gray-700 mb-10">
-              We're not just building a marketplace, we're building a better experience for liquidation buyers.
+              We're not just building a marketplace, we're building a better experience for <Link href="https://www.commercecentral.io/website/buyer" className="text-blue-600 no-underline hover:underline">liquidation buyers</Link>.
             </p>
           </div>
         </div>
