@@ -19,11 +19,13 @@ export async function generateMetadata(
 
   return {
     title: `${post.title} | Commerce Central Blog`,
+    description: post.description,
     alternates: {
       canonical: `https://www.commercecentral.io/website/blog/${slug}`
     },
     openGraph: {
       title: `${post.title} | Commerce Central Blog`,
+      description: post.description,
       url: `https://www.commercecentral.io/website/blog/${slug}`,
       type: 'article',
       publishedTime: new Date(post.date).toISOString(),
@@ -39,6 +41,7 @@ export async function generateMetadata(
     twitter: {
       card: 'summary_large_image',
       title: `${post.title} | Commerce Central Blog`,
+      description: post.description,
       images: [post.thumbnailImage],
     },
   };
