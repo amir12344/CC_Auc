@@ -211,8 +211,8 @@ const Navbar = () => {
                     <SheetTitle className="text-[#D8F4CC] text-left">
                       <Logo showFullOnMobile={true} />
                     </SheetTitle>
-                    <SheetDescription className="text-[#D8F4CC]/80 text-sm">
-                      Navigate through different sections of Commerce Central
+                    <SheetDescription className="sr-only">
+                      Mobile navigation menu with links to different sections of the website
                     </SheetDescription>
                   </SheetHeader>
                   <div className="flex flex-col gap-6">
