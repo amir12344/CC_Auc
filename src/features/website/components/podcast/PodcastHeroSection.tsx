@@ -38,7 +38,7 @@ const PodcastHeroSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#43CD66] mb-6">
-            ReCommerce Show
+            The ReCommerce Show
           </h1>
           <motion.p
             className="text-xl md:text-2xl text-[#D8F4CC] mb-8"
