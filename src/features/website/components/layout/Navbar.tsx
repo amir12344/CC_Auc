@@ -22,6 +22,7 @@ import {
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -155,8 +156,6 @@ const Navbar = () => {
     );
   };
 
-
-
   return (
     <header className={getNavbarClasses(isScrolled)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -199,6 +198,7 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     className="text-[#D8F4CC] hover:text-[#43CD66] hover:bg-[#43CD66]/10"
+                    aria-label="Open navigation menu"
                   >
                     <Menu className="h-6 w-6" />
                   </Button>
@@ -211,6 +211,9 @@ const Navbar = () => {
                     <SheetTitle className="text-[#D8F4CC] text-left">
                       <Logo showFullOnMobile={true} />
                     </SheetTitle>
+                    <SheetDescription className="text-[#D8F4CC]/80 text-sm">
+                      Navigate through different sections of Commerce Central
+                    </SheetDescription>
                   </SheetHeader>
                   <div className="flex flex-col gap-6">
                     <div className="flex flex-col gap-4">
@@ -244,7 +247,7 @@ const renderMenuItem = (item: MenuItem) => {
         <NavigationMenuTrigger className={navigationTriggerClasses}>
           {item.title}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-white border border-[#E0D6C2] shadow-xl rounded-[13.632px] p-2.5 w-[350px] sm:w-[400px] lg:w-[450px]">
+        <NavigationMenuContent className="bg-white shadow-xl rounded-[13.632px] p-2.5 w-[350px] sm:w-[400px] lg:w-[450px]">
           <div className="space-y-1">
             {item.items.map((subItem, index) => (
               <div key={subItem.title}>

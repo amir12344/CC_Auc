@@ -1,16 +1,9 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import React from 'react';
+import { ClientProviders } from './ClientProviders';
 
-// Dynamically import ClientProviders
-const ClientProviders = dynamic(
-  () => import('./ClientProviders').then((mod) => mod.ClientProviders),
-  { ssr: true }
-);
-
-// This wrapper component ensures the dynamic import happens within a client boundary
+// Simple wrapper component for client providers
 export const DynamicClientProvidersWrapper = ({ children }: { children: React.ReactNode }) => {
-  // Render the dynamically imported ClientProviders
   return <ClientProviders>{children}</ClientProviders>;
 }; 
