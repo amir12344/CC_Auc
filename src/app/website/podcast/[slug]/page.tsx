@@ -32,19 +32,19 @@ export async function generateMetadata(
 
   if (!episode) {
     return {
-      title: 'Episode Not Found | Commerce Central Podcast',
+      title: 'Episode Not Found',
       description: 'The podcast episode you\'re looking for doesn\'t exist or has been removed.'
     };
   }
 
   return {
-    title: `${episode.title} | Commerce Central Podcast`,
+    title: episode.title,
     description: episode.description,
     alternates: {
       canonical: `https://www.commercecentral.io/website/podcast/${decodedSlug}`
     },
     openGraph: {
-      title: `${episode.title} | Commerce Central Podcast`,
+      title: episode.title,
       description: episode.description,
       url: `https://www.commercecentral.io/website/podcast/${decodedSlug}`,
       type: 'article',
@@ -61,7 +61,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${episode.title} | Commerce Central Podcast`,
+      title: episode.title,
       description: episode.description,
       images: [episode.image],
     },

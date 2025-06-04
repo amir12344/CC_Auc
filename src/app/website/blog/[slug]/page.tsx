@@ -12,19 +12,19 @@ export async function generateMetadata(
 
   if (!post) {
     return {
-      title: 'Post Not Found | Commerce Central Blog',
+      title: 'Post Not Found',
       description: 'The blog post you\'re looking for doesn\'t exist or has been removed.'
     };
   }
 
   return {
-    title: `${post.title} | Commerce Central Blog`,
+    title: post.title,
     description: post.description,
     alternates: {
       canonical: `https://www.commercecentral.io/website/blog/${slug}`
     },
     openGraph: {
-      title: `${post.title} | Commerce Central Blog`,
+      title: post.title,
       description: post.description,
       url: `https://www.commercecentral.io/website/blog/${slug}`,
       type: 'article',
@@ -40,7 +40,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${post.title} | Commerce Central Blog`,
+      title: post.title,
       description: post.description,
       images: [post.thumbnailImage],
     },

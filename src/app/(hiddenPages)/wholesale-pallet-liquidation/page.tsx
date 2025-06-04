@@ -7,6 +7,28 @@ export const metadata: Metadata = {
   description: 'Find verified wholesale pallet liquidation with clean manifests, trusted sellers, and transparent freight estimates. No surprises, just quality pallets you can actually resell.',
   keywords: ['wholesale pallet liquidation', 'pallet auctions', 'verified pallets', 'liquidation sales', 'bulk pallets', 'trusted sellers', 'clean manifests', 'pallet sourcing', 'reseller inventory'],
   robots: 'index, follow',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/wholesale-pallet-liquidation'
+  },
+  openGraph: {
+    url: 'https://www.commercecentral.io/wholesale-pallet-liquidation',
+    title: 'Wholesale Pallet Liquidation | Verified Pallets From Trusted Sellers',
+    description: 'Find verified wholesale pallet liquidation with clean manifests, trusted sellers, and transparent freight estimates. No surprises, just quality pallets you can actually resell.',
+    images: [
+      {
+        url: '/CC_opengraph.png',
+        width: 500,
+        height: 500,
+        alt: 'Commerce Central Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wholesale Pallet Liquidation | Verified Pallets From Trusted Sellers',
+    description: 'Find verified wholesale pallet liquidation with clean manifests, trusted sellers, and transparent freight estimates. No surprises, just quality pallets you can actually resell.',
+    images: ['/CC_opengraph.png'],
+  },
 };
 
 const Page = () => {

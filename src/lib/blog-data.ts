@@ -12,12 +12,12 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
-         {
-           id: 1,
-           title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
-           description:
-             'Buying liquidation pallets can be risky, but with the right strategies, you can spot scams, avoid junk, and source from trusted sellers for smarter purchases.',
-           content: `
+  {
+    id: 1,
+    title: 'Why Inventory Buying Feels Risky and How to Buy Smarter',
+    description:
+      'Buying liquidation pallets can be risky, but with the right strategies, you can spot scams, avoid junk, and source from trusted sellers for smarter purchases.',
+    content: `
       <h2>Why Inventory Buying Feels Risky — and How to Buy Smarter</h2>
       <p><em>Smart pallet <a href="https://www.commercecentral.io/wholesale-pallet-liquidation" class="text-blue-600 no-underline hover:underline">liquidation sales</a>: A game changer for U.S. resellers</em></p>
       <h3>The High-Stakes Game of Traditional Inventory Sourcing</h3>
@@ -97,23 +97,23 @@ export const blogPosts: BlogPost[] = [
         <a href="https://www.verifiedmarketresearch.com/product/liquidation-service-market/">verifiedmarketresearch.com</a>
       </p>
     `,
-           date: 'May 24, 2025',
-           bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
-           thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
-           category: 'Liquidation',
-           tags: [
-             'Liquidation',
-             'Inventory Sourcing',
-             'Reselling',
-             'Pallet Sales',
-           ],
-         },
-         {
-           id: 2,
-           title: 'How to Avoid Getting Burned Buying Liquidation Inventory',
-           description:
-             'Learn how to avoid costly mistakes when buying liquidation inventory. Discover expert tips and strategies to navigate risks and boost profits in liquidation buying.',
-           content: `
+    date: 'May 24, 2025',
+    bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
+    thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
+    category: 'Liquidation',
+    tags: [
+      'Liquidation',
+      'Inventory Sourcing',
+      'Reselling',
+      'Pallet Sales',
+    ],
+  },
+  {
+    id: 2,
+    title: 'How to Avoid Getting Burned Buying Liquidation Inventory',
+    description:
+      'Learn how to avoid costly mistakes when buying liquidation inventory. Discover expert tips and strategies to navigate risks and boost profits in liquidation buying.',
+    content: `
       <h2>How to Avoid Getting Burned Buying Liquidation Inventory: A Smart Buyer\'s Guide</h2>
       <p>Buying <a href="https://www.commercecentral.io/wholesale-liquidation-platform" class="text-blue-600">wholesale liquidation pallets</a></strong> can feel like hitting the jackpot – pallet auctions often promise brand-new or high-value items at crazy-low prices. As a reseller, you\'re the hero hunting those deals. But buyer beware: not every "<em><a href="https://www.commercecentral.io/wholesale-pallet-liquidation" class="text-blue-600 no-underline hover:underline">pallets for sale</a></em>" listing is legit​. Some bad actors twist manifests or cherry-pick the best goods and pack your pallet with junk. In this guide we\'ll share real advice from U.S. buyers – from small discount store owners to online resellers – on spotting scams, fake manifests and junk loads. We\'ll also explain how tools like <strong>Commerce Central</strong> can help you stick to safe <em>liquidation channels</em> and source inventory more reliably.</p>
       <h3>Know the Risks of Liquidation Deals</h3>
@@ -146,24 +146,24 @@ export const blogPosts: BlogPost[] = [
       </ul>
       <p>By following these steps, you\'ll protect yourself from scams and junk loads, and focus on real opportunities. You\'re already doing the smart thing by learning – now you can buy more confidently. Stick to known pallet auctions and trusted sellers, double-check manifests, and remember that tools like Commerce Central exist to help you find good deals. With care and persistence, you\'ll keep your business profitable and avoid getting burned by bad liquidation inventory.</p>
     `,
-           date: 'May 23, 2025',
-           bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
-           thumbnailImage:
-             '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
-           category: 'Liquidation',
-           tags: [
-             'Liquidation',
-             'Buyer Guide',
-             'Reselling Tips',
-             'Pallet Sourcing',
-           ],
-         },
-         {
-           id: 3,
-           title: 'How to Spot Real Closeout Deals',
-           description:
-             'Uncover how to score genuine closeout deals, avoid scams, and spot real bargains at <a href="https://www.commercecentral.io/wholesale-pallet-liquidation" class="text-blue-600 no-underline hover:underline">liquidation sales</a> with expert tips for smarter buying decisions.',
-           content: `
+    date: 'May 23, 2025',
+    bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
+    thumbnailImage:
+      '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
+    category: 'Liquidation',
+    tags: [
+      'Liquidation',
+      'Buyer Guide',
+      'Reselling Tips',
+      'Pallet Sourcing',
+    ],
+  },
+  {
+    id: 3,
+    title: 'How to Spot Real Closeout Deals',
+    description:
+      'Uncover how to score genuine closeout deals, avoid scams, and spot real bargains at <a href="https://www.commercecentral.io/wholesale-pallet-liquidation" class="text-blue-600 no-underline hover:underline">liquidation sales</a> with expert tips for smarter buying decisions.',
+    content: `
       <h2>How to Spot Real Closeout Deals (and Avoid Getting Burned)</h2>
       <p>Not every deal is a deal.</p>
       <p>If you've ever shopped at a liquidation sale, you've seen it: bold signs saying "60% OFF!" or "Everything Must Go!" But sometimes, those offers hide tricks like raised prices, missing parts, or outright scams.</p>
@@ -246,20 +246,20 @@ export const blogPosts: BlogPost[] = [
       <p>At <a href="https://www.commercecentral.io/">Commerce Central</a>, we help buyers avoid the traps and find clean, verified deals that actually move.</p>
       <p>We don't just list random pallets. We show real photos, expiration dates (when applicable), and full manifests before you buy. You stay in control. We stay in the background.</p>
     `,
-           date: 'May 25, 2025',
-           bannerImage:
-             '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-         {
-           id: 4,
-           title: 'How to Buy Apparel Liquidation Deals',
-           description:
-             'Ready to score big with apparel liquidation? Buy smarter, spot the best closeouts, and avoid common pitfalls with expert tips to turn pallets into profit.',
-           content: `
+    date: 'May 25, 2025',
+    bannerImage:
+      '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+  {
+    id: 4,
+    title: 'How to Buy Apparel Liquidation Deals',
+    description:
+      'Ready to score big with apparel liquidation? Buy smarter, spot the best closeouts, and avoid common pitfalls with expert tips to turn pallets into profit.',
+    content: `
             <h2>How to Buy Apparel Liquidation Deals</h2>
             <p>Buying clothes on closeout can feel like a treasure hunt. Sometimes you find name-brand jeans, shoes, or jackets for pennies on the dollar. Other times, you open a box and find 50 shirts no one can wear, or returns that smell like perfume and regret.</p>
             <p>If you run a discount store, flea market booth, bin store, or resell online, apparel closeouts can offer great value, but only if you know what you're doing.</p>
@@ -335,25 +335,25 @@ export const blogPosts: BlogPost[] = [
             <p>We give you verified, shelf-ready apparel with clear manifests and real photos — not stock images. You'll see what brands, sizes, and styles are inside before you buy.</p>
             <p>No more mystery boxes. No more crushed returns. Just clean deals you can move with confidence.</p>
           `,
-           date: 'May 27, 2025',
-           bannerImage: '/images/blog/apparel-liquidation-banner.webp',
-           thumbnailImage: '/images/blog/apparel-liquidation-thumb.webp',
-           category: 'Liquidation',
-           tags: [
-             'Apparel',
-             'Liquidation',
-             'Reselling',
-             'Fashion',
-             'Buying Guide',
-           ],
-         },
-         {
-           id: 5,
-           title:
-             'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
-           description:
-             'Get real liquidation deals on electronics without the junk. Avoid e-waste, spot resale-ready items, and source smarter with expert tips from Commerce Central.',
-           content: `
+    date: 'May 27, 2025',
+    bannerImage: '/images/blog/apparel-liquidation-banner.webp',
+    thumbnailImage: '/images/blog/apparel-liquidation-thumb.webp',
+    category: 'Liquidation',
+    tags: [
+      'Apparel',
+      'Liquidation',
+      'Reselling',
+      'Fashion',
+      'Buying Guide',
+    ],
+  },
+  {
+    id: 5,
+    title:
+      'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
+    description:
+      'Get real liquidation deals on electronics without the junk. Avoid e-waste, spot resale-ready items, and source smarter with expert tips from Commerce Central.',
+    content: `
      <h2>How to Score Real Liquidation Deals in Electronics (Not E-Waste)</h2>
 <p>Electronics are exciting to buy and fun to sell. From Bluetooth speakers and tablets to kitchen gadgets and smartwatches, people love a tech deal. That&rsquo;s why electronics are one of the most popular categories in <a href="https://www.commercecentral.io/website/blog/how-to-spot-real-closeout-deals" class="text-blue-600 no-underline hover:underline">closeout sales</a> closeout sales.</p>
 <p>But they&rsquo;re also one of the riskiest.</p>
@@ -427,21 +427,21 @@ export const blogPosts: BlogPost[] = [
 <p>We verify sellers, list actual photos, and provide clear manifests before you buy &mdash; so you know what you&rsquo;re getting.</p>
 <p>We focus on shelf-ready, working electronics that real buyers want &mdash; no junk, no hidden surprises.</p>
    `,
-           date: 'May 28, 2025',
-           bannerImage:
-             '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Electronics-banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Electronic-thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-         {
-           id: 6,
-           title:
-             'How to Buy Beauty and Health Deals? (Without Getting Burned)',
-           description:
-             'Learn how to avoid costly mistakes when buying beauty and health deals. This guide reveals how to spot quality closeouts and avoid expired or damaged products.',
-           content: `
+    date: 'May 28, 2025',
+    bannerImage:
+      '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Electronics-banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Electronic-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+  {
+    id: 6,
+    title:
+      'How to Buy Beauty and Health Deals? (Without Getting Burned)',
+    description:
+      'Learn how to avoid costly mistakes when buying beauty and health deals. This guide reveals how to spot quality closeouts and avoid expired or damaged products.',
+    content: `
      <h2>How to Buy Beauty and Health Deals? (Without Getting Burned)</h2>
 <p>Closeout sales can be a great way to get name-brand beauty products for less, but only if you know what you&rsquo;re doing. If you run a discount store, bin store, flea market table, or online shop, <a href="https://www.commercecentral.io/website/blog/how-to-avoid-getting-burned-buying-liquidation-inventory">buying inventory</a> of beauty closeouts can help you earn strong margins. But if you&rsquo;re not careful, you&rsquo;ll end up with expired lotion, leaking bottles, or makeup nobody wants.</p>
 <p>This guide is here to help. It shows you how to spot the right deals in beauty and health, avoid the junk, and build trust with your customers. You don&rsquo;t need to gamble. You just need to ask the right questions and learn what to look for.</p>
@@ -476,20 +476,20 @@ export const blogPosts: BlogPost[] = [
 <p>If you&rsquo;re tired of guessing or losing money on loads that didn&rsquo;t match the listing, <a href="https://www.commercecentral.io/">Commerce Central</a> was built to help. We verify shelf life, show you actual photos, and give you full manifests before you buy.</p>
 <p>We work with trusted sellers and only list sealed, shelf-ready health and beauty inventory that you can sell with confidence. You stay in control, we stay in the background.</p>
     `,
-           date: 'May 31, 2025',
-           bannerImage:
-             '/images/blog/How-to-Buy-Liquidation-Beauty-and-Health-Deals-banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Buy-Liquidation-Beauty-and-Health-Deals-Thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-         {
-           id: 7,
-           title: 'How to Score Real Liquidation Deals in Home Goods',
-           description:
-             'Unlock profitable liquidation deals in home goods. Discover how experienced resellers find the best deals, avoid duds, and turn closeouts into steady profit.',
-           content: `
+    date: 'May 31, 2025',
+    bannerImage:
+      '/images/blog/How-to-Buy-Liquidation-Beauty-and-Health-Deals-banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Buy-Liquidation-Beauty-and-Health-Deals-Thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+  {
+    id: 7,
+    title: 'How to Score Real Liquidation Deals in Home Goods',
+    description:
+      'Unlock profitable liquidation deals in home goods. Discover how experienced resellers find the best deals, avoid duds, and turn closeouts into steady profit.',
+    content: `
      <h2>How to Score Real Liquidation Deals in Home Goods</h2>
 <p>Home goods are one of the most popular and risky categories in closeout sales. For resellers, discount store owners, and flea market vendors, these items can move fast: everyone needs cookware, towels, lamps, and storage bins. But they&rsquo;re also bulky, sometimes fragile, and often show up with missing parts or scratches.</p>
 <p>If you&rsquo;ve ever ordered a pallet and found chipped dishes, dented air fryers, or a bunch of items that don&rsquo;t sell, you know the pain.</p>
@@ -540,21 +540,21 @@ export const blogPosts: BlogPost[] = [
 <p>At <a href="https://www.commercecentral.io/">Commerce Central</a>, we help trusted buyers like you find sealed, retail-ready home goods from verified sellers, with no guesswork.</p>
 <p>You&rsquo;ll get full manifests, visible condition notes, and freight estimates before you buy. You stay in control. We stay in the background.</p>
    `,
-           date: 'May 29, 2025',
-           bannerImage:
-             '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Home-Goods-banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Home-Goods-thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-         {
-           id: 8,
-           title:
-             'How to Vet Liquidation Suppliers and Build a Sourcing Plan That Works?',
-           description:
-             'Learn how to vet liquidation suppliers, avoid common risks, and build a sourcing plan that scales. Get tips and tools to start smart with Commerce Central.',
-           content: `
+    date: 'May 29, 2025',
+    bannerImage:
+      '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Home-Goods-banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Score-Real-Liquidation-Deals-in-Home-Goods-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+  {
+    id: 8,
+    title:
+      'How to Vet Liquidation Suppliers and Build a Sourcing Plan That Works?',
+    description:
+      'Learn how to vet liquidation suppliers, avoid common risks, and build a sourcing plan that scales. Get tips and tools to start smart with Commerce Central.',
+    content: `
 <h2>How to Vet Liquidation Suppliers and Build a Sourcing Plan That Works?</h2>
 <p>Jumping into liquidation without a sourcing plan is like <a href="https://www.commercecentral.io/wholesale-pallet-liquidation">buying a pallet</a> blindfolded. While the industry offers big opportunities, long-term success depends on your ability to vet suppliers, manage risk, and build a process that scales. Here&rsquo;s how to get started the right way.</p>
 <h3><strong>1. Do Your Homework on Suppliers</strong></h3>
@@ -590,15 +590,67 @@ export const blogPosts: BlogPost[] = [
 <p>If you&rsquo;re serious about reselling, we&rsquo;re here to help you build a repeatable, trustworthy sourcing strategy.</p>
 <p>Start sourcing with confidence at<a href="https://www.commercecentral.io"> www.commercecentral.io</a></p>
 `,
-           date: 'June 02, 2025',
-           bannerImage:
-             '/images/blog/How-to-Vet-Liquidation-Suppliers-and-Build-a-Sourcing-Plan-That-Works-banner.webp',
-           thumbnailImage:
-             '/images/blog/How-to-Vet-Liquidation-Suppliers-and-Build-a-Sourcing-Plan-That-Works-thumbnail.webp',
-           category: 'Liquidation',
-           tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-         },
-       ]
+    date: 'June 02, 2025',
+    bannerImage:
+      '/images/blog/How-to-Vet-Liquidation-Suppliers-and-Build-a-Sourcing-Plan-That-Works-banner.webp',
+    thumbnailImage:
+      '/images/blog/How-to-Vet-Liquidation-Suppliers-and-Build-a-Sourcing-Plan-That-Works-thumbnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+  {
+    id: 9,
+    title:
+      'How the Liquidation Supply Chain Works (and Who’s Involved)',
+    description:
+      'Discover how to source liquidation pallets for dollar and discount stores. Avoid damaged goods, control costs, and build trust with quality shelf-pull inventory.',
+    content: `
+      <h2>How the Liquidation Supply Chain Works (and Who&rsquo;s Involved)</h2>
+      <p>Understanding how liquidation works starts with knowing the key players&mdash;from the brands producing the goods to the resellers flipping them for profit. Whether you&rsquo;re sourcing for a dollar store, bin store, or eBay operation, you&rsquo;ll navigate a web of players. Here&rsquo;s how it all fits together.</p>
+      <h3><strong>The Liquidation Supply Chain Flowchart</strong></h3>
+      <img src="/images/blog/liquidation_flow_chart.webp" alt="The Liquidation Supply Chain Flowchart" style="max-width: 500px; max-height: 500px; width: 100%; height: auto; object-fit: contain;" />
+      <p>Each step adds a layer of sorting, markup, or access &mdash; and understanding each role helps you source smarter.</p>
+      <h3><strong>1. Manufacturers &amp; Brands</strong></h3>
+      <p>Sometimes excess goods originate from the factory floor: canceled orders, packaging errors, or surplus production. While most goods enter <a href="https://www.commercecentral.io/wholesale-liquidation-platform">wholesale liquidation</a> after retail, some manufacturers do liquidate directly typically via brokers or large liquidators. This inventory is often new, but may lack retail packaging.</p>
+      <h3><strong>2. Retailers</strong></h3>
+      <p>Big-box stores and e-commerce players generate massive liquidation supply. Returns, shelf pulls, and overstocks pile up fast. Rather than sort these manually, most retailers opt to offload them in bulk truckloads. Think Walmart, Target, Amazon &mdash; they sell mixed loads to recover warehouse space and capital.</p>
+      <p>Commerce Central sources inventory directly from major retailers, so buyers can access reliable truckloads with clear retailer attribution.</p>
+      <h3><strong>3. Large Liquidators</strong></h3>
+      <p>These are wholesale giants with retailer contracts. They buy entire truckloads blind, sort and grade the goods, then break them into pallets or cases for resale. They might charge more per pallet, but they often provide manifests and offer better condition control, and even specialize in <a href="https://www.commercecentral.io/website/blog/how-to-score-real-liquidation-deals-in-home-goods">Liquidation Deals in Home Goods</a> for targeted sourcing.</p>
+      <p>Commerce Central partners with select large liquidators to give resellers access to professionally sorted, condition-graded inventory with transparent pricing.</p>
+      <h3><strong>4. Brokers</strong></h3>
+      <p>Brokers don’t always own the product. They resell on behalf of others, sometimes offering access to hard-to-find loads, but also marking up heavily. Quality varies: some are trustworthy, others inflate prices or resell junk. Always ask: where is the product stored? Who’s fulfilling it?</p>
+      <p>Commerce Central removes that guesswork by listing verified sellers only &mdash; no middlemen brokers, no surprise re-routing.</p>
+      <h3><strong>5. Online Marketplaces</strong></h3>
+      <p>These platforms aggregate inventory from multiple sellers. Some are run by retailers themselves (e.g. Amazon Liquidation), others are independent (like B-Stock or Liquidation.com). They bring visibility, reviews, and <a href="https://www.commercecentral.io/online-liquidation-auctions">returns auctions</a> but buyers still must vet each seller.</p>
+      <p>Commerce Central is designed to combine the ease of a marketplace with the trust of a curated network with fewer sellers, better oversight, more support.</p>
+      <h3><strong>6. Buyers / Resellers</strong></h3>
+      <p>At the end of the chain are people like you: discount store owners, Amazon FBA sellers, flea market flippers. This is where product gets priced, prepped, and sold to the public. Each reseller model benefits from different types of loads, so understanding the upstream flow helps you source the right way.</p>
+      <h3><strong>Commerce Central: Your Guide Through the Liquidation Maze</strong></h3>
+      <p>Commerce Central helps you:</p>
+      <ul>
+        <li>Bypass low-value brokers</li>
+        <li>Source from retailers and top-tier liquidators</li>
+        <li>Understand where your inventory originates</li>
+        <li>Choose verified suppliers by condition, location, or category</li>
+      </ul>
+      <p>Whether you’re new to liquidation or scaling your resale business, knowing the chain is step one and having the right guide changes the game.</p>
+      <p>Explore verified liquidation inventory now at<a href="https://www.commercecentral.io"> www.commercecentral.io</a></p>
+      <h3><strong>FAQ: Liquidation Supply Chain</strong></h3>
+      <p><strong>What is the liquidation supply chain?</strong>It’s the flow of excess goods from retailers and brands to liquidators, brokers, and finally resellers. It includes returns, shelf pulls, and overstock being resold instead of thrown away.</p>
+      <p><strong>Who are the key players in liquidation?</strong>Manufacturers, retailers, large liquidators, brokers, online marketplaces, and resellers (like discount store owners or online sellers).</p>
+      <p><strong>Is it better to buy from a liquidator or a broker?</strong>Generally, buying from direct liquidators or verified marketplaces like Commerce Central reduces markup and risk. Brokers can add value, but they can also inflate prices.</p>
+      <p><strong>How can I avoid scams or bad pallets?</strong>Look for manifests, understand condition codes, research the seller, and start small. Commerce Central vets sellers and provides upfront pricing and transparency.</p>
+    `,
+    date: 'June 04, 2025',
+    bannerImage:
+      '/images/blog/How-the-Liquidation-Supply-Chain-Works-banner.webp',
+    thumbnailImage:
+      '/images/blog/How-the-Liquidation-Supply-Chain-Works-thumnail.webp',
+    category: 'Liquidation',
+    tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
+  },
+]
 
 // Helper function to generate a slug from a title
 export function generateSlug(title: string): string {

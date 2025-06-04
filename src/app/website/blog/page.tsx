@@ -3,7 +3,7 @@ import BlogPageClient from './page-client';
 
 // SEO metadata for the blog page
 export const metadata: Metadata = {
-  title: 'Commerce Central - Blog',
+  title: 'Blog',
   description: 'Read the latest insights, trends, and expert opinions on commerce, surplus inventory management, and industry developments from Commerce Central.',
   alternates: {
     canonical: 'https://www.commercecentral.io/website/blog'

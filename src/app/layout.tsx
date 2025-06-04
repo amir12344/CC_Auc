@@ -16,7 +16,10 @@ import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
 import ConfigureAmplifyClientSide from "./ConfigureAmplifyClientSide";
 
 export const metadata: Metadata = {
-  title: "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
+  title: {
+    template: "%s",
+    default: "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform"
+  },
   description: "Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.",
   keywords: "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction",
   metadataBase: new URL('https://www.commercecentral.io'),

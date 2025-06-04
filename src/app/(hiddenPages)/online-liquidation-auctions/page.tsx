@@ -7,6 +7,28 @@ export const metadata: Metadata = {
   description: 'Join top online liquidation auctions. Bid on bulk lots and save big on inventory for your business. Trusted auction platform for resellers.',
   keywords: ['online liquidation auctions', 'bulk lots', 'auction platform', 'inventory auctions', 'reseller deals', 'wholesale auctions', 'liquidation sales', 'verified sellers', 'clean inventory'],
   robots: 'index, follow',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/online-liquidation-auctions'
+  },
+  openGraph: {
+    url: 'https://www.commercecentral.io/online-liquidation-auctions',
+    title: 'Online Liquidation Auctions | Bid & Save on Bulk Lots',
+    description: 'Join top online liquidation auctions. Bid on bulk lots and save big on inventory for your business. Trusted auction platform for resellers.',
+    images: [
+      {
+        url: '/CC_opengraph.png',
+        width: 500,
+        height: 500,
+        alt: 'Commerce Central Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Online Liquidation Auctions | Bid & Save on Bulk Lots',
+    description: 'Join top online liquidation auctions. Bid on bulk lots and save big on inventory for your business. Trusted auction platform for resellers.',
+    images: ['/CC_opengraph.png'],
+  },
 };
 
 const Page = () => {

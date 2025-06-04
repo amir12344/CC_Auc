@@ -32,9 +32,9 @@ interface SchemaOrg {
 
 // Default metadata for the site
 export const defaultMetadata: Metadata = {
-  title: 'Commerce Central - Maximize Your Inventory Value',
-  description: 'Commerce Central helps businesses maximize revenue from inventory with AI-powered insights, smart pricing strategies, and optimal selling channels.',
-  keywords: 'inventory management, AI pricing, ecommerce optimization, surplus inventory, B2B marketplace, wholesale lots, trusted sellers, liquidation platform',
+  title: 'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+  description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
+  keywords: 'inventory management, AI pricing, ecommerce optimization, surplus inventory, B2B marketplace, wholesale lots, trusted sellers, liquidation platform,surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction',
   authors: [{ name: 'Commerce Central Team' }],
   creator: 'Commerce Central',
   publisher: 'Commerce Central',
@@ -95,8 +95,8 @@ export const defaultOpenGraph: OpenGraph = {
       alt: 'Commerce Central - Maximize Your Inventory Value',
     },
   ],
-  title: 'Commerce Central - The Trusted B2B Surplus Marketplace',
-  description: 'Connect with verified partners to unlock your inventory\'s full potential. Join the only private marketplace built for trusted buyers and sellers.',
+  title: 'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+  description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
 };
 
 // Twitter metadata

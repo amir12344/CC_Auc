@@ -8,6 +8,28 @@ export const metadata: Metadata = {
   description: 'Access the leading wholesale liquidation platform that puts buyers first. Source clean, verified liquidation pallets from trusted brands and authorized distributors. No middlemen, no mystery manifests.',
   keywords: ['wholesale liquidation platform', 'bulk inventory', 'liquidation suppliers', 'inventory sourcing', 'business growth', 'verified liquidation', 'trusted sellers', 'clean manifests', 'return liquidation', 'truckload liquidation'],
   robots: 'index, follow',
+  alternates: {
+    canonical: 'https://www.commercecentral.io/wholesale-liquidation-platform'
+  },
+  openGraph: {
+    url: 'https://www.commercecentral.io/wholesale-liquidation-platform',
+    title: 'Wholesale Liquidation Platform | Source Bulk Inventory From Trusted Sellers',
+    description: 'Access the leading wholesale liquidation platform that puts buyers first. Source clean, verified liquidation pallets from trusted brands and authorized distributors.',
+    images: [
+      {
+        url: '/CC_opengraph.png',
+        width: 500,
+        height: 500,
+        alt: 'Commerce Central Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wholesale Liquidation Platform | Source Bulk Inventory From Trusted Sellers',
+    description: 'Access the leading wholesale liquidation platform that puts buyers first. Source clean, verified liquidation pallets from trusted brands and authorized distributors.',
+    images: ['/CC_opengraph.png'],
+  },
 };
 
 const PlatformPage = () => {

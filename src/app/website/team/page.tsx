@@ -18,7 +18,7 @@ const TeamPageClient = dynamic(() => import('@/src/features/website/components/p
 // Export metadata for this page
 export const metadata: Metadata = {
   ...defaultMetadata,
-  title: 'Our Team - Commerce Central',
+  title: 'Our Team',
   description: 'Meet the Commerce Central team.',
   alternates: {
     canonical: 'https://www.commercecentral.io/website/team'
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     ...defaultOpenGraph,
     url: 'https://www.commercecentral.io/website/team',
-    title: 'Our Team - Commerce Central',
+    title: 'Our Team',
     description: 'Meet the Commerce Central team.',
     images: [
       {
