@@ -103,7 +103,12 @@ export const blogPosts: BlogPost[] = [
     bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
     thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
     category: 'Liquidation',
-    tags: ['Liquidation', 'Inventory Sourcing', 'Reselling', 'Pallet Sales'],
+    tags: [
+      'Liquidation',
+      'Inventory Sourcing',
+      'Reselling',
+      'Pallet Sales',
+    ],
   },
   {
     id: 2,
@@ -146,9 +151,15 @@ export const blogPosts: BlogPost[] = [
     `,
     date: 'May 23, 2025',
     bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
-    thumbnailImage: '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
+    thumbnailImage:
+      '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
     category: 'Liquidation',
-    tags: ['Liquidation', 'Buyer Guide', 'Reselling Tips', 'Pallet Sourcing'],
+    tags: [
+      'Liquidation',
+      'Buyer Guide',
+      'Reselling Tips',
+      'Pallet Sourcing',
+    ],
   },
   {
     id: 3,
@@ -240,7 +251,8 @@ export const blogPosts: BlogPost[] = [
       <p>We don't just list random pallets. We show real photos, expiration dates (when applicable), and full manifests before you buy. You stay in control. We stay in the background.</p>
     `,
     date: 'May 25, 2025',
-    bannerImage: '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
+    bannerImage:
+      '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
     thumbnailImage:
       '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
     category: 'Liquidation',
@@ -332,12 +344,19 @@ export const blogPosts: BlogPost[] = [
     bannerImage: '/images/blog/apparel-liquidation-banner.webp',
     thumbnailImage: '/images/blog/apparel-liquidation-thumb.webp',
     category: 'Liquidation',
-    tags: ['Apparel', 'Liquidation', 'Reselling', 'Fashion', 'Buying Guide'],
+    tags: [
+      'Apparel',
+      'Liquidation',
+      'Reselling',
+      'Fashion',
+      'Buying Guide',
+    ],
   },
   {
     id: 5,
     type: 'buyer',
-    title: 'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
+    title:
+      'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
     description:
       'Get real liquidation deals on electronics without the junk. Avoid e-waste, spot resale-ready items, and source smarter with expert tips from Commerce Central.',
     content: `
@@ -425,7 +444,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 6,
     type: 'buyer',
-    title: 'How to Buy Beauty and Health Deals? (Without Getting Burned)',
+    title:
+      'How to Buy Beauty and Health Deals? (Without Getting Burned)',
     description:
       'Learn how to avoid costly mistakes when buying beauty and health deals. This guide reveals how to spot quality closeouts and avoid expired or damaged products.',
     content: `
@@ -642,7 +662,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 10,
     type: 'buyer',
-    title: 'How to Source Liquidation Pallets for Dollar & Discount Stores',
+    title:
+      'How to Source Liquidation Pallets for Dollar & Discount Stores',
     description:
       'Discover how to source liquidation pallets for dollar and discount stores. Avoid damaged goods, control costs, and build trust with quality shelf-pull inventory.',
     content: `
@@ -701,7 +722,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 11,
     type: 'buyer',
-    title: 'How to Buy Liquidation Pallets for Flea Market & Swap Meet Sellers',
+    title:
+      'How to Buy Liquidation Pallets for Flea Market & Swap Meet Sellers',
     description:
       'Source affordable liquidation pallets for flea market success. Tips on buying, pricing, and profit strategies with Commerce Central’s wholesale deals.',
     content: `
@@ -852,7 +874,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 14,
     type: 'buyer',
-    title: 'Feeling Lost in the Liquidation Channel? Read This First',
+    title:
+      'Feeling Lost in the Liquidation Channel? Read This First',
     description:
       'A clear guide to navigating the liquidation channel, with tips for sourcing smart, avoiding common pitfalls, and using trusted platforms like Commerce Central.',
     content: `
@@ -1002,7 +1025,7 @@ export const blogPosts: BlogPost[] = [
 </ol>
 <p>And most importantly &mdash; <strong>source from platforms that put buyers first.</strong></p>
 <p><strong>Commerce Central is free to join, gives you control over what you buy, and helps you avoid the guessing game.</strong></p>
-<p><strong>Get early access at</strong> <strong>https://www.commercecentral.io/earlyaccess</strong></p>
+<p><strong>Get early access at</strong>: <a href="https://www.commercecentral.io/earlyaccess">https://www.commercecentral.io/earlyaccess</a></p>
 <h2><strong>Final Thoughts on the Liquidation Channel</strong></h2>
 <p>You don&rsquo;t need to know everything about the <strong>liquidation channel</strong> to start &mdash; just enough to avoid the worst mistakes. With the right tools, trusted sources, and a little patience, you can turn <a href="https://www.commercecentral.io/website/blog/buyer/why-inventory-buying-feels-risky-and-how-to-buy-smarter">liquidation chaos into consistent profit</a>.</p>
 <p><strong>Commerce Central was built to make that possible</strong> &mdash; verified sources, no middlemen, and full control over your buys.</p>
@@ -1094,7 +1117,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 16,
     type: 'buyer',
-    title: '7 Liquidation Red Flags Every Reseller Should Know Before Buying',
+    title:
+      '7 Liquidation Red Flags Every Reseller Should Know Before Buying',
     description:
       'New to liquidation? Don’t get burned. Discover 7 warning signs of bad deals and how Commerce Central ensures safe, smart sourcing for resellers.',
     content: `
@@ -1146,7 +1170,7 @@ export const blogPosts: BlogPost[] = [
       '/images/blog/7-Liquidation-Red-Flags-Every-Reseller-Should-Know-Before-Buying-thumbnail.webp',
     category: 'Liquidation',
     tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-  },
+  }
 ]
 
 // Helper function to generate a slug from a title
@@ -1179,16 +1203,13 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 
 // Helper function to generate blog post URL based on type
 export function getBlogPostUrl(post: BlogPost): string {
-  const slug = generateSlug(post.title)
-  return `/website/blog/${post.type}/${slug}`
+  const slug = generateSlug(post.title);
+  return `/website/blog/${post.type}/${slug}`;
 }
 
 // Helper function to get a post by type and slug
-export function getPostByTypeAndSlug(
-  type: string,
-  slug: string
-): BlogPost | undefined {
-  return blogPosts.find(
-    (post) => post.type === type && generateSlug(post.title) === slug
-  )
+export function getPostByTypeAndSlug(type: string, slug: string): BlogPost | undefined {
+  return blogPosts.find(post => 
+    post.type === type && generateSlug(post.title) === slug
+  );
 }
