@@ -46,7 +46,7 @@ const Page = () => {
               The Online Liquidation Auction Platform Built for Buyers
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto">
-              Commerce Central runs clean, transparent auctions and liquidations no junk, no mystery pallets, no broker games. Just verified returns and <Link href="https://www.commercecentral.io/website/blog/how-to-avoid-getting-burned-buying-liquidation-inventory" className="text-[#43CD66] hover:underline">excess inventory</Link> you can actually resell.
+              Commerce Central runs clean, transparent auctions and liquidations no junk, no mystery pallets, no broker games. Just verified returns and <Link href="https://www.commercecentral.io/website/blog/buyer/how-to-avoid-getting-burned-buying-liquidation-inventory" className="text-[#43CD66] hover:underline">excess inventory</Link> you can actually resell.
             </p>
             <Link href="/earlyaccess" className="inline-block">
               <Button className="bg-[#43CD66] hover:bg-[#3BB959] font-[400] cursor-pointer text-black text-lg px-8 py-3 h-auto rounded-full">
@@ -435,7 +435,7 @@ const Page = () => {
 
                 <div className="bg-gray-50 p-6 rounded-xl mb-10">
                   <p className="text-lg text-gray-700">
-                    Commerce Central is a trusted platform for auctions and liquidations, offering verified shelf pulls, <Link href="https://www.commercecentral.io/website/blog/how-to-avoid-getting-burned-buying-liquidation-inventory" className="text-blue-600 hover:text-blue-800 underline">excess inventory</Link>, and returns from top-tier brands. Through curated liquidation auctions, organized returns auctions, and transparent online liquidation auctions, we help resellers and retailers buy smarter. Whether you're <Link href="https://www.commercecentral.io/wholesale-pallet-liquidation" className="text-blue-600 hover:text-blue-800 underline">sourcing pallets</Link> or bidding on full loads, our process puts buyers first.
+                    Commerce Central is a trusted platform for auctions and liquidations, offering verified shelf pulls, <Link href="https://www.commercecentral.io/website/blog/buyer/how-to-avoid-getting-burned-buying-liquidation-inventory" className="text-blue-600 hover:text-blue-800 underline">excess inventory</Link>, and returns from top-tier brands. Through curated liquidation auctions, organized returns auctions, and transparent online liquidation auctions, we help resellers and retailers buy smarter. Whether you're <Link href="https://www.commercecentral.io/wholesale-pallet-liquidation" className="text-blue-600 hover:text-blue-800 underline">sourcing pallets</Link> or bidding on full loads, our process puts buyers first.
                   </p>
                 </div>
 

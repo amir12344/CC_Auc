@@ -6,7 +6,8 @@ function getBlogPosts() {
   return blogPosts.map(post => ({
     slug: generateSlug(post.title),
     publishedAt: post.date,
-    title: post.title
+    title: post.title,
+    type: post.type
   }))
 }
 
@@ -162,9 +163,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Generate blog post URLs dynamically
+  // Generate blog post URLs dynamically with type-based paths
   const blogPostUrls = blogPostsData.map((post) => ({
-    url: `${baseUrl}/website/blog/${post.slug}`,
+    url: `${baseUrl}/website/blog/${post.type}/${post.slug}`,
     lastModified: post.publishedAt ? new Date(post.publishedAt) : currentDate,
     changeFrequency: 'monthly' as const,
     priority: 0.6,

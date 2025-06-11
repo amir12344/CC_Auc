@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import TestimonialsSection from '../sections/OnboardingSection';
-import { BlogPost } from '@/src/lib/blog-data';
+import { BlogPost, getBlogPostUrl } from '@/src/lib/blog-data';
 
 interface BlogPostDetailContentProps {
   initialPost: BlogPost;
@@ -35,7 +35,7 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
         const className = 'text-blue-600 hover:text-blue-800 underline';
         const attrs = `${attrsBefore} ${attrsAfter}`.trim();
         const attrsWithoutClass = attrs.replace(/class=["'][^"']*["']/g, '').trim();
-
+        
         if (isExternal) {
           // For external links, keep as <a> but add target and rel
           return `<a href="${href}" class="${className}" ${attrsWithoutClass} target="_blank" rel="noopener noreferrer">${linkText}</a>`;
@@ -119,7 +119,7 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
                   {posts.map((relatedPost) => (
                     <Link
                       key={relatedPost.id}
-                      href={`/website/blog/${relatedPost.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}`}
+                      href={getBlogPostUrl(relatedPost)}
                       className="block group w-full h-full"
                     >
                       <article

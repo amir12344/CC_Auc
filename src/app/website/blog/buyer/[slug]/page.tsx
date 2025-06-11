@@ -1,14 +1,23 @@
 import type { Metadata } from 'next';
 import { BlogPostDetailContent } from '@/src/features/website/components/blog/BlogPostDetailContent';
-import { BlogPost, getPostBySlug, getRelatedPosts } from '@/src/lib/blog-data';
+import { BlogPost, getPostByTypeAndSlug, getRelatedPosts, blogPosts, generateSlug } from '@/src/lib/blog-data';
 import { Article, WithContext } from 'schema-dts';
 
-// Generate metadata for the page
+// Generate static params for all buyer blog posts
+export async function generateStaticParams() {
+  const buyerPosts = blogPosts.filter(post => post.type === 'buyer');
+  
+  return buyerPosts.map((post) => ({
+    slug: generateSlug(post.title),
+  }));
+}
+
+// Generate metadata for the buyer blog post page
 export async function generateMetadata(
   { params: paramsPromise }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await paramsPromise;
-  const post = await getPostBySlug(slug); // Assuming getPostBySlug might be async
+  const post = await getPostByTypeAndSlug('buyer', slug);
 
   if (!post) {
     return {
@@ -21,12 +30,12 @@ export async function generateMetadata(
     title: post.title,
     description: post.description,
     alternates: {
-      canonical: `https://www.commercecentral.io/website/blog/${slug}`
+      canonical: `https://www.commercecentral.io/website/blog/buyer/${slug}`
     },
     openGraph: {
       title: post.title,
       description: post.description,
-      url: `https://www.commercecentral.io/website/blog/${slug}`,
+      url: `https://www.commercecentral.io/website/blog/buyer/${slug}`,
       type: 'article',
       publishedTime: new Date(post.date).toISOString(),
       images: [
@@ -47,9 +56,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function BlogPostPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
+export default async function BuyerBlogPostPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
   const { slug } = await paramsPromise;
-  const post = await getPostBySlug(slug);
+  const post = await getPostByTypeAndSlug('buyer', slug);
 
   if (!post) {
     return (
@@ -74,7 +83,7 @@ export default async function BlogPostPage({ params: paramsPromise }: { params: 
     datePublished: new Date(post.date).toISOString(),
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.commercecentral.io/website/blog/${slug}`,
+      '@id': `https://www.commercecentral.io/website/blog/buyer/${slug}`,
     },
   };
 
@@ -87,4 +96,4 @@ export default async function BlogPostPage({ params: paramsPromise }: { params: 
       <BlogPostDetailContent initialPost={post} relatedPosts={relatedPosts} />
     </div>
   );
-}
+} 

@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Logo from '../ui/Logo';
 import { Headphones, BookOpen, Users, Menu } from "lucide-react";
-
 import {
   Accordion,
   AccordionContent,
@@ -38,10 +37,11 @@ interface MenuItem {
 }
 
 // Utility functions for complex/repeated className strings
-const getNavbarClasses = (isScrolled: boolean) =>
-  `fixed w-full z-50 transition-all duration-300 ${isScrolled
-    ? 'bg-[#102D21]/95 shadow-lg border-b border-[#43CD66]/10'
-    : 'bg-[#102D21]/90'
+const getNavbarClasses = (isScrolled: boolean) => 
+  `fixed w-full z-50 transition-all duration-300 ${
+    isScrolled 
+      ? 'bg-[#102D21]/95 shadow-lg border-b border-[#43CD66]/10' 
+      : 'bg-[#102D21]/90'
   }`;
 
 const earlyAccessButtonClasses = "px-6 py-2 rounded-full bg-[#43CD66] text-[#1C1E21] font-medium hover:bg-[#43CD66]/10 hover:text-[#43CD66] transition-all duration-200 shadow-xs border border-transparent hover:border-[#43CD66]";
@@ -50,20 +50,23 @@ const navigationTriggerClasses = "text-[#D8F4CC] hover:text-[#43CD66] bg-transpa
 
 const navigationLinkClasses = "text-[#D8F4CC] hover:text-[#43CD66] font-medium text-base transition-colors duration-300 inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 hover:bg-[#43CD66]/10 focus:bg-[#43CD66]/10 focus:text-[#43CD66] active:bg-[#43CD66]/10";
 
-const getSubMenuLinkClasses = (isMobile: boolean) =>
-  `flex items-start gap-4 rounded-xl p-4 leading-none no-underline transition-all duration-300 outline-none select-none group ${isMobile ? 'text-[#D8F4CC] hover:bg-[#43CD66]/10' : 'hover:bg-[#F9F9F9]'
+const getSubMenuLinkClasses = (isMobile: boolean) => 
+  `flex items-start gap-4 rounded-xl p-4 leading-none no-underline transition-all duration-300 outline-none select-none group ${
+    isMobile ? 'text-[#D8F4CC] hover:bg-[#43CD66]/10' : 'hover:bg-[#F9F9F9]'
   }`;
 
 const subMenuIconClasses = "flex items-center justify-center mt-1 transition-transform duration-300 group-hover:scale-110 text-[#43CD66]";
 
-const getSubMenuTitleClasses = (isMobile: boolean) =>
-  `font-semibold text-[18px] mb-1.5 transition-colors duration-300 ${isMobile
-    ? 'text-[#D8F4CC] group-hover:text-[#43CD66]'
-    : 'text-[#102D21] group-hover:text-[#43CD66]'
+const getSubMenuTitleClasses = (isMobile: boolean) => 
+  `font-semibold text-[18px] mb-1.5 transition-colors duration-300 ${
+    isMobile 
+      ? 'text-[#D8F4CC] group-hover:text-[#43CD66]' 
+      : 'text-[#102D21] group-hover:text-[#43CD66]'
   }`;
 
-const getSubMenuDescriptionClasses = (isMobile: boolean) =>
-  `text-[16px] font-normal leading-relaxed ${isMobile ? 'text-[#D8F4CC]/80' : 'text-[#475467]'
+const getSubMenuDescriptionClasses = (isMobile: boolean) => 
+  `text-[16px] font-normal leading-relaxed ${
+    isMobile ? 'text-[#D8F4CC]/80' : 'text-[#475467]'
   }`;
 
 const Navbar = () => {
@@ -114,7 +117,7 @@ const Navbar = () => {
     };
 
     checkInitialScroll();
-
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -145,9 +148,9 @@ const Navbar = () => {
     }
 
     return (
-      <Link
-        key={item.title}
-        href={item.url}
+      <Link 
+        key={item.title} 
+        href={item.url} 
         className="text-lg font-medium text-[#D8F4CC] hover:text-[#43CD66] transition-colors duration-300 py-4 block"
         onClick={() => setIsOpen(false)}
       >
@@ -166,7 +169,7 @@ const Navbar = () => {
             <div>
               <Logo showFullOnMobile={true} />
             </div>
-
+            
             {/* Navigation Items and Early Access - moved to right */}
             <div className="flex items-center gap-6">
               <div className="flex items-center">
@@ -176,8 +179,8 @@ const Navbar = () => {
                   </NavigationMenuList>
                 </NavigationMenu>
               </div>
-              <Button
-                asChild
+              <Button 
+                asChild 
                 className={earlyAccessButtonClasses}
               >
                 <Link href="/earlyaccess">Early Access</Link>
@@ -194,8 +197,8 @@ const Navbar = () => {
               </div>
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
+                  <Button 
+                    variant="ghost" 
                     size="icon"
                     className="text-[#D8F4CC] hover:text-[#43CD66] hover:bg-[#43CD66]/10"
                     aria-label="Open navigation menu"
@@ -203,7 +206,7 @@ const Navbar = () => {
                     <Menu className="h-6 w-6" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent
+                <SheetContent 
                   side="right"
                   className="bg-[#102D21] border-l border-[#43CD66]/20 text-[#D8F4CC] overflow-y-auto w-[300px] sm:w-[350px] p-6"
                 >
@@ -221,8 +224,8 @@ const Navbar = () => {
                     </div>
 
                     <div className="pt-6 border-t border-[#43CD66]/20">
-                      <Button
-                        asChild
+                      <Button 
+                        asChild 
                         className={earlyAccessButtonClasses}
                         onClick={() => setIsOpen(false)}
                       >

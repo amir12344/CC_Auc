@@ -2,20 +2,27 @@
 
 import Link from 'next/link';
 import { Calendar } from 'lucide-react';
-import { blogPosts, BlogPost } from '@/src/lib/blog-data';
+import { blogPosts, BlogPost, getBlogPostUrl } from '@/src/lib/blog-data';
 import Image from 'next/image';
 import { useState } from 'react';
+import BlogTabs from './BlogTabs';
 
 const BlogPostsSection = () => {
+  const [activeTab, setActiveTab] = useState<string>('buyer');
   const [visiblePosts, setVisiblePosts] = useState<number>(6);
-
-  const sortedPosts = [...blogPosts].sort(
+  
+  // Filter and sort posts based on active tab
+  const filteredPosts = blogPosts.filter(post => post.type === activeTab);
+  const sortedPosts = [...filteredPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
-
+  
   const handleLoadMore = () => {
     setVisiblePosts(prev => prev + 3);
   };
+  
+  const buyerPosts = blogPosts.filter(post => post.type === 'buyer');
+  const sellerPosts = blogPosts.filter(post => post.type === 'seller');
 
   return (
     <section className='py-10 bg-white' id='blog-posts'>
@@ -23,18 +30,18 @@ const BlogPostsSection = () => {
         <h2 className='text-center text-4xl font-bold text-[#102D21] mb-16'>
           Latest Articles
         </h2>
+        <BlogTabs 
+          activeTab={activeTab as 'buyer' | 'seller'}
+          onTabChangeAction={(tab) => setActiveTab(tab)}
+          buyerPosts={buyerPosts}
+          sellerPosts={sellerPosts}
+        >
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4'>
           {sortedPosts.slice(0, visiblePosts).map((post: BlogPost) => {
-            const slug = post.title
-              .toLowerCase()
-              .replace(/[^\w\s-]/g, '')
-              .replace(/\s+/g, '-')
-              .replace(/--+/g, '-');
-
             return (
               <Link
                 key={post.id}
-                href={`/website/blog/${slug}`}
+                href={getBlogPostUrl(post)}
                 className='block group w-full h-full'
               >
                 <article
@@ -77,10 +84,10 @@ const BlogPostsSection = () => {
             );
           })}
         </div>
-
+        
         {visiblePosts < sortedPosts.length && (
           <div className="flex justify-center mt-12">
-            <button
+            <button 
               onClick={handleLoadMore}
               className="px-6 py-3 bg-[#43CD66] text-white font-medium rounded-lg hover:bg-[#3ab659] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#43CD66] focus:ring-opacity-50"
             >
@@ -88,6 +95,7 @@ const BlogPostsSection = () => {
             </button>
           </div>
         )}
+      </BlogTabs>
       </div>
     </section>
   );
