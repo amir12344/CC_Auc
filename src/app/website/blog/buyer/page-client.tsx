@@ -1,18 +1,19 @@
+'use client';
 
 // Import the separate section components
-import BlogHeroSection from '@/src/features/website/components/blog/BlogHeroSection';
-import BlogPostsSection from '@/src/features/website/components/blog/BlogPostsSection';
+import BlogListingHero from '@/src/features/website/components/blog/BlogListingHero';
+import BlogListingSection from '@/src/features/website/components/blog/BlogListingSection';
 import TestimonialsSection from '@/src/features/website/components/sections/OnboardingSection';
 
-const BlogPageClient = () => {
+const BuyerBlogPageClient = () => {
   return (
     <main className="flex flex-col items-center relative">
       {/* We're removing the SharedBackgroundPattern as we now have a background image in the hero section */}
       <div className="w-full">
-        <BlogHeroSection />
+        <BlogListingHero type="buyer" />
       </div>
       <div className="w-full">
-        <BlogPostsSection />
+        <BlogListingSection blogType="buyer" />
       </div>
       <div className="w-full">
         <TestimonialsSection />
@@ -21,4 +22,4 @@ const BlogPageClient = () => {
   );
 };
 
-export default BlogPageClient;
+export default BuyerBlogPageClient; 

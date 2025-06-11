@@ -1085,7 +1085,7 @@ export const blogPosts: BlogPost[] = [
 <p>But all of these cut the margin dramatically. More importantly, they dilute perceived brand value.</p>
 <p>Luxury brands in particular face a painful trade-off: discount publicly and risk brand dilution, or discard stock entirely. In an infamous case, Burberry admitted to burning unsold beauty goods to avoid market devaluation, a practice now banned in several countries.</p>
 <h2>The toll on operations and morale</h2>
-<p><a href="https://www.commercecentral.io/website/blog/how-to-buy-beauty-and-health-deals-without-getting-burned">Beauty inventory</a> isn&rsquo;t just fragile, it&rsquo;s logistically demanding. Extra handling for returns, inspections for expiration, rotation by batch all add cost.</p>
+<p><a href="https://www.commercecentral.io/website/blog/buyer/how-to-buy-beauty-and-health-deals-without-getting-burned">Beauty inventory</a> isn&rsquo;t just fragile, it&rsquo;s logistically demanding. Extra handling for returns, inspections for expiration, rotation by batch all add cost.</p>
 <p>But the human toll is real too. When stores are stuck clearing out last season&rsquo;s gift sets, or DCs are packed with pallets of expiring product, it drags morale. It&rsquo;s hard for sales, product, or ops teams to get excited about innovation when they&rsquo;re still digging out of past mistakes.</p>
 <p>This kind of backlog also disrupts launches: new collections might be delayed if there's no space, no budget, or no bandwidth to push them cleanly into market.</p>
 <h2>Key cost factors in Beauty &amp; Cosmetics:</h2>
@@ -1125,7 +1125,7 @@ export const blogPosts: BlogPost[] = [
     <h2>7 Liquidation Red Flags Every Reseller Should Know Before Buying</h2>
 <p>Liquidation can be a powerful way to fuel your resale business but it&rsquo;s not without risks. Scams, shady brokers, misleading manifests, and broken goods are all too common for new (and even experienced) buyers. Here&rsquo;s how to spot the red flags, avoid costly mistakes, and source with confidence.</p>
 <h3>1. "Too Good to Be True" Pricing</h3>
-<p>If a pallet claims $10,000 MSRP for $200, be skeptical. Scammers prey on new buyers with unrealistic markdowns. While good <a href="https://www.commercecentral.io/website/blog/how-to-buy-apparel-liquidation-deals">liquidation deals</a> exist, discounts are typically in the 50&ndash;90% range &mdash; not 98% off.</p>
+<p>If a pallet claims $10,000 MSRP for $200, be skeptical. Scammers prey on new buyers with unrealistic markdowns. While good <a href="https://www.commercecentral.io/website/blog/buyer/how-to-buy-apparel-liquidation-deals">liquidation deals</a> exist, discounts are typically in the 50&ndash;90% range &mdash; not 98% off.</p>
 <p>Commerce Central works only with verified sellers. Our platform shows historical pricing benchmarks and flags unrealistic markdowns so buyers don&rsquo;t fall for bait.</p>
 <h3>2. Vague Descriptions or No Manifest</h3>
 <p>If the seller won&rsquo;t show you what&rsquo;s inside or can&rsquo;t provide a manifest, you&rsquo;re flying blind. Even unmanifested loads should list retailer origin, product category, and rough condition mix.</p>
@@ -1138,7 +1138,7 @@ export const blogPosts: BlogPost[] = [
 <p>Commerce Central supports secure credit card payments and buyer protections, giving you peace of mind when you try a new supplier.</p>
 <h3>5. Cherry-Picked Loads</h3>
 <p>Some brokers remove the high-value items before selling the rest. If you&rsquo;re getting 10 of the same low-dollar item and no variety, it&rsquo;s a red flag. Review manifests for balance and watch for missing &ldquo;anchor&rdquo; products.</p>
-<p>We <a href="https://www.commercecentral.io/website/blog/how-to-vet-liquidation-suppliers-and-build-a-sourcing-plan-that-works">vet liquidation suppliers</a> for inventory integrity. On Commerce Central, loads marked &ldquo;untouched&rdquo; come as-is from retailers, not as broker-curated leftovers.</p>
+<p>We <a href="https://www.commercecentral.io/website/blog/buyer/how-to-vet-liquidation-suppliers-and-build-a-sourcing-plan-that-works">vet liquidation suppliers</a> for inventory integrity. On Commerce Central, loads marked &ldquo;untouched&rdquo; come as-is from retailers, not as broker-curated leftovers.</p>
 <h3>6. Misleading Condition Labels</h3>
 <p>A lot labeled &ldquo;new&rdquo; may actually be a mix of shelf pulls, open box, and returns. Know the definitions:</p>
 <ul>

@@ -1,9 +1,18 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Image from 'next/image';
 
-const testimonials = [
+interface Testimonial {
+  quote: string;
+  author: string;
+  company: string;
+  type: string;
+  profileSrc: string;
+}
+
+// Memoize the testimonials array to prevent recreation on each render
+const TESTIMONIALS: Testimonial[] = [
   {
     quote: "Finally a platform where I don't have to chase brokers or wonder if the manifest is real. Commerce Central makes sourcing simple and legit.",
     author: "National Wholesaler",
@@ -42,32 +51,64 @@ const testimonials = [
 ];
 
 export default function TestimonialSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  // Use ref to track current index without causing re-renders
+  const currentIndexRef = useRef<number>(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+
+  // Update both ref and state to keep them in sync
+  const updateIndex = useCallback((newIndex: number) => {
+    // Normalize index to be within bounds
+    const normalizedIndex = (newIndex + TESTIMONIALS.length) % TESTIMONIALS.length;
+    currentIndexRef.current = normalizedIndex;
+    setCurrentIndex(normalizedIndex);
+  }, []);
+
+  // Handle navigation with stable function reference
+  const goToTestimonial = useCallback((index: number) => {
+    if (index === currentIndexRef.current) return; // Skip if already at this index
+    
+    setIsAnimating(true);
+    // Use the ref version in the timeout to avoid closure issues
+    setTimeout(() => {
+      updateIndex(index);
+      setIsAnimating(false);
+    }, 500);
+  }, [updateIndex]);
 
   // Auto-advance testimonials
   useEffect(() => {
     const timer = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-        setIsAnimating(false);
-      }, 500);
+      const nextIndex = (currentIndexRef.current + 1) % TESTIMONIALS.length;
+      goToTestimonial(nextIndex);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [goToTestimonial]);
 
-  const testimonial = testimonials[currentIndex];
+  // Get current testimonial
+  const testimonial = TESTIMONIALS[currentIndex];
+  const hasAuthorInfo = testimonial.company || testimonial.type;
 
   return (
     <div className="border-t border-[#0c4d3a] lg:mt-auto">
       <h3 className="text-center font-bold text-[#43cd66] text-[30px] text-xl mt-[2rem] mb-4">Trusted by innovators and industry leaders</h3>
-      <div className={`transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+      <div 
+        className={`transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+        aria-live="polite"
+        aria-atomic="true"
+      >
         <blockquote className="text-lg md:text-xl text-gray-100 italic mb-6 font-medium text-center">
-          <svg aria-hidden="true" className="w-6 h-6 inline-block text-[#43cd66] mb-2 mr-1" fill="currentColor" viewBox="0 0 24 24">
+          <svg 
+            aria-hidden="true" 
+            className="w-6 h-6 inline-block text-[#43cd66] mb-2 mr-1" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
             <path d="M7.17 17A5.001 5.001 0 0 1 2 12V7a5 5 0 0 1 5-5h.17A3.001 3.001 0 0 1 10 5v2a3 3 0 0 1-3 3H5v2a3 3 0 0 0 3 3h.17A3.001 3.001 0 0 1 10 17v2a3 3 0 0 1-3 3H7a5 5 0 0 1-5-5v-2h5.17z" />
           </svg>
+          <span className="sr-only">Testimonial:</span>
           "{testimonial.quote}"
         </blockquote>
         <div className="flex items-center justify-center gap-3 mt-4">
@@ -92,32 +133,30 @@ export default function TestimonialSlider() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center gap-2 mt-6">
-        {testimonials.map((_, idx) => (
-          <div
-            key={idx}
-            className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-[#43cd66] w-4' : 'bg-gray-400 bg-opacity-40 w-2'}`}
-            role="button"
-            tabIndex={0}
-            aria-label={`Go to testimonial ${idx + 1}`}
-            onClick={() => {
-              setIsAnimating(true);
-              setTimeout(() => {
-                setCurrentIndex(idx);
-                setIsAnimating(false);
-              }, 500);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setIsAnimating(true);
-                setTimeout(() => {
-                  setCurrentIndex(idx);
-                  setIsAnimating(false);
-                }, 500);
-              }
-            }}
-          />
-        ))}
+      <div className="flex justify-center gap-2 mt-6" role="tablist" aria-label="Testimonial navigation">
+        {TESTIMONIALS.map((_testimonial: Testimonial, idx: number) => {
+          const isSelected = idx === currentIndex;
+          return (
+            <button
+              key={idx}
+              type="button"
+              role="tab"
+              id={`testimonial-tab-${idx}`}
+              aria-selected={isSelected}
+              aria-controls={`testimonial-${idx}`}
+              className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#43cd66] ${isSelected ? 'bg-[#43cd66] w-4' : 'bg-gray-400 bg-opacity-40 w-2 hover:bg-opacity-60'}`}
+              onClick={() => goToTestimonial(idx)}
+              onKeyDown={(e: React.KeyboardEvent) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  goToTestimonial(idx);
+                }
+              }}
+            >
+              <span className="sr-only">View testimonial {idx + 1}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

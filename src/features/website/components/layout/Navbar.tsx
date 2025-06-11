@@ -92,10 +92,16 @@ const Navbar = () => {
           url: "/website/podcast",
         },
         {
-          title: "Blog",
-          description: "Articles and resources",
+          title: "Buyer Blogs",
+          description: "Tips and strategies for inventory buyers",
           icon: <BookOpen className="h-5 w-5 stroke-[2px]" />,
-          url: "/website/blog",
+          url: "/website/blog/buyer",
+        },
+        {
+          title: "Seller Blogs",
+          description: "Insights for brands and surplus sellers",
+          icon: <BookOpen className="h-5 w-5 stroke-[2px]" />,
+          url: "/website/blog/seller",
         },
         {
           title: "Meet the team",

@@ -163,7 +163,7 @@ export const BlogPostDetailContent = ({ initialPost, relatedPosts }: BlogPostDet
         </div>
         <div className="text-center">
           <Link
-            href="/website/blog"
+                            href="/website/blog/buyer"
             className="inline-flex items-center text-[#43CD66] text-xl mb-6 hover:underline"
           >
             <ArrowLeft size={16} className="mr-2" />

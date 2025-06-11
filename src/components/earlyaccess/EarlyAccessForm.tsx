@@ -87,7 +87,7 @@ export default function EarlyAccessForm() {
         window.rdt('track', 'earlyAccess', eventData);
       }
       reset();
-      // Added a small delay to allow the Reddit pixel to fire before redirecting
+      // Add a small delay to allow the Reddit pixel to fire before redirecting
       setTimeout(() => {
         router.push('/earlyaccess/thankyou');
       }, 500); // 500 milliseconds delay
@@ -184,61 +184,61 @@ export default function EarlyAccessForm() {
           </div>
         </div>
 
-        {/* Email */}
-        <div>
-          <label
-            htmlFor='email'
-            className='block text-md md:text-sm font-medium text-gray-700 mb-1'
-          >
-            Email
-          </label>
-          <div className='relative'>
-            <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-              <Mail className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+        {/* Email & Company Name */}
+        <div className='flex flex-col md:flex-row gap-3 md:gap-6'>
+          <div className='w-full md:w-1/2'>
+            <label
+              htmlFor='email'
+              className='block text-md md:text-sm font-medium text-gray-700 mb-1'
+            >
+              Email
+            </label>
+            <div className='relative'>
+              <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
+                <Mail className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+              </div>
+              <input
+                type='email'
+                id='email'
+                {...register('email')}
+                className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.email ? 'border-red-500' : 'border-gray-300'
+                  } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+                placeholder='you@example.com'
+              />
             </div>
-            <input
-              type='email'
-              id='email'
-              {...register('email')}
-              className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.email ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
-              placeholder='you@example.com'
-            />
+            {errors.email && (
+              <p className='mt-1 text-xs md:text-sm text-red-600'>
+                {errors.email.message}
+              </p>
+            )}
           </div>
-          {errors.email && (
-            <p className='mt-1 text-xs md:text-sm text-red-600'>
-              {errors.email.message}
-            </p>
-          )}
-        </div>
-
-        {/* Company Name */}
-        <div>
-          <label
-            htmlFor='companyName'
-            className='block text-md md:text-sm font-medium text-gray-700 mb-1'
-          >
-            Company Name (Optional)
-          </label>
-          <div className='relative'>
-            <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-              <Building className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+          <div className='w-full md:w-1/2'>
+            <label
+              htmlFor='companyName'
+              className='block text-md md:text-sm font-medium text-gray-700 mb-1'
+            >
+              Company Name (Optional)
+            </label>
+            <div className='relative'>
+              <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
+                <Building className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+              </div>
+              <input
+                type='text'
+                id='companyName'
+                spellCheck={false}
+                {...register('companyName')}
+                className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.companyName ? 'border-red-500' : 'border-gray-300'
+                  } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+                placeholder='Your Company LLC'
+              />
             </div>
-            <input
-              type='text'
-              id='companyName'
-              spellCheck={false}
-              {...register('companyName')}
-              className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.companyName ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
-              placeholder='Your Company LLC'
-            />
+            {errors.companyName && (
+              <p className='mt-1 text-xs md:text-sm text-red-600'>
+                {errors.companyName.message}
+              </p>
+            )}
           </div>
-          {errors.companyName && (
-            <p className='mt-1 text-xs md:text-sm text-red-600'>
-              {errors.companyName.message}
-            </p>
-          )}
         </div>
 
         {/* Phone Number */}
@@ -429,7 +429,8 @@ export default function EarlyAccessForm() {
                 window.rdt('track', 'EarlyAccessButtonClick', { buttonName: 'ReserveAccessEarlyAccessForm' });
               }
             }}
-            className={`w-full bg-[#43CD66] hover:bg-[#3ab859] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center ${(!isValid || isSubmitting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
+            className={`w-full bg-[#43CD66] hover:bg-[#3ab859] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center ${
+              (!isValid || isSubmitting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
           >
             {isSubmitting ? (
               <>
@@ -440,7 +441,7 @@ export default function EarlyAccessForm() {
                 Processing...
               </>
             ) : (
-              <span className='text-[#1C1E21] text-md md:text-lg'>Reserve Access — It’s Free & Fast</span>
+                <span className='text-[#1C1E21] text-md md:text-lg'>Reserve Access — It's Free & Fast</span>
             )}
           </button>
         </div>

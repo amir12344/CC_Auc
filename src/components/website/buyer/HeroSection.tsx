@@ -44,13 +44,16 @@ const HeroSection = () => (
           <div className="relative top-[1px] overflow-hidden border border-neutral-800 bg-neutral-900">
             <Image
               src="/images/marketplace3.webp"
-              alt="Commerce Central Seller Dashboard Preview"
+              alt="Commerce Central Buyer Dashboard Preview"
               width={1920}
               height={675}
               className="w-full object-cover rounded-t-[10px]"
-              quality={70}
-              priority
+              quality={85}
+              priority={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+              placeholder="blur"
               unoptimized
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
           </div>
         </motion.div>
