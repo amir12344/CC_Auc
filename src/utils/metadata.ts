@@ -177,7 +177,8 @@ export const getMainPagesBreadcrumb = (): SchemaOrg => {
     { name: 'Seller', url: 'https://www.commercecentral.io/website/seller' },
     { name: 'Buyer', url: 'https://www.commercecentral.io/website/buyer' },
     { name: 'Team', url: 'https://www.commercecentral.io/website/team' },
-    { name: 'Blog', url: 'https://www.commercecentral.io/website/blog' },
+    { name: 'Buyer Blogs', url: 'https://www.commercecentral.io/website/blog/buyer' },
+  { name: 'Seller Blogs', url: 'https://www.commercecentral.io/website/blog/seller' },
     { name: 'Early Access', url: 'https://www.commercecentral.io/earlyaccess' },
   ];
   

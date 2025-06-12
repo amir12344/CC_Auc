@@ -13,7 +13,11 @@ import {
   getMainPagesBreadcrumb,
 } from "@/src/utils/metadata";
 import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
-import ConfigureAmplifyClientSide from "./ConfigureAmplifyClientSide";
+import { Inter } from 'next/font/google';
+import { ClientProviders } from '@/src/components/providers/ClientProviders';
+import ConfigureAmplifyClientSide from './ConfigureAmplifyClientSide';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
@@ -124,28 +128,30 @@ export default function RootLayout({
 
         </Script>
       </head>
-      <body suppressHydrationWarning>
-        <ConfigureAmplifyClientSide />
-        <StyleProvider />
-        <ErrorBoundary>
-          <DynamicClientProvidersWrapper>
-            <Suspense fallback={null}>
-              <LoadingIndicatorClient />
-            </Suspense>
-            <Suspense fallback={
-              <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-xs z-50">
-                <div className="flex flex-col items-center">
-                  <div className="relative w-16 h-16 mb-4">
-                    <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-                    <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+      <body suppressHydrationWarning className={inter.className}>
+        <ClientProviders>
+          <ConfigureAmplifyClientSide />
+          <StyleProvider />
+          <ErrorBoundary>
+            <DynamicClientProvidersWrapper>
+              <Suspense fallback={null}>
+                <LoadingIndicatorClient />
+              </Suspense>
+              <Suspense fallback={
+                <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-xs z-50">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-16 h-16 mb-4">
+                      <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
+                      <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            }>
-              {children}
-            </Suspense>
-          </DynamicClientProvidersWrapper>
-        </ErrorBoundary>
+              }>
+                {children}
+              </Suspense>
+            </DynamicClientProvidersWrapper>
+          </ErrorBoundary>
+        </ClientProviders>
         {/* LinkedIn Insights */}
         <LinkedInInsight />
       </body>

@@ -33,10 +33,10 @@ const HeroSectionClient = () => {
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image
+        <Image 
           src="/images/heroBanner.webp"
-          alt="Modern warehouse and logistics"
-          fill
+          alt="Modern warehouse and logistics" 
+          fill 
           style={{ objectFit: 'cover' }}
           priority
           unoptimized
@@ -52,12 +52,12 @@ const HeroSectionClient = () => {
       <div className={containerClasses}>
         <div className={contentWrapperClasses}>
           <div className={contentClasses}>
-            <h1
-              className={headingClasses}
-              style={{ willChange: 'transform, opacity' }}
-            >
-              The Go-To Platform to Move and Source <span className="italic text-[#D8F4CC]">Surplus Inventory</span>
-            </h1>
+          <h1
+            className={headingClasses}
+            style={{ willChange: 'transform, opacity' }}
+          >
+            The Go-To Platform to Move and Source <span className="italic text-[#D8F4CC]">Surplus Inventory</span> 
+          </h1>
 
             <div
               className={descriptionClasses}

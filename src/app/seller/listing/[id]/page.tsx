@@ -1,19 +1,20 @@
 'use client';
 
-import { withAuth } from '@/src/hocs/withAuth';
+import { useParams } from 'next/navigation';
+import withAuth from '@/src/hocs/withAuth';
 import MainLayout from '@/src/components/layout/MainLayout';
 import Link from 'next/link';
 
-const SellerListingPage = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const resolvedParams = await params;
-  const { id } = resolvedParams;
+const SellerListingPage = () => {
+  const params = useParams();
+  const id = params.id as string;
 
   return (
     <MainLayout>
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
-            href="/seller"
+            href="/seller/dashboard"
             className="flex items-center text-primary-600 hover:text-primary-700"
           >
             <svg
@@ -57,7 +58,7 @@ const SellerListingPage = async ({ params }: { params: Promise<{ id: string }> }
           <p className="text-gray-600 mb-6 max-w-md mx-auto">
             The seller listing management feature is currently under development. Check back soon for updates!
           </p>
-          <Link href="/seller" className="btn btn-primary">
+          <Link href="/seller/dashboard" className="btn btn-primary">
             Return to Seller Dashboard
           </Link>
         </div>
@@ -114,4 +115,7 @@ const SellerListingPage = async ({ params }: { params: Promise<{ id: string }> }
 };
 
 // Use withAuth HOC to protect this page
-export default withAuth(SellerListingPage, { redirectUnauthenticated: '/login?returnUrl=/seller/listing' });
+export default withAuth(SellerListingPage, { 
+  allowedUserTypes: ['seller'],
+  redirectTo: '/auth/login'
+});

@@ -14,5 +14,6 @@ export function generateSlug(product: Product): string {
  */
 export function findProductBySlugOrId(products: Product[], productId: string): Product | undefined {
   // Find an exact match by ID
-  return products.find(p => p.id === productId);
+  const byId = products.find(p => p.id.toLowerCase() === productId.toLowerCase());
+  return byId;
 }

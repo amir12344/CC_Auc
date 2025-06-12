@@ -15,13 +15,23 @@ export interface Product {
   isRefurbished?: boolean;
   isAlmostGone?: boolean;
   label?: string;
-  category?: string;
-  /** @deprecated Do not use hardcoded links. Use generateSlug() instead */
-  link?: string;
+  category: string;
+  retailer?: string;
   seller?: Seller;
   bids?: number;
   timeLeft?: string;
   description?: string;
   condition?: string;
+  isNewArrival?: boolean;
+  isFeatured?: boolean;
+  isTrending?: boolean;
+  unitsAvailable?: number;
+  msrpDiscountPercent?: number;
+  // Additional properties for search and filtering
+  stock?: number;
+  location?: string;
+  rating?: number;
+  reviewCount?: number;
+  date?: string;
 }
 

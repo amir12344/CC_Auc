@@ -9,6 +9,7 @@ export const DashboardPreview = () => (
     animate={{ opacity: 100, scale: 1 }}
     transition={{ duration: 0.4, delay: 0.3 }}
   >
-    <Image src="/images/dashboard_preview.webp" alt="Dashboard Preview" unoptimized width={1000} quality={100} height={500} />
+    <Image src="/images/dashboard_preview.webp" alt="Dashboard Preview" unoptimized quality={100} width={1920}
+      height={675} className="w-full object-cover rounded-t-[10px]" />
   </motion.div>
 );

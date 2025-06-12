@@ -301,7 +301,7 @@ export const createComplianceVisualization = () => (
  */
 export const createChannelDistributionVisualization = () => (
   <div className="h-[400px] overflow-auto">
-    <div className="bg-gray-50 p-6 rounded-xl" style={{ marginTop: '14%' }}>
+    <div className="bg-gray-50 p-6 rounded-xl" style={{marginTop:'14%'}}>
       <h4 className="font-medium mb-4 text-text-primary">Channel Distribution</h4>
       <div className="space-y-6">
         {/* D2C Channel */}

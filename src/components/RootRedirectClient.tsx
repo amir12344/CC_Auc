@@ -17,7 +17,7 @@ export function RootRedirectClient() {
     // Redirect based on user type
     if (isAuthenticated) {
       if (userType === 'seller') {
-        router.push('/seller');
+        router.push('/seller/dashboard');
       } else {
         // Default to buyer
         router.push('/marketplace');

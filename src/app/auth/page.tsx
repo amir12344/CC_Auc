@@ -13,8 +13,8 @@ export default function AuthPage() {
 
   // Prefetch destinations for faster navigation
   useEffect(() => {
-    router.prefetch('/auth/buyer');
-    router.prefetch('/auth/seller');
+    router.prefetch('/auth/buyer-signup');
+    router.prefetch('/auth/seller-signup');
     router.prefetch('/auth/login');
   }, [router]);
 
@@ -26,10 +26,10 @@ export default function AuthPage() {
   const handleNextClick = () => {
     if (selectedOption === 'buy') {
       setIsLoading(true);
-      router.push('/auth/buyer');
+      router.push('/auth/buyer-signup');
     } else if (selectedOption === 'sell') {
       setIsLoading(true);
-      router.push('/auth/seller');
+      router.push('/auth/seller-signup');
     } else {
       setError('Please select an option.');
     }

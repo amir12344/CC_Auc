@@ -67,8 +67,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/buyer/dashboard" className="text-gray-300 hover:text-white">
-                  Dashboard
+                <Link href="/buyer/deals" className="text-gray-300 hover:text-white">
+                  My Deals
                 </Link>
               </li>
               <li>

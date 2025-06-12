@@ -15,19 +15,19 @@ export function middleware(request: NextRequest) {
   // 1. Check if lowercase redirect is needed
   const lowercasePathname = pathname.toLowerCase();
   const needsLowercase = pathname !== lowercasePathname;
-  
+
   // 2. Check if trailing slash removal is needed (except root path)
   const hasTrailingSlash = pathname !== '/' && pathname.endsWith('/');
 
   // If URL needs to be normalized (lowercase or trailing slash removal)
   if (needsLowercase || hasTrailingSlash) {
     let newPathname = pathname;
-    
+
     // Remove trailing slash if present (except for root path)
     if (hasTrailingSlash) {
       newPathname = newPathname.slice(0, -1);
     }
-    
+
     // Convert to lowercase if needed
     if (needsLowercase) {
       newPathname = newPathname.toLowerCase();
@@ -36,7 +36,7 @@ export function middleware(request: NextRequest) {
     // Create new URL with normalized path
     const newUrl = new URL(request.url);
     newUrl.pathname = newPathname;
-    
+
     // Preserve query parameters
     newUrl.search = url.search;
 

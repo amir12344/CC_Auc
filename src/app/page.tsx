@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import WebsiteLayout from './website/layout';
 import HomeClient from './website/page-client';
 
@@ -31,12 +32,19 @@ export const metadata: Metadata = {
 
 /**
  * Home Page - Server Component
+ * Optimized with React.Suspense boundaries while preserving website layout
  * Clean root URL; content is served via rewrite to /website
  */
 export default function Home() {
   return (
     <WebsiteLayout>
-      <HomeClient />
+      <Suspense fallback={
+        <div className="min-h-[600px] bg-gray-100 animate-pulse">
+          <div className="min-h-[600px] bg-gray-300 animate-pulse" />
+        </div>
+      }>
+        <HomeClient />
+      </Suspense>
     </WebsiteLayout>
   );
 }

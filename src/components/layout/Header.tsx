@@ -1,69 +1,95 @@
+'use client';
+
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { usePathname } from 'next/navigation';
 // Removed unused Image import
 import { HeaderClient } from './HeaderClient';
 import Logo from '@/src/features/website/components/ui/Logo';
+import MobileNavigation from './MobileNavigation';
+import { Button } from '@/src/components/ui/button';
+import SearchBar from './SearchBar';
+import { MegaMenu } from './MegaMenu';
+import { selectIsSeller, selectIsAuthenticated } from '@/src/features/authentication/store/authSelectors';
 
 /**
- * Header component - Server Component
+ * Header component - Client Component (for role-based navigation)
  */
 export default function Header() {
+  const isSeller = useSelector(selectIsSeller);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const pathname = usePathname();
+  
+  // Hide mega menu on seller pages
+  const isSellerPage = pathname?.startsWith('/seller');
+  const showMegaMenu = !isSellerPage;
+  
   return (
-    <header className='bg-white sticky top-0 z-50'>
-      <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center'>
-        {/* Left: Logo */}
-        <div className='flex items-center space-x-6'>
-          <Logo />
-          <Link
-            href='/inbox'
-            className='text-black font-medium hover:underline transition-colors'
-          >
-            Inbox
-          </Link>
-          <Link
-            href='/wishlist'
-            className='text-black font-medium hover:underline transition-colors'
-          >
-            Wishlist
-          </Link>
-        </div>
-        {/* Center: Search bar */}
-        <div className='flex-1 max-w-sm mx-8'>
-          <div className='relative'>
-            <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-5 w-5 text-neutral-400'
-                viewBox='0 0 20 20'
-                fill='currentColor'
+    <>
+      {/* Sticky header with logo and navigation */}
+      <header className='bg-[#102D21] top-0 z-50'>
+        <div className='max-w-8xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center'>
+          {/* Left: Logo and Navigation Links */}
+          <div className='flex items-center space-x-6'>
+            <Logo />
+            
+            {/* Main navigation links - visible only on desktop */}
+            <nav className='hidden md:flex items-center space-x-6'>
+              <Link 
+                href="/" 
+                className="text-[#D8F4CC] hover:text-[#43CD66] font-medium text-lg transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#43CD66]/10 cursor-pointer"
               >
-                <path
-                  fillRule='evenodd'
-                  d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
-                  clipRule='evenodd'
-                />
-              </svg>
+                Home
+              </Link>
+              
+              {/* Show Dashboard for authenticated sellers */}
+              {isAuthenticated && isSeller && (
+                <Link 
+                  href="/seller/dashboard" 
+                  className="text-[#D8F4CC] hover:text-[#43CD66] font-medium text-lg transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#43CD66]/10 cursor-pointer"
+                >
+                  Dashboard
+                </Link>
+              )}
+              
+              {/* Show Marketplace for non-sellers */}
+              {(!isAuthenticated || !isSeller) && (
+                <Link 
+                  href="/marketplace" 
+                  className="text-[#D8F4CC] hover:text-[#43CD66] font-medium text-lg transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#43CD66]/10 cursor-pointer"
+                >
+                  Marketplace
+                </Link>
+              )}
+            </nav>
+          </div>
+
+          {/* Center: Search bar - visible only on desktop */}
+          <div className='hidden md:block flex-1 max-w-sm mx-8'>
+            <SearchBar />
+          </div>
+
+          {/* Right: User Actions */}
+          <div className='flex items-center space-x-3'>
+            {/* Mobile menu button - only visible on mobile */}
+            <div className='md:hidden'>
+              <MobileNavigation />
             </div>
-            <input
-              type='text'
-              placeholder='Search brands or products'
-              className='w-full pl-10 pr-4 py-2 border border-neutral-300 rounded-full focus:outline-hidden focus:ring-2 focus:ring-black bg-white text-black placeholder-neutral-400'
-              spellCheck={false}
-              autoComplete='off'
-            />
+            
+            {/* User profile and auth - handles both mobile and desktop */}
+            <HeaderClient />
           </div>
         </div>
-        {/* Right: My Deals and Avatar */}
-        <div className='flex items-center space-x-4'>
-          <Link
-            href='/my-deals'
-            className='text-black font-medium hover:underline transition-colors'
-          >
-            My Deals
-          </Link>
-          <HeaderClient />
-        </div>
+      </header>
+      
+      {/* Mobile search - only visible on small screens */}
+      <div className='md:hidden bg-[#102D21] px-4 py-3 border-t border-[#43CD66]/20'>
+        <SearchBar />
       </div>
-    </header>
+      
+      {/* Mega Menu - only visible on desktop and non-seller pages */}
+      {showMegaMenu && <MegaMenu />}
+    </>
   )
 }
 
