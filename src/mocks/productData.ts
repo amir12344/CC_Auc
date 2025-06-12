@@ -1,4 +1,4 @@
-import { Product } from '@/src/types'
+import { Product } from '@/src/shared/types/navigation'
 
 // Spotlight Deal
 export const spotlightDeal: Product[] = [
@@ -12,6 +12,10 @@ export const spotlightDeal: Product[] = [
     shipping: 'Free shipping',
     daysLeft: 2,
     isRefurbished: true,
+    category: 'Major Appliances',
+    retailer: 'Best Buy Returns',
+    unitsAvailable: 50,
+    msrpDiscountPercent: 60
   }
 ]
 
@@ -26,17 +30,25 @@ export const trendingDeals: Product[] = [
     discount: 40,
     shipping: 'Free shipping',
     isRefurbished: true,
-    isAlmostGone: true
+    isAlmostGone: true,
+    category: 'Home Appliances',
+    retailer: 'Dyson',
+    unitsAvailable: 45,
+    msrpDiscountPercent: 40
   },
   {
     id: 'trending2',
-    image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+    image: 'https://images.unsplash.com/photo-1596460107916-430662021049?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
     title: 'Sony 65" 4K UHD Smart Google TV with HDR KD65X80K',
     price: 698.00,
     originalPrice: 999.99,
     discount: 30,
     shipping: 'Free shipping',
-    isRefurbished: true
+    isRefurbished: true,
+    category: 'Electronics',
+    retailer: 'Sony',
+    unitsAvailable: 100,
+    msrpDiscountPercent: 30
   },
   {
     id: 'trending3',
@@ -46,7 +58,37 @@ export const trendingDeals: Product[] = [
     originalPrice: 429.99,
     discount: 23,
     shipping: 'Free shipping',
-    isRefurbished: true
+    isRefurbished: true,
+    category: 'Electronics',
+    retailer: 'Apple',
+    unitsAvailable: 150,
+    msrpDiscountPercent: 23
+  },
+  {
+    id: 'trendingFootwear1',
+    image: 'https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=2030&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'ComfortStride Running Shoes',
+    price: 89.99,
+    originalPrice: 119.99,
+    discount: 25,
+    shipping: 'Free shipping',
+    category: 'Performance Footwear',
+    retailer: 'SportStyle Shoes',
+    unitsAvailable: 150,
+    msrpDiscountPercent: 25
+  },
+  {
+    id: 'trendingBeauty1',
+    image: 'https://images.unsplash.com/photo-1618120508902-c8d05e7985ee?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Revitalizing Skin Serum',
+    price: 45.50,
+    originalPrice: 60.00,
+    discount: 24,
+    shipping: 'Free shipping',
+    category: 'Natural Skincare',
+    retailer: 'Pure Organics',
+    unitsAvailable: 220,
+    msrpDiscountPercent: 17
   }
 ]
 
@@ -62,7 +104,11 @@ export const featuredDeals: Product[] = [
     shipping: 'Free shipping',
     isRefurbished: true,
     isAlmostGone: true,
-    label: 'HOT'
+    label: 'HOT',
+    category: 'Electronics',
+    retailer: 'EcoFlow',
+    unitsAvailable: 30,
+    msrpDiscountPercent: 40
   },
   {
     id: 'featured2',
@@ -72,7 +118,11 @@ export const featuredDeals: Product[] = [
     originalPrice: 1599.99,
     discount: 37,
     shipping: 'Free shipping',
-    isRefurbished: true
+    isRefurbished: true,
+    category: 'Computers',
+    retailer: 'Lenovo',
+    unitsAvailable: 65,
+    msrpDiscountPercent: 37
   },
   {
     id: 'featured3',
@@ -82,7 +132,11 @@ export const featuredDeals: Product[] = [
     originalPrice: 199.99,
     discount: 30,
     shipping: 'Free shipping',
-    isRefurbished: true
+    isRefurbished: true,
+    category: 'Kitchen Tools',
+    retailer: 'Kitchenware Wholesale',
+    unitsAvailable: 500,
+    msrpDiscountPercent: 50
   },
   {
     id: 'featured4',
@@ -93,7 +147,38 @@ export const featuredDeals: Product[] = [
     discount: 24,
     shipping: 'Free shipping',
     isRefurbished: true,
-    label: 'HOT'
+    label: 'HOT',
+    category: 'Audio Gadgets',
+    retailer: 'SoundWave Audio',
+    unitsAvailable: 95,
+    msrpDiscountPercent: 30
+  },
+  {
+    id: 'featuredAccessory1',
+    image: 'https://images.unsplash.com/photo-1667284152823-0b07a791fb79?q=80&w=2126&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Elegant Leather Strap Watch',
+    price: 120.00,
+    originalPrice: 180.00,
+    discount: 33,
+    label: 'NEW',
+    shipping: 'Free shipping',
+    category: 'Fashion Accessory',
+    retailer: 'Accessory Co.',
+    unitsAvailable: 235,
+    msrpDiscountPercent: 33
+  },
+  {
+    id: 'featuredFootwear1',
+    image: 'https://images.unsplash.com/photo-1563635419376-78d400e5588e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Durable Hiking Boots',
+    price: 150.00,
+    originalPrice: 200.00,
+    discount: 25,
+    shipping: 'Free shipping',
+    category: 'Outdoor Footwear',
+    retailer: 'Outdoor Gear Pro',
+    unitsAvailable: 180,
+    msrpDiscountPercent: 25
   }
 ]
 
@@ -107,7 +192,11 @@ export const moreDeals: Product[] = [
     originalPrice: 99.99,
     discount: 40,
     shipping: 'Free shipping',
-    label: 'SALE'
+    label: 'SALE',
+    category: 'Athletic Footwear',
+    retailer: 'New Balance',
+    unitsAvailable: 250,
+    msrpDiscountPercent: 40
   },
   {
     id: 'more2',
@@ -117,7 +206,11 @@ export const moreDeals: Product[] = [
     originalPrice: 75.00,
     discount: 56,
     shipping: 'Free shipping',
-    isAlmostGone: true
+    isAlmostGone: true,
+    category: 'Fragrance Beauty',
+    retailer: 'Burberry',
+    unitsAvailable: 100,
+    msrpDiscountPercent: 56
   },
   {
     id: 'more3',
@@ -127,7 +220,11 @@ export const moreDeals: Product[] = [
     originalPrice: 65.00,
     discount: 49,
     shipping: 'Free shipping',
-    isAlmostGone: true
+    isAlmostGone: true,
+    category: 'Fragrance Beauty',
+    retailer: 'Hugo Boss',
+    unitsAvailable: 60,
+    msrpDiscountPercent: 49
   },
   {
     id: 'more4',
@@ -138,7 +235,37 @@ export const moreDeals: Product[] = [
     discount: 30,
     shipping: 'Free shipping',
     isAlmostGone: true,
-    label: 'HOT'
+    label: 'HOT',
+    category: 'Mobile Electronics',
+    retailer: 'Mobile Direct',
+    unitsAvailable: 300,
+    msrpDiscountPercent: 30
+  },
+  {
+    id: 'moreAccessory1',
+    image: 'https://images.unsplash.com/photo-1680068099053-81f58fff58a1?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Sterling Silver Pendant Necklace',
+    price: 75.00,
+    originalPrice: 100.00,
+    discount: 25,
+    shipping: 'Free shipping',
+    category: 'Wearable Accessory',
+    retailer: 'Gadget Hub',
+    unitsAvailable: 175,
+    msrpDiscountPercent: 20
+  },
+  {
+    id: 'moreBeauty1',
+    image: 'https://plus.unsplash.com/premium_photo-1661726457110-c43a88d74567?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Pro Makeup Palette - Earth Tones',
+    price: 39.99,
+    originalPrice: 55.00,
+    discount: 27,
+    shipping: 'Free shipping',
+    category: 'Cosmetics Beauty',
+    retailer: 'Beauty Hub',
+    unitsAvailable: 200,
+    msrpDiscountPercent: 27
   }
 ]
 
@@ -159,7 +286,10 @@ export const bargainListings: Product[] = [
     price: 4999,
     originalPrice: 7500,
     shipping: 'Free shipping',
-    isRefurbished: false
+    isRefurbished: false,
+    retailer: 'Walmart',
+    unitsAvailable: 100,
+    msrpDiscountPercent: 30
   },
   {
     id: 'bargain2',
@@ -169,9 +299,12 @@ export const bargainListings: Product[] = [
       name: 'Home Depot',
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/TheHomeDepot.svg/2560px-TheHomeDepot.svg.png'
     },
-    bids: 5,
-    timeLeft: '2d 4h',
-    category: 'Appliances',
+    bids: 15,
+    timeLeft: '22h',
+    category: 'Streaming Devices',
+    retailer: 'Amazon Warehouse',
+    unitsAvailable: 500,
+    msrpDiscountPercent: 50,
     price: 12500,
     originalPrice: 20000,
     discount: 50,
@@ -189,11 +322,14 @@ export const bargainListings: Product[] = [
     bids: 2,
     timeLeft: '8h 45m',
     category: 'Home Goods',
+    retailer: 'Target',
+    unitsAvailable: 200,
+    msrpDiscountPercent: 28,
     price: 3499,
     originalPrice: 5999,
-    shipping: 'Free shipping',
-    isRefurbished: false,
     discount: 28,
+    shipping: 'Free shipping',
+    isRefurbished: false
   },
   {
     id: 'bargain4',
@@ -206,8 +342,12 @@ export const bargainListings: Product[] = [
     bids: 8,
     timeLeft: '4h 20m',
     category: 'Electronics',
+    retailer: 'Amazon',
+    unitsAvailable: 200,
+    msrpDiscountPercent: 43,
     price: 1999,
     originalPrice: 3500,
+    discount: 43,
     shipping: 'Free shipping',
     isRefurbished: false
   },
@@ -222,8 +362,12 @@ export const bargainListings: Product[] = [
     bids: 3,
     timeLeft: '1d 2h',
     category: 'Furniture',
+    retailer: 'Wayfair',
+    unitsAvailable: 200,
+    msrpDiscountPercent: 55,
     price: 2499,
     originalPrice: 4000,
+    discount: 55,
     shipping: 'Free shipping',
     isRefurbished: false
   },
@@ -238,6 +382,9 @@ export const bargainListings: Product[] = [
     bids: 0,
     timeLeft: '9h 30m',
     category: 'Furniture',
+    retailer: 'Walmart',
+    unitsAvailable: 200,
+    msrpDiscountPercent: 18,
     price: 3499,
     originalPrice: 5999,
     discount: 18,
@@ -256,11 +403,15 @@ export const amazonListings: Product[] = [
       name: 'Amazon',
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png'
     },
-    bids: 3,
-    timeLeft: '6h 15m',
-    category: 'Electronics',
+    bids: 22,
+    timeLeft: '3d 1h',
+    category: 'Electronics Accessories',
+    retailer: 'AmazonBasics Clearouts',
+    unitsAvailable: 300,
+    msrpDiscountPercent: 70,
     price: 499,
     originalPrice: 999,
+    discount: 70,
     shipping: 'Free shipping',
     isRefurbished: false
   },
@@ -278,7 +429,10 @@ export const amazonListings: Product[] = [
     price: 699,
     originalPrice: 1299,
     shipping: 'Free shipping',
-    isRefurbished: false
+    isRefurbished: false,
+    retailer: 'Amazon Returns',
+    unitsAvailable: 150,
+    msrpDiscountPercent: 46
   },
   {
     id: 'amazon3',
@@ -294,7 +448,10 @@ export const amazonListings: Product[] = [
     price: 999,
     originalPrice: 1999,
     shipping: 'Free shipping',
-    isRefurbished: false
+    isRefurbished: false,
+    retailer: 'Amazon Warehouse',
+    unitsAvailable: 800,
+    msrpDiscountPercent: 50
   },
   {
     id: 'amazon4',
@@ -310,7 +467,10 @@ export const amazonListings: Product[] = [
     price: 299,
     originalPrice: 599,
     shipping: 'Free shipping',
-    isRefurbished: false
+    isRefurbished: false,
+    retailer: 'Amazon Returns',
+    unitsAvailable: 120,
+    msrpDiscountPercent: 50
   },
   {
     id: 'amazon5',
@@ -326,7 +486,10 @@ export const amazonListings: Product[] = [
     price: 199,
     originalPrice: 399,
     shipping: 'Free shipping',
-    isRefurbished: false
+    isRefurbished: false,
+    retailer: 'AmazonBasics Overstock',
+    unitsAvailable: 400,
+    msrpDiscountPercent: 50
   },
   {
     id: 'amazon6',
@@ -342,7 +505,30 @@ export const amazonListings: Product[] = [
     price: 499,
     originalPrice: 999,
     shipping: 'Free shipping',
-    isRefurbished: false
+    isRefurbished: false,
+    retailer: 'Amazon Returns',
+    unitsAvailable: 700,
+    msrpDiscountPercent: 50
   }
 ]
 
+
+// Combined export for all products if needed later, or for a generic product source
+export const allMockProducts: Product[] = [
+  ...spotlightDeal,
+  ...trendingDeals,
+  ...featuredDeals,
+  ...moreDeals,
+  ...bargainListings,
+  ...amazonListings,
+  // ...recentlyViewed, // Assuming recentlyViewed is also Product[]
+  // ...recommendedForYou, // Assuming recommendedForYou is also Product[]
+];
+
+// Ensure all individual product arrays have the category field for MarketplacePage filtering
+const ensureCategories = (products: Product[]): Product[] => {
+  return products.map(p => ({
+    ...p,
+    category: p.category || 'General Merchandise' // Default category if none exists
+  }));
+};

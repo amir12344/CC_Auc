@@ -8,11 +8,15 @@ interface PageSkeletonProps {
 }
 
 const PageSkeleton = ({ type = 'default' }: PageSkeletonProps) => {
+  // For dashboard type, don't wrap in MainLayout since it's already in the dashboard layout
+  if (type === 'dashboard') {
+    return <DashboardSkeleton />;
+  }
+
   return (
     <MainLayout>
       {type === 'marketplace' && <MarketplaceSkeleton />}
       {type === 'product' && <ProductSkeleton />}
-      {type === 'dashboard' && <DashboardSkeleton />}
       {type === 'default' && <DefaultSkeleton />}
     </MainLayout>
   );
@@ -117,17 +121,11 @@ const ProductSkeleton = () => (
 );
 
 const DashboardSkeleton = () => (
-  <div className="container mx-auto px-4 py-8">
-    {/* Dashboard header skeleton */}
-    <div className="mb-8">
-      <div className="h-10 w-64 bg-gray-200 rounded animate-pulse mb-4"></div>
-      <div className="h-6 w-96 bg-gray-200 rounded animate-pulse"></div>
-    </div>
-    
+  <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
     {/* Dashboard stats cards */}
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       {Array(4).fill(0).map((_, i) => (
-        <div key={i} className="bg-white rounded-lg shadow-xs p-6 animate-pulse">
+        <div key={i} className="bg-white rounded-lg border p-6 animate-pulse">
           <div className="flex justify-between items-start mb-4">
             <div className="h-5 w-24 bg-gray-200 rounded"></div>
             <div className="w-10 h-10 rounded-full bg-gray-200"></div>
@@ -139,23 +137,31 @@ const DashboardSkeleton = () => (
     </div>
     
     {/* Dashboard content skeleton */}
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 bg-white rounded-lg shadow-xs p-6">
+    <div className="px-4 lg:px-6 mb-6">
+      <div className="bg-white rounded-lg border p-6">
         <div className="h-6 w-48 bg-gray-200 rounded mb-6"></div>
         <div className="h-64 bg-gray-200 rounded"></div>
       </div>
-      <div className="bg-white rounded-lg shadow-xs p-6">
-        <div className="h-6 w-32 bg-gray-200 rounded mb-6"></div>
-        <div className="space-y-4">
-          {Array(5).fill(0).map((_, i) => (
-            <div key={i} className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-gray-200 mr-3"></div>
-              <div className="flex-1">
-                <div className="h-4 w-full bg-gray-200 rounded mb-2"></div>
-                <div className="h-3 w-24 bg-gray-200 rounded"></div>
+    </div>
+
+    {/* Data table skeleton */}
+    <div className="px-3">
+      <div className="bg-white rounded-lg border">
+        <div className="p-6">
+          <div className="h-6 w-32 bg-gray-200 rounded mb-4"></div>
+          <div className="space-y-3">
+            {Array(5).fill(0).map((_, i) => (
+              <div key={i} className="flex items-center space-x-4">
+                <div className="w-8 h-8 rounded-full bg-gray-200"></div>
+                <div className="flex-1 grid grid-cols-4 gap-4">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     title: 'Page Not Found',
     images: [{
       url: '/CC_opengraph.png',
-      width: 1200,
-      height: 364,
+      width: 500,
+      height: 500,
       alt: 'Commerce Central 404'
     }]
   }
