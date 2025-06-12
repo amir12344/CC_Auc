@@ -3,10 +3,13 @@
 import { z } from 'zod';
 import { generateClient } from 'aws-amplify/data';
 import { type Schema } from '@/amplify/data/resource';
-import { configureAmplify } from '@/amplify-config';
 
-// Ensure Amplify is configured for the server context
-configureAmplify();
+// IMPORTANT: This import is crucial. It ensures that the Amplify library is configured 
+// on the server-side before any Amplify-dependent code below (like generateClient) 
+// is executed. The '@/amplify-config' module automatically calls Amplify.configure() 
+// when it is loaded (imported).
+import '@/amplify-config'; // Import for its side-effect of configuring Amplify
+import { outputs } from '@/amplify-config';
 
 // Re-define the schema slightly for server action validation
 const formSchema = z.object({

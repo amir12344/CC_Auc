@@ -74,6 +74,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
+  /* Custom layout properties */
+  --page-width: 1620px;
+  --gutter: 64px;
+
   @keyframes pulse {
     0%,
     100% {
@@ -127,6 +131,10 @@
   @apply mx-auto px-4 max-w-7xl;
 }
 
+@utility max-w-8xl {
+  max-width: calc(var(--page-width, 1620px) + var(--gutter, 64px) * 2);
+}
+
 @layer utilities {
   /* Hide navbar and footer on early access page */
   .hide-nav-footer header,
@@ -140,6 +148,8 @@
       background-color 0.3s ease,
       color 0.3s ease;
   }
+
+
 
   @keyframes progress {
     0% {
