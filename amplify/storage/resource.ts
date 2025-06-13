@@ -4,8 +4,12 @@ export const storage = defineStorage({
   name: 'commerceCentralStorage',
   access: (allow) => ({
     'ReSellCertificates/private/{entity_id}/*': [
-      allow.entity('identity').to(['read', 'write', 'delete']),
+      // Temporarily allow guest access - VERY PERMISSIVE!
+      allow.guest.to(['read', 'write', 'delete']),
     ],
-    'ReSellCertificates/public/*': [allow.authenticated.to(['read'])],
+    'ReSellCertificates/public/*': [
+      // Temporarily allow guest access
+      allow.guest.to(['read']),
+    ],
   }),
 })
