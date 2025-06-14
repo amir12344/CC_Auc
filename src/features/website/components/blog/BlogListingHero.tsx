@@ -16,7 +16,7 @@ const BlogListingHero = ({ type }: BlogListingHeroProps) => {
       ctaText: 'Explore Buyer Articles'
     },
     seller: {
-      title: 'Seller Insights', 
+      title: 'Seller Insights',
       subtitle: 'Expert guidance for brands and surplus inventory sellers',
       description: 'Industry insights, best practices, and strategic advice to help brands optimize their excess inventory management and recovery strategies.',
       ctaText: 'Explore Seller Articles'
@@ -36,8 +36,8 @@ const BlogListingHero = ({ type }: BlogListingHeroProps) => {
           alt={`${content.title} background`}
           fill
           style={{ objectFit: 'cover' }}
-          priority={true}
-          quality={85}
+          quality={70}
+          unoptimized={true}
           sizes="100vw"
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
