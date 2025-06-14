@@ -13,22 +13,21 @@ const PageSkeleton = ({ type = 'default' }: PageSkeletonProps) => {
     return <DashboardSkeleton />;
   }
 
-  return (
-    <MainLayout>
-      {type === 'marketplace' && <MarketplaceSkeleton />}
-      {type === 'product' && <ProductSkeleton />}
-      {type === 'default' && <DefaultSkeleton />}
-    </MainLayout>
-  );
+  if (type === 'marketplace') {
+    return <MarketplaceSkeleton />;
+  }
+  if (type === 'product') {
+    return <ProductSkeleton />;
+  }
+  // Default case
+  return <DefaultSkeleton />;
 };
 
 const DefaultSkeleton = () => (
   <div className="container mx-auto px-4 py-8">
     <div className="flex justify-center items-center min-h-[60vh]">
       <div className="text-center">
-        <div className="h-10 w-64 bg-gray-200 rounded animate-pulse mx-auto mb-4"></div>
-        <div className="h-6 w-96 bg-gray-200 rounded animate-pulse mx-auto mb-8"></div>
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600 mx-auto"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-solid border-primary-600 border-t-transparent mx-auto"></div>
       </div>
     </div>
   </div>
@@ -88,7 +87,7 @@ const ProductSkeleton = () => (
     <div className="mb-6">
       <div className="h-8 w-32 bg-gray-200 rounded animate-pulse"></div>
     </div>
-    
+
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
       {/* Product Gallery Skeleton */}
       <div className="space-y-4">
@@ -99,7 +98,7 @@ const ProductSkeleton = () => (
           ))}
         </div>
       </div>
-      
+
       {/* Product Info Skeleton */}
       <div>
         <div className="space-y-4">
@@ -135,7 +134,7 @@ const DashboardSkeleton = () => (
         </div>
       ))}
     </div>
-    
+
     {/* Dashboard content skeleton */}
     <div className="px-4 lg:px-6 mb-6">
       <div className="bg-white rounded-lg border p-6">
