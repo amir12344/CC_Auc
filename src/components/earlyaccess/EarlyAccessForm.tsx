@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
+import { useToast } from '@/src/hooks/use-toast';
 // Import Lucide icons
 import {
   User,
@@ -47,8 +48,42 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 export default function EarlyAccessForm() {
+  // Define constants for Tailwind CSS class strings
+  const welcomeContainerClasses = 'relative flex flex-col justify-center bg-transparent mt-0 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up';
+  const earlyAccessBadgeClasses = 'md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10';
+  const inputBaseClasses = 'block w-full pr-3 py-2 md:py-2.5 text-sm border rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900';
+  const inputIconClasses = 'h-4 w-4 md:h-5 md:w-5 text-gray-400';
+  const labelBaseClasses = 'block font-medium text-gray-700 mb-1';
+  const errorTextBaseClasses = 'mt-1 text-red-600';
+  const termsCheckboxClasses = 'focus:ring-[#43CD66] h-4 w-4 text-[#43CD66] border-gray-300 rounded';
+  const termsLabelSpecificClasses = 'font-medium text-gray-700';
+  const termsLinkClasses = 'text-[#43CD66] hover:text-[#102D21]';
+  const errorMessageContainerClasses = 'flex items-start gap-3 bg-gradient-to-r from-red-50 to-red-50/70 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-md shadow-sm mt-3 mb-2 relative overflow-hidden';
+  const errorIconContainerClasses = 'relative';
+  const errorAlertIconClasses = 'h-4 w-4 md:h-5 md:w-5 text-red-500 mt-0.5 flex-shrink-0 transform transition-all duration-300 ease-in-out';
+  const errorTextWrapperClasses = 'flex-1 relative z-10';
+  const errorDismissButtonClasses = 'ml-2 text-red-400 hover:text-red-600 focus:outline-none relative z-10 transition-all duration-300 ease-in-out transform hover:scale-110';
+  const errorDismissIconClasses = 'h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 hover:rotate-90';
+  const submitButtonBaseClasses = 'w-full bg-[#43CD66] hover:bg-[#3ab859] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center';
+  const loaderIconClasses = 'animate-spin -ml-1 mr-2 h-3 w-3 md:h-4 md:w-4 text-white';
+  const submitButtonTextClasses = 'text-[#1C1E21] text-md md:text-lg';
+  const headingClasses = 'text-3xl text-center md:text-4xl mb-2 md:mb-4 font-bold';
+  const subheadingContainerClasses = 'text-[#1C1E21] mb-0 text-sm md:text-base';
+  const subheadingMobileClasses = 'block text-center md:hidden font-[500]';
+  const subheadingMobileUnderlineClasses = 'block md:hidden mx-auto h-1 w-27 md:w-22 bg-[#43CD66] rounded-full mt-1';
+  const subheadingDesktopUnderlineClasses = 'hidden md:block h-1 md:w-full bg-[#43CD66] rounded-full mt-1';
+  const inputRowClasses = 'flex flex-col md:flex-row gap-3 md:gap-6';
+  const inputFieldWrapperClasses = 'w-full md:w-1/2';
+  const inputIconWrapperClasses = 'absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none';
+  const phonePrefixClasses = 'absolute inset-Y-0 left-9 md:left-10 top-2.5 flex items-center text-[#43CD66] font-medium select-none pointer-events-none text-sm md:text-base';
+  const termsLabelWrapperClasses = 'ml-3 mt-0.5 md:mt-0 text-xs md:text-sm';
+  const errorMessageShimmerBgClasses = 'absolute inset-0 bg-red-100/40 rounded-r-md';
+  const errorMessageTextClasses = 'font-medium text-xs md:text-sm';
+
   const router = useRouter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [submissionSucceeded, setSubmissionSucceeded] = useState(false)
+  const { toast } = useToast()
 
   const {
     register,
@@ -74,6 +109,11 @@ export default function EarlyAccessForm() {
     const result = await submitEarlyAccessForm(data)
 
     if (result.success) {
+      setSubmissionSucceeded(true)
+      toast({
+        title: 'Request Sent!',
+        description: "We've received your early access application. We'll be in touch soon.",
+      })
       // Reddit Pixel SignUp Event Tracking
       if (typeof window !== 'undefined' && typeof window.rdt === 'function') {
         const eventData = {
@@ -87,12 +127,13 @@ export default function EarlyAccessForm() {
         window.rdt('track', 'earlyAccess', eventData);
       }
       reset();
-      // Add a small delay to allow the Reddit pixel to fire before redirecting
+      // Add a small delay to allow the Reddit pixel to fire and toast to be seen before redirecting
       setTimeout(() => {
         router.push('/earlyaccess/thankyou');
-      }, 500); // 500 milliseconds delay
+      }, 500); // Delay set to 0.5 seconds
     } else {
       setErrorMessage(result.message || 'An unexpected error occurred.')
+      setSubmissionSucceeded(false)
     }
   }
 
@@ -101,27 +142,26 @@ export default function EarlyAccessForm() {
       {/* Welcome text */}
       <div className='mb-0 md:mb-4'>
         <div
-          className='relative flex flex-col justify-center bg-transparent mt-0 md:mt-0 border-none ring-0 px-4 py-5 rounded-2xl md:items-center  md:py-8 md:px-6 backdrop-blur-md animate-fade-in-up
-'
+          className={welcomeContainerClasses}
         >
-          <span className='md:block absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 px-3 md:px-4 py-1 rounded-full bg-gradient-to-r from-[#102d21] to-[#43cd66] text-white text-xs font-semibold shadow-md tracking-wider uppercase z-10'>
+          <span className={earlyAccessBadgeClasses}>
             Early Access
           </span>
-          <h2 className='text-3xl text-center md:text-4xl mb-2 md:mb-4 font-bold'>
+          <h2 className={headingClasses}>
             Secure Access to Exclusive Deals
           </h2>
-          <div className='text-[#1C1E21] mb-0 text-sm md:text-base'>
-            <span className='block text-center md:hidden font-[500]' style={{ fontSize: 'larger' }}>
+          <div className={subheadingContainerClasses}>
+            <span className={subheadingMobileClasses} style={{ fontSize: 'larger' }}>
               This is a highly sought after opportunity.
               <br /> Don&apos;t drop the ball.
             </span>
 
-            <div className='block md:hidden mx-auto h-1 w-27 md:w-22 bg-[#43CD66] rounded-full mt-1'></div>
+            <div className={subheadingMobileUnderlineClasses}></div>
             <span className='hidden md:block'>
               This is a highly sought after opportunity. Don&apos;t drop the
               ball.
             </span>
-            <div className='hidden md:block h-1 md:w-full bg-[#43CD66] rounded-full mt-1'></div>
+            <div className={subheadingDesktopUnderlineClasses}></div>
           </div>
         </div>
       </div>
@@ -129,55 +169,53 @@ export default function EarlyAccessForm() {
       {/* Form */}
       <form onSubmit={handleSubmit(processForm)} className='mobile-card'>
         {/* First Name & Last Name */}
-        <div className='flex flex-col md:flex-row gap-3 md:gap-6'>
-          <div className='w-full md:w-1/2'>
+        <div className={inputRowClasses}>
+          <div className={inputFieldWrapperClasses}>
             <label
               htmlFor='firstName'
-              className='block text-md font-medium text-gray-700 mb-1'
+              className={`${labelBaseClasses} text-md`}
             >
               First Name
             </label>
             <div className='relative'>
-              <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-                <User className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+              <div className={inputIconWrapperClasses}>
+                <User className={inputIconClasses} />
               </div>
               <input
                 type='text'
                 id='firstName'
                 {...register('firstName')}
-                className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.firstName ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+                className={`${inputBaseClasses} pl-9 md:pl-10 ${errors.firstName ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder='John'
               />
             </div>
             {errors.firstName && (
-              <p className='mt-1 text-xs text-red-600'>
+              <p className={`${errorTextBaseClasses} text-xs`}>
                 {errors.firstName.message}
               </p>
             )}
           </div>
-          <div className='w-full md:w-1/2'>
+          <div className={inputFieldWrapperClasses}>
             <label
               htmlFor='lastName'
-              className='block text-md font-medium text-gray-700 mb-1'
+              className={`${labelBaseClasses} text-md`}
             >
               Last Name
             </label>
             <div className='relative'>
-              <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-                <User className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+              <div className={inputIconWrapperClasses}>
+                <User className={inputIconClasses} />
               </div>
               <input
                 type='text'
                 id='lastName'
                 {...register('lastName')}
-                className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.lastName ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+                className={`${inputBaseClasses} pl-9 md:pl-10 ${errors.lastName ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder='Doe'
               />
             </div>
             {errors.lastName && (
-              <p className='mt-1 text-xs text-red-600'>
+              <p className={`${errorTextBaseClasses} text-xs`}>
                 {errors.lastName.message}
               </p>
             )}
@@ -185,56 +223,54 @@ export default function EarlyAccessForm() {
         </div>
 
         {/* Email & Company Name */}
-        <div className='flex flex-col md:flex-row gap-3 md:gap-6'>
-          <div className='w-full md:w-1/2'>
+        <div className={inputRowClasses}>
+          <div className={inputFieldWrapperClasses}>
             <label
               htmlFor='email'
-              className='block text-md md:text-sm font-medium text-gray-700 mb-1'
+              className={`${labelBaseClasses} text-md md:text-sm`}
             >
               Email
             </label>
             <div className='relative'>
-              <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-                <Mail className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+              <div className={inputIconWrapperClasses}>
+                <Mail className={inputIconClasses} />
               </div>
               <input
                 type='email'
                 id='email'
                 {...register('email')}
-                className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.email ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+                className={`${inputBaseClasses} pl-9 md:pl-10 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder='you@example.com'
               />
             </div>
             {errors.email && (
-              <p className='mt-1 text-xs md:text-sm text-red-600'>
+              <p className={`${errorTextBaseClasses} text-xs md:text-sm`}>
                 {errors.email.message}
               </p>
             )}
           </div>
-          <div className='w-full md:w-1/2'>
+          <div className={inputFieldWrapperClasses}>
             <label
               htmlFor='companyName'
-              className='block text-md md:text-sm font-medium text-gray-700 mb-1'
+              className={`${labelBaseClasses} text-md md:text-sm`}
             >
               Company Name (Optional)
             </label>
             <div className='relative'>
-              <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-                <Building className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+              <div className={inputIconWrapperClasses}>
+                <Building className={inputIconClasses} />
               </div>
               <input
                 type='text'
                 id='companyName'
                 spellCheck={false}
                 {...register('companyName')}
-                className={`block w-full pl-9 md:pl-10 pr-3 py-2 md:py-2.5 text-sm border ${errors.companyName ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+                className={`${inputBaseClasses} pl-9 md:pl-10 ${errors.companyName ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder='Your Company LLC'
               />
             </div>
             {errors.companyName && (
-              <p className='mt-1 text-xs md:text-sm text-red-600'>
+              <p className={`${errorTextBaseClasses} text-xs md:text-sm`}>
                 {errors.companyName.message}
               </p>
             )}
@@ -245,15 +281,15 @@ export default function EarlyAccessForm() {
         <div>
           <label
             htmlFor='phoneNumber'
-            className='block text-md md:text-sm font-medium text-gray-700 mb-1'
+            className={`${labelBaseClasses} text-md md:text-sm`}
           >
             Phone number (Optional)
           </label>
           <div className='relative'>
-            <div className='absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-              <Phone className='h-4 w-4 md:h-5 md:w-5 text-gray-400' />
+            <div className={inputIconWrapperClasses}>
+              <Phone className={inputIconClasses} />
             </div>
-            <span className='absolute inset-Y-0 left-9 md:left-10 top-2.5 flex items-center text-[#43CD66] font-medium select-none pointer-events-none text-sm md:text-base'>
+            <span className={phonePrefixClasses}>
               +1
             </span>
             <input
@@ -263,14 +299,13 @@ export default function EarlyAccessForm() {
               pattern='^\d{10,15}$'
               maxLength={15}
               {...register('phoneNumber')}
-              className={`block w-full pl-14 md:pl-16 pr-3 py-2 md:py-2.5 text-sm border ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg shadow-xs focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900`}
+              className={`${inputBaseClasses} pl-14 md:pl-16 ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'}`}
               placeholder='123 456-7890'
               autoComplete='tel'
             />
           </div>
           {errors.phoneNumber && (
-            <p className='mt-1 text-xs md:text-sm text-red-600'>
+            <p className={`${errorTextBaseClasses} text-xs md:text-sm`}>
               {errors.phoneNumber.message}
             </p>
           )}
@@ -283,20 +318,20 @@ export default function EarlyAccessForm() {
               id='termsAccepted'
               type='checkbox'
               {...register('termsAccepted')}
-              className='focus:ring-[#43CD66] h-4 w-4 text-[#43CD66] border-gray-300 rounded'
+              className={termsCheckboxClasses}
             />
           </div>
-          <div className='ml-3 mt-0.5 md:mt-0 text-xs md:text-sm'>
+          <div className={termsLabelWrapperClasses}>
             <label
               htmlFor='termsAccepted'
-              className='font-medium text-gray-700'
+              className={termsLabelSpecificClasses}
             >
               I agree to the{' '}
               <Link
                 href='/website/legal/terms'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-[#43CD66] hover:text-[#102D21]'
+                className={termsLinkClasses}
               >
                 Terms of Service
               </Link>{' '}
@@ -305,13 +340,13 @@ export default function EarlyAccessForm() {
                 href='/website/legal/privacy-policy'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-[#43CD66] hover:text-[#102D21]'
+                className={termsLinkClasses}
               >
                 Privacy Policy
               </Link>
             </label>
             {errors.termsAccepted && (
-              <p className='mt-1 text-xs md:text-sm text-red-600 font-medium'>
+              <p className={`${errorTextBaseClasses} text-xs md:text-sm font-medium`}>
                 {errors.termsAccepted.message}
               </p>
             )}
@@ -322,7 +357,7 @@ export default function EarlyAccessForm() {
         {errorMessage && (
           <div
             role='alert'
-            className='flex items-start gap-3 bg-gradient-to-r from-red-50 to-red-50/70 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-md shadow-sm mt-3 mb-2 relative overflow-hidden'
+            className={errorMessageContainerClasses}
             style={{
               animation:
                 'slideInFromRight 0.4s ease-out forwards, pulseSubtle 2s ease-in-out infinite',
@@ -330,7 +365,7 @@ export default function EarlyAccessForm() {
             }}
           >
             <div
-              className='absolute inset-0 bg-red-100/40 rounded-r-md'
+              className={errorMessageShimmerBgClasses}
               style={{
                 animation: 'shimmer 3s infinite',
                 backgroundSize: '200% 100%',
@@ -338,29 +373,29 @@ export default function EarlyAccessForm() {
                   'linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent)',
               }}
             />
-            <div className='relative'>
+            <div className={errorIconContainerClasses}>
               <AlertCircle
-                className='h-4 w-4 md:h-5 md:w-5 text-red-500 mt-0.5 flex-shrink-0 transform transition-all duration-300 ease-in-out'
+                className={errorAlertIconClasses}
                 style={{ animation: 'pulseIcon 1.5s ease-in-out infinite' }}
                 aria-hidden='true'
               />
             </div>
             <div
-              className='flex-1 relative z-10'
+              className={errorTextWrapperClasses}
               style={{ animation: 'fadeIn 0.6s ease-out' }}
             >
-              <span className='font-medium text-xs md:text-sm'>
+              <span className={errorMessageTextClasses}>
                 {errorMessage}
               </span>
             </div>
             <button
               type='button'
               aria-label='Dismiss error'
-              className='ml-2 text-red-400 hover:text-red-600 focus:outline-none relative z-10 transition-all duration-300 ease-in-out transform hover:scale-110'
+              className={errorDismissButtonClasses}
               onClick={() => setErrorMessage(null)}
             >
               <X
-                className='h-3 w-3 md:h-4 md:w-4 transition-transform duration-300 hover:rotate-90'
+                className={errorDismissIconClasses}
                 aria-hidden='true'
               />
             </button>
@@ -423,25 +458,24 @@ export default function EarlyAccessForm() {
         <div className='pt-3 md:pt-6'>
           <button
             type='submit'
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid || isSubmitting || submissionSucceeded}
             onClick={() => {
               if (typeof window !== 'undefined' && typeof window.rdt === 'function') {
                 window.rdt('track', 'EarlyAccessButtonClick', { buttonName: 'ReserveAccessEarlyAccessForm' });
               }
             }}
-            className={`w-full bg-[#43CD66] hover:bg-[#3ab859] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm text-base flex justify-center items-center ${
-              (!isValid || isSubmitting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
+            className={`${submitButtonBaseClasses} ${(!isValid || isSubmitting || submissionSucceeded) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            {isSubmitting ? (
+            {(isSubmitting || submissionSucceeded) ? (
               <>
                 <Loader2
-                  className='animate-spin -ml-1 mr-2 h-3 w-3 md:h-4 md:w-4 text-white'
+                  className={loaderIconClasses}
                   aria-hidden='true'
                 />
                 Processing...
               </>
             ) : (
-                <span className='text-[#1C1E21] text-md md:text-lg'>Reserve Access — It's Free & Fast</span>
+              <span className={submitButtonTextClasses}>Reserve Access — It's Free & Fast</span>
             )}
           </button>
         </div>
