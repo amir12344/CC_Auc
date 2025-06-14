@@ -30,12 +30,6 @@ const PodcastPlatformsSection = () => {
       color: 'hover:text-[#872EC4]' 
     },
     { 
-      name: 'Google Podcasts', 
-      icon: <FaGoogle size={56} />, 
-      url: '#', 
-      color: 'hover:text-[#4285F4]' 
-    },
-    { 
       name: 'Amazon Music', 
       icon: <FaAmazon size={56} />, 
       url: '#', 

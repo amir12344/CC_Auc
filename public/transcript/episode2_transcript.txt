@@ -1,0 +1,533 @@
+Shivang (00:07)
+Hello everyone. Today's guest is someone who has worked in retail industry from every possible angle, from fast fashion to luxury to off price to global e-commerce. Jarett. Antoque is the director of North America's at JD.com. In this role, he helps brands across US and Latin America break into one of the world's most complex retail markets, China. Before that, he led fashion direction and sourcing at Amazon Style. And before that, he drove global brand acquisition at SHEIN.com.
+
+and held senior roles at Zappos, Nordstrom, Victoria’s Secrets, and Macy's. That's quite a list, Jarett. He's not just a sourcing expert, he's also a re-commerce strategist who understands what happens after the buy. From managing seasonal resets to navigating returns at scale, Jarett has helped some of the biggest names in retail rethink how they handle surplus. Jarett, welcome to the re-commerce show. It's an honor to have you here.
+
+Jarett Antoque, JD (01:01)
+Thank you so much for having me.
+
+Shivang (01:05)
+Absolutely. So before we dive in, is there a favorite quote or motto that guides you on a daily basis?
+
+Jarett Antoque, JD (01:12)
+Yeah, you know, I would say my favorite quote.
+
+I actually got tattooed on my arm with my cousins. My grandma and my aunt were lounge singers and their favorite song was Que Sera Sera. And, you know, so that translates to what will be will be. And so I love that, you know, just in general, because I feel like there's a lot of things we don't control in life. And sometimes you just kind of have to accept things as they are and, you know, ride the wave of change.
+
+Shivang (01:42)
+That's very beautiful. I totally resonate with that. It's like we can't control everything in life. What we can control is just ourself. sometimes letting go is the best strategy. Awesome. So Jarett, tell us a little bit about yourself and in general, in your own words.
+
+Jarett Antoque, JD (01:54)
+Yep, absolutely.
+
+Yeah, sure thing. Yeah, for sure. So, you know, I was born in Germany, surprisingly to many as an army rat, raised in Hawaii, where both my parents are from.
+
+And when I left there in 02, so over 23 years ago for college, I moved to Seattle. I went to Seattle University, know, go Redhawks, and then went into retail during my junior year in college. That is really where I made my break into this wonderful world of retail. I started off as an intern at Macy's Northwest. That's how long ago this was. There was still a Northwest
+
+Shivang (02:25)
+Nice.
+
+Jarett Antoque, JD (02:39)
+region. And I started there initially in beauty and fragrances. You know, right after college I got an assistant buyer role through their executive training program. And at Macy's I worked in, fragrances, juniors, boys eight to 20 apparel. And then when they merged with Northwest or with the West division in 08, I actually went to Zappos. And Zappos was very, very new to fashion.
+
+and retail at the time. I hadn't heard of them before. know, just my Quicksilver rep at Macy's had said, you got to work for this loony company. They're kind of crazy. And, know, I took the leap of faith, as many did, to go to the company and yeah, never looked back really. I went to Zappos for four years, started off as a planner for all divisions, running, footwear, home, casual lifestyle, and then was the planner over all of clothing when they decided to go after
+
+clothing.
+
+I did that and did buying for clothing soon after planning for three years, focused on fashion, men's and women's. And then Nordstrom came calling. Nordstrom was going after their e-commerce in a big way. And I went after and moved back to Seattle for Nordstrom because a lot of their consultants said if you want to go after e-com, you have to get some seasoned vets. So I went to Nordstrom and did that for a couple of years, did buying and planning there on the men's
+
+Shivang (03:39)
+Mm-hmm.
+
+Jarett Antoque, JD (03:54)
+team, which was amazing. I learned so, much in those three years. know, Zap wasn't called and said, hey, we've got, you know, this role on the luxury division open and we would love you to come back and lead the women's and kids team. So I very quickly did and, you know, led the women's and kids buying team for the next four years after that. I would say of my career, that was probably the most exciting just because, you know, you're dealing with high fashion.
+
+You're going to runway shows. You're traveling to London, Milan, Paris and New York Fashion Week.
+
+And then at four years, you I was ready for the next challenge, moved to Ohio randomly for Victoria's Secret. And I was the senior merchant for the Victoria's Sport brand. Did that for a year, but transparently Ohio is a little too far from my family in Hawaii. And so I ended up moving to San Diego for Petco and then was at Petco for a couple of years leading their home division. Then jumped into cannabis, oddly enough.
+
+at MedMen, was the Wild Wild West for them and they needed someone to revamp their buying team and planning structure. And so, you know, I basically helped recreate that foundation and helped bring in a lot of retail talent to help, you know, solidify the structure. And then Amazon actually called and...
+
+They asked if I was interested in joining this new project that wasn't announced yet. After interviewing for a couple months, on the day I got offered the job, they actually announced what the project was and it was Amazon Style, their pop-up fashion stores.
+
+Shivang (05:13)
+Mm-hmm.
+
+Jarett Antoque, JD (05:23)
+And so I did that for a couple of years, got to be a part of that amazing beast of Amazon, learning all of their insider secrets and left doing their fashion direction of their assortments for those stores before they decided to move on to the next project. And then from Amazon, I went to SHEIN. SHEIN, I went there to do...
+
+global brand acquisition for their business development team, for their global BD team there. Basically helping bring on sellers that had large brands or large assortments to come onto the marketplace at SHEIN. SHEIN is a very significant scaling beast right now, and so it was very...
+
+honestly an honor to be a part of that piece even if it was just for a year. And then that's ultimately what brought me to JD. So I know very long history, but at least for context it helps for a lot of my answers. And so now I am the director of sourcing MBD at JD.com, who is again, like you mentioned, China's largest retailer by volume.
+
+Shivang (06:08)
+Mm-hmm.
+
+Jarett Antoque, JD (06:20)
+And it's amazing. know, basically I'm building the ship while sailing it in a lot of ways, as they say, because it's not a solidified process. It's not a solidified structure. While they do have a lot of American brands on the site right now, there are a lot of the large, large enterprise brands, and they are sourcing that from the Beijing office. So you can, you know, obviously assume the hurdles and obstacles by sourcing it from overseas. And so I'm basically building out what the America's team will be in
+
+look like.
+
+to have the office here as well, an extension office in the Americas. And basically what that entails is not only establishing the processes and operations of building that cross-border e-commerce, but also brand acquisition for new brands that are not on there, getting additional inventory for brands that are on there, working with Beijing teams on what inventory they are looking for that is based in the US for all categories under the sun, from tequila to chocolates to baby
+
+formula to fashion and footwear. So it's been a very exciting time to be a part of it. It's a lot of work and a lot of hours working on global teams. for me, the consistent thing across all of my career is I just love building business. I love all aspects of it. I love the strategy piece of it. I love building it and seeing it all come to fruition. So yeah, yeah, that's I think a long-winded introduction, but yeah.
+
+Shivang (07:40)
+That's, think, Jarett, heading through this, I can say that you have brought up in retail. You've been through a lot of different iconic brands. at every brand, you've had a chance to contribute at the same time, be at the right time at the time where they were growing and they needed someone like you. So it's super insightful to hear from you where you've been in retail for 20 years.
+
+Jarett Antoque, JD (07:40)
+You
+
+Shivang (08:06)
+You've been at many brands and at different kinds of complexity, a brand sourcing from China, a brand sourcing in America to China, a brand that is Petco that's building a retail presence as well as an online presence, Macy's that is a full physical store, know, like Amazon. Amazon is an e-commerce brand, was, you know, like experimenting into the physical retail world. So you've, you know, you've been in the Omni-channel, multi-channel. feel like listening to you, I can say that you've,
+
+You've seen all sides of retail, just like I said in my introduction for you. You've seen it from different angles and how people try to build a presence in the retail industry. So super insightful. I'm super excited for this conversation with all that context. think viewers would really find that insight and journey really helpful as we go through the podcast.
+
+Jarett Antoque, JD (08:53)
+Awesome.
+
+Shivang (08:54)
+Given that you've gone through all these iconic brands and you've worked there, how often, like, the theme of this show is the ReCommerce show. We essentially talk about the excess inventory, return industry. And with that context, how often at these brands that you work from Macy's to JD.com, how often do you see excess inventory as a headache or as a problem that brands have to face today?
+
+Jarett Antoque, JD (09:20)
+Yeah, you know, would say excess inventory is, you know, definitely consistency across all the retailers and brands I've worked for. You know, it's definitely something that will always be there just because.
+
+no one has a magic ball, right? As a buyer, that's something we always used to say in these meetings when everyone was like, why is that not selling? And it's, don't have a magic ball. We can assume what we think is gonna be the next best color, what we can assume what the best price is gonna be or what brand we think is gonna really hit next season. But we don't always know. And so there's always gonna be this excess inventory. And I think...
+
+what makes the line between a good and a great buyer or a team or a brand is really knowing what to do with that excess inventory. Because I think really that figuring out how to do the exhaust of that inventory and make it profitable is perhaps the biggest challenge that I think is probably going to be one of the biggest benefits of the ReCommerce platform and show.
+
+Shivang (10:14)
+That makes sense. But There's a lot of ways when you're planning inventory, you would come across scenarios. How can you reduce it? What drives excess inventory? I think you've mentioned your answer with respect to you can never know. But are there ways for a brand to reduce it? What kind of mental models or maybe tools brands can use in order to see?
+
+Sure, there's always going to be excess inventory, but how can I reduce my blast radius or you know, like how can I reduce the amount of surplus inventory I have?
+
+Jarett Antoque, JD (10:49)
+Yeah, yeah, absolutely. I think if it has history, if the brand has history, if the silhouette has history, the price point has history, you can be a lot more precise, right? It's really that determinant of...
+
+how big your volume can be really, right? Like if this blazer, you buy a thousand units, cause last year you sold 900, great, you're gonna have a 10 % increase, However, if you look at someone that really wants to significantly scale quicker.
+
+Say your company wants to grow 50 % year over year, but you don't know if that item does or can, but it's only one with history. You have that balance to determine. So it's really finding that balance between the science and art of the business. Knowing how far an item will go and knowing what the numbers tell you and finding that fine balance. I think an unknown brand and an unknown silhouette with a price point that maybe is uncomfortable for a lot of people, that's probably the riskiest business. But I would say for like a brand of Nike and it's
+
+Shivang (11:28)
+Mm-hmm.
+
+Jarett Antoque, JD (11:50)
+a t-shirt just with a new print. You that, yeah, you can take pretty good bets based off of the history you have with the brand just determining what the right amount should be. However, it's really the big bets in every retail I've ever worked for that has always been the shining star.
+
+Like that's always the buyer, that's always the manager that is always winning the awards is the ones that take really big bets and it pays off. However, big bets take big risks and sometimes they have the bigger amount of excess inventory. So it just depends on, again, that crystal ball and how good you balance it with the science.
+
+Shivang (12:12)
+Mm-hmm.
+
+That makes sense. When I was at Amazon, there were a bunch of different ways, like inventory was forecasted. Some ways were very rudimentary, where you were looking at, OK, we'll just make a 3 % increase from what we told last year, and we'll lose that. Some teams and some brands I've seen in general would be more sophisticated, where they would just start doing some history analysis, some linear analysis with respect to
+
+How much did I sell in the last three months and how much can I expect? But yeah, I completely agree. It's super hard to forecast how much would you need. especially in fashion, you try to ride a wave. You try to make sure that you always have inventory versus not have the inventory. But in those cases, I think it's important to have a recourse channel, like an Re-commerce channel.
+
+so that you're always able to keep moving the cash flow because you'll make 10 bets, five of them will pay for the rest of the five, but at the same time, you'd want to make sure that your warehouses are not getting clogged and you're still finding a way to have them reach to a new channel.
+
+Jarett Antoque, JD (13:34)
+Yeah, absolutely. 100 % agree.
+
+Shivang (13:37)
+Awesome.
+
+Awesome. Yeah. Now, I mean, I think now that we have established that excess inventory is a problem itself, like what kind of channels do you think brands use and should be using in order to drive more recovery from them?
+
+Jarett Antoque, JD (13:54)
+Yeah, so I think for channels of getting through the excess inventory, I would say my top of mind one right now is capitalizing on marketplaces. I think marketplaces is a significant piece of the future of retail, especially e-commerce that we see like Nordstrom. They just launched, think, their marketplace. Macy's and Target has a marketplace now. SHEIN and TEMO, you can be on that marketplace. Really, Amazon was the first major to do it, obviously.
+
+The fact that you now have access to be able to push your inventory in all of these marketplaces and access those customer bases pretty quickly and easily with a lot of the marketplace automated systems they have out there is probably my first and foremost best way to go through it. If you know consistently you're going to have excess inventory every season, it's a good investment to make upfront to create the infrastructure and the team and the processes to make sure that that's just part of your lifecycle of your Products.
+
+
+
+You know, you're bringing it in for this season. Okay, this is when it goes to the off price channel. Yeah, maybe you want to try to sell it to the wholesalers of, you know, Saks off if TJ Maxx, whoever. However, if you just want to have more control over the profitability, you want to have more control over the experience. I would choose the marketplaces. It's a lot easier. It's a lot faster. And you can keep all the inventory in the same warehouse. However, not everyone has that luxury, you know, space is limited. So if you have to move that inventory out,
+
+then yeah, maybe just wholesaling to some of these major off-price retailers would be the way to go.
+
+Shivang (15:21)
+So I mean, that makes sense, Jarett, but how does that apply to the luxury brands that would not want to be on marketplaces or would have challenge? I mean, given the fact this is excess inventory, normal channels are not able to move this inventory, what would be the driver for them on marketplaces? It could be markups and things of those nature. But the tension point over there for brands would be
+
+that why would I want to, know, if I'm a luxury brand, would I want to be on Amazon? Would I want to be on eBay? Would I want to be on Poshmark or would I want to be on SHEIN? So like, how does that tension point works for brands where they, mean, one can see marketplace as a great way to reduce some of the excess problem.
+
+But at the same time, there is a pricing perception and a presence perception that goes hand in hand.
+
+Jarett Antoque, JD (16:20)
+Yeah, absolutely. If we're talking specifically about, you know, high end fashion and luxury, you know, I think it's a very different experience and answer. You know, a lot of them are worried about adjacencies. They're worried about the retailer, you know, reputation, as you mentioned. So that's things they have to consider. You know, I think, you know, you could say like Louis Vuitton, for example, they're on Amazon luxury stores, but they're sold through, you know, what goes around comes around and a vintage aspect, you know. So I think
+
+Shivang (16:44)
+Mm-hmm.
+
+Jarett Antoque, JD (16:46)
+for a lot of these luxury brands, while most of them may have preferred to...
+
+Burn the goods, perhaps, instead of selling through that excess inventory. I think there's also a reality piece of going where your customers are. I think there's a significant business for Louis, vintage bags or past season bags. ⁓ And a lot of the customers are in the same locations where you could find the full price customers. I know for myself, I would love, I'll buy the same seat this season, but I also love a specific
+
+Shivang (17:05)
+Mm-hmm.
+
+Jarett Antoque, JD (17:16)
+piece from a past collection, you know, so having, you know, that reality of knowing, you know, the right locations, I think is a piece, you know, I think.
+
+Shivang (17:18)
+Mm-hmm.
+
+Jarett Antoque, JD (17:25)
+maybe not all luxury brands are going to want to be on SHEIN per se. However, SHEIN has a pretty massive reach. It just depends on how big of a problem it is. I also have quite a few friends at LV that there is an internal site where they sell a lot of their excess inventory to the LV employees. And so if it's a luxury brand and you don't have something similar to that LVA setup, that would be a great place. Why not have the people that work for you wearing a lot of your stuff at a better discount?
+
+Shivang (17:32)
+Definitely.
+
+Mm-hmm.
+
+Jarett Antoque, JD (17:52)
+instead of burning it. So I think there's a lot of great options, I think, for someone that doesn't want their brand vastly distributed out there. That still is a great sustainable option.
+
+Shivang (17:53)
+That's a great idea.
+
+That makes sense. Yeah, I mean, there's definitely, you know, in this industry, there's all there's definitely this tension point of where my brand should be. Like, should it be? What should it be placed next to? And not just the luxury brand. think every brand cares about it when they start actually, you know, like double downing on the double, you know, going double down on their marketing or in general thinking about because there's a lot of noise in the market today. If you look at cold drinks, there are seven kind of cold drinks. Right. So
+
+marketing becomes a lever for you to have a certain price and value in the mind of a customer. that's one tension point that I've definitely seen in the industry where brands hesitate to kind of use these approaches where I'll place it on a marketplace or I'll open an outlet store.
+
+Creating an internal store for your own employees is an amazing idea. think every brand should kind of think and consider doing that if you're at that scale, because why not? Especially if you're a fashion brand or an apparel brand, people use that. That's something we consume a lot more than other things. But in that context, that's for the luxury brands. Marketplace is great idea. Internally selling to customers.
+
+to employees, that's also a great idea. What other ways would you say, have you seen that work, like work to get rid of excess inventory? Because you can only get rid of a certain amount of your inventory through marketplaces, given the hypothesis that the product doesn't have that much demand in consumers' mind, right? There's a reason why it's an excess inventory. So would you say, like what other avenues can a brand explore?
+
+Jarett Antoque, JD (19:49)
+Yeah, I would say there's a couple of additional options. I would say attending trade shows where they sell a lot of off price, like the off price trade show itself in Vegas, or there's also another trade show I love, ASD. There's a lot of distributors and brokers that will buy quite a bit of inventory, and they have the network to sell through that inventory. So if you're trying to look for a quick...
+
+Shivang (19:57)
+Mm-hmm.
+
+Jarett Antoque, JD (20:11)
+way to get rid of that inventory and have someone that is an expert in that field and has a network, I would say that's a great approach is find a distributor or an exit or a broker that can help facilitate getting that inventory out of your warehouse for you. I would say that's a big one. And then also, I would also look at what's going out with overseas, not to be a plug for JD, but there's a lot of major businesses
+
+happening outside of the US. So if a brand is solely focused on the US, start looking at the Mexico market, start looking at China, start looking at all of these other markets because there is a significant appetite for American brands outside of the US. I think finding the right channels and the right retailers and capitalizing on that is a great way to also get rid of it.
+
+Shivang (21:03)
+Yeah, that's absolutely correct. think using the B2B channels and looking outside of internationally is a great way for a brand. If their primary market is US, it also becomes a way for them to expand in the secondary markets and actually build a presence over there, acquire some customers just by sending their excess inventory. They're taking a smaller risk, but still getting to enter the industry because at the end of the day, their name is attached.
+
+to the product and who knows by through that they would acquire some customers who would then want to buy their regular inventory and things like that. In the B2B liquidation space, something that I've seen where brands hesitate to work with the B2B wholesalers and brokers and distributors is that what would happen to my product if I give somebody 20,000 units of my product, how would they
+
+How would they resale it in different channels? Does that concern come up with brands when deciding on which distributors and wholesalers to work with? Where exactly would it end? Is the wholesaler or distributor selling to bin stores? Are they selling to discount retailers? So does that concern come in with respect to making sure that the inventory is going into the right channels where they want to see?
+
+Jarett Antoque, JD (22:20)
+Yeah, yeah, absolutely. You know, I think for the higher in fashion you go for a brand, the less likely you'll find it easy to use, find a retailer or a store to sell it to, just because they are very limited or limiting to make sure that the retailers you're selling it to has the proper brand adjacencies. You know, I would say a big brand like let's say Dolce & Gabbana or Gucci or, you know, a big designer brand.
+
+they're not going to work with just any old distributor. They usually have a broker that they work with, specifically that they probably have a relationship with that understands the luxury market and has that network.
+
+they more than likely will probably start off with going to the rack or Saks off fifth and start there. And then if they still can't exhaust it, then they'll try to find additional locations. I get a lot of liquidators of designer brands come to me because a lot of them don't want the visibility to a lot of these big retailers in the US. They don't want the Neimans, the Nordstroms, the Saks to see that they sold it at off price or that a retailer is selling it off price. So they'd rather have it not visible to them
+
+over to us in China on JD.com or they'll put it on Tmall or something like that. I think that's a big benefit to a lot of these high-end brands. So I would say a lot of companies do care. I mean, even an opening price point one, they have to consider where it's going and what it's gonna mean for their brand ultimately.
+
+Shivang (23:48)
+No, definitely. yeah, I resonate with that. Like brands would find more value in selling it internationally than in the same market. Also because they have retail relationships to maintain. If a brand has a retailer relationship with Saks 5th Street or like other brands, they would not want to see it in, you know, like an off-price store. And the retailer would have a problem with that. So...
+
+Yeah, guess a way to summarize it is that every brand is different. Some would want to use a channel, some would want to use another channel. the ability to have flexibility, everyone tries to build a certain path which they use to exhaust the inventory they have.
+
+Awesome. ⁓ One last question. Awesome. So like now that you have kind of pointed to like there were lot more options today than they were like, what were the old options? Like what were the options? What were the only options that existed if I had, if I would have asked you this question 10 years ago?
+
+Jarett Antoque, JD (24:31)
+Yeah, absolutely. There's a lot more options today than there were before. go ahead.
+
+Yeah, you know, I feel like an old Garmento having to explain what it was like 20 years ago, but you know, I think the reality was, you know, back in the Macy's days when, you know, this is probably 05, 06, you know, our markdown pricing cadence was, you know, you do first mark, second mark, third mark, which is usually 2550 to 75 off. After 75 off, it goes to either penny stock or mark out of stock. At that point, the only exhaust was a jobber.
+
+someone that would buy all of that inventory at pennies on the dollar. So you basically were losing X amount. Whether it was profitable, you had to weigh the balance of how much it costs to hold on to the inventory and sit on it versus just getting rid of it and getting it out of your door. That was really the main outlet and that eventually made its way to Ross or et cetera. And then as you evolved and as Econ became bigger, a lot of people created these off-price sites that you could sell a lot of that inventory and just have it live forever.
+
+until it sells. And then eventually there was all of these marketplaces and eventually there's a lot more off-price retailers. And so I think back in the day, you were really limited because there were only the brick and mortars or jobbering it out. And lord knows what happened to that inventory once it hit the jobber.
+
+Shivang (26:08)
+Make sense, make sense. That's essentially like you, back in the day, if I have to summarize, people were using discounting as a way to get rid of their surplus inventory. And at some point, they were literally giving it to the jobbers who would give pennies on a dollar. So I guess the channel is definitely, I guess, looking at the last 10 years it has evolved. So has the excess inventory problem as well, I believe. Today we have more.
+
+Jarett Antoque, JD (26:36)
+Yeah.
+
+Shivang (26:37)
+You know the returns rate are so higher that you have much much more excess inventory to deal with and similarly Suppliers expect you to have higher minimum MOQs So you eventually end up having more products in your warehouses and What I've seen, you know a lot of brands hold on to the surplus for a lot lot longer because they don't calculate the storage cost or the opportunity cost that's tied to it because
+
+They're so attached to the inventory that I would not want to get rid of it at a 10 % recovery or a 15 % recovery or a 5 % recovery because that doesn't sit well with them. But they don't realize that while the inventory is sitting there, it's just costing them x amount of dollars every month just to keep it. And for the same reason, they're not able to get more inventory. Awesome.
+
+Jarett Antoque, JD (27:27)
+Absolutely.
+
+Shivang (27:28)
+I want to make a segue into something that's happening all around the world right now. And I think it's super interesting to kind of hear from your perspective. How has your day-to-day changed with the tariff situation where you're sourcing, I'm guessing, making these decisions every week, every day, and so is the tariff situation. So how are you kind of operating in this equation? And how has it impacted your day-to-day in general?
+
+Jarett Antoque, JD (27:56)
+Yeah, you know, I would say when...
+
+they significantly were raised earlier last month. I would say that was a lot of late nights of exercises and forecasts of what does that mean for our business? I think JD, I give mad props to their data team because they went down to the skew level and got the country of origin for every single one to decide what is made in the US that we're currently importing, what does that impact look like, and what does the forecast look like if we walk away from that item,
+
+want to scale that item still, et cetera. So in the beginning, there was a lot of exercises needed to to forecast what that impact would look like. I would say now the benefit and beauty of being on this side of the retail side, our position, is we're doing a lot of exports to China. We're not necessarily importing from China into the US, where a lot of the tariffs were significantly increased. And while there were some retaliatory
+
+tariffs on anything being imported to China with made in US origin Thankfully a lot of brands that you know, we're sourcing not all of them Majority of them I would say are not produced out of the US, you know a lot of them have expanded and sourced from Vietnam or Cambodia or you know, even the UAE or you know, Thailand so the great thing about it is I Wasn't as impacted as I would say as the retailers that are selling solely with
+
+the U.S. ⁓ So you know would say that's the beauty of jumping to this side of the business.
+
+Shivang (29:20)
+Mm-hmm.
+
+Make sense, make sense. But if,
+
+what if you were to working at, you know, at SHEIN.com or at Amazon right now and you were sourcing from China, what advice would you give to, you know, sources and in general retail businesses, brands of how exactly to go about navigating this time?
+
+Jarett Antoque, JD (29:43)
+in addition to the tariffs, it's in some ways could be the perfect storm.
+
+You know, there's a lot of conversations right now of, you know, SHEIN or TEMO because they were the most significantly impact.
+
+impacted or benefiting rather from the de minimis policy. And so I think the biggest piece that I see in differentiation is SHEIN one has probably the lowest, dare I say the least amount of excess inventory of all the fast fashion retailers. And that's because of their model on how they produce their private labels. They buy small runs and then chase into what actually works. And so they'll buy 100 or 200 units. And then if it explodes, they'll
+
+buy
+
+several thousands of units and they can chase it within weeks. There's no other retailer I know that can do that. And I thought I was pretty fast at Victoria's Secret where we would chase inventory within four to six weeks. mean, SHEIN can chase product within weeks. And I only mentioned that specifically because while the tariffs did significantly adjust their pricing,
+
+Shivang (30:32)
+Mm-hmm.
+
+Jarett Antoque, JD (30:43)
+they still are the cheapest in the market. They still are the most forward in fashion in the market for the price point and fast fashion. So they're gonna be pretty hard to beat even with the increased tariffs and even risk of de minimis going away. Temu on the other hand, they aren't as known for fashion, but I know that they've adjusted their strategy to be a little more fulfilled from local warehouses, a little more focused on what they can produce from  the US. So I think it's a balance of a lot of those things. There's only so much you can do with a lot of the
+
+Shivang (30:45)
+Mm-hmm.
+
+Mm-hmm.
+
+Jarett Antoque, JD (31:09)
+of diversification of sourcing. I talk with my Nordstrom friends and they've already tried to outsource to Vietnam instead or try to get it from Cambodia instead. And so I think there's gonna be a balance of finding creative ways of where you can produce from. But I think the great...
+
+piece is, you know, our big piece to mention is the relationships. A lot of these major retailers have really strong relationships with the production and warehouses that they're getting the products from. And a lot of it's going to be a shared responsibility that some of it's going to be have to be eaten by the warehouse and some of it's eaten by the retailer where they're having to increase the retails and it reflects back to us and the consumer that has to pay for that. So I think it's just a matter about, you know,
+
+relationship, having your niche and the right product at the right value is still going to be, I think, key in any market.
+
+Shivang (32:01)
+Yeah, that makes sense. mean, I think the planning discipline would have to be better, similar to what like she and as you described, which is super insightful that they're able to run these thousands of experiments on a daily basis and see what works and then doubling down on buying more inventory. And because they have very robust manufacturing and supplier partnerships, they're able to kind of execute on that.
+
+But yeah, I'd say a lot of mid-sized brands don't have that luxury. So in that case, what they would have to do is have better planning discipline with respect to how do you kind of start planning? If you were planning for six months, how do I make it three months now and then go about it? What I am seeing right now in the industry is because the tariffs are higher one day and lower the other day, there's a lot of
+
+pent-up demand at the same time then you know like bloat that would that is that would come up because people would be You know sourcing, know shipping and importing faster just just just before the window closes or something else changes So I see that as something which might impact the surplus industry in the next six seven months where Brands would then be sitting on surplus inventory, which they were hoping to sell but
+
+for some reason, especially in the fashion industry, where I'm assuming where trends change a lot faster. Things that are in trend right now might not be in trend six months from now. if making a segue into a little bit about much like JD.com has to, it's not just sourcing its logistics. You need strong logistics to be able to support this.
+
+like sourcing from America and shipping to China. Like, so what role do you see or like how can other brands who are not set up for, you know, obviously they can work with you and then get all their inventory out of the US. But what are other ways if a smaller brand or a brand wants to explore this path of, let me see if I can find buyers for my surplus in New Zealand, Africa, India, China.
+
+and other markets, like how can they go about it? What would we advise? How to operationalize that plan of whenever inventory is becoming excess, how exactly do they go about finding customers in other markets?
+
+Jarett Antoque, JD (34:19)
+Outside of China, mean specifically or ⁓ inclusive of China?
+
+Shivang (34:21)
+Yeah, mean, any anywhere
+
+else outside of the like if a US brand wants to find and create a cross broader resale channel, what exactly would would would be your advice for them?
+
+Jarett Antoque, JD (34:34)
+Yeah, absolutely. I would say they should do a lot of research as the first step. I think there's a lot of tools out there that gives you a lot of data of other markets.
+
+One of the best resources I've used in my past is this system called Smart Scout. And they give you very quick visibility into top sellers across the world of all of their different platforms on Amazon. So if you wanted to see what is selling really, really well on Amazon Japan, you can. You would want to research what are the products selling that are similar to yours? What price points are selling similar to yours? What are...
+
+Shivang (34:51)
+Mm-hmm.
+
+Jarett Antoque, JD (35:10)
+know, cultural differences, how do you localize your product for that market? I think those are really big, significant pieces. I think the beauty and benefit of JD, Crossboard E-Commerce is we have 1600 warehouses globally. I mean, that's massive. 1600 self-operated warehouses globally. 1500 of those are in China. The rest of the 100 are global. You know, we've got it in the UAE, Netherlands, Poland, Vietnam, Cambodia.
+
+we can make it really, really easy if you want to try to break into the China market and access our 600 million active customers. That's a really big piece too, is finding the right retailer. think Amazon, obviously, they can access all of these other different countries, but you have very specific, as you know, restrictions and parameters that you have to be able to hit to be able to ship to those countries. But then there's other options like I think Zalando is another one that in the Europe market, you can also access.
+
+access
+
+a lot of these other markets very quickly and easily and they have a massive customer base. So I would say it's just finding the right companies and then finding the ones that make it the easiest. I always recommend, again, the marketplaces and finding these marketplace systems like maybe like a CED or maybe like a Rithum or something like that that has access to a lot of these marketplaces that also can help you expand your reach to other countries very quickly and easily in a centralized location.
+
+Shivang (36:11)
+Mm-hmm.
+
+Jarett Antoque, JD (36:35)
+Especially for a smaller brand and a smaller team, that might be the easiest starting point once you do your research and where you want to allocate to.
+
+Shivang (36:42)
+That makes sense. I mean, I feel really bullish about the marketplace model after talking to you because that actually gives you an access to existing customers in that market where you don't have to create demand. All you have to do is, in some cases, create your listings, get your products out there, use tools like Smart Scout to kind of figure out
+
+if the product would do well over there and then go from there. Really interesting, really interesting. Another question, like this question I think is more towards you were mentioning with what you were mentioning in the past where larger brands only work with brokers or they have certain distributors they want to work with when they want to get rid of their surplus inventory. How can a smaller player
+
+establish a relationship with these bigger brands where trust is of importance, personal relationship is very important, of much importance. And these brands have preferences with who they want to work with when it comes to exhausting their excess inventory. So how can a smaller player or a brand or someone running a boutique store or someone running a mom and pop store, how can they get access?
+
+Or not just that but how much like anyone other than those, know, like selected players that get to work with these large players Large brands can kind of make that relationship
+
+Jarett Antoque, JD (38:06)
+Yeah, yeah, absolutely. You know, I think
+
+A direct relationship with these big brands is very, very difficult. I think it takes several months, if not several years, to get in the door for some of the direct brand relationships. However, to get it in directly, it's just really being creative. And I think one of the big ways I mentioned earlier, attending the trade shows and finding the people that have the access to those brands and can distribute it to you, if you're a smaller boutique or something like that, it usually should be no problem. You do have to have the liquid funds
+
+Shivang (38:15)
+Mm-hmm.
+
+Jarett Antoque, JD (38:36)
+because most of them are prepay only. ⁓
+
+Shivang (38:39)
+Mm-hmm.
+
+Jarett Antoque, JD (38:40)
+And then the other piece is right now JD has a really strong partner called . And they are a B2B marketplace where they have all the top and best brands where they vet with all of the authenticity and trailing invoices to make sure it's authentic product from these top brands. They also are very limited in who they source from and who they sell to. ⁓ So if that is an option for you, that is fantastic as well as an outlet.
+
+Shivang (39:02)
+Mm-hmm.
+
+Jarett Antoque, JD (39:06)
+backed by the LVMH Groups financing company, I believe. But they are an amazing team to work with, an amazing, easy platform that has all of the best brands in fashion and in footwear and in beauty and home. So, you know, I think finding places like that could be easy to get access to a lot of these big brands. know, another one that I work with is High Stock. They have a ton of, they're focused on beauty specifically, but, you know, finding specific outlets like that
+
+Shivang (39:17)
+you
+
+Mm-hmm.
+
+Jarett Antoque, JD (39:33)
+that
+
+already have it centralized and already vet the authenticity of products, I think is really key. Because I think there are a lot of people that are selling products that maybe don't have that invoice or maybe it's hard to tell if it's authentic or not. And you want to maintain, obviously, that customer trust. so finding outlets that you can get it that it's real product and authentic product, I think, is key and important.
+
+Shivang (39:39)
+Mm-hmm.
+
+Yeah, definitely, Jarett. That resonates a lot with us. know, Commerce Central, the platform that we are building is essentially trying to do the same thing with the same ethos where brands get to kind of create an authority pattern and sellers get an access to these brands where brands can feel safe about my product going out to the right hands while the smaller players can ensure that they are always getting the right product because there's a lot of times where
+
+buyers would be promised something, but would be provided something else and vice versa, where brands would expect a certain policy to be followed. So for example, don't sell my product on Amazon, but the buyer would not align with that. So definitely, mean, very soon you'll hear our name as well in that list. We'd love to hear from you as well someday with respect to what do you think about Commerce Center. But that's really, yeah, I think that's
+
+Jarett Antoque, JD (40:45)
+Absolutely.
+
+Shivang (40:51)
+That's a win-win way. think these private marketplaces are win-win way where brands get to sell to smaller players, get better prices for their products because then they're not selling to just one distributor that would give them, you know, like would give them maybe 10 cents on a dollar. But by selling it to 15, 20, 30 smaller players, they can increase their recovery at the same time reduce their blast radius with respect to
+
+I know where exactly my product is going and who exactly is using it. And these marketplaces make sure that while all of this is happening, there is compliance, there's tax work, and things of that those nature are taken care by. And it's all happening on a private marketplace. So it makes it quite the same experience where brands don't want to do it publicly, but at the same time, they're able to get rid of their surplus inventory. Very nice.
+
+Jarett Antoque, JD (41:45)
+Absolutely.
+
+Shivang (41:45)
+⁓
+
+And the other thing I would add to that is I think the location and the geography piece of it as well where a brand might have preferences that all the resellers of my brand need to exist on the West Coast because I have a very strong presence on the East Coast or I have a very strong presence in North America and all my resellers need to exist. So these platforms make it super easy for people to connect across borders and you know, like be able to do commerce with each other.
+
+Awesome. Nice. moving on, there is always this consistent tension between profitability and sustainability that brands have to go through. And given the fact that there are so many, and rightfully so, so many new regulations coming in in Europe where by 2026, you would have to make sure that
+
+Jarett Antoque, JD (42:15)
+Absolutely.
+
+Shivang (42:41)
+every unsold product is either recycled or resold. And in California, where apparel, at least in the apparel industry, have to make sure by 2030 that every, you have the entire lineage of where your unsold goods are going. So like, how do you think profitability and sustainability go? What's the balance between these two?
+
+Jarett Antoque, JD (43:09)
+There is significant power with social media today. And there's significant power with getting your customers' appetite and opinion and having them buy into a product's production before you even go to produce it. I think it's Moda Operandi. They will do a lot of presale of products. After a runway, the brand will then go to the showroom. They'll take pictures of the assortment. And then the customers can basically pre-buy or vote on specific items that they love.
+
+buy what actually is pre-sold. I think that's a great way for brands to really mitigate excess inventory. Get a gauge of what customers are resonating with. I've worked with many, many brands, and every designer thinks they're one thing that is amazing. It's probably great for the runway, but the masses won't pay X amount for that, or it doesn't just resonate with the masses. so I think using social media and using what your DTC sites capabilities have to try to do pre-sale,
+
+I
+
+think will only better and reduce the amount of excess inventory you have. And then also just using data. What does the data tell you? Data will give you a lot of information of what your best selling price points are, what's the best selling color, what's the best selling fabric, what's the best selling category. You don't always have to reinvent the wheel. Do what's best for your brand and make sure to create that strong foundation that has the least amount of excess inventory. And then the last thing I would say is take a
+
+take a note from the SHEIN book, right? Like do a small cut, find a factory that will produce a very small amount for you. Maybe it's a higher cost, but then when you buy the several thousands of units, it's a lot smaller of a cost and you can chase into it. So that way you're not necessarily having to take such a massive risk and bet on product that doesn't show as proven yet and doesn't have to commit to such a large amount yet either.
+
+Shivang (44:36)
+Mm-hmm.
+
+Yeah, I mean, 100%. I think if brands would need to get better at planning and at the same time getting better at reselling it, I think both of those things would really matter as the industry evolves. You'd have to reduce wastage by better using your data. You'd have to look through the trends. You'd have to figure out what sells, what doesn't sell. Sure, there is still an aspect of gut feeling of what might sell, but
+
+at the end of the day, data doesn't lie. There's a lot of value in there, especially if you're an established brand that has been in business for more than three, four years. You have some trends that are now established, which can tell you this is going to sell, this is not going to sell. And it's also very brand specific. Another brand might be able to move something, which you might not be. So sometimes a lot of brands would make a decision that, they are doing this. We should also try it.
+
+I don't know if it's a science or a reason, but not every brand can sell everything. And I think the more a brand uses their own data to make their decisions, it's going to be much better. on the flip side of it, when you have it, definitely you need mechanisms in place before it. I'm not sure, but I've seen a lot of brands do it reactively, where now I have this inventory, what do I do about it?
+
+which makes a time crunch, a pressure, a rush to make a decision. If you already have those channels in place, just like you were mentioning before, if you make it part of your lifecycle, then it kind of becomes very easy. Then it becomes easier for you to keep cash flow going, keep your inventory moving, and keep your warehouses set up for success. Awesome.
+
+Jarett Antoque, JD (46:39)
+Absolutely.
+
+Shivang (46:41)
+Alright, I think we are moving on to the last two pieces of our conversation. So this is a lightning round Jarett. This is essentially quick hits. No overthinking, just answering one word, two word answers with respect to what you know, like your experience with these things.
+
+Alright, what's the sourcing move you still brag about?
+
+Jarett Antoque, JD (47:04)
+Patco home.
+
+Shivang (47:07)
+Nice. A low key that haunts you.
+
+one that haunts you like not a good sourcing move that still haunts you
+
+Jarett Antoque, JD (47:13)
+⁓
+
+At Zappos, the Michael Starrs high-low dress that I bought five colors and 14,000 units of and only had a 7 % sell through.
+
+Shivang (47:26)
+I hope they've found a new home for them.
+
+Jarett Antoque, JD (47:30)
+They sold it through a couple years later.
+
+Shivang (47:33)
+Got it. Most fun country to source from.
+
+Jarett Antoque, JD (47:38)
+Korea.
+
+Shivang (47:39)
+Korea. That's interesting. That's interesting. One tool you'd panic if it disappeared.
+
+Jarett Antoque, JD (47:46)
+social media.
+
+Shivang (47:48)
+Nice, nice. What's the sourcing tool, you know, skill that you would advise other people, but it's very underrated in the sourcing world.
+
+Jarett Antoque, JD (48:00)
+Sourcing tool, probably B2B marketplaces.
+
+Shivang (48:06)
+What's one resale or liquidation trend you are quietly obsessed with right now?
+
+Jarett Antoque, JD (48:15)
+Quietly obsessed with... Ooh, that's a hard one. A store or a liquidation model, you said? Is that right?
+
+Shivang (48:23)
+Yeah, like, yeah,
+
+yeah, yeah. like, model that recently came up and you're quite obsessed with it.
+
+Jarett Antoque, JD (48:30)
+Yeah, I think right now I'm obsessed with resale pop-ups.
+
+Shivang (48:35)
+Nice, yeah, those are nice ones. I have some sort of obsession about them as well, especially in the realm of live shopping that's really popping up lately.
+
+Jarett Antoque, JD (48:46)
+Yeah, absolutely.
+
+Shivang (48:47)
+Awesome. That was fun, Jarett. Last question for you with respect to giving advice to people who are in a sourcing role, in a planning role, or just are in retail in general. How do you advise them to deal with excess inventory in general? Think of a brand. It's a mid-sized brand. They don't have all the capabilities of other brands. They don't have the reach of a
+
+of a luxury brand or a well-named brand, how do they deal with surplus inventory? What would we advise them?
+
+Jarett Antoque, JD (49:23)
+Yeah, I would say today, this day and age, you've got a lot of different options. I would say if you want to have it specifically distributed at a very low price quickly on your own and fulfill those orders, maybe create a Poshmark store or a Mercari store. If you can't find a partner at one of the trade shows like ASD or Off Price, maybe I would research a little more and find someone on LinkedIn that you could find to partner with in a company.
+
+Shivang (49:37)
+Mm-hmm.
+
+Jarett Antoque, JD (49:53)
+a mentor that would help you guide to the right network. Because I think that's another piece too is while the network is big, it's very small too on how to find them. You even finding you folks, you know, it's how would they discover you? You know, and I think it comes down to...
+
+having to find a network that has that reach, because a Google search won't get it, right? I mean, you could Google all you want, and you still won't find a ton of options. It's having to be creative on how you find that network. So I would approach it that way. ⁓ The cheapest way is finding a network within LinkedIn, Google, or just doing it yourself.
+
+interested.
+
+Shivang (50:30)
+Yeah, super insightful, Jarett. ⁓ My advice wouldn't be any different. It's about connecting with the people who do this day in, day out, and they can drive you to the right solution because every brand is different, and you have to find the right kind of a secondary market to be able to deal with it. Well, this has been a pleasure, Jarett. And really appreciate your time, and thanks for joining us today on the ReCommerce show.
+
+Jarett Antoque, JD (50:56)
+Yeah, thank you so much for having me. Have a good one.
+
+Shivang (50:59)
+Thank you.
+

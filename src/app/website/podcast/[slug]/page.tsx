@@ -89,6 +89,23 @@ async function getPodcastBySlug(slug: string): Promise<PodcastEpisode | undefine
         'Future trends in the industry',
         'Getting started with ReCommerce platforms'
       ]
+    },
+    {
+      id: 2,
+      title: 'Sourcing Secrets: How to Tap Brand Surplus – Jarett Antoque (JD.com, ex-Amazon, SHEIN, Macy’s)',
+      description: 'In this episode of The ReCommerce Show, we sit down with Jarett Antoque, a retail veteran whose experience spans iconic names like Amazon Style, SHEIN, Zappos, Nordstrom, Macy’s, and JD.com.Jarett shares hard-earned insights from decades in the industry, diving into the challenges brands face with excess inventory, sourcing under tariff pressures, and the delicate balance between profitability and sustainability.',
+      date: '2025-06-11',
+      image: '/images/podcast/Podcast_Ep2--Jarret.webp',
+      number: '02',
+      duration: '51:07',
+      guest: 'Shivang Maheshwari & Jarett Antoque',
+      audioUrl: 'https://www.youtube.com/watch?v=rBPdRaYUbgs',
+      spotifyUrl: 'https://open.spotify.com/episode/4QuWaEFqfi269tNBfXTCzN?si=bqn2g5lNTSmlB8rOD20Rag',
+      showNotes: [
+        'Insights on excess inventory challenges',
+        'Sourcing strategies under tariff pressures',
+        'Balancing profitability and sustainability in retail'
+      ]
     }
   ];
 
@@ -106,13 +123,19 @@ async function getPodcastBySlug(slug: string): Promise<PodcastEpisode | undefine
 
   // Fetch transcript content if it's the target episode
   let fetchedTranscript: string | undefined = undefined;
-  if (episodeData.id === 1) { // Assuming episode ID 1 has this transcript
+  let transcriptFileName = '';
+  if (episodeData.id === 1) {
+    transcriptFileName = 'episode1_transcript.txt';
+  } else if (episodeData.id === 2) {
+    transcriptFileName = 'episode2_transcript.txt'; // Assumed name, user to confirm
+  }
+
+  if (transcriptFileName) {
     try {
-      const transcriptFilePath = path.join(process.cwd(), 'public', 'transcript', 'episode1_transcript.txt');
+      const transcriptFilePath = path.join(process.cwd(), 'public', 'transcript', transcriptFileName);
       fetchedTranscript = fs.readFileSync(transcriptFilePath, 'utf-8');
     } catch (error) {
-      console.error('Error reading transcript file:', error);
-      // Optionally, set a default message or leave undefined
+      console.error(`Error reading transcript file (${transcriptFileName}):`, error);
       fetchedTranscript = 'Transcript not available.';
     }
   }
@@ -141,11 +164,11 @@ async function getRelatedEpisodes(currentId: number): Promise<PodcastEpisode[]> 
 
 // This function runs at build time to generate all possible slugs
 export async function generateStaticParams() {
-  // In a real app, you would fetch these from your data source
   const slugs = [
     'world-retail-congress-what-did-we-learn',
     'delivering-the-future-amazon-leaders-on-ai-robotics-last-mile-and-same-day-delivery',
-    'aisle-to-algorithm-davids-bridals-new-ceo-on-retail-transformation'
+    'aisle-to-algorithm-davids-bridals-new-ceo-on-retail-transformation',
+    'sourcing-secrets-how-to-tap-brand-surplus-jarett-antoque-jdcom-ex-amazon-shein-macys'
   ];
 
   return slugs.map((slug) => ({

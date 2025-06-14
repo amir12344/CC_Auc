@@ -33,14 +33,6 @@ const TeamSection: React.FC = () => {
       title: 'VP of Engineering',
       imagePath: '/images/Amir.webp',
     },
-    {
-      name: 'Ahmed Aslam',
-      title: 'Advisor',
-      imagePath:
-        '/images/Ahmed.webp',
-    },
-
-
   ];
 
   return (

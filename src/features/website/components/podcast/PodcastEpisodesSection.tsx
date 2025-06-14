@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { Download, Forward, Play, Rewind, Share2 } from 'lucide-react';
 
 interface Episode {
   id: number;
@@ -26,6 +25,15 @@ const PodcastEpisodesSection = () => {
       number: '01',
       duration: '18:35',
       guest: 'Shivang Maheshwari & Cat La',
+    },
+    {
+      id: 2,
+      title: 'Sourcing Secrets: How to Tap Brand Surplus – Jarett Antoque (JD.com, ex-Amazon, SHEIN, Macy’s)',
+      date: 'June 11 2025',
+      image: '/images/podcast/Podcast_Ep2--Jarret.webp',
+      number: '02',
+      duration: '51:07',
+      guest: 'Shivang Maheshwari & Jarett Antoque',
     },
   ]
 
@@ -57,19 +65,16 @@ const PodcastEpisodesSection = () => {
                   }}
                 >
                   {/* Episode Image */}
-                  <div className='relative'>
+                  <div className='relative p-4 aspect-square'>
                     <img
                       src={episode.image}
                       alt={episode.title}
-                      className='w-full h-full object-cover p-6 duration-300'
-                      style={{
-                        borderRadius: '35px',
-                      }}
+                      className='w-full h-full object-cover rounded-md duration-300'
                     />
                   </div>
 
                   {/* Episode Details */}
-                  <div className='p-6'>
+                  <div className='p-6 h-28 flex flex-col justify-center'>
                     <h3 className='text-lg font-[500] text-white mb-2 line-clamp-2'>
                       {episode.title}
                     </h3>
