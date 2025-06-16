@@ -20,17 +20,14 @@ interface PodcastEpisode {
   spotifyUrl?: string;
   fetchedTranscript?: string;
   showNotes?: string[];
-  relatedEpisodes?: Omit<PodcastEpisode, 'relatedEpisodes'>[];
 }
 
 interface PodcastDetailContentProps {
   initialEpisode: PodcastEpisode;
-  relatedEpisodes: Omit<PodcastEpisode, 'relatedEpisodes'>[];
 }
 
-export function PodcastDetailContent({ initialEpisode, relatedEpisodes }: PodcastDetailContentProps) {
+export function PodcastDetailContent({ initialEpisode }: PodcastDetailContentProps) {
   const [episode] = useState(initialEpisode);
-  const [episodes] = useState(relatedEpisodes);
 
   return (
     <div className="min-h-screen bg-[#0A1F17] text-white pt-24">
@@ -93,10 +90,7 @@ export function PodcastDetailContent({ initialEpisode, relatedEpisodes }: Podcas
         <div className="prose prose-invert max-w-5xl mx-auto mb-16 ml-auto">
           <h2 className="text-2xl font-bold mb-6">Episode Description</h2>
           <p className="text-lg leading-relaxed">{episode.description}</p>
-
         </div>
-
-
       </div>
 
       {/* Audio Player -> Changed to Spotify Embed */}
@@ -114,63 +108,8 @@ export function PodcastDetailContent({ initialEpisode, relatedEpisodes }: Podcas
       {episode.fetchedTranscript && episode.fetchedTranscript !== 'Transcript not available.' && (
         <TranscriptSection
           transcript={episode.fetchedTranscript}
-          canLoadMoreEpisodes={episodes.length > 0}
+          canLoadMoreEpisodes={false}
         />
-      )}
-
-      {/* Related Episodes */}
-      {episodes.length > 0 && (
-        <div className="bg-[#0A1F17] py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold mb-8">More Episodes You Might Like</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {episodes.map((relatedEpisode) => (
-                <a
-                  key={relatedEpisode.id}
-                  href={`/website/podcast/${relatedEpisode.title.toLowerCase()
-                    .replace(/[^\w\s-]/g, '')
-                    .replace(/\s+/g, '-')
-                    .replace(/--+/g, '-')}`}
-                  className="block group"
-                >
-                  <article
-                    className="bg-black/30 rounded-xl overflow-hidden transition-all duration-300 relative hover:-translate-y-1 hover:translate-x-1 hover:shadow-[10px_10px_0px_0px_rgba(67,205,102,0.8)]"
-                    style={{
-                      borderRadius: '13.632px',
-                      border: '1px solid #D8F4CC',
-                    }}
-                  >
-                    {/* Episode Image */}
-                    <div className="relative h-48">
-                      <Image
-                        src={relatedEpisode.image}
-                        alt={relatedEpisode.title}
-                        fill
-                        className="object-cover group-hover:opacity-80 transition-opacity duration-300 p-4"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{
-                          borderRadius: '25px',
-                        }}
-                      />
-                    </div>
-
-                    {/* Episode Details */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-medium text-white mb-2 line-clamp-2">
-                        {relatedEpisode.title}
-                      </h3>
-                      <div className="flex items-center text-sm text-gray-400">
-                        <span>{new Date(relatedEpisode.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-                        <span className="mx-2">•</span>
-                        <span>{relatedEpisode.duration}</span>
-                      </div>
-                    </div>
-                  </article>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
       )}
 
       <TestimonialsSection />

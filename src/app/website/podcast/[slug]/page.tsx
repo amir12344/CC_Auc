@@ -19,7 +19,6 @@ type PodcastEpisode = {
   transcript?: string;
   fetchedTranscript?: string;
   showNotes?: string[];
-  relatedEpisodes?: Omit<PodcastEpisode, 'relatedEpisodes'>[];
 };
 
 // Generate metadata for the page
@@ -32,19 +31,23 @@ export async function generateMetadata(
 
   if (!episode) {
     return {
-      title: 'Episode Not Found',
-      description: 'The podcast episode you\'re looking for doesn\'t exist or has been removed.'
+      title: 'Episode Not Found | The ReCommerce Show',
+      description: 'The podcast episode you\'re looking for doesn\'t exist or has been removed.',
+      robots: {
+        index: false,
+        follow: true
+      }
     };
   }
 
   return {
-    title: episode.title,
+    title: `${episode.title} | The ReCommerce Show`,
     description: episode.description,
     alternates: {
       canonical: `https://www.commercecentral.io/website/podcast/${decodedSlug}`
     },
     openGraph: {
-      title: episode.title,
+      title: `${episode.title} | The ReCommerce Show`,
       description: episode.description,
       url: `https://www.commercecentral.io/website/podcast/${decodedSlug}`,
       type: 'article',
@@ -61,7 +64,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: episode.title,
+      title: `${episode.title} | The ReCommerce Show`,
       description: episode.description,
       images: [episode.image],
     },
@@ -92,8 +95,8 @@ async function getPodcastBySlug(slug: string): Promise<PodcastEpisode | undefine
     },
     {
       id: 2,
-      title: 'Sourcing Secrets: How to Tap Brand Surplus – Jarett Antoque (JD.com, ex-Amazon, SHEIN, Macy’s)',
-      description: 'In this episode of The ReCommerce Show, we sit down with Jarett Antoque, a retail veteran whose experience spans iconic names like Amazon Style, SHEIN, Zappos, Nordstrom, Macy’s, and JD.com.Jarett shares hard-earned insights from decades in the industry, diving into the challenges brands face with excess inventory, sourcing under tariff pressures, and the delicate balance between profitability and sustainability.',
+      title: 'Sourcing Secrets: How to Tap Brand Surplus – Jarett Antoque (JD.com, ex-Amazon, SHEIN, Macy\'s)',
+      description: 'In this episode of The ReCommerce Show, we sit down with Jarett Antoque, a retail veteran whose experience spans iconic names like Amazon Style, SHEIN, Zappos, Nordstrom, Macy\'s, and JD.com. Jarett shares hard-earned insights from decades in the industry, diving into the challenges brands face with excess inventory, sourcing under tariff pressures, and the delicate balance between profitability and sustainability.',
       date: '2025-06-11',
       image: '/images/podcast/Podcast_Ep2--Jarret.webp',
       number: '02',
@@ -127,7 +130,7 @@ async function getPodcastBySlug(slug: string): Promise<PodcastEpisode | undefine
   if (episodeData.id === 1) {
     transcriptFileName = 'episode1_transcript.txt';
   } else if (episodeData.id === 2) {
-    transcriptFileName = 'episode2_transcript.txt'; // Assumed name, user to confirm
+    transcriptFileName = 'episode2_transcript.txt';
   }
 
   if (transcriptFileName) {
@@ -146,28 +149,11 @@ async function getPodcastBySlug(slug: string): Promise<PodcastEpisode | undefine
   };
 }
 
-// Get related episodes (excluding the current one)
-async function getRelatedEpisodes(currentId: number): Promise<PodcastEpisode[]> {
-  // In a real app, this would fetch related episodes from an API
-  const allEpisodes = await Promise.all([1, 2, 3]
-    .filter(id => id !== currentId)
-    .map(id => getPodcastBySlug(
-      [
-        'world-retail-congress-what-did-we-learn',
-        'delivering-the-future-amazon-leaders-on-ai-robotics-last-mile-and-same-day-delivery',
-        'aisle-to-algorithm-davids-bridals-new-ceo-on-retail-transformation'
-      ][id - 1]
-    ))
-  );
-  return allEpisodes.filter(Boolean) as PodcastEpisode[];
-}
-
-// This function runs at build time to generate all possible slugs
+// This function runs at build time to generate all possible podcast episode paths
 export async function generateStaticParams() {
+  // Get slugs from our actual podcast episodes
   const slugs = [
-    'world-retail-congress-what-did-we-learn',
-    'delivering-the-future-amazon-leaders-on-ai-robotics-last-mile-and-same-day-delivery',
-    'aisle-to-algorithm-davids-bridals-new-ceo-on-retail-transformation',
+    'what-is-recommerce',
     'sourcing-secrets-how-to-tap-brand-surplus-jarett-antoque-jdcom-ex-amazon-shein-macys'
   ];
 
@@ -199,7 +185,5 @@ export default async function PodcastDetailPage({
     );
   }
 
-  const relatedEpisodes = await getRelatedEpisodes(episode.id);
-
-  return <PodcastDetailContent initialEpisode={episode} relatedEpisodes={relatedEpisodes} />;
+  return <PodcastDetailContent initialEpisode={episode} />;
 }
