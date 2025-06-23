@@ -25,78 +25,78 @@ const DUMMY_PRODUCT_DETAILS_FOR_NEW_LAYOUT = {
   location: 'Amsterdam, Netherlands',
   packaging: 'Retail Ready',
   shipWindow: '30 days',
-}; 
+};
 
 const DUMMY_PRODUCT_VARIANTS_FOR_NEW_LAYOUT = [
-  { 
-    id: '1', 
-    productName: 'Glass Flow 275 Ml', 
-    variants: 3, 
-    msrp: 4.52, 
-    pricePerUnit: 2.29, 
-    totalUnits: 6000, 
+  {
+    id: '1',
+    productName: 'Glass Flow 275 Ml',
+    variants: 3,
+    msrp: 4.52,
+    pricePerUnit: 2.29,
+    totalUnits: 6000,
     totalPrice: 13740.00,
     imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
-  { 
-    id: '2', 
-    productName: 'Breakfast Plate P220', 
-    variants: 3, 
-    msrp: 4.52, 
-    pricePerUnit: 2.29, 
-    totalUnits: 6000, 
+  {
+    id: '2',
+    productName: 'Breakfast Plate P220',
+    variants: 3,
+    msrp: 4.52,
+    pricePerUnit: 2.29,
+    totalUnits: 6000,
     totalPrice: 13740.00,
-    imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
-  { 
-    id: '3', 
-    productName: 'Serving Bowl Silueta 250 Ml', 
-    variants: 3, 
-    msrp: 5.66, 
-    pricePerUnit: 2.86, 
-    totalUnits: 6000, 
+  {
+    id: '3',
+    productName: 'Serving Bowl Silueta 250 Ml',
+    variants: 3,
+    msrp: 5.66,
+    pricePerUnit: 2.86,
+    totalUnits: 6000,
     totalPrice: 17160.00,
-    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
-  { 
-    id: '4', 
-    productName: 'Soup Cup 421', 
-    variants: 2, 
-    msrp: 3.96, 
-    pricePerUnit: 2.00, 
-    totalUnits: 4000, 
+  {
+    id: '4',
+    productName: 'Soup Cup 421',
+    variants: 2,
+    msrp: 3.96,
+    pricePerUnit: 2.00,
+    totalUnits: 4000,
     totalPrice: 8000.00,
-    imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
-  { 
-    id: '5', 
-    productName: 'Storage Box Q Lumina 250 MI', 
-    variants: 2, 
-    msrp: 4.52, 
-    pricePerUnit: 2.29, 
-    totalUnits: 4000, 
+  {
+    id: '5',
+    productName: 'Storage Box Q Lumina 250 MI',
+    variants: 2,
+    msrp: 4.52,
+    pricePerUnit: 2.29,
+    totalUnits: 4000,
     totalPrice: 9160.00,
-    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
-  { 
-    id: '6', 
-    productName: 'Fruit Box Take A Break', 
-    variants: 2, 
-    msrp: 5.66, 
-    pricePerUnit: 2.86, 
-    totalUnits: 2000, 
+  {
+    id: '6',
+    productName: 'Fruit Box Take A Break',
+    variants: 2,
+    msrp: 5.66,
+    pricePerUnit: 2.86,
+    totalUnits: 2000,
     totalPrice: 5720.00,
-    imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
-  { 
-    id: '7', 
-    productName: 'Spatula Chef It Smart 205 Mm', 
-    variants: 2, 
-    msrp: 11.59, 
-    pricePerUnit: 2.86, 
-    totalUnits: 4000, 
+  {
+    id: '7',
+    productName: 'Spatula Chef It Smart 205 Mm',
+    variants: 2,
+    msrp: 11.59,
+    pricePerUnit: 2.86,
+    totalUnits: 4000,
     totalPrice: 11440.00,
-    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
 ];
 
@@ -123,12 +123,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
     // If product is found, proceed:
     const productTitle = product.title || DUMMY_PRODUCT_DETAILS_FOR_NEW_LAYOUT.name;
-    
+
     // Use the actual product's image for the main image and create some variations for the gallery
     const additionalImagesForClient = [
       product.image,
       // Simple variations for gallery - in a real app, these might come from product data
-      product.image.replace(/\?.*$/, '?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=704&q=80'), 
+      product.image.replace(/\?.*$/, '?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=704&q=80'),
       product.image.replace(/\?.*$/, '?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=705&q=80'),
     ];
 
@@ -141,12 +141,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <DynamicBreadcrumb productTitle={productTitle} />
             </div>
           </div>
-          
+
           <div className="max-w-8xl mx-auto px-6 py-6">
-            
-            <ProductDetailClient 
+
+            <ProductDetailClient
               product={product} // product is guaranteed to be non-null here due to the check above
-              additionalImages={additionalImagesForClient} 
+              additionalImages={additionalImagesForClient}
               newLayoutProductDetails={{
                 ...DUMMY_PRODUCT_DETAILS_FOR_NEW_LAYOUT, // Base dummy data
                 id: product.id, // Override with actual product data

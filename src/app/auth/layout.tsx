@@ -1,8 +1,5 @@
 'use client';
 
-import { AuthProvider } from '@/src/contexts/AuthContext';
-import ConfigureAmplifyClientSide from '../ConfigureAmplifyClientSide';
-
 export default function AuthLayout({
   children,
 }: {
@@ -10,14 +7,11 @@ export default function AuthLayout({
 }) {
   return (
     <>
-      <ConfigureAmplifyClientSide />
-      <AuthProvider>
-        <div className="min-h-screen bg-white">
-          <main>
-            {children}
-          </main>
-        </div>
-      </AuthProvider>
+      <div className="min-h-screen bg-white">
+        <main>
+          {children}
+        </main>
+      </div>
     </>
   );
 }

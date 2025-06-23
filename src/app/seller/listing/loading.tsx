@@ -1,10 +1,8 @@
 import PageSkeleton from '@/src/components/ui/PageSkeleton';
-import MainLayout from '@/src/components/layout/MainLayout';
+// MainLayout is provided by seller/layout.tsx - no need to import
 
 export default function SellerListingsLoading() {
   return (
-    <MainLayout>
-      <PageSkeleton type="default" />
-    </MainLayout>
+    <PageSkeleton type="default" />
   );
 }

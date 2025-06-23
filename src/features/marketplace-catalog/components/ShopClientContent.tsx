@@ -9,6 +9,7 @@ import { BargainSection } from './sections/BargainSection';
 import { AmazonSection } from './sections/AmazonSection';
 import { TrendingSection } from './sections/TrendingSection';
 import { CategorySection } from './sections/CategorySection';
+import { AuctionSection } from '@/src/features/auctions/components/AuctionSection';
 import WishlistBanner from '@/src/components/ui/WishlistBanner';
 import FeaturedBrands from './sections/featured-brands';
 
@@ -26,6 +27,7 @@ export function ShopClientContent({ products, productsByCategory, categories }: 
     <div ref={contentAreaRef}>
       <ErrorBoundary>
         <WishlistBanner />
+        <AuctionSection />
         <BargainSection />
         <AmazonSection />
         <FeaturedSection />

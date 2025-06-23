@@ -3,9 +3,9 @@
 // Link is used in the Button component
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { 
-  selectIsAuthenticated, 
-  selectUserType, 
+import {
+  selectIsAuthenticated,
+  selectUserType,
   selectCanAccessBuyerRoutes,
   selectCanAccessSellerRoutes,
   selectAuthLoading
@@ -23,7 +23,7 @@ import { SellerListingsDropdown } from './SellerListingsDropdown';
  */
 export function HeaderClient() {
   const [isMounted, setIsMounted] = useState(false);
-  
+
   // Redux selectors for auth state
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const userType = useSelector(selectUserType);
@@ -58,7 +58,7 @@ export function HeaderClient() {
         >
           Login
         </Button>
-        
+
         <Button
           variant="outline"
           size="sm"
@@ -78,7 +78,7 @@ export function HeaderClient() {
       <div className="hidden md:flex items-center space-x-3">
         {/* My Deals Dropdown - Only for buyers */}
         {canAccessBuyerRoutes && <MyDealsDropdown />}
-        
+
         {/* Seller Listings Dropdown - Only for sellers */}
         {canAccessSellerRoutes && <SellerListingsDropdown />}
 

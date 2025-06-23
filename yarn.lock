@@ -61,6 +61,13 @@
     relay-runtime "12.0.0"
     signedsource "^1.0.0"
 
+"@aws-amplify/adapter-nextjs@^1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/adapter-nextjs/-/adapter-nextjs-1.6.4.tgz#292f7756685898459dcd686081488c802fc4a92a"
+  integrity sha512-17Uw3rMNipcgF9Rc4OxHvkPGmYtg0S/X12Wxcj/WOAa7F2yReN6cMLMvFScAkRu4X4lWK08WlwueTPB8FM0LFQ==
+  dependencies:
+    aws-jwt-verify "^4.0.1"
+
 "@aws-amplify/ai-constructs@^1.2.4":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ai-constructs/-/ai-constructs-1.5.0.tgz#777b4a523f3fe09606cac007a69d949565060290"
@@ -8473,6 +8480,11 @@ aws-cdk@^2:
   integrity sha512-cbq4cOoEIZueMWenGgfI4RujS+AQ9GaMCTlW/3CnvEIhMD8j/tgZx7PTtgMuvwYrRoEeb/wTxgLPgUd5FhsoHA==
   optionalDependencies:
     fsevents "2.3.2"
+
+aws-jwt-verify@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/aws-jwt-verify/-/aws-jwt-verify-4.0.1.tgz#d5f36f80f3d1cbe8ffa638347bb80daf72f6ae61"
+  integrity sha512-kzvi71eD3w/mCpYRUY7cz6DX4bfYihGdI2yV3FYQ2JuZZenqAqDPz0gWj0ew6vlAtdEVBNb7p+Dm2TAIxpVYMA==
 
 axe-core@^4.10.0:
   version "4.10.3"

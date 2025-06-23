@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ErrorBoundary } from "@/src/components/ErrorBoundary";
 import { LoadingIndicatorClient } from "@/src/components/ui/LoadingIndicatorClient";
-import { DynamicClientProvidersWrapper } from "@/src/components/providers/DynamicClientProvidersWrapper";
 import { StyleProvider } from "@/src/components/providers/StyleProvider";
 import Script from "next/script";
 import { Suspense } from "react";
@@ -15,7 +14,6 @@ import {
 import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
 import { Inter } from 'next/font/google';
 import { ClientProviders } from '@/src/components/providers/ClientProviders';
-import ConfigureAmplifyClientSide from './ConfigureAmplifyClientSide';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -130,26 +128,23 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className={inter.className}>
         <ClientProviders>
-          <ConfigureAmplifyClientSide />
           <StyleProvider />
           <ErrorBoundary>
-            <DynamicClientProvidersWrapper>
-              <Suspense fallback={null}>
-                <LoadingIndicatorClient />
-              </Suspense>
-              <Suspense fallback={
-                <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-xs z-50">
-                  <div className="flex flex-col items-center">
-                    <div className="relative w-16 h-16 mb-4">
-                      <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-                      <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
-                    </div>
+            <Suspense fallback={null}>
+              <LoadingIndicatorClient />
+            </Suspense>
+            <Suspense fallback={
+              <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-xs z-50">
+                <div className="flex flex-col items-center">
+                  <div className="relative w-16 h-16 mb-4">
+                    <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
+                    <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
                   </div>
                 </div>
-              }>
-                {children}
-              </Suspense>
-            </DynamicClientProvidersWrapper>
+              </div>
+            }>
+              {children}
+            </Suspense>
           </ErrorBoundary>
         </ClientProviders>
         {/* LinkedIn Insights */}

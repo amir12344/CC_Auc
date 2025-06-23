@@ -29,13 +29,12 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 function LoginPageContent() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isCheckingUser, setIsCheckingUser] = useState(true);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
   const { toast } = useToast();
-  
+
   // Get the redirect URL from query params (supports both returnUrl and redirect for compatibility)
   const redirectTo = searchParams.get('returnUrl') || searchParams.get('redirect') || authSessionStorage.getAndClearRedirectUrl() || '/marketplace';
 
@@ -47,66 +46,36 @@ function LoginPageContent() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-    email: '',
-    password: '',
+      email: '',
+      password: '',
     },
   });
-
-  useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const currentUser = await getCurrentUser();
-        if (currentUser) {
-          // User is already signed in, trigger auth initialization and redirect
-          await dispatch(initializeAuth()).unwrap();
-          
-          // Determine redirect based on user type
-          const attributes = await fetchUserAttributes();
-          const userType = attributes['custom:userRole'] as 'buyer' | 'seller';
-          
-          if (userType === 'seller') {
-            router.push('/seller/dashboard');
-          } else if (userType === 'buyer') {
-            router.push(redirectTo);
-          } else {
-            router.push('/marketplace');
-          }
-        }
-      } catch (e) {
-        // Not signed in - this is expected for login page
-        console.log('User not authenticated, showing login form');
-      } finally {
-        setIsCheckingUser(false);
-      }
-    };
-    checkUser();
-      }, [router, redirectTo, dispatch]);
 
   const handleSuccessfulLogin = async (email: string) => {
     try {
       console.log('🎉 Login successful, updating auth state...');
-      
+
       // Show success toast and set redirecting state
       setIsRedirecting(true);
       toast({
         title: "Login Successful! 🎉",
         description: "Redirecting you to your dashboard...",
       });
-      
+
       // Trigger auth initialization to update with new user data
       await dispatch(initializeAuth()).unwrap();
-      
+
       // Get user attributes to determine redirect
       const attributes = await fetchUserAttributes();
       const userType = attributes['custom:userRole'] as 'buyer' | 'seller';
-      
+
       console.log('✅ User type determined:', userType);
-      
+
       // Save redirect URL if needed
       if (redirectTo !== '/marketplace') {
         authSessionStorage.saveRedirectUrl(redirectTo);
       }
-      
+
       // Add a slight delay for better UX
       setTimeout(() => {
         // Redirect based on user type
@@ -119,7 +88,7 @@ function LoginPageContent() {
           router.push('/marketplace');
         }
       }, 1500);
-      
+
     } catch (error) {
       console.error('❌ Error handling successful login:', error);
       setIsRedirecting(false);
@@ -145,7 +114,7 @@ function LoginPageContent() {
           description: "Please confirm your sign up first. Redirecting to confirmation page...",
         });
         setTimeout(() => {
-            router.push(`/auth/confirm?username=${encodeURIComponent(email)}`);
+          router.push(`/auth/confirm?username=${encodeURIComponent(email)}`);
         }, 2000);
         break;
       case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED':
@@ -155,7 +124,7 @@ function LoginPageContent() {
           description: "You need to set a new password. Redirecting...",
         });
         setTimeout(() => {
-            router.push(`/auth/new-password-required?username=${encodeURIComponent(email)}`);
+          router.push(`/auth/new-password-required?username=${encodeURIComponent(email)}`);
         }, 2000);
         break;
       case 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE':
@@ -172,7 +141,7 @@ function LoginPageContent() {
           description: "Your password needs to be reset. Redirecting to forgot password page...",
         });
         setTimeout(() => {
-            router.push(`/auth/forgot-password?username=${encodeURIComponent(email)}`);
+          router.push(`/auth/forgot-password?username=${encodeURIComponent(email)}`);
         }, 2000);
         break;
       case 'DONE':
@@ -191,9 +160,9 @@ function LoginPageContent() {
 
   const processForm = async (data: LoginFormData) => {
     try {
-      const output = await signIn({ 
-        username: data.email, 
-        password: data.password 
+      const output = await signIn({
+        username: data.email,
+        password: data.password
       });
       handleSignInResult(output, data.email);
     } catch (err: any) {
@@ -203,7 +172,7 @@ function LoginPageContent() {
           title: "Already Logged In",
           description: "You are already authenticated. Redirecting...",
         });
-        router.push(redirectTo); 
+        router.push(redirectTo);
         return;
       } else if (err.name === 'UserNotFoundException') {
         toast({
@@ -233,14 +202,6 @@ function LoginPageContent() {
     }
   };
 
-  if (isCheckingUser) {
-    return (
-      <div className="fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#43CD66]"></div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50/30 relative">
       {(isSubmitting || isRedirecting) && (
@@ -260,15 +221,15 @@ function LoginPageContent() {
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/20 via-transparent to-blue-50/20 pointer-events-none"></div>
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#43CD66]/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-blue-500/5 to-transparent rounded-full blur-2xl pointer-events-none"></div>
-        
+
         <div className="relative z-10">
-        <div className="mb-8">
+          <div className="mb-8">
             <Logo />
-        </div>
+          </div>
 
           {/* Title Section */}
           <div className="mb-8">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -276,8 +237,8 @@ function LoginPageContent() {
             >
               Welcome back
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -293,26 +254,25 @@ function LoginPageContent() {
             ></motion.div>
           </div>
 
-          <motion.form 
+          <motion.form
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            onSubmit={handleSubmit(processForm)} 
+            onSubmit={handleSubmit(processForm)}
             className="space-y-6"
           >
-          <div>
+            <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
                   <Mail className="h-4 w-4 md:h-5 md:w-5 text-[#43CD66]" />
                 </div>
-            <input
-              type="email"
-              id="email"
+                <input
+                  type="email"
+                  id="email"
                   {...register('email')}
-                  className={`w-full pl-10 pr-3 py-3 text-sm border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg shadow-sm focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900 bg-white/80 transition-all duration-200`}
+                  className={`w-full pl-10 pr-3 py-3 text-sm border ${errors.email ? 'border-red-500' : 'border-gray-300'
+                    } rounded-lg shadow-sm focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900 bg-white/80 transition-all duration-200`}
                   placeholder="you@example.com"
                   disabled={isSubmitting || isRedirecting}
                 />
@@ -322,30 +282,29 @@ function LoginPageContent() {
                   {errors.email.message}
                 </p>
               )}
-          </div>
+            </div>
 
-          <div>
-            <div className="flex items-center justify-between mb-2">
+            <div>
+              <div className="flex items-center justify-between mb-2">
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
                 <Link
-                  href="/auth/forgot-password" 
+                  href="/auth/forgot-password"
                   className="text-sm text-[#43CD66] hover:text-[#102D21] transition-colors"
-              >
-                Forgot password?
+                >
+                  Forgot password?
                 </Link>
               </div>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
                   <Lock className="h-4 w-4 md:h-5 md:w-5 text-[#43CD66]" />
-            </div>
-            <input
+                </div>
+                <input
                   type={showPassword ? "text" : "password"}
-              id="password"
+                  id="password"
                   {...register('password')}
-                  className={`w-full pl-10 pr-12 py-3 text-sm border ${
-                    errors.password ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg shadow-sm focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900 bg-white/80 transition-all duration-200`}
-              placeholder="Enter your password"
+                  className={`w-full pl-10 pr-12 py-3 text-sm border ${errors.password ? 'border-red-500' : 'border-gray-300'
+                    } rounded-lg shadow-sm focus:outline-none focus:ring-[#43CD66] focus:border-[#43CD66] text-gray-900 bg-white/80 transition-all duration-200`}
+                  placeholder="Enter your password"
                   disabled={isSubmitting || isRedirecting}
                 />
                 <button
@@ -360,13 +319,13 @@ function LoginPageContent() {
                     <Eye className="h-4 w-4" />
                   )}
                 </button>
-          </div>
+              </div>
               {errors.password && (
                 <p className="mt-1 text-xs text-red-600">
                   {errors.password.message}
                 </p>
               )}
-          </div>
+            </div>
 
 
 
@@ -375,9 +334,8 @@ function LoginPageContent() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className={`w-full bg-gradient-to-r from-[#43CD66] to-[#3ab859] hover:from-[#3ab859] hover:to-[#2ea043] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center shadow-lg hover:shadow-xl ${
-                  (!isValid || isSubmitting || isRedirecting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'
-                }`}
+                className={`w-full bg-gradient-to-r from-[#43CD66] to-[#3ab859] hover:from-[#3ab859] hover:to-[#2ea043] border border-[#1c1e21] hover:border-[#102D21] text-[#1C1E21] font-medium py-3.5 px-6 rounded-full transition-all duration-200 focus:outline-none text-sm md:text-base flex justify-center items-center shadow-lg hover:shadow-xl ${(!isValid || isSubmitting || isRedirecting) ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'
+                  }`}
                 disabled={!isValid || isSubmitting || isRedirecting}
               >
                 {isSubmitting ? (
@@ -394,17 +352,17 @@ function LoginPageContent() {
                   'Login'
                 )}
               </motion.button>
-              
+
               <div className="mt-4 text-center">
                 <span className="text-sm text-gray-600">Don't have an account? </span>
-                <Link 
+                <Link
                   href={`/auth/select-user-type${redirectTo !== '/marketplace' ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`}
                   className="text-sm text-[#43CD66] hover:text-[#102D21] font-medium transition-colors"
                 >
                   Sign up here
                 </Link>
               </div>
-          </div>
+            </div>
 
             <div className="mt-8 text-center text-sm text-gray-600">
               Need help? Email us at{' '}
@@ -421,24 +379,24 @@ function LoginPageContent() {
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, -15, 0],
               rotate: [0, 3, 0]
             }}
-            transition={{ 
+            transition={{
               duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
             className="absolute top-16 lg:top-24 left-12 lg:left-20 w-16 lg:w-20 h-16 lg:h-20 border-2 border-[#43CD66]/20 rounded-xl"
           ></motion.div>
-          
+
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, 20, 0],
               rotate: [0, -5, 0]
             }}
-            transition={{ 
+            transition={{
               duration: 10,
               repeat: Infinity,
               ease: "easeInOut",
@@ -446,15 +404,15 @@ function LoginPageContent() {
             }}
             className="absolute top-48 lg:top-60 right-8 lg:right-16 w-12 lg:w-16 h-12 lg:h-16 bg-[#43CD66]/10 rounded-full"
           ></motion.div>
-          
-              <motion.div
-                animate={{
+
+          <motion.div
+            animate={{
               y: [0, -12, 0],
               x: [0, 8, 0]
-                }}
-                transition={{
+            }}
+            transition={{
               duration: 12,
-                  repeat: Infinity,
+              repeat: Infinity,
               ease: "easeInOut",
               delay: 4
             }}
@@ -473,17 +431,17 @@ function LoginPageContent() {
           >
             <div className="w-16 lg:w-20 h-16 lg:h-20 bg-gradient-to-br from-[#43CD66] to-[#3ab859] rounded-2xl flex items-center justify-center mx-auto mb-4 lg:mb-6 shadow-2xl">
               <svg className="w-8 lg:w-10 h-8 lg:h-10 text-[#1C1E21]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
-            
+
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3 lg:mb-4">
               Commerce Central Platform
             </h2>
             <p className="text-white/80 text-base lg:text-lg max-w-sm lg:max-w-md mx-auto leading-relaxed px-2">
               Your unified wholesale marketplace connecting buyers and sellers with enterprise-grade commerce solutions.
             </p>
-              </motion.div>
+          </motion.div>
 
           {/* Platform Features */}
           <motion.div
@@ -556,13 +514,13 @@ function LoginPageContent() {
                 <div className="text-white/60 text-xs">Satisfaction Rate</div>
               </div>
             </div>
-            
+
             <div className="mt-3 lg:mt-4 pt-3 lg:pt-4 border-t border-white/10">
               <p className="text-white/90 text-xs lg:text-sm italic text-center leading-relaxed">
                 "Commerce Central has transformed our wholesale operations with seamless order management and real-time inventory tracking."
               </p>
               <p className="text-white/60 text-xs text-center mt-2">- Sarah Chen, Supply Chain Director</p>
-          </div>
+            </div>
           </motion.div>
         </div>
 

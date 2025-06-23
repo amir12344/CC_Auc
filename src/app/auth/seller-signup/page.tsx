@@ -48,7 +48,8 @@ function SellerSignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Sellers always go to dashboard after signup
+  // Get the redirect URL from query params, but sellers typically go to dashboard
+  const redirectTo = searchParams.get('redirect') || '/seller/dashboard';
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -102,10 +103,10 @@ function SellerSignupContent() {
 
       if (nextStep.signUpStep === 'CONFIRM_SIGN_UP') {
         // Go to confirmation page with next step info
-        router.push(`/auth/confirm?username=${encodeURIComponent(data.email)}&userType=seller&redirect=${encodeURIComponent('/seller/dashboard')}`);
+        router.push(`/auth/confirm?username=${encodeURIComponent(data.email)}&userType=seller&redirect=${encodeURIComponent(redirectTo)}`);
       } else if (nextStep.signUpStep === 'COMPLETE_AUTO_SIGN_IN' || isSignUpComplete) {
-        // Direct to seller dashboard if auto-signin is complete
-        router.push('/seller/dashboard');
+        // Direct to the redirect URL or seller dashboard
+        router.push(redirectTo);
       } else {
         console.log("Unhandled sign up step:", nextStep.signUpStep);
         setErrorMessage("Sign up process is not fully complete. Please check for further instructions.");

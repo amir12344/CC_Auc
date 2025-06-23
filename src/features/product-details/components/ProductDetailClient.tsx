@@ -82,7 +82,7 @@ export function ProductDetailClient({
 }: ProductDetailClientProps) {
   const offerItems = useSelector(selectOfferItems);
   const router = useRouter();
-  
+
   // Load cart state from localStorage on client-side only
   useLoadCartState();
 

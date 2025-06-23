@@ -47,7 +47,7 @@ export function DynamicBreadcrumb({
     <Breadcrumb className={className}>
       <BreadcrumbList>
         {breadcrumbItems.map((item, index) => (
-          <React.Fragment key={item.href}>
+          <React.Fragment key={`${item.href}-${index}`}>
             <BreadcrumbItem>
               {item.current ? (
                 <BreadcrumbPage>{item.label}</BreadcrumbPage>
@@ -104,10 +104,10 @@ function generateBreadcrumbItems(
       const sectionLabel = formatBreadcrumbLabel(sectionPath);
       // The current full path to the section
       const sectionHref = `/buyer/deals/${sectionPath}`;
-      
+
       // Check if we are exactly on the deals root or a sub-section
       if (paths.length === dealsIndex + 1) { // e.g. /buyer/deals
-         if (items.length > 0) items[items.length-1].current = true;
+        if (items.length > 0) items[items.length - 1].current = true;
       } else {
         items.push({
           label: sectionLabel,
@@ -116,8 +116,8 @@ function generateBreadcrumbItems(
         });
       }
     } else if (items.length > 0) {
-       // If only '/buyer/deals', mark 'My Deals' as current
-       items[items.length-1].current = true;
+      // If only '/buyer/deals', mark 'My Deals' as current
+      items[items.length - 1].current = true;
     }
   }
   // Check if we are within the buyer account context
@@ -134,24 +134,24 @@ function generateBreadcrumbItems(
       const sectionLabel = formatBreadcrumbLabel(sectionPath);
       // The current full path to the section
       const sectionHref = `/buyer/account/${sectionPath}`;
-      
+
       items.push({
         label: sectionLabel,
         href: sectionHref,
         current: true,
       });
     } else if (items.length > 0) {
-       // If only '/buyer/account', mark 'Account Settings' as current
-       items[items.length-1].current = true;
+      // If only '/buyer/account', mark 'Account Settings' as current
+      items[items.length - 1].current = true;
     }
   } else {
     // Enhanced breadcrumb generation for collections, search, and product pages
     items.push({ label: homeLabel, href: '/marketplace' });
-    
+
     // Handle collections pages
     if (pathname.startsWith('/collections')) {
       items.push({ label: 'Collections', href: '/collections' });
-      
+
       if (paths.length > 1) {
         // Category page: /collections/[category]
         const category = paths[1];
@@ -201,7 +201,7 @@ function generateBreadcrumbItems(
         });
       });
     }
-    
+
     // Handle homepage
     if (items.length === 1 && items[0].href === '/' && pathname === '/') {
       items[0].current = true;
@@ -224,7 +224,7 @@ function formatBreadcrumbLabel(path: string): string {
   if (path === 'offers') return 'Offers';
   if (path === 'orders') return 'Orders';
   if (path === 'messages') return 'Messages';
-  
+
   // Handle category-specific formatting
   const categoryMappings: Record<string, string> = {
     'electronics': 'Electronics',
@@ -242,7 +242,7 @@ function formatBreadcrumbLabel(path: string): string {
     'trending': 'Trending',
     'featured': 'Featured'
   };
-  
+
   // Check if we have a specific mapping
   if (categoryMappings[path]) {
     return categoryMappings[path];

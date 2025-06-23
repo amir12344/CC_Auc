@@ -11,8 +11,6 @@ export {
   selectIsSeller
 } from './store/authSelectors';
 
-// Component exports
-export { LoginForm } from './components/LoginForm';
 
 // Re-export auth slice as default for store configuration
 export { default as authReducer } from './store/authSlice'; 

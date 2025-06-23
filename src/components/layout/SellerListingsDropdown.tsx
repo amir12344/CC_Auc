@@ -20,6 +20,7 @@ import {
   BarChart3,
   Plus
 } from "lucide-react";
+import { CreateListingDialog } from '../seller/CreateListingDialog';
 
 const sellerListingsItems = [
   {
@@ -27,36 +28,8 @@ const sellerListingsItems = [
     href: "/seller/listing",
     icon: Package,
     description: "View all your listings",
-    count: "12",
-  },
-  {
-    title: "Active Listings",
-    href: "/seller/listing?status=active",
-    icon: TrendingUp,
-    description: "Currently live listings",
-    count: "8",
-  },
-  {
-    title: "Draft Listings",
-    href: "/seller/listing?status=draft", 
-    icon: Edit,
-    description: "Unpublished drafts",
-    count: "4",
-  },
-  {
-    title: "Orders",
-    href: "/seller/orders",
-    icon: ShoppingCart,
-    description: "Incoming orders",
-    count: "3",
-  },
-  {
-    title: "Analytics",
-    href: "/seller/analytics",
-    icon: BarChart3,
-    description: "Performance insights",
-    count: null,
-  },
+    count: "1",
+  }
 ];
 
 /**
@@ -156,35 +129,15 @@ export function SellerListingsDropdown() {
         <DropdownMenuSeparator className="my-2" />
         
         {/* Quick Action - Create Listing */}
-        <DropdownMenuItem
-          className="cursor-pointer p-3 rounded-lg transition-all duration-200 hover:bg-[#43CD66]/10 border border-transparent hover:border-[#43CD66]/20"
-          onClick={() => handleNavigation('/seller/listing/create')}
-        >
-          <div className="flex items-center w-full">
-            <div className="p-2 rounded-md mr-3 bg-[#43CD66]/10 text-[#43CD66]">
-              <Plus className="h-4 w-4" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#43CD66]">
-                  Create Listing
-                </span>
-                <ArrowUpRight className="h-3 w-3 text-[#43CD66]" />
-              </div>
-              <p className="text-xs text-gray-500 mt-0.5 truncate">
-                Add a new product listing
-              </p>
-            </div>
-          </div>
-        </DropdownMenuItem>
-        
-        <DropdownMenuSeparator className="my-2" />
-        
-        <div className="px-3 py-2">
-          <p className="text-xs text-gray-500 text-center">
-            Need help? <span className="text-primary cursor-pointer hover:underline">Contact Support</span>
-          </p>
-        </div>
+        <CreateListingDialog>
+          <DropdownMenuItem
+            className="cursor-pointer p-3 transition-all duration-200 hover:bg-[#43CD66]/10"
+            onSelect={(e) => e.preventDefault()} // Prevent dropdown from closing
+          >
+            <Plus className="mr-3 h-4 w-4 text-[#43CD66]" />
+            <span className="text-sm font-medium text-[#43CD66]">Create Listing</span>
+          </DropdownMenuItem>
+        </CreateListingDialog>
       </DropdownMenuContent>
     </DropdownMenu>
   );

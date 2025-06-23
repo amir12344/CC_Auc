@@ -2,6 +2,7 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
+import { memo, useCallback } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,15 +14,14 @@ import {
 } from '@/src/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/src/components/ui/avatar';
 import { Button } from '@/src/components/ui/button';
-import { 
+import {
   selectUserProfile,
   selectUserDisplayName,
   selectUserInitials,
   selectIsBuyer,
-  selectIsSeller 
+  selectIsSeller
 } from '@/src/features/authentication/store/authSelectors';
-import { signOutUser } from '@/src/features/authentication/store/authSlice';
-import type { AppDispatch } from '@/src/lib/store';
+import { AppDispatch } from '@/src/lib/store';
 import {
   User,
   Settings,
@@ -32,15 +32,17 @@ import {
   ShoppingBag,
   Store
 } from 'lucide-react';
+import { authService } from '@/src/features/authentication/services/authService';
+import { initializeAuth } from '@/src/features/authentication/store/authSlice';
 
 /**
  * User dropdown menu component that appears when clicking on user avatar
  * Provides access to profile, settings, and account management
  */
-export function UserDropdown() {
+export const UserDropdown = memo(function UserDropdown() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  
+
   // Redux selectors
   const userProfile = useSelector(selectUserProfile);
   const userDisplayName = useSelector(selectUserDisplayName);
@@ -49,9 +51,11 @@ export function UserDropdown() {
   const isSeller = useSelector(selectIsSeller);
 
   // Handle sign out
-  const handleSignOut = async () => {
+  const handleSignOut = useCallback(async () => {
     try {
-      await dispatch(signOutUser()).unwrap();
+      await authService.signOut();
+      // Manually dispatch initializeAuth to update the state to signed-out
+      await dispatch(initializeAuth()).unwrap();
       // Redirect to marketplace after successful logout
       router.push('/marketplace');
     } catch (error) {
@@ -59,12 +63,12 @@ export function UserDropdown() {
       // Fallback: force reload to clear state and redirect
       window.location.href = '/marketplace';
     }
-  };
+  }, [dispatch, router]);
 
   // Navigation handlers
-  const handleNavigation = (path: string) => {
+  const handleNavigation = useCallback((path: string) => {
     router.push(path);
-  };
+  }, [router]);
 
   if (!userProfile) return null;
 
@@ -83,7 +87,7 @@ export function UserDropdown() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      
+
       <DropdownMenuContent className="w-64" align="end" forceMount>
         {/* User Info Header */}
         <DropdownMenuLabel className="p-4 border-b bg-gray-50/50">
@@ -120,70 +124,48 @@ export function UserDropdown() {
           </div>
         </DropdownMenuLabel>
 
-        <DropdownMenuGroup className="p-1">
-          {/* Account Settings */}
+        {isBuyer && (
           <DropdownMenuItem
             className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
             onClick={() => handleNavigation('/buyer/account')}
           >
-            <UserCircle className="mr-3 h-4 w-4 text-gray-500" />
+            <Settings className="mr-3 h-4 w-4 text-gray-500" />
             <span className="text-sm text-gray-700">Account Settings</span>
           </DropdownMenuItem>
+        )}
 
-          {/* Preferences - Buyer specific */}
-          {isBuyer && (
-            <DropdownMenuItem
-              className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-              onClick={() => handleNavigation('/buyer/account/preferences')}
-            >
-              <Settings className="mr-3 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-700">Preferences</span>
-            </DropdownMenuItem>
-          )}
+        {/* Preferences - Buyer specific */}
+        {isBuyer && (
+          <DropdownMenuItem
+            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
+            onClick={() => handleNavigation('/buyer/account/preferences')}
+          >
+            <Settings className="mr-3 h-4 w-4 text-gray-500" />
+            <span className="text-sm text-gray-700">Preferences</span>
+          </DropdownMenuItem>
+        )}
 
-          {/* My Deals - Role specific */}
-          {isBuyer && (
-            <DropdownMenuItem
-              className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-              onClick={() => handleNavigation('/buyer/deals')}
-            >
-              <ShoppingBag className="mr-3 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-700">My Deals</span>
-            </DropdownMenuItem>
-          )}
+        {/* My Deals - Role specific */}
+        {isBuyer && (
+          <DropdownMenuItem
+            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
+            onClick={() => handleNavigation('/buyer/deals')}
+          >
+            <ShoppingBag className="mr-3 h-4 w-4 text-gray-500" />
+            <span className="text-sm text-gray-700">My Deals</span>
+          </DropdownMenuItem>
+        )}
 
-          {isSeller && (
-            <DropdownMenuItem
-              className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-              onClick={() => handleNavigation('/seller/dashboard')}
-            >
-              <Store className="mr-3 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-700">Seller Dashboard</span>
-            </DropdownMenuItem>
-          )}
+        {isSeller && (
+          <DropdownMenuItem
+            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
+            onClick={() => handleNavigation('/seller/dashboard')}
+          >
+            <Store className="mr-3 h-4 w-4 text-gray-500" />
+            <span className="text-sm text-gray-700">Seller Dashboard</span>
+          </DropdownMenuItem>
+        )}
 
-          {/* Billing - Seller specific for now */}
-          {isSeller && (
-            <DropdownMenuItem
-              className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-              onClick={() => handleNavigation('/billing')}
-            >
-              <CreditCard className="mr-3 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-700">Billing</span>
-            </DropdownMenuItem>
-          )}
-
-          {/* Team Management - Seller specific */}
-          {isSeller && (
-            <DropdownMenuItem
-              className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-              onClick={() => handleNavigation('/team')}
-            >
-              <Users className="mr-3 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-700">Team</span>
-            </DropdownMenuItem>
-          )}
-        </DropdownMenuGroup>
 
         <DropdownMenuSeparator className="my-1" />
 
@@ -198,4 +180,4 @@ export function UserDropdown() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-} 
+}); 

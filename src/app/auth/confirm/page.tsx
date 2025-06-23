@@ -3,16 +3,19 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { confirmSignUp, resendSignUpCode, autoSignIn } from 'aws-amplify/auth';
 import { Suspense } from 'react';
 import { CheckCircle, Mail, Loader2, AlertCircle } from 'lucide-react';
 import Logo from '@/src/features/website/components/ui/Logo';
-import { useAuth } from '@/src/contexts/AuthContext';
 import { useToast } from '@/src/hooks/use-toast';
 import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/src/components/ui/card';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/src/lib/store';
+import { initializeAuth } from '@/src/features/authentication/store/authSlice';
+import { authService } from '@/src/features/authentication/services/authService';
+import { errorHandlingService } from '@/src/features/authentication/services/errorHandlingService';
 
 function ConfirmSignUpContent() {
   const [confirmationCode, setConfirmationCode] = useState('');
@@ -22,7 +25,7 @@ function ConfirmSignUpContent() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { refreshAuth } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
   const { toast } = useToast();
 
   const username = searchParams.get('username') || '';
@@ -44,7 +47,7 @@ function ConfirmSignUpContent() {
     }
 
     try {
-      const { isSignUpComplete, nextStep } = await confirmSignUp({
+      const { isSignUpComplete, nextStep } = await authService.confirmSignUp({
         username,
         confirmationCode
       });
@@ -58,7 +61,7 @@ function ConfirmSignUpContent() {
 
         // Attempt auto sign-in for seamless flow
         try {
-          const signInResult = await autoSignIn();
+          const signInResult = await authService.autoSignIn();
           console.log('Auto sign-in successful after OTP confirmation:', signInResult);
         } catch (autoSignInError: any) {
           console.warn('Auto sign-in failed, but this is sometimes expected:', autoSignInError.message);
@@ -77,7 +80,7 @@ function ConfirmSignUpContent() {
 
         // Refresh auth context to ensure Redux state is updated
         console.log('Refreshing authentication state...');
-        await refreshAuth();
+        await dispatch(initializeAuth()).unwrap();
 
         // Add extra delay to ensure auth state is fully synchronized
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -123,10 +126,11 @@ function ConfirmSignUpContent() {
       }
     } catch (err: any) {
       console.error('Error confirming sign up:', err);
+      const handledError = errorHandlingService.handleAuthError(err);
       toast({
         variant: "destructive",
-        title: "Confirmation Failed",
-        description: err.message || 'Failed to confirm account. Please try again.',
+        title: handledError.title,
+        description: handledError.description,
       });
     } finally {
       setIsLoading(false);
@@ -137,17 +141,18 @@ function ConfirmSignUpContent() {
     setIsResending(true);
 
     try {
-      await resendSignUpCode({ username });
+      await authService.resendSignUpCode({ username });
       toast({
         title: "Code Resent! 📧",
         description: "A new confirmation code has been sent to your email.",
       });
     } catch (err: any) {
       console.error('Error resending code:', err);
+      const handledError = errorHandlingService.handleAuthError(err);
       toast({
         variant: "destructive",
-        title: "Resend Failed",
-        description: err.message || 'Failed to resend confirmation code.',
+        title: handledError.title,
+        description: handledError.description,
       });
     } finally {
       setIsResending(false);

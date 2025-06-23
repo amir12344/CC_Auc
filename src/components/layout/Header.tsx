@@ -19,11 +19,11 @@ export default function Header() {
   const isSeller = useSelector(selectIsSeller);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const pathname = usePathname();
-  
+
   // Hide mega menu on seller pages
   const isSellerPage = pathname?.startsWith('/seller');
   const showMegaMenu = !isSellerPage;
-  
+
   return (
     <>
       {/* Sticky header with logo and navigation */}
@@ -32,35 +32,19 @@ export default function Header() {
           {/* Left: Logo and Navigation Links */}
           <div className='flex items-center space-x-6'>
             <Logo />
-            
+
             {/* Main navigation links - visible only on desktop */}
             <nav className='hidden md:flex items-center space-x-6'>
-              <Link 
-                href="/" 
-                className="text-[#D8F4CC] hover:text-[#43CD66] font-medium text-lg transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#43CD66]/10 cursor-pointer"
-              >
-                Home
-              </Link>
-              
               {/* Show Dashboard for authenticated sellers */}
               {isAuthenticated && isSeller && (
-                <Link 
-                  href="/seller/dashboard" 
+                <Link
+                  href="/seller/dashboard"
                   className="text-[#D8F4CC] hover:text-[#43CD66] font-medium text-lg transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#43CD66]/10 cursor-pointer"
                 >
                   Dashboard
                 </Link>
               )}
-              
-              {/* Show Marketplace for non-sellers */}
-              {(!isAuthenticated || !isSeller) && (
-                <Link 
-                  href="/marketplace" 
-                  className="text-[#D8F4CC] hover:text-[#43CD66] font-medium text-lg transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#43CD66]/10 cursor-pointer"
-                >
-                  Marketplace
-                </Link>
-              )}
+
             </nav>
           </div>
 
@@ -75,18 +59,18 @@ export default function Header() {
             <div className='md:hidden'>
               <MobileNavigation />
             </div>
-            
+
             {/* User profile and auth - handles both mobile and desktop */}
             <HeaderClient />
           </div>
         </div>
       </header>
-      
+
       {/* Mobile search - only visible on small screens */}
       <div className='md:hidden bg-[#102D21] px-4 py-3 border-t border-[#43CD66]/20'>
         <SearchBar />
       </div>
-      
+
       {/* Mega Menu - only visible on desktop and non-seller pages */}
       {showMegaMenu && <MegaMenu />}
     </>

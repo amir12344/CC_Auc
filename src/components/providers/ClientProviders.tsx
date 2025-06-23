@@ -5,8 +5,7 @@ import { store } from '@/src/lib/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Toaster } from '@/src/components/ui/toaster';
-import { AuthProvider } from '@/src/contexts/AuthContext';
-import { AuthInitializer } from './AuthInitializer';
+import { AuthProvider } from './AuthProvider';
 
 /**
  * Client-side providers wrapper component
@@ -29,10 +28,8 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <AuthInitializer>
-            {children}
-            <Toaster />
-          </AuthInitializer>
+          {children}
+          <Toaster />
         </AuthProvider>
       </QueryClientProvider>
     </Provider>

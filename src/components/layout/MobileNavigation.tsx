@@ -4,27 +4,28 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
-import { 
-  selectIsAuthenticated, 
-  selectUserType, 
+import {
+  selectIsAuthenticated,
+  selectUserType,
   selectCanAccessBuyerRoutes,
   selectCanAccessSellerRoutes,
   selectIsSeller
 } from '@/src/features/authentication/store/authSelectors';
-import { signOutUser } from '@/src/features/authentication/store/authSlice';
 import type { AppDispatch } from '@/src/lib/store';
 import Logo from '@/src/features/website/components/ui/Logo';
 import { Menu, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/src/components/ui/button';
-import { 
-  LayoutDashboard, 
-  Package, 
-  Heart, 
-  ShoppingCart, 
+import {
+  LayoutDashboard,
+  Package,
+  Heart,
+  ShoppingCart,
   MessageSquare,
   Store,
-  ShoppingBag
+  ShoppingBag,
+  Plus
 } from 'lucide-react';
+import { CreateListingDialog } from '@/src/components/seller/CreateListingDialog';
 import {
   Sheet,
   SheetContent,
@@ -53,7 +54,7 @@ const myDealsItems = [
   },
   {
     title: "Offers",
-    href: "/buyer/deals/offers", 
+    href: "/buyer/deals/offers",
     icon: Heart,
   },
   {
@@ -68,29 +69,7 @@ const myDealsItems = [
   },
 ];
 
-// Seller Listings navigation items
-const sellerListingsItems = [
-  {
-    title: "All Listings",
-    href: "/seller/listing",
-    icon: Package,
-  },
-  {
-    title: "Active Listings",
-    href: "/seller/listing?status=active",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Draft Listings",
-    href: "/seller/listing?status=draft",
-    icon: MessageSquare,
-  },
-  {
-    title: "Orders",
-    href: "/seller/orders",
-    icon: ShoppingCart,
-  },
-];
+
 
 // Main navigation items - function to filter based on user role
 const getMainNavItems = (isAuthenticated: boolean, isSeller: boolean) => [
@@ -106,10 +85,9 @@ const MobileNavigation = () => {
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch<AppDispatch>();
-  
+
   // State for collapsible sections
   const [isMyDealsOpen, setIsMyDealsOpen] = useState(true); // Expanded by default
-  const [isSellerListingsOpen, setIsSellerListingsOpen] = useState(true); // Expanded by default
 
   // Redux selectors
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -121,18 +99,14 @@ const MobileNavigation = () => {
   // Get filtered main nav items based on user role
   const mainNavItems = getMainNavItems(isAuthenticated, isSeller);
 
-  
+
 
   // Check if My Deals item is active
   const isMyDealsItemActive = (href: string) => {
     return pathname === href || (href !== "/buyer/deals" && pathname.startsWith(href));
   };
 
-  // Check if Seller Listings item is active
-  const isSellerListingsItemActive = (href: string) => {
-    const cleanHref = href.split('?')[0];
-    return pathname === cleanHref || (cleanHref !== "/seller/listing" && pathname.startsWith(cleanHref));
-  };
+
 
   return (
     <Sheet>
@@ -160,11 +134,10 @@ const MobileNavigation = () => {
                   <SheetClose asChild key={item.href}>
                     <Link
                       href={item.href}
-                      className={`flex items-center px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                        pathname === item.href
+                      className={`flex items-center px-4 py-3 text-base font-medium rounded-lg transition-colors ${pathname === item.href
                           ? 'bg-[#43CD66]/10 text-[#43CD66]'
                           : 'text-gray-700 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -192,47 +165,10 @@ const MobileNavigation = () => {
                         <SheetClose asChild key={item.href}>
                           <Link
                             href={item.href}
-                            className={`flex items-center px-4 py-2 text-sm rounded-md transition-colors ${
-                              isActive
+                            className={`flex items-center px-4 py-2 text-sm rounded-md transition-colors ${isActive
                                 ? 'bg-[#43CD66]/10 text-[#43CD66] font-medium'
                                 : 'text-gray-700 hover:bg-gray-50'
-                            }`}
-                          >
-                            <Icon className="mr-3 h-4 w-4" />
-                            {item.title}
-                          </Link>
-                        </SheetClose>
-                      );
-                    })}
-                  </CollapsibleContent>
-                </Collapsible>
-              </div>
-            )}
-
-            {/* Seller Listings Section - Only for authenticated sellers */}
-            {isAuthenticated && canAccessSellerRoutes && (
-              <div className="p-4 border-b">
-                <Collapsible open={isSellerListingsOpen} onOpenChange={setIsSellerListingsOpen}>
-                  <CollapsibleTrigger className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center space-x-3">
-                      <Package className="h-5 w-5 text-[#43CD66]" />
-                      <span className="text-base font-medium text-gray-900">Listings</span>
-                    </div>
-                    {isSellerListingsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="mt-2 space-y-1">
-                    {sellerListingsItems.map((item) => {
-                      const Icon = item.icon;
-                      const isActive = isSellerListingsItemActive(item.href);
-                      return (
-                        <SheetClose asChild key={item.href}>
-                          <Link
-                            href={item.href}
-                            className={`flex items-center px-4 py-2 text-sm rounded-md transition-colors ${
-                              isActive
-                                ? 'bg-[#43CD66]/10 text-[#43CD66] font-medium'
-                                : 'text-gray-700 hover:bg-gray-50'
-                            }`}
+                              }`}
                           >
                             <Icon className="mr-3 h-4 w-4" />
                             {item.title}
@@ -247,7 +183,7 @@ const MobileNavigation = () => {
 
             {/* Seller Dashboard - Only for authenticated sellers */}
             {isAuthenticated && canAccessSellerRoutes && (
-              <div className="p-4 border-b">
+              <div className="p-4 border-b space-y-3">
                 <SheetClose asChild>
                   <Link
                     href="/seller/dashboard"
@@ -257,23 +193,30 @@ const MobileNavigation = () => {
                     <span className="text-base font-medium text-gray-900">Seller Dashboard</span>
                   </Link>
                 </SheetClose>
+
+                <CreateListingDialog>
+                  <button className="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
+                    <Plus className="h-5 h-5 text-[#43CD66]" />
+                    <span className="text-base font-medium text-gray-900">Create Listing</span>
+                  </button>
+                </CreateListingDialog>
               </div>
             )}
 
-            
+
           </div>
 
           {/* Footer - Auth Actions */}
           <div className="border-t p-4">
             {!isAuthenticated && (
               <div className="space-y-2">
-              <SheetClose asChild>
+                <SheetClose asChild>
                   <Link href="/auth/login" className="w-full">
                     <Button variant="default" className="w-full bg-[#43CD66] text-[#102D21] hover:bg-[#43CD66]/90">
-                    Sign In
-                  </Button>
-                </Link>
-              </SheetClose>
+                      Sign In
+                    </Button>
+                  </Link>
+                </SheetClose>
                 <SheetClose asChild>
                   <Link href="/auth/select-user-type" className="w-full">
                     <Button variant="outline" className="w-full border-[#43CD66] text-[#43CD66] hover:bg-[#43CD66]/10">
