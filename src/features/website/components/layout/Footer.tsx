@@ -6,19 +6,19 @@ import { footerNavigation } from '../../../website/data/navigation';
 const Footer: React.FC = () => {
   return (
     <footer
-      className='text-[#D8F4CC] py-12 border border-r-0 border-l-0 border-b-0'
+      className='text-[#D8F4CC] py-6 border border-r-0 border-l-0 border-b-0'
       style={{ backgroundColor: 'rgb(16 45 33)' }}
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 
         {/* Main Footer Content */}
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
           {/* Brand Column */}
           <div>
             <div>
               <Logo showFullOnMobile={true} />
             </div>
-            <p className='text-[#F1E9DE] mb-4'>The Trusted Channel For Surplus</p>
+            <p className='text-[#F1E9DE] mb-3'>The Trusted Channel For Surplus</p>
             <div className='flex space-x-3'>
               {footerNavigation.social.map((social, index) => {
                 let iconPath
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                     href={social.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='h-8 w-8 rounded-full bg-gray-800 flex items-center justify-left text-[#F1E9DE] hover:text-[#43CD66] transition-colors'
+                    className='h-7 w-7 rounded-full bg-gray-800 flex items-center justify-center text-[#F1E9DE] hover:text-[#43CD66] transition-colors'
                     aria-label={social.label}
                   >
                     <svg
@@ -63,8 +63,8 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className='text-lg font-bold mb-4'>Quick Links</h3>
-            <ul className='space-y-2'>
+            <h3 className='text-lg font-bold mb-3'>Quick Links</h3>
+            <ul className='space-y-1'>
               {footerNavigation.quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
@@ -82,8 +82,8 @@ const Footer: React.FC = () => {
 
           {/* Resources */}
           <div>
-            <h3 className='text-lg font-bold mb-4'>Resources</h3>
-            <ul className='space-y-2'>
+            <h3 className='text-lg font-bold mb-3'>Resources</h3>
+            <ul className='space-y-1'>
               {footerNavigation.resources.map((link, index) => (
                 <li key={index}>
                   <Link
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Footer */}
-        <div className='mt-12 pt-8 border-t border-gray-800'>
+        <div className='mt-6 pt-4 border-t border-gray-800'>
           <div className='flex flex-col md:flex-row justify-between items-center'>
             <p className='text-[#F1E9DE] text-sm'>
               {new Date().getFullYear()} Commerce Central. All rights reserved.

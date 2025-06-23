@@ -10,13 +10,14 @@ import MobileNavigation from './MobileNavigation';
 import { Button } from '@/src/components/ui/button';
 import SearchBar from './SearchBar';
 import { MegaMenu } from './MegaMenu';
-import { selectIsSeller, selectIsAuthenticated } from '@/src/features/authentication/store/authSelectors';
+import { selectIsSeller, selectIsBuyer, selectIsAuthenticated } from '@/src/features/authentication/store/authSelectors';
 
 /**
  * Header component - Client Component (for role-based navigation)
  */
 export default function Header() {
   const isSeller = useSelector(selectIsSeller);
+  const isBuyer = useSelector(selectIsBuyer);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const pathname = usePathname();
 
@@ -48,10 +49,11 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Center: Search bar - visible only on desktop */}
-          <div className='hidden md:block flex-1 max-w-sm mx-8'>
-            <SearchBar />
-          </div>
+          {!isSeller && (
+            <div className='hidden md:block flex-1 max-w-sm mx-8'>
+              <SearchBar />
+            </div>
+          )}
 
           {/* Right: User Actions */}
           <div className='flex items-center space-x-3'>
@@ -67,9 +69,11 @@ export default function Header() {
       </header>
 
       {/* Mobile search - only visible on small screens */}
-      <div className='md:hidden bg-[#102D21] px-4 py-3 border-t border-[#43CD66]/20'>
-        <SearchBar />
-      </div>
+      {!isSeller && (
+        <div className='md:hidden bg-[#102D21] px-4 py-3 border-t border-[#43CD66]/20'>
+          <SearchBar />
+        </div>
+      )}
 
       {/* Mega Menu - only visible on desktop and non-seller pages */}
       {showMegaMenu && <MegaMenu />}

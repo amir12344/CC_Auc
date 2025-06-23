@@ -69,16 +69,19 @@ const myDealsItems = [
   },
 ];
 
-
-
 // Main navigation items - function to filter based on user role
 const getMainNavItems = (isAuthenticated: boolean, isSeller: boolean) => [
   { label: 'Home', href: '/' },
   // Show Dashboard for authenticated sellers
   ...(isAuthenticated && isSeller ? [{ label: 'Dashboard', href: '/seller/dashboard' }] : []),
-  // Show Marketplace for non-sellers
-  ...(!(isAuthenticated && isSeller) ? [{ label: 'Marketplace', href: '/marketplace' }] : []),
-  { label: 'Collections', href: '/collections' },
+  // Show Marketplace and Collections for non-sellers or guests
+  ...(!isSeller ?
+    [
+      { label: 'Marketplace', href: '/marketplace' },
+      { label: 'Collections', href: '/collections' }
+    ] :
+    []
+  ),
 ];
 
 const MobileNavigation = () => {
@@ -86,8 +89,8 @@ const MobileNavigation = () => {
   const pathname = usePathname();
   const dispatch = useDispatch<AppDispatch>();
 
-  // State for collapsible sections
-  const [isMyDealsOpen, setIsMyDealsOpen] = useState(true); // Expanded by default
+  // State for collapsible sections - collapsed by default to save space when logged in
+  const [isMyDealsOpen, setIsMyDealsOpen] = useState(false);
 
   // Redux selectors
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -99,14 +102,10 @@ const MobileNavigation = () => {
   // Get filtered main nav items based on user role
   const mainNavItems = getMainNavItems(isAuthenticated, isSeller);
 
-
-
   // Check if My Deals item is active
   const isMyDealsItemActive = (href: string) => {
     return pathname === href || (href !== "/buyer/deals" && pathname.startsWith(href));
   };
-
-
 
   return (
     <Sheet>
@@ -116,74 +115,75 @@ const MobileNavigation = () => {
           <span className="sr-only">Open menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-[320px] sm:max-w-[320px]">
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <SheetHeader className="border-b p-4">
-            <div className="flex items-center justify-between">
-              <Logo size="small" minWidth={100} />
-              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-            </div>
-          </SheetHeader>
+      <SheetContent side="left" className="p-0 w-[320px] sm:max-w-[320px] flex flex-col">
+        {/* Header - Fixed */}
+        <SheetHeader className="border-b p-4 flex-shrink-0">
+          <div className="flex items-center justify-between">
+            <Logo size="small" minWidth={100} />
+            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+          </div>
+        </SheetHeader>
 
-          <div className="flex-1 overflow-y-auto">
-            {/* 1. Main Navigation - First */}
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto">
+          {/* 1. Main Navigation - Always visible */}
+          <div className="p-4 border-b">
+            <div className="space-y-1">
+              {mainNavItems.map((item) => (
+                <SheetClose asChild key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center px-3 py-2.5 text-base font-medium rounded-lg transition-colors ${pathname === item.href
+                        ? 'bg-[#43CD66]/10 text-[#43CD66]'
+                        : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                  >
+                    {item.label}
+                  </Link>
+                </SheetClose>
+              ))}
+            </div>
+          </div>
+
+          {/* 2. My Deals Section - Only for authenticated buyers */}
+          {isAuthenticated && canAccessBuyerRoutes && (
             <div className="p-4 border-b">
-              <div className="space-y-1">
-                {mainNavItems.map((item) => (
-                  <SheetClose asChild key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={`flex items-center px-4 py-3 text-base font-medium rounded-lg transition-colors ${pathname === item.href
-                          ? 'bg-[#43CD66]/10 text-[#43CD66]'
-                          : 'text-gray-700 hover:bg-gray-50'
-                        }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </SheetClose>
-                ))}
-              </div>
+              <Collapsible open={isMyDealsOpen} onOpenChange={setIsMyDealsOpen}>
+                <CollapsibleTrigger className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <ShoppingBag className="h-5 w-5 text-[#43CD66]" />
+                    <span className="text-base font-medium text-gray-900">My Deals</span>
+                  </div>
+                  {isMyDealsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-2 space-y-1">
+                  {myDealsItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = isMyDealsItemActive(item.href);
+                    return (
+                      <SheetClose asChild key={item.href}>
+                        <Link
+                          href={item.href}
+                          className={`flex items-center px-4 py-2 text-sm rounded-md transition-colors ${isActive
+                              ? 'bg-[#43CD66]/10 text-[#43CD66] font-medium'
+                              : 'text-gray-700 hover:bg-gray-50'
+                            }`}
+                        >
+                          <Icon className="mr-3 h-4 w-4" />
+                          {item.title}
+                        </Link>
+                      </SheetClose>
+                    );
+                  })}
+                </CollapsibleContent>
+              </Collapsible>
             </div>
+          )}
 
-            {/* 2. My Deals Section - Second (Only for authenticated buyers) */}
-            {isAuthenticated && canAccessBuyerRoutes && (
-              <div className="p-4 border-b">
-                <Collapsible open={isMyDealsOpen} onOpenChange={setIsMyDealsOpen}>
-                  <CollapsibleTrigger className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center space-x-3">
-                      <ShoppingBag className="h-5 w-5 text-[#43CD66]" />
-                      <span className="text-base font-medium text-gray-900">My Deals</span>
-                    </div>
-                    {isMyDealsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="mt-2 space-y-1">
-                    {myDealsItems.map((item) => {
-                      const Icon = item.icon;
-                      const isActive = isMyDealsItemActive(item.href);
-                      return (
-                        <SheetClose asChild key={item.href}>
-                          <Link
-                            href={item.href}
-                            className={`flex items-center px-4 py-2 text-sm rounded-md transition-colors ${isActive
-                                ? 'bg-[#43CD66]/10 text-[#43CD66] font-medium'
-                                : 'text-gray-700 hover:bg-gray-50'
-                              }`}
-                          >
-                            <Icon className="mr-3 h-4 w-4" />
-                            {item.title}
-                          </Link>
-                        </SheetClose>
-                      );
-                    })}
-                  </CollapsibleContent>
-                </Collapsible>
-              </div>
-            )}
-
-            {/* Seller Dashboard - Only for authenticated sellers */}
-            {isAuthenticated && canAccessSellerRoutes && (
-              <div className="p-4 border-b space-y-3">
+          {/* 3. Seller Dashboard - Only for authenticated sellers */}
+          {isAuthenticated && canAccessSellerRoutes && (
+            <div className="p-4 border-b">
+              <div className="space-y-3">
                 <SheetClose asChild>
                   <Link
                     href="/seller/dashboard"
@@ -201,32 +201,30 @@ const MobileNavigation = () => {
                   </button>
                 </CreateListingDialog>
               </div>
-            )}
+            </div>
+          )}
+        </div>
 
-
-          </div>
-
-          {/* Footer - Auth Actions */}
-          <div className="border-t p-4">
-            {!isAuthenticated && (
-              <div className="space-y-2">
-                <SheetClose asChild>
-                  <Link href="/auth/login" className="w-full">
-                    <Button variant="default" className="w-full bg-[#43CD66] text-[#102D21] hover:bg-[#43CD66]/90">
-                      Sign In
-                    </Button>
-                  </Link>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Link href="/auth/select-user-type" className="w-full">
-                    <Button variant="outline" className="w-full border-[#43CD66] text-[#43CD66] hover:bg-[#43CD66]/10">
-                      Sign Up
-                    </Button>
-                  </Link>
-                </SheetClose>
-              </div>
-            )}
-          </div>
+        {/* Footer - Auth Actions - Fixed at bottom */}
+        <div className="border-t p-4 flex-shrink-0 bg-white">
+          {!isAuthenticated && (
+            <div className="space-y-3">
+              <SheetClose asChild>
+                <Link href="/auth/login" className="w-full">
+                  <Button variant="default" className="w-full h-11 mb-4 bg-[#43CD66] text-[#102D21] hover:bg-[#43CD66]/90 font-medium">
+                    Sign In
+                  </Button>
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link href="/auth/select-user-type" className="w-full">
+                  <Button variant="outline" className="w-full h-11 border-[#43CD66] text-[#43CD66] hover:bg-[#43CD66]/10 font-medium">
+                    Sign Up
+                  </Button>
+                </Link>
+              </SheetClose>
+            </div>
+          )}
         </div>
       </SheetContent>
     </Sheet>
