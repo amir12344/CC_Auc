@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { getCurrentUser } from 'aws-amplify/auth';
+import { getCurrentUser, fetchAuthSession } from 'aws-amplify/auth';
 import { uploadData } from 'aws-amplify/storage';
 import { Button } from '@/src/components/ui/button';
 import { useToast } from '@/src/hooks/use-toast';
@@ -77,6 +77,21 @@ const generateFileName = (originalName: string, prefix: string): string => {
   const fileExtension = originalName.split('.').pop();
   return `${prefix}-${timestamp}-${randomSuffix}.${fileExtension}`;
 };
+
+// Helper to get identityId from the auth session
+async function getCurrentIdentityId(): Promise<string> {
+  try {
+    const session = await fetchAuthSession();
+    const identityId = session.identityId;
+    if (!identityId) {
+      throw new Error('Identity ID not found in auth session.');
+    }
+    return identityId;
+  } catch (error) {
+    // console.error('Error getting identity ID:', error);
+    throw new Error('Could not resolve user identity. Please try signing out and back in.');
+  }
+}
 
 /**
  * CatalogExcelUploadForm Component
@@ -191,9 +206,11 @@ export const CatalogExcelUploadForm = React.memo(() => {
         },
       }).result;
 
+      // const fullS3Url = `https://${S3_BUCKET_NAME}.s3.${S3_REGION}.amazonaws.com/${result.path}`;
+
       return result.path;
     } catch (error) {
-      console.error(`Error uploading ${type} file:`, error);
+      // console.error(`Error uploading ${type} file:`, error);
       throw new Error(`Failed to upload ${type} file`);
     }
   }, []);
@@ -215,7 +232,7 @@ export const CatalogExcelUploadForm = React.memo(() => {
 
       return await response.json();
     } catch (error) {
-      console.error('API call failed:', error);
+      // console.error('API call failed:', error);
       throw error;
     }
   }, []);
@@ -236,6 +253,7 @@ export const CatalogExcelUploadForm = React.memo(() => {
 
       const user = await getCurrentUser();
       const userId = user.userId;
+      const identityId = await getCurrentIdentityId();
 
       toast({
         title: "Uploading files...",
@@ -246,12 +264,12 @@ export const CatalogExcelUploadForm = React.memo(() => {
       const [listingFileKey, skuFileKey] = await Promise.all([
         listingFile ? uploadFileToS3(
           listingFile,
-          `CatalogListings/private/${userId}/`,
+          `CatalogListings/private/${identityId}/`,
           'listing'
         ) : Promise.resolve(''),
         skuFile ? uploadFileToS3(
           skuFile,
-          `CatalogSKUs/private/${userId}/`,
+          `CatalogSKUs/private/${identityId}/`,
           'sku'
         ) : Promise.resolve('')
       ]);
@@ -274,7 +292,7 @@ export const CatalogExcelUploadForm = React.memo(() => {
 
       router.push('/seller/listing');
     } catch (error) {
-      console.error('Error submitting form:', error);
+      // console.error('Error submitting form:', error);
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Failed to create catalog listings. Please try again.",

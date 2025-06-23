@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { getCurrentUser } from 'aws-amplify/auth';
+import { getCurrentUser, fetchAuthSession } from 'aws-amplify/auth';
 import { uploadData } from 'aws-amplify/storage';
 import { Button } from '@/src/components/ui/button';
 import { AuctionService } from '../services/auctionService';
@@ -18,6 +18,20 @@ import { Checkbox } from '@/src/components/ui/checkbox';
 import { Badge } from '@/src/components/ui/badge';
 import { ArrowLeft, Upload, FileSpreadsheet, Eye, Gavel, DollarSign, Clock, X } from 'lucide-react';
 import Link from 'next/link';
+
+// Helper to get identityId from the auth session
+async function getCurrentIdentityId(): Promise<string> {
+  try {
+    const session = await fetchAuthSession();
+    const identityId = session.identityId;
+    if (!identityId) {
+      throw new Error('Identity ID not found in auth session.');
+    }
+    return identityId;
+  } catch (error) {
+    throw new Error('Could not resolve user identity. Please try signing out and back in.');
+  }
+}
 
 // Constants moved outside component to prevent re-creation
 const BUYER_TARGETING_OPTIONS = [
@@ -189,6 +203,7 @@ export const AuctionExcelUploadForm = React.memo(() => {
     const fileName = generateFileName(file.name, type === 'listings' ? 'listing-details' : 'manifest');
     const path = `${folderPath}${fileName}`;
 
+
     try {
       const result = await uploadData({
         path: path,
@@ -203,9 +218,10 @@ export const AuctionExcelUploadForm = React.memo(() => {
         },
       }).result;
 
+      // const fullS3Url = `https://${S3_BUCKET_NAME}.s3.${S3_REGION}.amazonaws.com/${result.path}`;
+
       return result.path;
     } catch (error) {
-      console.error(`Error uploading ${type} file:`, error);
       throw new Error(`Failed to upload ${type} file`);
     }
   }, []);
@@ -215,7 +231,6 @@ export const AuctionExcelUploadForm = React.memo(() => {
       const result = await AuctionService.createAuctionListings(payload);
       return result;
     } catch (error) {
-      console.error('API call failed:', error);
       throw error;
     }
   }, []);
@@ -236,6 +251,7 @@ export const AuctionExcelUploadForm = React.memo(() => {
 
       const user = await getCurrentUser();
       const userId = user.userId;
+      const identityId = await getCurrentIdentityId();
 
       toast({
         title: "Uploading files...",
@@ -246,12 +262,12 @@ export const AuctionExcelUploadForm = React.memo(() => {
       const [listingsFileKey, manifestFileKey] = await Promise.all([
         listingsFile ? uploadFileToS3(
           listingsFile,
-          `AuctionListings/private/${userId}/`,
+          `AuctionListings/private/${identityId}/`,
           'listings'
         ) : Promise.resolve(''),
         manifestFile ? uploadFileToS3(
           manifestFile,
-          `AuctionManifests/private/${userId}/`,
+          `AuctionManifests/private/${identityId}/`,
           'manifest'
         ) : Promise.resolve('')
       ]);
@@ -274,7 +290,6 @@ export const AuctionExcelUploadForm = React.memo(() => {
 
       router.push('/seller/listing');
     } catch (error) {
-      console.error('Error submitting form:', error);
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Failed to create auction listings. Please try again.",
