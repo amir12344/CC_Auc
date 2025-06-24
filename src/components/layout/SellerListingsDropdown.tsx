@@ -1,144 +1,100 @@
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
+import { ChevronDown, Loader2, Package, Plus } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import { CreateListingDialog } from '@/src/components/seller/CreateListingDialog';
+import { Button } from '@/src/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import { Button } from '@/src/components/ui/button';
-import { Badge } from '@/src/components/ui/badge';
-import { ChevronDown, ArrowUpRight } from 'lucide-react';
-import { 
-  Package, 
-  TrendingUp, 
-  Edit, 
-  ShoppingCart, 
-  BarChart3,
-  Plus
-} from "lucide-react";
-import { CreateListingDialog } from '../seller/CreateListingDialog';
-
-const sellerListingsItems = [
-  {
-    title: "All Listings",
-    href: "/seller/listing",
-    icon: Package,
-    description: "View all your listings",
-    count: "1",
-  }
-];
 
 /**
  * Seller Listings dropdown component for header navigation
- * Shows all seller-specific sections with visual appeal using shadcn components
+ * Shows only View Listings and Create Listing options with proper state management
  */
 export function SellerListingsDropdown() {
   const router = useRouter();
   const pathname = usePathname();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const handleNavigation = (href: string) => {
-    router.push(href);
+    startTransition(() => {
+      router.push(href);
+      setIsDropdownOpen(false); // Close dropdown after navigation
+    });
   };
 
   const isActive = (href: string) => {
-    // Remove query parameters for comparison
-    const cleanHref = href.split('?')[0];
-    return pathname === cleanHref || (cleanHref !== "/seller/listing" && pathname.startsWith(cleanHref));
+    // Only consider exact match or if we're on the main listings page
+    return pathname === href || pathname === `${href}/`;
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-[#D8F4CC] hover:text-[#43CD66] hover:bg-[#43CD66]/10 font-medium transition-colors duration-300 cursor-pointer text-base"
-        >
-          Listings
-          <ChevronDown className="ml-1 h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      
-      <DropdownMenuContent className="w-72 p-2" align="end" side="bottom" sideOffset={8} alignOffset={-8}>
-        <DropdownMenuLabel className="px-3 py-2 text-sm font-semibold text-gray-900">
-          Seller Portal
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator className="my-1" />
-        
-        <div className="space-y-1">
-          {sellerListingsItems.map((item) => {
-            const Icon = item.icon;
-            const active = isActive(item.href);
-            
-            return (
-              <DropdownMenuItem
-                key={item.href}
-                className={`cursor-pointer p-3 rounded-lg transition-all duration-200 focus:bg-primary/5 ${
-                  active 
-                    ? 'bg-primary/5 border border-primary/20' 
-                    : 'hover:bg-gray-50/80 border border-transparent'
-                }`}
-                onClick={() => handleNavigation(item.href)}
-              >
-                <div className="flex items-center w-full">
-                  <div className={`p-2 rounded-md mr-3 ${
-                    active 
-                      ? 'bg-primary/10 text-primary' 
-                      : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <span className={`text-sm font-medium ${
-                        active ? 'text-primary' : 'text-gray-900'
-                      }`}>
-                        {item.title}
-                      </span>
-                      
-                      <div className="flex items-center gap-2">
-                        {item.count && (
-                          <Badge 
-                            variant={active ? "default" : "secondary"} 
-                            className="text-xs px-2 py-0.5 h-5 min-w-[20px] justify-center"
-                          >
-                            {item.count}
-                          </Badge>
-                        )}
-                        <ArrowUpRight className={`h-3 w-3 ${
-                          active ? 'text-primary' : 'text-gray-400'
-                        }`} />
-                      </div>
-                    </div>
-                    
-                    <p className="text-xs text-gray-500 mt-0.5 truncate">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </DropdownMenuItem>
-            );
-          })}
-        </div>
-        
-        <DropdownMenuSeparator className="my-2" />
-        
-        {/* Quick Action - Create Listing */}
-        <CreateListingDialog>
+    <>
+      <DropdownMenu onOpenChange={setIsDropdownOpen} open={isDropdownOpen}>
+        <DropdownMenuTrigger asChild>
+          <Button
+            className="cursor-pointer font-medium text-[#D8F4CC] text-base transition-colors duration-300 hover:bg-[#43CD66]/10 hover:text-[#43CD66]"
+            disabled={isPending}
+            size="sm"
+            variant="ghost"
+          >
+            {isPending ? (
+              <>
+                <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+                Loading...
+              </>
+            ) : (
+              <>
+                Listings
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </>
+            )}
+          </Button>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent align="end" className="w-56" side="bottom">
+          {/* All Listings */}
           <DropdownMenuItem
-            className="cursor-pointer p-3 transition-all duration-200 hover:bg-[#43CD66]/10"
-            onSelect={(e) => e.preventDefault()} // Prevent dropdown from closing
+            className={`cursor-pointer p-3 transition-all duration-200 ${isActive('/seller/listing')
+              ? 'bg-[#43CD66]/10 text-[#43CD66]'
+              : 'hover:bg-gray-50'
+              } ${isPending ? 'pointer-events-none opacity-50' : ''}`}
+            disabled={isPending}
+            onClick={() => handleNavigation('/seller/listing')}
+          >
+            <Package className="mr-3 h-4 w-4" />
+            <span className="font-medium text-sm">All Listings</span>
+            {isPending && <Loader2 className="ml-auto h-4 w-4 animate-spin" />}
+          </DropdownMenuItem>
+
+          <DropdownMenuSeparator className="my-1" />
+
+          {/* Create Listing */}
+          <DropdownMenuItem
+            className={`cursor-pointer p-3 transition-all duration-200 hover:bg-[#43CD66]/10 ${isPending ? 'pointer-events-none opacity-50' : ''}`}
+            disabled={isPending}
+            onSelect={(e) => {
+              e.preventDefault();
+              setIsDropdownOpen(false);
+              setIsDialogOpen(true);
+            }}
           >
             <Plus className="mr-3 h-4 w-4 text-[#43CD66]" />
-            <span className="text-sm font-medium text-[#43CD66]">Create Listing</span>
+            <span className="font-medium text-[#43CD66] text-sm">
+              Create Listing
+            </span>
           </DropdownMenuItem>
-        </CreateListingDialog>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <CreateListingDialog onOpenChange={setIsDialogOpen} open={isDialogOpen} />
+    </>
   );
-} 
+}

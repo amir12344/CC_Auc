@@ -1,7 +1,6 @@
-import { useCallback, useState } from 'react';
-import { getCurrentUser, fetchAuthSession } from 'aws-amplify/auth';
+import { fetchAuthSession, getCurrentUser } from 'aws-amplify/auth';
 import { uploadData } from 'aws-amplify/storage';
-import { useToast } from '@/src/hooks/use-toast';
+import { useCallback } from 'react';
 
 // Constants
 export const ACCEPTED_FILE_TYPES = '.xlsx,.xls,.csv';
@@ -17,10 +16,15 @@ async function getCurrentIdentityId(): Promise<string> {
     }
     return identityId;
   } catch (error) {
-    if (error instanceof Error && error.name === 'UserUnAuthenticatedException') {
+    if (
+      error instanceof Error &&
+      error.name === 'UserUnAuthenticatedException'
+    ) {
       throw new Error('Please sign in to upload files.');
     }
-    throw new Error('Could not resolve user identity. Please try signing out and back in.');
+    throw new Error(
+      'Could not resolve user identity. Please try signing out and back in.'
+    );
   }
 }
 
@@ -31,7 +35,7 @@ const validateFile = (file: File): string | null => {
   }
 
   const allowedTypes = ['.xlsx', '.xls', '.csv'];
-  const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase();
+  const fileExtension = `.${file.name.split('.').pop()?.toLowerCase()}`;
 
   if (!allowedTypes.includes(fileExtension)) {
     return 'Please select a valid Excel file (.xlsx, .xls, .csv)';
@@ -60,67 +64,81 @@ export interface FileUploadResult {
     filePrefix: string,
     progressType: string
   ) => Promise<string>;
-  getCurrentUserAndIdentity: () => Promise<{ userId: string; identityId: string }>;
+  getCurrentUserAndIdentity: () => Promise<{
+    userId: string;
+    identityId: string;
+  }>;
 }
 
 /**
  * Custom hook for file upload functionality
  * Provides file validation, S3 upload, and authentication utilities
  */
-export const useFileUpload = (options?: UseFileUploadOptions): FileUploadResult => {
-  const { toast } = useToast();
+export const useFileUpload = (
+  options?: UseFileUploadOptions
+): FileUploadResult => {
+  const uploadFileToS3 = useCallback(
+    async (
+      file: File,
+      folderPath: string,
+      filePrefix: string,
+      progressType: string
+    ): Promise<string> => {
+      const fileName = generateFileName(file.name, filePrefix);
+      const identityId = await getCurrentIdentityId();
+      const fullPath = `${folderPath}${identityId}/${fileName}`;
 
-  const uploadFileToS3 = useCallback(async (
-    file: File,
-    folderPath: string,
-    filePrefix: string,
-    progressType: string
-  ): Promise<string> => {
-    const fileName = generateFileName(file.name, filePrefix);
-    const identityId = await getCurrentIdentityId();
-    const fullPath = `${folderPath}${identityId}/${fileName}`;
-    
-    try {
-      // Amplify Gen 2 pattern: Following official documentation with private/ access control
-      const result = await uploadData({
-        path: fullPath,
-        data: file,
-        options: {
-          contentType: file.type || 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-          onProgress: ({ transferredBytes, totalBytes }) => {
-            if (totalBytes && options?.onProgressUpdate) {
-              const progress = Math.round((transferredBytes / totalBytes) * 100);
-              options.onProgressUpdate(progressType, progress);
-            }
+      try {
+        // Amplify Gen 2 pattern: Following official documentation with private/ access control
+        const result = await uploadData({
+          path: fullPath,
+          data: file,
+          options: {
+            contentType:
+              file.type ||
+              'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            onProgress: ({ transferredBytes, totalBytes }) => {
+              if (totalBytes && options?.onProgressUpdate) {
+                const progress = Math.round(
+                  (transferredBytes / totalBytes) * 100
+                );
+                options.onProgressUpdate(progressType, progress);
+              }
+            },
           },
-        },
-      }).result;
+        }).result;
 
-      return result.path;
-    } catch (error) {
-      // Amplify Gen 2: Better error handling with specific error types
-      if (error instanceof Error) {
-        if (error.name === 'NetworkError') {
-          throw new Error(`Network error uploading ${progressType} file. Please check your connection.`);
+        return result.path;
+      } catch (error) {
+        // Amplify Gen 2: Better error handling with specific error types
+        if (error instanceof Error) {
+          if (error.name === 'NetworkError') {
+            throw new Error(
+              `Network error uploading ${progressType} file. Please check your connection.`
+            );
+          }
+          if (error.name === 'StorageError') {
+            throw new Error(
+              `Storage error uploading ${progressType} file. Please try again.`
+            );
+          }
         }
-        if (error.name === 'StorageError') {
-          throw new Error(`Storage error uploading ${progressType} file. Please try again.`);
-        }
+        throw new Error(`Failed to upload ${progressType} file`);
       }
-      throw new Error(`Failed to upload ${progressType} file`);
-    }
-  }, [options]);
+    },
+    [options]
+  );
 
   const getCurrentUserAndIdentity = useCallback(async () => {
     // Amplify Gen 2: Get user information with proper error handling
     const [user, identityId] = await Promise.all([
       getCurrentUser(),
-      getCurrentIdentityId()
+      getCurrentIdentityId(),
     ]);
-    
+
     return {
       userId: user.userId,
-      identityId
+      identityId,
     };
   }, []);
 
@@ -129,4 +147,4 @@ export const useFileUpload = (options?: UseFileUploadOptions): FileUploadResult 
     uploadFileToS3,
     getCurrentUserAndIdentity,
   };
-}; 
+};
