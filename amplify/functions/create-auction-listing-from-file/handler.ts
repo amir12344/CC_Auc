@@ -28,8 +28,8 @@ export const handler: Schema["createAuctionListingFromFile"]["functionHandler"] 
       )!;
 
       const {
-        listingDetailsFilePath,
-        manifestFilePath,
+        listingDetailsFileKey,
+        manifestFileKey,
         sellerId,
         sellerProfileId,
         cognitoId,
@@ -80,12 +80,12 @@ export const handler: Schema["createAuctionListingFromFile"]["functionHandler"] 
         "s3://" +
         env.COMMERCE_CENTRAL_STORAGE_BUCKET_NAME +
         "/" +
-        listingDetailsFilePath;
+        listingDetailsFileKey;
       const manifestS3Path =
         "s3://" +
         env.COMMERCE_CENTRAL_STORAGE_BUCKET_NAME +
         "/" +
-        manifestFilePath;
+        manifestFileKey;
       const config: S3ImportConfig = {
         sellerUserId: finalSellerId!,
         sellerProfileId: finalSellerProfileId!,
