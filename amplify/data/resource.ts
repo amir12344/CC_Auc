@@ -38,8 +38,8 @@ const schema = a.schema({
   createAuctionListingFromFile: a
     .query()
     .arguments({
-      listingDetailsFilePath: a.string().required(),
-      manifestFilePath: a.string().required(),
+      listingDetailsFileKey: a.string().required(),
+      manifestFileKey: a.string().required(),
       sellerId: a.string(),
       sellerProfileId: a.string(),
       cognitoId: a.string(),
