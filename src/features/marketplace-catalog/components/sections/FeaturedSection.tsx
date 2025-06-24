@@ -15,7 +15,7 @@ export const FeaturedSection = memo(() => {
   if (loading) {
     return (
       <ProductSection 
-        title="Featured Products" 
+        title="Private Offers" 
         layout="grid" 
         variant="light"
         viewAllLink="/collections/featured"
@@ -30,7 +30,7 @@ export const FeaturedSection = memo(() => {
   if (!products || products.length === 0) {
     return (
       <ProductSection 
-        title="Featured Products" 
+        title="Private Offers" 
         layout="grid" 
         variant="light"
         viewAllLink="/collections/featured"
@@ -42,7 +42,7 @@ export const FeaturedSection = memo(() => {
 
   return (
     <ProductSection 
-      title="Featured Products" 
+      title="Private Offers" 
       layout="carousel" 
       variant="light"
       viewAllLink="/collections/featured"

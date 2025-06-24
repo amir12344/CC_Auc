@@ -16,7 +16,7 @@ export const BargainSection = memo(() => {
   if (loading) {
     return (
       <ProductSection 
-        title="Bargain Listings" 
+        title="Amazon or Walmart" 
         layout="grid"
         viewAllLink="/collections/bargain"
       >
@@ -30,7 +30,7 @@ export const BargainSection = memo(() => {
   if (!products || products.length === 0) {
     return (
       <ProductSection 
-        title="Bargain Listings" 
+        title="Amazon or Walmart" 
         layout="grid"
         viewAllLink="/collections/bargain"
       >
@@ -43,7 +43,7 @@ export const BargainSection = memo(() => {
 
   return (
     <ProductSection 
-      title="Bargain Listings" 
+      title="Amazon or Walmart" 
       layout="carousel"
       viewAllLink="/collections/bargain"
     >

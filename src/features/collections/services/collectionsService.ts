@@ -103,10 +103,11 @@ const generateCollections = (): Collection[] => {
       id: 'trending',
       name: 'Trending Now',
       slug: 'trending',
-      description: 'The most popular products right now. Don\'t miss out on these hot deals!',
+      description:
+        "The most popular products right now. Don't miss out on these hot deals!",
       image: trendingDeals[0]?.image || '',
       productCount: trendingDeals.length,
-      featured: true
+      featured: true,
     },
     {
       id: 'featured',
@@ -115,16 +116,16 @@ const generateCollections = (): Collection[] => {
       description: 'Handpicked products offering the best value and quality.',
       image: featuredDeals[0]?.image || '',
       productCount: featuredDeals.length,
-      featured: true
+      featured: true,
     },
     {
       id: 'bargain',
-      name: 'Bargain Listings',
+      name: 'Amazon or Walmart',
       slug: 'bargain',
       description: 'Bulk lots and pallet deals for maximum savings.',
       image: bargainListings[0]?.image || '',
       productCount: bargainListings.length,
-      featured: true
+      featured: true,
     },
     {
       id: 'amazon',
@@ -132,8 +133,8 @@ const generateCollections = (): Collection[] => {
       slug: 'amazon',
       description: 'Quality products from Amazon returns and warehouse deals.',
       image: amazonListings[0]?.image || '',
-      productCount: amazonListings.length
-    }
+      productCount: amazonListings.length,
+    },
   ]
 
   return [...specialCollections, ...collections].sort((a, b) => {

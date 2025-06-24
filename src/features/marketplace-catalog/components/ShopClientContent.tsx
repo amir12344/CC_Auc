@@ -26,15 +26,16 @@ export function ShopClientContent({ products, productsByCategory, categories }: 
   return (
     <div ref={contentAreaRef}>
       <ErrorBoundary>
-        <WishlistBanner />
-        <AuctionSection />
+        {/* <WishlistBanner /> */}
         <BargainSection />
-        <AmazonSection />
+        <AuctionSection />
+        
+        {/* <AmazonSection /> */}
         <FeaturedSection />
         <TrendingSection />
         <FeaturedBrands />
         <CategorySection category="Beauty" title="Beauty & Personal Care" variant="light" layout="carousel" />
-        <CategorySection category="Home" title="Home & Living" variant="light" layout="carousel" />
+        <CategorySection category="Home" title="Featured Inventory" variant="light" layout="carousel" />
       </ErrorBoundary>
     </div>
   );

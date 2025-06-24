@@ -17,7 +17,7 @@ export const TrendingSection = memo(() => {
   if (loading) {
     return (
       <ProductSection 
-        title="Trending Now" 
+        title="Categories For You" 
         layout="grid" 
         variant="light"
         viewAllLink="/collections/trending"
@@ -32,7 +32,7 @@ export const TrendingSection = memo(() => {
   if (!products || products.length === 0) {
     return (
       <ProductSection 
-        title="Trending Now" 
+        title="Categories For You" 
         layout="grid" 
         variant="light"
         viewAllLink="/collections/trending"
@@ -44,7 +44,7 @@ export const TrendingSection = memo(() => {
 
   return (
     <ProductSection 
-      title="Trending Now" 
+      title="Categories For You" 
       layout="carousel" 
       variant="light"
       viewAllLink="/collections/trending"

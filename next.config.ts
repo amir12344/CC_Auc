@@ -23,6 +23,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'unsplash.com' },
       { protocol: 'https', hostname: 'plus.unsplash.com' },
       { protocol: 'https', hostname: 'images.pexels.com' },
+      { protocol: 'https', hostname: 'drive.google.com' },
+      { protocol: 'https', hostname: 'www.josiemaran.com' },
     ],
     formats: ['image/avif', 'image/webp'],
   },
@@ -38,17 +40,23 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compiler: {
     // Remove development properties in production
-    reactRemoveProperties: process.env.NODE_ENV === 'production' ? { properties: ['^data-test'] } : false,
+    reactRemoveProperties:
+      process.env.NODE_ENV === 'production'
+        ? { properties: ['^data-test'] }
+        : false,
     // Remove console logs in production (except errors and warnings)
-    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+    removeConsole:
+      process.env.NODE_ENV === 'production'
+        ? { exclude: ['error', 'warn'] }
+        : false,
   },
 
   // Enable tree shaking to reduce unused JavaScript
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       // Enable tree shaking with Terser
-      config.optimization.minimizer = config.optimization.minimizer || [];
-      config.optimization.minimize = true;
+      config.optimization.minimizer = config.optimization.minimizer || []
+      config.optimization.minimize = true
 
       // Improved chunk splitting for better caching and performance
       config.optimization.splitChunks = {
@@ -70,14 +78,17 @@ const nextConfig: NextConfig = {
             test: /[\\/]node_modules[\\/]/,
             name(module: { context: string }): string {
               // Get the name of the package
-              const packageName: string = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)?.[1] || 'libs';
+              const packageName: string =
+                module.context.match(
+                  /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                )?.[1] || 'libs'
 
               // Group specific large packages separately
               if (['three', 'framer-motion'].includes(packageName)) {
-              return `npm.${packageName}`;
+                return `npm.${packageName}`
               }
 
-              return 'libs';
+              return 'libs'
             },
             priority: 30,
             chunks: 'all',
@@ -96,7 +107,7 @@ const nextConfig: NextConfig = {
             reuseExistingChunk: true,
           },
         },
-      };
+      }
     }
 
     // Optimize development experience
@@ -105,19 +116,19 @@ const nextConfig: NextConfig = {
       config.cache = {
         type: 'filesystem',
         buildDependencies: {
-          config: [__filename]
+          config: [__filename],
         },
         cacheDirectory: path.resolve('.next/cache/webpack'),
         maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
-      };
+      }
 
       // Reduce development build time
       config.infrastructureLogging = {
         level: 'error',
-      };
+      }
     }
 
-    return config;
+    return config
   },
   // Configure performance optimizations
   experimental: {
@@ -129,25 +140,24 @@ const nextConfig: NextConfig = {
       'three',
       '@tanstack/react-query',
       'date-fns',
-      'lodash'
+      'lodash',
     ],
     // Use server actions with optimized settings
     serverActions: {
-      bodySizeLimit: '2mb'
+      bodySizeLimit: '2mb',
     },
     // Improve memory usage
     memoryBasedWorkersCount: true,
     // Optimize CSS loading
     optimizeCss: true,
     // Improve scroll restoration
-    scrollRestoration: true
+    scrollRestoration: true,
   },
   // Add Turbopack configuration
   turbopack: {
     // Explicitly configure common extensions (often handled by default)
-    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx']
+    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-
-};
+}
 
 export default bundleAnalyzer(nextConfig);
