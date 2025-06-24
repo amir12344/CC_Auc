@@ -1,0 +1,10 @@
+{
+  "name": "commerce-central-app-layer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "wizard22",
+  "license": "UNLICENSED"
+}

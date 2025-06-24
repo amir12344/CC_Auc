@@ -1,5 +1,6 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
-
+import { createAuctionListingFromFile } from "../functions/create-auction-listing-from-file/resource";
+import { queryData } from "../functions/query-data/resource";
 /*
  * Define an EarlyAccessRegistration model for storing early access form submissions
  * This model replaces the Todo example and is configured for public access
@@ -18,10 +19,35 @@ const schema = a.schema({
     })
     .authorization((allow) => [
       // Allow public access for creating and reading records
-      allow.publicApiKey().to(['create', 'read']),
+      allow.publicApiKey().to(["create", "read"]),
       // Restrict other operations to admin users only
       // This ensures only authorized users can update, or delete records
     ]),
+
+  queryData: a
+    .query()
+    .arguments({
+      modelName: a.string(),
+      operation: a.string(),
+      query: a.string(),
+    })
+    .returns(a.string())
+    .authorization((allow) => [allow.publicApiKey()])
+    .handler(a.handler.function(queryData)),
+
+  createAuctionListingFromFile: a
+    .query()
+    .arguments({
+      listingDetailsFilePath: a.string().required(),
+      manifestFilePath: a.string().required(),
+      sellerId: a.string(),
+      sellerProfileId: a.string(),
+      cognitoId: a.string(),
+      visibility: a.string(),
+    })
+    .returns(a.string())
+    .authorization((allow) => [allow.publicApiKey()])
+    .handler(a.handler.function(createAuctionListingFromFile)),
 });
 
 export type Schema = ClientSchema<typeof schema>;

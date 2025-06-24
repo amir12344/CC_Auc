@@ -1,0 +1,1156 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../../amplify/functions/lambda-layers/core-layer/nodejs/prisma/generated/client"
+  previewFeatures = ["omitApi", "relationJoins"]
+  binaryTargets   = ["rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model addresses {
+  address_id       String             @id(map: "pk_addresses") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  first_name       String?
+  last_name        String?
+  address1         String?
+  address2         String?
+  address3         String?
+  city             String?
+  province         String?
+  province_code    String?
+  country          String?
+  country_code     String?
+  zip              String?
+  phone            String?
+  company          String?
+  latitude         Decimal?           @db.Decimal(10, 7)
+  longitude        Decimal?           @db.Decimal(10, 7)
+  created_at       DateTime           @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?          @db.Timestamp(6)
+  auction_listings auction_listings[]
+  catalog_listings catalog_listings[]
+  user_addresses   user_addresses[]
+
+  @@index([created_at], map: "idx_addresses_created_at")
+}
+
+model auction_listing_images {
+  auction_listing_image_id String           @id(map: "pk_auction_listing_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auction_listing_id       String           @db.Uuid
+  image_id                 String           @db.Uuid
+  auction_listings         auction_listings @relation(fields: [auction_listing_id], references: [auction_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listing_images_auction_listing_id")
+  images                   images           @relation(fields: [image_id], references: [image_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listing_images_image_id")
+
+  @@unique([auction_listing_id, image_id], map: "uk_auction_listing_images")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model auction_listing_product_manifests {
+  auction_listing_product_manifest_id String                            @id(map: "pk_auction_listing_product_manifests") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auction_listing_id                  String?                           @db.Uuid
+  category                            product_category_type?
+  subcategory                         product_sub_category_type?
+  title                               String
+  description                         String?
+  brand_id                            String                            @db.Uuid
+  sku                                 String                            @unique(map: "idx_auction_manifests_sku")
+  identifier                          String?
+  identifier_type                     product_identifier_type?
+  external_identifier                 String?
+  external_identifier_type            product_external_identifier_type?
+  part_number                         String?
+  model_name                          String?
+  product_condition                   product_condition_type?
+  cosmetic_condition                  String?
+  available_quantity                  Int?
+  retail_price                        Decimal?                          @db.Decimal(16, 4)
+  ext_retail                          Decimal?                          @db.Decimal(16, 4)
+  is_hazmat                           Boolean?                          @default(false)
+  lot_id                              String?
+  pallet_id                           String?
+  department                          String?
+  accessories                         String?
+  weight                              Decimal?                          @db.Decimal(10, 2)
+  product_weight_type                 weight_type?
+  product_height                      Decimal?                          @db.Decimal(10, 2)
+  product_length                      Decimal?                          @db.Decimal(10, 2)
+  product_width                       Decimal?                          @db.Decimal(10, 2)
+  product_length_type                 length_type?
+  created_at                          DateTime?                         @default(now()) @db.Timestamp(6)
+  updated_at                          DateTime?                         @db.Timestamp(6)
+  auction_listings                    auction_listings?                 @relation(fields: [auction_listing_id], references: [auction_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listing_product_manifests_auction_listing_id")
+  brands                              brands                            @relation(fields: [brand_id], references: [brand_id], onUpdate: NoAction, map: "fk_auction_listing_product_manifests_brand_id")
+
+  @@index([auction_listing_id], map: "idx_auction_manifests_auction_listing_id")
+  @@index([brand_id], map: "idx_auction_manifests_brand_id")
+  @@index([identifier], map: "idx_auction_manifests_identifier")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model auction_listings {
+  auction_listing_id                                                              String                              @id(map: "pk_auction_listings") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seller_profile_id                                                               String                              @db.Uuid
+  seller_user_id                                                                  String                              @db.Uuid
+  title                                                                           String
+  description                                                                     String?
+  category                                                                        product_category_type?
+  category2                                                                       product_category_type?
+  category3                                                                       product_category_type?
+  subcategory                                                                     product_sub_category_type?
+  subcategory2                                                                    product_sub_category_type?
+  subcategory3                                                                    product_sub_category_type?
+  subcategory4                                                                    product_sub_category_type?
+  subcategory5                                                                    product_sub_category_type?
+  status                                                                          listing_status_type?
+  default_image_url                                                               String?
+  lot_condition                                                                   lot_condition_type?
+  cosmetic_condition                                                              String?
+  shipping_cost                                                                   Decimal?                            @db.Decimal(16, 4)
+  total_units                                                                     Int?
+  total_ex_retail_price                                                           Decimal?                            @db.Decimal(16, 4)
+  estimated_retail_value                                                          Decimal?                            @db.Decimal(16, 4)
+  estimated_weight                                                                Decimal?                            @db.Decimal(10, 2)
+  weight_type                                                                     weight_type?
+  is_refrigerated                                                                 Boolean?                            @default(false)
+  is_fda_registered                                                               Boolean?                            @default(false)
+  is_hazmat                                                                       Boolean?                            @default(false)
+  is_private                                                                      Boolean?                            @default(false)
+  visibility_settings                                                             Json?                               @default("{}")
+  location_address_id                                                             String?                             @db.Uuid
+  auction_shipping_type                                                           shipping_type?
+  auction_freight_type                                                            freight_type?
+  piece_count                                                                     Int?
+  lot_packaging                                                                   lot_packaging_type?
+  number_of_pallets                                                               Int?
+  pallet_spaces                                                                   Int?
+  number_of_truckloads                                                            Int?
+  number_of_shipments                                                             Int?
+  resale_requirement                                                              String?
+  accessories                                                                     String?
+  inspection_status                                                               String?
+  seller_notes                                                                    String?
+  shipping_notes                                                                  String?
+  additional_information                                                          String?
+  bidding_requirements                                                            String?
+  minimum_bid                                                                     Decimal?                            @db.Decimal(16, 4)
+  current_bid                                                                     Decimal?                            @db.Decimal(16, 4)
+  bid_increment_value                                                             Decimal?                            @db.Decimal(16, 4)
+  bid_increment_type                                                              bid_increment_type?
+  winner_user_id                                                                  String?                             @db.Uuid
+  winner_buyer_profile_id                                                         String?                             @db.Uuid
+  current_bidder_user_id                                                          String?                             @db.Uuid
+  current_bidder_buyer_profile_id                                                 String?                             @db.Uuid
+  auction_status                                                                  auction_status_type?
+  auction_end_time                                                                DateTime?                           @db.Timestamp(6)
+  created_at                                                                      DateTime?                           @default(now()) @db.Timestamp(6)
+  updated_at                                                                      DateTime?                           @db.Timestamp(6)
+  auction_listing_images                                                          auction_listing_images[]
+  auction_listing_product_manifests                                               auction_listing_product_manifests[]
+  buyer_profiles_auction_listings_current_bidder_buyer_profile_idTobuyer_profiles buyer_profiles?                     @relation("auction_listings_current_bidder_buyer_profile_idTobuyer_profiles", fields: [current_bidder_buyer_profile_id], references: [buyer_profile_id], onUpdate: NoAction, map: "fk_auction_listings_current_bidder_buyer_profile_id")
+  users_auction_listings_current_bidder_user_idTousers                            users?                              @relation("auction_listings_current_bidder_user_idTousers", fields: [current_bidder_user_id], references: [user_id], onUpdate: NoAction, map: "fk_auction_listings_current_bidder_user_id")
+  addresses                                                                       addresses?                          @relation(fields: [location_address_id], references: [address_id], onUpdate: NoAction, map: "fk_auction_listings_location_address_id")
+  seller_profiles                                                                 seller_profiles                     @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listings_seller_profile_id")
+  users_auction_listings_seller_user_idTousers                                    users                               @relation("auction_listings_seller_user_idTousers", fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listings_seller_user_id")
+  buyer_profiles_auction_listings_winner_buyer_profile_idTobuyer_profiles         buyer_profiles?                     @relation("auction_listings_winner_buyer_profile_idTobuyer_profiles", fields: [winner_buyer_profile_id], references: [buyer_profile_id], onUpdate: NoAction, map: "fk_auction_listings_winner_buyer_profile_id")
+  users_auction_listings_winner_user_idTousers                                    users?                              @relation("auction_listings_winner_user_idTousers", fields: [winner_user_id], references: [user_id], onUpdate: NoAction, map: "fk_auction_listings_winner_user_id")
+
+  @@index([auction_end_time], map: "idx_auction_listings_auction_end_time")
+  @@index([auction_status], map: "idx_auction_listings_auction_status")
+  @@index([auction_status, auction_end_time], map: "idx_auction_listings_auction_status_end_time")
+  @@index([category], map: "idx_auction_listings_category")
+  @@index([created_at], map: "idx_auction_listings_created_at")
+  @@index([current_bid], map: "idx_auction_listings_current_bid")
+  @@index([is_private], map: "idx_auction_listings_is_private")
+  @@index([seller_profile_id], map: "idx_auction_listings_seller_profile_id")
+  @@index([seller_user_id], map: "idx_auction_listings_seller_user_id")
+  @@index([status], map: "idx_auction_listings_status")
+  @@index([status, category], map: "idx_auction_listings_status_category")
+  @@index([subcategory], map: "idx_auction_listings_subcategory")
+}
+
+model brands {
+  brand_id                          String                              @id(map: "pk_brands") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  brand_name                        String                              @unique
+  brand_description                 String?
+  brand_website                     String?
+  created_at                        DateTime?                           @default(now()) @db.Timestamp(6)
+  updated_at                        DateTime?                           @db.Timestamp(6)
+  auction_listing_product_manifests auction_listing_product_manifests[]
+  catalog_products                  catalog_products[]
+
+  @@index([brand_name], map: "idx_brands_brand_name")
+}
+
+model buyer_profile_preferences {
+  buyer_profile_preference_id String         @id(map: "pk_buyer_profile_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  buyer_profile_id            String         @db.Uuid
+  user_id                     String         @db.Uuid
+  created_at                  DateTime?      @default(now()) @db.Timestamp(6)
+  updated_at                  DateTime?      @db.Timestamp(6)
+  buyer_profiles              buyer_profiles @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profile_preferences_buyer_profile_id")
+  users                       users          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profile_preferences_user_id")
+}
+
+model buyer_profiles {
+  buyer_profile_id                                                                  String                         @id(map: "pk_buyer_profiles") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                                                                           String                         @unique(map: "uk_buyer_profiles_user_id") @db.Uuid
+  reseller_tax_id                                                                   String?                        @db.Uuid
+  verification_status                                                               buyer_verification_status_type
+  created_at                                                                        DateTime?                      @default(now()) @db.Timestamp(6)
+  updated_at                                                                        DateTime?                      @db.Timestamp(6)
+  auction_listings_auction_listings_current_bidder_buyer_profile_idTobuyer_profiles auction_listings[]             @relation("auction_listings_current_bidder_buyer_profile_idTobuyer_profiles")
+  auction_listings_auction_listings_winner_buyer_profile_idTobuyer_profiles         auction_listings[]             @relation("auction_listings_winner_buyer_profile_idTobuyer_profiles")
+  buyer_profile_preferences                                                         buyer_profile_preferences[]
+  resale_certificates                                                               resale_certificates?           @relation(fields: [reseller_tax_id], references: [resale_certificate_id], onUpdate: NoAction, map: "fk_buyer_profiles_reseller_tax_id")
+  users                                                                             users                          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profiles_user_id")
+
+  @@index([user_id], map: "idx_buyer_profiles_user_id")
+  @@index([verification_status], map: "idx_buyer_profiles_verification_status")
+}
+
+model catalog_listing_images {
+  catalog_listing_image_id String           @id(map: "pk_catalog_listing_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_listing_id       String           @db.Uuid
+  image_id                 String           @db.Uuid
+  catalog_listings         catalog_listings @relation(fields: [catalog_listing_id], references: [catalog_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listing_images_catalog_listing_id")
+  images                   images           @relation(fields: [image_id], references: [image_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listing_images_image_id")
+
+  @@unique([catalog_listing_id, image_id], map: "uk_catalog_listing_images")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model catalog_listings {
+  catalog_listing_id     String                     @id(map: "pk_catalog_listings") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seller_profile_id      String                     @db.Uuid
+  seller_user_id         String                     @db.Uuid
+  title                  String
+  description            String?
+  category               product_category_type?
+  category2              product_category_type?
+  category3              product_category_type?
+  subcategory            product_sub_category_type?
+  subcategory2           product_sub_category_type?
+  subcategory3           product_sub_category_type?
+  subcategory4           product_sub_category_type?
+  subcategory5           product_sub_category_type?
+  status                 listing_status_type?
+  default_image_url      String?
+  listing_condition      product_condition_type?
+  cosmetic_condition     String?
+  packaging              packaging_type?
+  shipping_window        Int?
+  minimum_order_value    Decimal?                   @db.Decimal(16, 4)
+  location_address_id    String                     @db.Uuid
+  is_private             Boolean?                   @default(false)
+  visibility_settings    Json?                      @default("{}")
+  created_at             DateTime?                  @default(now()) @db.Timestamp(6)
+  updated_at             DateTime?                  @db.Timestamp(6)
+  catalog_listing_images catalog_listing_images[]
+  addresses              addresses                  @relation(fields: [location_address_id], references: [address_id], onUpdate: NoAction, map: "fk_catalog_listings_location_address_id")
+  seller_profiles        seller_profiles            @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listings_seller_profile_id")
+  users                  users                      @relation(fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listings_seller_user_id")
+  catalog_products       catalog_products[]
+
+  @@index([category], map: "idx_catalog_listings_category")
+  @@index([created_at], map: "idx_catalog_listings_created_at")
+  @@index([is_private], map: "idx_catalog_listings_is_private")
+  @@index([seller_profile_id], map: "idx_catalog_listings_seller_profile_id")
+  @@index([seller_user_id], map: "idx_catalog_listings_seller_user_id")
+  @@index([status], map: "idx_catalog_listings_status")
+  @@index([subcategory], map: "idx_catalog_listings_subcategory")
+}
+
+model catalog_product_images {
+  catalog_product_image_id String           @id(map: "pk_catalog_product_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_product_id       String           @db.Uuid
+  image_id                 String           @db.Uuid
+  catalog_products         catalog_products @relation(fields: [catalog_product_id], references: [catalog_product_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_product_images_catalog_product_id")
+  images                   images           @relation(fields: [image_id], references: [image_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_product_images_image_id")
+
+  @@unique([catalog_product_id, image_id], map: "uk_catalog_product_images")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model catalog_products {
+  catalog_product_id       String                            @id(map: "pk_catalog_products") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_listing_id       String                            @db.Uuid
+  title                    String
+  description              String?
+  category                 product_category_type?
+  category2                product_category_type?
+  category3                product_category_type?
+  subcategory              product_sub_category_type?
+  subcategory2             product_sub_category_type?
+  subcategory3             product_sub_category_type?
+  subcategory4             product_sub_category_type?
+  subcategory5             product_sub_category_type?
+  brand_id                 String                            @db.Uuid
+  product_condition        product_condition_type?
+  cosmetic_condition       String?
+  default_image_url        String?
+  sku                      String                            @unique(map: "idx_catalog_products_sku")
+  identifier               String?
+  identifier_type          product_identifier_type?
+  external_identifier      String?
+  external_identifier_type product_external_identifier_type?
+  part_number              String?
+  model_name               String?
+  packaging                packaging_type?
+  parent_sku               String?
+  parent_product_id        String?                           @db.Uuid
+  variant_attributes       Json?                             @default("{}")
+  retail_price             Decimal?                          @db.Decimal(16, 4)
+  offer_price              Decimal?                          @db.Decimal(16, 4)
+  available_quantity       Int?
+  min_order_quantity       Int?
+  max_order_quantity       Int?
+  weight                   Decimal?                          @db.Decimal(10, 2)
+  weight_unit_type         weight_type?
+  product_height           Decimal?                          @db.Decimal(10, 2)
+  product_length           Decimal?                          @db.Decimal(10, 2)
+  product_width            Decimal?                          @db.Decimal(10, 2)
+  length_unit_type         length_type?
+  accessories              String?
+  is_hazmat                Boolean?                          @default(false)
+  status                   catalog_product_status_type?
+  created_at               DateTime?                         @default(now()) @db.Timestamp(6)
+  updated_at               DateTime?                         @db.Timestamp(6)
+  catalog_product_images   catalog_product_images[]
+  brands                   brands                            @relation(fields: [brand_id], references: [brand_id], onUpdate: NoAction, map: "fk_catalog_products_brand_id")
+  catalog_listings         catalog_listings                  @relation(fields: [catalog_listing_id], references: [catalog_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_products_catalog_listing_id")
+  catalog_products         catalog_products?                 @relation("catalog_productsTocatalog_products", fields: [parent_product_id], references: [catalog_product_id], onUpdate: NoAction, map: "fk_catalog_products_parent_product_id")
+  other_catalog_products   catalog_products[]                @relation("catalog_productsTocatalog_products")
+
+  @@unique([catalog_listing_id, sku], map: "uk_catalog_products_sku_listing")
+  @@index([brand_id, category], map: "idx_catalog_products_brand_category")
+  @@index([brand_id], map: "idx_catalog_products_brand_id")
+  @@index([catalog_listing_id], map: "idx_catalog_products_catalog_listing_id")
+  @@index([category], map: "idx_catalog_products_category")
+  @@index([identifier], map: "idx_catalog_products_identifier")
+  @@index([catalog_listing_id, status], map: "idx_catalog_products_listing_status")
+  @@index([offer_price], map: "idx_catalog_products_offer_price")
+  @@index([parent_product_id], map: "idx_catalog_products_parent_product_id")
+  @@index([status], map: "idx_catalog_products_status")
+  @@index([subcategory], map: "idx_catalog_products_subcategory")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model images {
+  image_id               String                   @id(map: "pk_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  image_url              String
+  alt_text               String?
+  sort_order             Int?
+  created_at             DateTime?                @default(now()) @db.Timestamp(6)
+  auction_listing_images auction_listing_images[]
+  catalog_listing_images catalog_listing_images[]
+  catalog_product_images catalog_product_images[]
+
+  @@index([created_at], map: "idx_images_created_at")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model resale_certificates {
+  resale_certificate_id      String                                @id(map: "pk_resale_certificates") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                    String                                @db.Uuid
+  certificate_number         String                                @unique
+  issuing_state              us_state_type
+  issuing_jurisdiction       String?
+  certificate_status         certificate_status_type               @default(PENDING)
+  business_legal_name        String
+  business_street_address    String
+  business_city              String
+  business_state             us_state_type
+  business_zip_code          String
+  business_country           country_code_type
+  federal_tax_id             String?
+  state_tax_id               String?
+  business_entity_type       certificate_business_entity_type?
+  naics_code                 String?
+  industry_description       String?
+  issue_date                 DateTime                              @db.Timestamp(6)
+  expiration_date            DateTime?                             @db.Timestamp(6)
+  renewal_date               DateTime?                             @db.Timestamp(6)
+  is_blanket_certificate     Boolean?                              @default(true)
+  authorized_signatory_name  String
+  authorized_signatory_title String?
+  signature_date             DateTime                              @db.Timestamp(6)
+  verification_status        certificate_verification_status_type? @default(PENDING)
+  last_verification_date     DateTime?                             @db.Timestamp(6)
+  verification_method        certificate_verification_method_type?
+  product_categories_covered String[]
+  document_storage_path      String?
+  document_url               String?
+  compliance_notes           String?
+  is_active                  Boolean?                              @default(true)
+  created_at                 DateTime?                             @default(now()) @db.Timestamp(6)
+  updated_at                 DateTime?                             @db.Timestamp(6)
+  buyer_profiles             buyer_profiles[]
+  users                      users                                 @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_resale_certificates_user_id")
+
+  @@index([certificate_number], map: "idx_resale_certificates_certificate_number")
+  @@index([expiration_date], map: "idx_resale_certificates_expiration_date")
+  @@index([issuing_state], map: "idx_resale_certificates_issuing_state")
+  @@index([certificate_status], map: "idx_resale_certificates_status")
+  @@index([user_id], map: "idx_resale_certificates_user_id")
+}
+
+model seller_profile_preferences {
+  seller_profile_preference_id String          @id(map: "pk_seller_profile_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seller_profile_id            String          @db.Uuid
+  user_id                      String          @db.Uuid
+  created_at                   DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at                   DateTime?       @db.Timestamp(6)
+  seller_profiles              seller_profiles @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_profile_preferences_seller_profile_id")
+  users                        users           @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_profile_preferences_user_id")
+}
+
+model seller_profiles {
+  seller_profile_id          String                       @id(map: "pk_seller_profiles") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                    String                       @unique(map: "uk_seller_profiles_user_id") @db.Uuid
+  last_active                DateTime?                    @db.Timestamp(6)
+  created_at                 DateTime?                    @default(now()) @db.Timestamp(6)
+  updated_at                 DateTime?                    @db.Timestamp(6)
+  auction_listings           auction_listings[]
+  catalog_listings           catalog_listings[]
+  seller_profile_preferences seller_profile_preferences[]
+  users                      users                        @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_profiles_user_id")
+
+  @@index([last_active], map: "idx_seller_profiles_last_active")
+  @@index([user_id], map: "idx_seller_profiles_user_id")
+}
+
+model user_addresses {
+  user_addresses_id String        @id(map: "pk_user_addresses") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id           String        @db.Uuid
+  address_id        String        @db.Uuid
+  address_type      address_type?
+  created_at        DateTime?     @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?     @db.Timestamp(6)
+  addresses         addresses     @relation(fields: [address_id], references: [address_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_addresses_address_id")
+  users             users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_addresses_user_id")
+
+  @@unique([user_id, address_id, address_type], map: "uk_user_addresses_user_address_type")
+  @@index([address_type], map: "idx_user_addresses_address_type")
+  @@index([user_id], map: "idx_user_addresses_user_id")
+}
+
+model user_preferences {
+  user_preference_id String    @id(map: "pk_user_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id            String    @db.Uuid
+  created_at         DateTime? @default(now()) @db.Timestamp(6)
+  updated_at         DateTime? @db.Timestamp(6)
+  users              users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_preferences_user_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  user_id                                                         String                       @id(map: "pk_users") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username                                                        String                       @unique
+  cognito_id                                                      String                       @unique
+  user_type                                                       user_type
+  email                                                           String                       @unique
+  phone                                                           String?
+  title                                                           String?
+  first_name                                                      String?
+  last_name                                                       String?
+  date_of_birth                                                   DateTime?                    @db.Timestamp(6)
+  company                                                         String?
+  avatar_url                                                      String?
+  account_locked                                                  Boolean?                     @default(false)
+  risk_score                                                      Decimal?                     @default(0.0) @db.Decimal(5, 2)
+  created_at                                                      DateTime?                    @default(now()) @db.Timestamp(6)
+  updated_at                                                      DateTime?                    @db.Timestamp(6)
+  auction_listings_auction_listings_current_bidder_user_idTousers auction_listings[]           @relation("auction_listings_current_bidder_user_idTousers")
+  auction_listings_auction_listings_seller_user_idTousers         auction_listings[]           @relation("auction_listings_seller_user_idTousers")
+  auction_listings_auction_listings_winner_user_idTousers         auction_listings[]           @relation("auction_listings_winner_user_idTousers")
+  buyer_profile_preferences                                       buyer_profile_preferences[]
+  buyer_profiles                                                  buyer_profiles?
+  catalog_listings                                                catalog_listings[]
+  resale_certificates                                             resale_certificates[]
+  seller_profile_preferences                                      seller_profile_preferences[]
+  seller_profiles                                                 seller_profiles?
+  user_addresses                                                  user_addresses[]
+  user_preferences                                                user_preferences[]
+
+  @@index([email], map: "idx_users_email")
+  @@index([user_type], map: "idx_users_user_type")
+  @@index([username], map: "idx_users_username")
+  @@index([cognito_id], map: "idx_users_cognito_id")
+}
+
+enum address_type {
+  DEFAULT
+  SHIPPING
+  BILLING
+}
+
+enum auction_status_type {
+  ACTIVE
+  CANCELLED
+  ENDED
+}
+
+enum bid_increment_type {
+  PERCENTAGE
+  FIXED
+}
+
+enum buyer_segment_type {
+  DISCOUNT_RETAIL
+  STOCKX
+  AMAZON_OR_WALMART
+  LIVE_SELLER_MARKETPLACES
+  RESELLER_MARKETPLACES
+  OFF_PRICE_RETAIL
+  EXPORTER
+  REFURBISHER_REPAIR_SHOP
+}
+
+enum buyer_verification_status_type {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum catalog_product_status_type {
+  ACTIVE
+  INACTIVE
+  OUT_OF_STOCK
+}
+
+enum certificate_business_entity_type {
+  CORPORATION
+  LLC
+  PARTNERSHIP
+  SOLE_PROPRIETORSHIP
+  OTHER
+}
+
+enum certificate_exemption_reason_type {
+  RESALE
+  MANUFACTURING
+  AGRICULTURE
+  NONPROFIT
+  GOVERNMENT
+  OTHER
+}
+
+enum certificate_status_type {
+  ACTIVE
+  EXPIRED
+  REVOKED
+  PENDING
+}
+
+enum certificate_verification_method_type {
+  MANUAL
+  AUTOMATED
+  THIRD_PARTY
+  SELF_REPORTED
+}
+
+enum certificate_verification_status_type {
+  VERIFIED
+  PENDING
+  FAILED
+  EXPIRED
+}
+
+enum country_code_type {
+  US
+  CA
+  MX
+  GB
+  FR
+  DE
+  IT
+  ES
+  NL
+  BE
+  CH
+  AT
+  SE
+  NO
+  DK
+  FI
+  IE
+  PT
+  GR
+  PL
+  CZ
+  HU
+  SK
+  SI
+  EE
+  LV
+  LT
+  BG
+  RO
+  HR
+  MT
+  CY
+  LU
+  IS
+  LI
+  MC
+  SM
+  VA
+  AD
+  JP
+  CN
+  KR
+  IN
+  AU
+  NZ
+  SG
+  HK
+  TW
+  MY
+  TH
+  PH
+  ID
+  VN
+  BR
+  AR
+  CL
+  CO
+  PE
+  UY
+  PY
+  BO
+  EC
+  VE
+  GY
+  SR
+  FK
+  GF
+  ZA
+  EG
+  NG
+  KE
+  GH
+  MA
+  TN
+  DZ
+  LY
+  SD
+  ET
+  UG
+  TZ
+  MZ
+  MG
+  ZM
+  ZW
+  BW
+  NA
+  SZ
+  LS
+  MW
+  AO
+  CD
+  CG
+  CF
+  CM
+  TD
+  NE
+  ML
+  BF
+  CI
+  GN
+  SN
+  GM
+  GW
+  SL
+  LR
+  MR
+  CV
+  ST
+  GQ
+  GA
+  DJ
+  SO
+  ER
+  KM
+  SC
+  MU
+  RE
+  YT
+  MV
+  RU
+  TR
+  IL
+  JO
+  LB
+  SY
+  IQ
+  IR
+  AF
+  PK
+  BD
+  LK
+  NP
+  BT
+  MM
+  LA
+  KH
+  BN
+  MN
+  KZ
+  KG
+  TJ
+  TM
+  UZ
+  GE
+  AM
+  AZ
+  BY
+  MD
+  UA
+  FJ
+  PG
+  SB
+  VU
+  NC
+  PF
+  WF
+  AS
+  GU
+  MP
+  PW
+  FM
+  MH
+  KI
+  NR
+  TV
+  TO
+  WS
+  CK
+  NU
+  TK
+}
+
+enum currency_code_type {
+  USD
+  CAD
+  MXN
+  GBP
+  EUR
+  CHF
+  DKK
+  CZK
+  RUB
+  TRY
+  INR
+  CNY
+  HKD
+  ILS
+  KRW
+  SGD
+  JPY
+  AUD
+  NZD
+}
+
+enum freight_type {
+  SINGLE_BOX
+  MULTIPLE_BOXES
+  LTL
+  FTL
+}
+
+enum geographic_region_type {
+  COUNTRY
+  STATE
+  ZIP_CODE
+  DELIVERY_REGION
+}
+
+enum length_type {
+  MICROMETER
+  MILLIMETER
+  CENTIMETER
+  NANOMETER
+  METER
+  KILOMETER
+  MILE
+  YARD
+  FOOT
+  INCH
+  NAUTICAL_MILE
+}
+
+enum listing_status_type {
+  DRAFT
+  ACTIVE
+  INACTIVE
+  COMPLETED
+  SOLD
+  EXPIRED
+  REMOVED
+}
+
+enum lot_condition_type {
+  NEW
+  LIKE_NEW
+  REFURBISHED
+  USED
+  SCRATCH_AND_DENT
+  DAMAGED
+  SALVAGE
+  MIXED
+  CUSTOMER_RETURNS
+  SHELF_PULLS
+  UNKNOWN
+  CLOSEOUTS
+  OVERSTOCK
+}
+
+enum lot_packaging_type {
+  PALLETS
+  FLOOR_LOADED
+}
+
+enum packaging_type {
+  ORIGINAL_PACKAGING_SEALED
+  ORIGINAL_PACKAGING_OPENED
+  NO_RETAIL_PACKAGING
+  DAMAGED_PACKAGING
+  REPACKAGED_BROWN_BOX
+}
+
+enum product_category_type {
+  HOME_KITCHEN_ORGANIZATION
+  APPAREL
+  FOOTWEAR
+  APPAREL_ACCESSORIES
+  JEWELRY
+  BEAUTY_GROOMING_WELLNESS
+  CONSUMER_ELECTRONICS
+  MOBILE_ACCESSORIES
+  TOYS_GAMES_LEARNING
+  BABY_MATERNITY_KIDS
+  TOOLS_AUTOMOTIVE_INDUSTRIAL
+  HEALTH_HOUSEHOLD_CLEANING
+  HEALTH_DEVICES
+  PETS
+  GROCERY_SNACKS_BEVERAGES
+  OFFICE_SCHOOL_STATIONERY
+  BAGS_LUGGAGE_TRAVEL
+  OUTDOORS_GARDEN_SPORTING_GOODS
+  SEASONAL_PARTY_GIFTS
+  BOOKS_MEDIA_CRAFTS
+}
+
+enum product_condition_type {
+  NEW_RETAIL_ECOMMERCE_READY
+  NEW_OPEN_BOX
+  NEW_DAMAGED_BOX
+  NEW_BULK_PACKAGED
+  REFURBISHED_MANUFACTURER_CERTIFIED
+  REFURBISHED_SELLER_REFURBISHED
+  USED_LIKE_NEW
+  USED_GOOD
+  USED_FAIR
+  USED_AS_IS
+  DAMAGED_FUNCTIONAL
+  DAMAGED_NON_FUNCTIONAL
+  SALVAGE_PARTS_ONLY
+  CRACKED_BROKEN
+  UNINSPECTED_RETURNS
+  MIXED_CONDITION
+  SHELF_PULLS
+  CLOSEOUTS
+  OVERSTOCK
+  EXPIRED_SHORT_DATED
+}
+
+enum product_external_identifier_type {
+  ASIN
+}
+
+enum product_identifier_type {
+  UPC
+  EAN
+  GTIN
+  ISBN
+  ISSN
+  UNKNOWN
+}
+
+enum product_sub_category_type {
+  SMALL_APPLIANCES
+  COOKWARE_BAKEWARE
+  SERVEWARE_TABLETOP
+  KITCHEN_STORAGE_CONTAINERS
+  TRASH_CANS_CLEANING_CADDIES
+  BEDDING_LINENS
+  BATH_LINENS_SHOWER_CURTAINS
+  FURNITURE
+  HOME_DECOR
+  WALL_ART_FRAMES
+  CURTAINS_WINDOW_TREATMENTS
+  RUGS_MATS
+  CLOCKS
+  LAUNDRY_HAMPERS_DRYING_RACKS
+  STORAGE_BINS_CLOSET_ORGANIZERS
+  MENS_CLOTHING
+  WOMENS_CLOTHING
+  KIDS_BABY_CLOTHING
+  SEASONAL_APPAREL
+  UNDERGARMENTS_SLEEPWEAR
+  SWIMWEAR
+  WORKWEAR_UNIFORMS
+  MENS_SHOES
+  WOMENS_SHOES
+  SOCKS_HOSIERY
+  FOOTWEAR_ACCESSORIES
+  BELTS
+  HATS_BEANIES
+  SCARVES
+  GLOVES
+  EARRINGS
+  NECKLACES
+  RINGS
+  BRACELETS
+  COSMETICS
+  HAIRCARE
+  SKINCARE
+  FRAGRANCES
+  FRAGRANCE_SETS_SAMPLERS
+  GROOMING_TOOLS
+  MENS_GROOMING
+  NAIL_CARE
+  ORAL_CARE
+  BEAUTY_TOOLS_BRUSHES_MIRRORS_TWEEZERS
+  TEMPORARY_TATTOOS_BODY_ART
+  CONTACT_LENS_CASES_EYE_DROPS
+  MASSAGE_WELLNESS_DEVICES
+  PHONES_TABLETS
+  LAPTOPS_ACCESSORIES
+  WEARABLES_SMARTWATCHES
+  AUDIO_HEADPHONES_SPEAKERS
+  CAMERAS_DRONES
+  TVS_TV_ACCESSORIES
+  SMART_HOME_DEVICES_THERMOSTATS_PLUGS_LIGHTING
+  EREADERS_TABLETS
+  VIDEO_GAME_CONSOLES
+  GAME_ACCESSORIES
+  DVDS_BLU_RAY
+  SURGE_PROTECTORS_POWER_STRIPS
+  PROJECTORS_ACCESSORIES
+  DASH_CAMS_CAR_ELECTRONICS
+  PHONE_CASES
+  SCREEN_PROTECTORS
+  CHARGING_CABLES
+  POWER_BANKS
+  PRESCHOOL_LEARNING
+  ACTION_FIGURES_DOLLS
+  OUTDOOR_TOYS
+  BOARD_GAMES_PUZZLES
+  BUILDING_SETS_LEGO
+  RC_TOYS_VEHICLES
+  PLAYSETS_PRETEND_PLAY
+  STEM_EDUCATIONAL_KITS
+  FLASH_CARDS_LEARNING_GAMES
+  FIDGET_TOYS_SENSORY_KITS
+  SLIME_PUTTY
+  TRADING_CARDS_POKEMON_SPORTS
+  DIAPERS_WIPES
+  STROLLERS_CAR_SEATS
+  FEEDING_NURSING
+  MATERNITY_WEAR
+  BABY_APPAREL
+  BABY_TOYS
+  KIDS_BOOKS_ACTIVITY_SETS
+  POWER_TOOLS
+  HAND_TOOLS
+  CAR_ACCESSORIES
+  CAR_CARE_WAXES_WASH_AIR_FRESHENERS
+  TOOL_STORAGE_BOXES_BAGS_BENCHES
+  MEASURING_TOOLS_LEVELS_TAPE
+  LIGHTING_TOOLS_WORK_LIGHTS_HEADLAMPS
+  GARAGE_STORAGE
+  SAFETY_SECURITY_EXTINGUISHERS_FLASHLIGHTS_ALARMS
+  REPLACEMENT_PARTS_BELTS_FILTERS_FUSES
+  PAINT_SUPPLIES_ROLLERS_BRUSHES_TAPE
+  WORKWEAR_SAFETY_GEAR_GLOVES_GOGGLES_VESTS
+  OTC_MEDICINE
+  VITAMINS_SUPPLEMENTS
+  FEMININE_CARE
+  ADULT_INCONTINENCE
+  DISPOSABLES_MASKS_GLOVES_COTTON_BALLS
+  CLEANING_SUPPLIES
+  CLEANING_TOOLS_MOPS_BRUSHES_SPONGES
+  PAPER_PRODUCTS_TISSUES_TOWELS_TP
+  HUMIDIFIERS_AIR_PURIFIERS
+  MOBILITY_AIDS_CANES_WALKERS
+  PILL_ORGANIZERS
+  TOILET_SAFETY_BATH_RAILS
+  THERMOMETERS
+  BLOOD_PRESSURE_MONITORS
+  OXIMETERS
+  FIRST_AID_KITS
+  PET_FOOD
+  PET_TOYS_ACCESSORIES
+  PET_HEALTH_PRODUCTS
+  PET_BEDS_CRATES
+  GROOMING_TOOLS_BRUSHES_CLIPPERS
+  FEEDING_BOWLS_WATER_DISPENSERS
+  LITTER_BOXES_WASTE_BAGS
+  SHELF_STABLE_FOODS
+  BEVERAGES
+  SNACKS_CANDY
+  GOURMET_ITEMS
+  PANTRY_PACKS
+  BABY_FOOD_FORMULA
+  CONDIMENTS_SPICES
+  BREAKFAST_CEREALS
+  STATIONERY_SUPPLIES
+  DESK_ACCESSORIES
+  BACKPACKS_LUNCHBOXES
+  PRINTERS_SCANNERS
+  INK_TONER
+  CALCULATORS
+  OFFICE_PHONES
+  CALENDARS_PLANNERS
+  WHITEBOARDS_CORKBOARDS
+  LABELS_LABEL_MAKERS
+  BINDER_CLIPS_STAPLERS_TAPE_DISPENSERS
+  HANDBAGS_WALLETS
+  TRAVEL_LUGGAGE
+  DUFFEL_BAGS
+  BACKPACKS
+  FANNY_PACKS_CROSSBODY_BAGS
+  LAPTOP_BAGS_TECH_SLEEVES
+  TOILETRY_BAGS
+  TRAVEL_KITS_ORGANIZERS
+  NECK_PILLOWS
+  TSA_LOCKS_LUGGAGE_TAGS
+  REUSABLES_ECO_GOODS
+  CAMPING_HIKING_GEAR
+  FITNESS_EQUIPMENT
+  BIKES_SCOOTERS
+  HUNTING_FISHING
+  GARDEN_TOOLS
+  PLANTERS_POTS
+  OUTDOOR_LIGHTING
+  GRILL_ACCESSORIES
+  FIRE_PITS
+  LAWN_CHAIRS
+  POOLS_FLOATS
+  COOLERS
+  INSECT_REPELLENT_CITRONELLA_CANDLES
+  OUTDOOR_FURNITURE_COVERS
+  SNOW_SHOVELS_ICE_MELT
+  HOLIDAY_DECOR
+  GIFT_SETS
+  SEASONAL_KITCHENWARE
+  SEASONAL_LIGHTING
+  PARTY_SUPPLIES_DECORATIONS
+  COSTUMES_ACCESSORIES
+  WEDDING_CELEBRATION_SUPPLIES_FAVORS_GUEST_BOOKS
+  CHILDRENS_BOOKS
+  COOKBOOKS
+  PUZZLE_ACTIVITY_BOOKS
+  FICTION_NON_FICTION
+  ADULT_COLORING_BOOKS
+  RELIGIOUS_INSPIRATIONAL_BOOKS
+  ART_TOOLS_DIY_KITS
+  SEWING_FABRIC_TOOLS
+  CRAFT_SUPPLIES_MATERIALS
+  EMBROIDERY_NOTIONS
+}
+
+enum shipping_type {
+  FLAT_RATE
+  CALCULATED_SHIPPING
+  BUYER_ARRANGED
+  FREE_SHIPPING
+  LOCAL_PICKUP_ONLY
+  BINDING_SHIPPING
+  BUYER_PICKUP_ALLOWED
+}
+
+enum us_state_type {
+  AL
+  AK
+  AZ
+  AR
+  CA
+  CO
+  CT
+  DE
+  FL
+  GA
+  HI
+  ID
+  IL
+  IN
+  IA
+  KS
+  KY
+  LA
+  ME
+  MD
+  MA
+  MI
+  MN
+  MS
+  MO
+  MT
+  NE
+  NV
+  NH
+  NJ
+  NM
+  NY
+  NC
+  ND
+  OH
+  OK
+  OR
+  PA
+  RI
+  SC
+  SD
+  TN
+  TX
+  UT
+  VT
+  VA
+  WA
+  WV
+  WI
+  WY
+}
+
+enum user_type {
+  BUYER
+  SELLER
+  BUYER_AND_SELLER
+}
+
+enum variation_option_type {
+  SIZE
+  COLOR
+  MATERIAL
+  STYLE
+  CAPACITY
+  FLAVOR
+}
+
+enum weight_type {
+  MICROGRAM
+  MILLIGRAM
+  GRAM
+  KILOGRAM
+  METRIC_TON
+  IMPERIAL_TON
+  US_TON
+  OUNCE
+  POUND
+  STONE
+}
