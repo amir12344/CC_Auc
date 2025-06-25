@@ -1,13 +1,26 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { Clock, Gavel } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Auction } from '../types';
-import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
-import { Gavel, Clock } from 'lucide-react';
+import { memo, useCallback, useMemo } from 'react';
+import {
+ Card,
+ CardContent,
+ CardHeader,
+ CardTitle,
+} from '@/src/components/ui/card';
 import { cn } from '@/src/lib/utils';
-import { formatBidCount, formatTimeLeft, getAuctionImageSizes, getAuctionImagePlaceholder } from '../utils/auction-utils';
+import {
+ formatBidCount,
+ formatTimeLeft,
+ getAuctionImagePlaceholder,
+ getAuctionImageSizes,
+} from '../services/auctionQueryService';
+import type { Auction } from '../types';
+
+// Regex for Google Drive URL matching - defined at top level for performance
+const GOOGLE_DRIVE_REGEX = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/;
 
 interface AuctionCardProps {
  auction: Auction;
@@ -18,130 +31,160 @@ interface AuctionCardProps {
 /**
  * AuctionCard - Optimized Client Component for displaying auction listings
  * Enhanced with performance optimizations and improved visual design
- * 
+ *
  * Features:
  * - Optimized with useCallback and useMemo for performance
  * - Improved visual design for bid and time information
  * - Accessible with proper ARIA labels
  * - Links to auction detail page (/marketplace/auction/[id])
  * - Responsive design with hover effects on image only
- * 
+ *
  * Performance Optimizations:
  * - Memoized component with React.memo
  * - Memoized calculations for bid text and time display
  * - Optimized image loading with proper sizes
- * 
+ *
  * Props:
  * - auction: Auction data object
  * - className: Optional CSS classes
  * - darkMode: Optional dark theme styling
  */
-const AuctionCard = memo(({ auction, className, darkMode = false }: AuctionCardProps) => {
- /**
-  * Memoized bid text formatting for performance
-  * Uses shared utility function for consistency
-  */
- const bidText = useMemo(() => formatBidCount(auction.totalBids), [auction.totalBids]);
+const AuctionCard = memo(
+ ({ auction, className, darkMode = false }: AuctionCardProps) => {
+  /**
+ * Convert Google Drive sharing URL to direct image URL
+ */
+  const processImageUrl = useCallback((url: string): string => {
+   if (!url) {
+    return '/images/placeholder-auction.jpg';
+   }
 
- /**
-  * Memoized time left formatting
-  * Uses shared utility function for consistent formatting
-  */
- const timeLeftText = useMemo(() => formatTimeLeft(auction.timeLeft), [auction.timeLeft]);
+   // Check if it's a Google Drive sharing URL
+   const googleDriveMatch = url.match(GOOGLE_DRIVE_REGEX);
 
- /**
-  * Optimized image error handler with useCallback
-  * Prevents unnecessary re-renders
-  */
- const handleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-  console.warn(`Failed to load auction image: ${auction.id}`);
- }, [auction.id]);
+   if (googleDriveMatch) {
+    const fileId = googleDriveMatch[1];
+    // Convert to direct download URL
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+   }
 
- return (
-  <Link
-   href={`/marketplace/auction/${auction.id}`}
-   prefetch={false}
-   className="block"
-   aria-label={`View auction details for ${auction.title}`}
-  >
-   <Card className={cn(
-    "w-full p-0 bg-transparent aspect-auto border-none shadow-none gap-0 min-w-0",
-    className
-   )}>
-    <CardContent className="p-0">
-     {/* Auction Image Container with optimized hover effects */}
-     <div className="relative aspect-square w-full overflow-hidden rounded-lg mb-3 group">
-      <Image
-       src={auction.image}
-       alt={`Auction image for ${auction.title}`}
-       fill
-       quality={75}
-       className="object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out"
-       loading="lazy"
-       sizes={getAuctionImageSizes()}
-       onError={handleImageError}
-       placeholder="blur"
-       blurDataURL={getAuctionImagePlaceholder()}
-      />
-     </div>
-    </CardContent>
+   return url;
+  }, []);
 
-    <CardHeader className="p-0 pt-0 space-y-0">
-     {/* Company/Seller Name */}
-     {auction.seller?.name && (
-      <p className={cn(
-       "text-xs font-medium",
-       darkMode ? "text-gray-400" : "text-gray-600"
-      )}>
-       {auction.seller.name}
-      </p>
+  /**
+   * Memoized bid text formatting for performance
+   * Uses shared utility function for consistency
+   */
+  const bidText = useMemo(
+   () => formatBidCount(auction.totalBids),
+   [auction.totalBids]
+  );
+
+  /**
+   * Memoized time left formatting
+   * Uses shared utility function for consistent formatting
+   */
+  const timeLeftText = useMemo(
+   () => formatTimeLeft(auction.timeLeft),
+   [auction.timeLeft]
+  );
+
+  /**
+   * Memoized processed image URL for performance
+   */
+  const processedImageUrl = useMemo(
+   () => processImageUrl(auction.image),
+   [auction.image, processImageUrl]
+  );
+
+  return (
+   <Link
+    aria-label={`View auction details for ${auction.title}`}
+    className="block"
+    href={`/marketplace/auction/${auction.id}`}
+    prefetch={false}
+   >
+    <Card
+     className={cn(
+      'aspect-auto w-full min-w-0 gap-0 border-none bg-transparent p-0 shadow-none',
+      className
      )}
-     {/* Auction Title */}
-     <CardTitle className={cn(
-      "text-sm tracking-tight font-medium leading-tight line-clamp-2",
-      darkMode ? "text-white" : "text-gray-900"
-     )}>
-      {auction.title}
-     </CardTitle>
-
-     {/* Enhanced Bid and Time Information */}
-     <div className="space-y-1">
-      {/* Bid Count with Icon */}
-      <div className="flex items-center gap-1.5">
-       <Gavel className={cn(
-        "w-3 h-3",
-        darkMode ? "text-gray-400" : "text-gray-500"
-       )} />
-       <span className={cn(
-        "text-xs font-medium",
-        darkMode ? "text-gray-300" : "text-gray-700"
-       )}>
-        {bidText}
-       </span>
+    >
+     <CardContent className="p-0">
+      {/* Auction Image Container with optimized hover effects */}
+      <div className="group relative mb-3 aspect-square w-full overflow-hidden rounded-lg">
+       <Image
+        alt={`Auction image for ${auction.title}`}
+        blurDataURL={getAuctionImagePlaceholder()}
+        className="rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+        fill
+        loading="lazy"
+        placeholder="blur"
+        quality={55}
+        sizes={getAuctionImageSizes()}
+        src={processedImageUrl}
+       />
       </div>
+     </CardContent>
 
-      {/* Time Left with Icon */}
-      {timeLeftText && (
+     <CardHeader className="space-y-0 p-0 pt-0">
+      {/* Auction Title */}
+      <CardTitle
+       className={cn(
+        'line-clamp-2 font-medium text-sm leading-tight tracking-tight',
+        darkMode ? 'text-white' : 'text-gray-900'
+       )}
+      >
+       {auction.title}
+      </CardTitle>
+
+      {/* Enhanced Bid and Time Information */}
+      <div className="space-y-1">
+       {/* Bid Count with Icon */}
        <div className="flex items-center gap-1.5">
-        <Clock className={cn(
-         "w-3 h-3",
-         darkMode ? "text-gray-400" : "text-gray-500"
-        )} />
-        <span className={cn(
-         "text-xs",
-         darkMode ? "text-gray-400" : "text-gray-500"
-        )}>
-         {timeLeftText}
+        <Gavel
+         className={cn(
+          'h-3 w-3',
+          darkMode ? 'text-gray-400' : 'text-gray-500'
+         )}
+        />
+        <span
+         className={cn(
+          'font-medium text-xs',
+          darkMode ? 'text-gray-300' : 'text-gray-700'
+         )}
+        >
+         {bidText}
         </span>
        </div>
-      )}
-     </div>
-    </CardHeader>
-   </Card>
-  </Link>
- );
-});
+
+       {/* Time Left with Icon */}
+       {timeLeftText && (
+        <div className="flex items-center gap-1.5">
+         <Clock
+          className={cn(
+           'h-3 w-3',
+           darkMode ? 'text-gray-400' : 'text-gray-500'
+          )}
+         />
+         <span
+          className={cn(
+           'text-xs',
+           darkMode ? 'text-gray-400' : 'text-gray-500'
+          )}
+         >
+          {timeLeftText}
+         </span>
+        </div>
+       )}
+      </div>
+     </CardHeader>
+    </Card>
+   </Link>
+  );
+ }
+);
 
 AuctionCard.displayName = 'AuctionCard';
 
-export default AuctionCard; 
+export default AuctionCard;

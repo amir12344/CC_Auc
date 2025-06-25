@@ -1,13 +1,10 @@
 'use client';
 
-import { generateClient } from 'aws-amplify/api';
-import { memo, useEffect, useState } from 'react';
-import type { Schema } from '@/amplify/data/resource';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { ErrorBoundary } from '@/src/components/ErrorBoundary';
 import { Skeleton } from '@/src/components/ui/skeleton';
 import { ProductSection } from '@/src/features/marketplace-catalog/components/ProductSection';
-import type { FindManyArgs } from '@/src/lib/prisma/PrismaQuery.type';
-import { getActiveAuctions } from '../data/auctionData';
+import { fetchAuctionListings } from '../services/auctionQueryService';
 import type { Auction } from '../types';
 import AuctionCard from './AuctionCard';
 
@@ -16,102 +13,42 @@ import AuctionCard from './AuctionCard';
  * Shows active auctions in a carousel layout on the marketplace page
  *
  * Features:
- * - Displays active auctions only
+ * - Fetches auction data from API using the queryData function
+ * - Service returns already transformed UI-ready Auction objects
  * - Uses carousel layout for horizontal scrolling
  * - Error boundary for individual auction cards
  * - Loading states and empty states
- * - Links to view all auctions page
- *
- * Data Flow:
- * - Imports auction data from mock file
- * - Filters for active auctions only
- * - Renders AuctionCard components in ProductSection wrapper
  */
 export const AuctionSection = memo(() => {
-  // Get active auctions from mock data
-  // In production, this would come from an API call or hook
-  const auctions = getActiveAuctions();
-  const [loading, setLoading] = useState(false);
+  const [auctionList, setAuctionList] = useState<Auction[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Call apiRes on component mount
-  useEffect(() => {
-    const apiRes = async () => {
-      try {
-        setLoading(true);
-        const client = generateClient<Schema>();
+  /**
+   * Fetch auctions using centralized service
+   * Service now returns already transformed Auction objects
+   */
+  const fetchAuctions = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        type QueryDataInput = {
-          modelName: 'auction_listings';
-          operation: 'findMany';
-          query: string;
-        };
-
-        const query: FindManyArgs<'auction_listings'> = {
-          select: {
-            title: true,
-            category: true,
-            description: true,
-            subcategory: true,
-            lot_condition: true,
-            addresses: {
-              select: {
-                address1: true,
-                address2: true,
-                address3: true,
-                city: true,
-                province: true,
-                country: true,
-              },
-            },
-            auction_listing_images: {
-              select: {
-                images: {
-                  select: {
-                    image_url: true,
-                  },
-                },
-              },
-            },
-            auction_listing_product_manifests: {
-              select: {
-                title: true,
-                description: true,
-                retail_price: true,
-                sku: true,
-              },
-            },
-          },
-          take: 10,
-        };
-
-        const input: QueryDataInput = {
-          modelName: 'auction_listings',
-          operation: 'findMany',
-          query: JSON.stringify(query),
-        };
-
-        const { data: result, errors } = await client.queries.queryData(input);
-
-        // eslint-disable-next-line no-console
-        console.log(
-          'Auction API Result (JSON):',
-          JSON.stringify(result, null, 2)
-        );
-        // eslint-disable-next-line no-console
-        console.log(
-          'Auction API Errors (JSON):',
-          JSON.stringify(errors, null, 2)
-        );
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Error fetching auction listings:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    apiRes();
+      // Service returns already transformed Auction objects
+      const auctions = await fetchAuctionListings();
+      setAuctionList(auctions);
+    } catch (apiError) {
+      setError(
+        `Failed to load auctions: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`
+      );
+      setAuctionList([]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchAuctions();
+  }, [fetchAuctions]);
 
   /**
    * Loading state - shows skeleton cards while data is being fetched
@@ -123,10 +60,10 @@ export const AuctionSection = memo(() => {
         title="Live Auctions"
         viewAllLink="/collections/auctions"
       >
-        {new Array(4).fill(0).map((_, index) => (
+        {Array.from({ length: 4 }, (_, index) => (
           <Skeleton
             className="aspect-square w-full rounded-lg"
-            key={`auction-skeleton-${index}`}
+            key={`auction-skeleton-${index + 1}`}
           />
         ))}
       </ProductSection>
@@ -134,9 +71,27 @@ export const AuctionSection = memo(() => {
   }
 
   /**
+   * Error state - shows when API call fails
+   */
+  if (error) {
+    return (
+      <ProductSection
+        layout="carousel"
+        title="Live Auctions"
+        viewAllLink="/collections/auctions"
+      >
+        <div className="col-span-full mt-4 text-center text-gray-500">
+          <p>{error}</p>
+          <p className="mt-1 text-sm">Please refresh the page to try again.</p>
+        </div>
+      </ProductSection>
+    );
+  }
+
+  /**
    * Empty state - shows when no auctions are available
    */
-  if (!auctions || auctions.length === 0) {
+  if (!auctionList || auctionList.length === 0) {
     return (
       <ProductSection
         layout="carousel"
@@ -154,7 +109,7 @@ export const AuctionSection = memo(() => {
   }
 
   /**
-   * Main render - displays auction cards in carousel layout
+   * Main render - displays auction cards with API data
    */
   return (
     <ProductSection
@@ -162,7 +117,7 @@ export const AuctionSection = memo(() => {
       title="Live Auctions"
       viewAllLink="/collections/auctions"
     >
-      {auctions.map((auction: Auction) => (
+      {auctionList.map((auction: Auction) => (
         <ErrorBoundary
           fallback={<Skeleton className="aspect-square w-full rounded-lg" />}
           key={auction.id}

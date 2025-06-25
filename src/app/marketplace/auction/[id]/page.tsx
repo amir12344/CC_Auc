@@ -1,73 +1,110 @@
-import MainLayout from '@/src/components/layout/MainLayout';
+'use client';
+
 import { notFound } from 'next/navigation';
-import { getAuctionById } from '@/src/features/auctions/data/auctionData';
+import React, { useEffect, useState } from 'react';
+import MainLayout from '@/src/components/layout/MainLayout';
 import { DynamicBreadcrumb } from '@/src/components/ui/DynamicBreadcrumb';
 import { AuctionDetailClient } from '@/src/features/auctions/components/AuctionDetailClient';
+import { fetchAuctionById } from '@/src/features/auctions/services/auctionQueryService';
+import type { Auction } from '@/src/features/auctions/types';
 
 /**
- * Auction Detail Page - Server Component
- * Displays individual auction information when users click on auction cards
- * 
+ * Auction Detail Page - Client Component
+ * Displays individual auction information using real-time database queries
+ *
  * Features:
- * - Server-side rendering for SEO optimization
- * - Dynamic routing with auction ID parameter
- * - Breadcrumb navigation
+ * - Dynamic routing with real auction_listing_id parameter
+ * - Real-time data fetching from centralized service
  * - 404 handling for non-existent auctions
- * - Fetches auction data from mock API (will be replaced with real API)
- * 
+ *
  * URL Structure: /marketplace/auction/[id]
- * Example: /marketplace/auction/1001
- * 
+ * Example: /marketplace/auction/12345 (real auction_listing_id)
+ *
  * Data Flow:
- * - Extracts auction ID from URL parameters
- * - Fetches auction data using getAuctionById helper
- * - Renders auction details or 404 page
+ * - Extracts auction_listing_id from URL parameters
+ * - Uses fetchAuctionById service for real-time query
+ * - Service returns already transformed Auction objects
  */
-export default async function AuctionPage({ params }: { params: Promise<{ id: string }> }) {
-  // Extract auction ID from URL parameters
-  const { id } = await params;
+export default function AuctionPage({ params }: { params: Promise<{ id: string }> }) {
+  const [auction, setAuction] = useState<Auction | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    // Fetch auction data by ID from mock data
-    // In production, this would be an API call or database query
-    const auction = getAuctionById(id);
+  // Unwrap params Promise using React.use()
+  const { id } = React.use(params);
 
-    // Handle case where auction is not found
-    if (!auction) {
-      notFound(); // This will show the 404 page
-      return;
-    }
+  useEffect(() => {
+    const loadAuction = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-    // Prepare auction title for breadcrumb
-    const auctionTitle = auction.title || 'Auction Details';
-    
+        // Service now returns already transformed Auction objects
+        const auctionData = await fetchAuctionById(id);
+
+        if (auctionData) {
+          setAuction(auctionData);
+        } else {
+          setError('Auction not found');
+        }
+      } catch (apiError) {
+        setError(
+          `Failed to load auction: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAuction();
+  }, [id]);
+
+  if (loading) {
     return (
       <MainLayout>
-        <div className="bg-white min-h-screen">
-          {/* Breadcrumb Navigation */}
-          <div className="border-b border-gray-100">
-            <div className="max-w-8xl mx-auto px-6 py-4">
-              <DynamicBreadcrumb 
-                items={[
-                  { label: 'Marketplace', href: '/marketplace' },
-                  { label: 'Auctions', href: '/collections/auctions' },
-                  { label: auctionTitle, href: `/marketplace/auction/${id}`, current: true }
-                ]}
-              />
+        <div className="min-h-screen bg-white">
+          <div className="mx-auto max-w-8xl px-6 py-6">
+            <div className="animate-pulse">
+              <div className="mb-4 h-8 w-1/3 rounded bg-gray-200" />
+              <div className="mb-4 h-64 rounded bg-gray-200" />
+              <div className="h-32 rounded bg-gray-200" />
             </div>
-          </div>
-          
-          {/* Auction Details Content */}
-          <div className="max-w-8xl mx-auto px-6 py-6">
-            <AuctionDetailClient auction={auction} />
           </div>
         </div>
       </MainLayout>
     );
-
-  } catch (error) {
-    // Handle any errors during auction data fetching
-    console.error(`Error processing auction with ID ${id}:`, error);
-    notFound();
   }
-} 
+
+  if (error || !auction) {
+    notFound();
+    return null;
+  }
+
+  return (
+    <MainLayout>
+      <div className="min-h-screen bg-white">
+        {/* Breadcrumb Navigation */}
+        <div className='border-gray-100 border-b'>
+          <div className="mx-auto max-w-8xl px-6 py-4">
+            <DynamicBreadcrumb
+              items={[
+                { label: 'Marketplace', href: '/marketplace' },
+                { label: 'Auctions', href: '/collections/auctions' },
+                {
+                  label: auction.title,
+                  href: `/marketplace/auction/${id}`,
+                  current: true,
+                },
+              ]}
+            />
+          </div>
+        </div>
+
+        {/* Auction Details Content */}
+        <div className="mx-auto max-w-8xl px-6 py-6">
+          <AuctionDetailClient auction={auction} />
+        </div>
+      </div>
+    </MainLayout>
+  );
+}
