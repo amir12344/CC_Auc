@@ -61,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Get blog posts dynamically
   const blogPostsData = getBlogPosts()
-  
+
   // Get podcast episodes dynamically (ready for when podcast data exists)
   const podcastEpisodesData = getPodcastEpisodes()
 
@@ -75,13 +75,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [`${baseUrl}/CC_opengraph.png`],
     },
     {
-      url: `${baseUrl}/website`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-      images: [`${baseUrl}/CC_opengraph.png`],
-    },
-    {
       url: `${baseUrl}/website/buyer`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
@@ -90,7 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/website/seller`,
       lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
