@@ -1,4 +1,7 @@
+'use client';
+
 import MainLayout from '@/src/components/layout/MainLayout';
+import { ClientProviders } from '@/src/components/providers/ClientProviders';
 
 interface BuyerLayoutProps {
   children: React.ReactNode;
@@ -6,8 +9,10 @@ interface BuyerLayoutProps {
 
 export default function BuyerLayout({ children }: BuyerLayoutProps) {
   return (
-    <MainLayout>
-      {children}
-    </MainLayout>
+    <ClientProviders>
+      <MainLayout>
+        {children}
+      </MainLayout>
+    </ClientProviders>
   );
 } 

@@ -1,29 +1,31 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { ErrorBoundary } from "@/src/components/ErrorBoundary";
-import { LoadingIndicatorClient } from "@/src/components/ui/LoadingIndicatorClient";
-import { StyleProvider } from "@/src/components/providers/StyleProvider";
-import Script from "next/script";
-import { Suspense } from "react";
-import {
-  getOrganizationSchema,
-  getWebsiteSchema,
-  getPageSchema,
-  getMainPagesBreadcrumb,
-} from "@/src/utils/metadata";
-import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
+import type { Metadata } from 'next';
+import './globals.css';
 import { Inter } from 'next/font/google';
-import { ClientProviders } from '@/src/components/providers/ClientProviders';
+import Script from 'next/script';
+import { Suspense } from 'react';
+import { ErrorBoundary } from '@/src/components/ErrorBoundary';
+import { StyleProvider } from '@/src/components/providers/StyleProvider';
+import { LoadingIndicatorClient } from '@/src/components/ui/LoadingIndicatorClient';
+import {
+  getMainPagesBreadcrumb,
+  getOrganizationSchema,
+  getPageSchema,
+  getWebsiteSchema,
+} from '@/src/utils/metadata';
+import { LinkedInInsight } from '../components/analytics/LinkedInInsight';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    template: "%s",
-    default: "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform"
+    template: '%s',
+    default:
+      'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
   },
-  description: "Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.",
-  keywords: "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction",
+  description:
+    'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
+  keywords:
+    'surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction',
   metadataBase: new URL('https://www.commercecentral.io'),
   icons: {
     icon: [
@@ -34,8 +36,10 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png', // Prefer PNG for Apple devices (create this file if needed)
   },
   openGraph: {
-    title: "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
-    description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
+    title:
+      'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+    description:
+      'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
     url: 'https://www.commercecentral.io',
     siteName: 'Commerce Central',
     images: [
@@ -51,8 +55,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
-    description: 'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
+    title:
+      'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+    description:
+      'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
     images: ['/CC_opengraph.png'],
   },
   robots: {
@@ -85,31 +91,58 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Performance optimizations - preconnect to critical domains */}
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://www.commercecentral.io" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.commercecentral.io" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
+        <link
+          crossOrigin="anonymous"
+          href="https://images.unsplash.com"
+          rel="preconnect"
+        />
+        <link href="https://images.unsplash.com" rel="dns-prefetch" />
+        <link
+          crossOrigin="anonymous"
+          href="https://www.commercecentral.io"
+          rel="preconnect"
+        />
+        <link href="https://www.commercecentral.io" rel="dns-prefetch" />
+        <link href="/favicon.ico" rel="icon" type="image/x-icon" />
 
         {/* Theme color for mobile browsers */}
-        <meta name="theme-color" content="#102D21" />
+        <meta content="#102D21" name="theme-color" />
 
         {/* JSON-LD Structured Data */}
-        <Script type="application/ld+json" id="ld-org" strategy="beforeInteractive">
+        <Script
+          id="ld-org"
+          strategy="beforeInteractive"
+          type="application/ld+json"
+        >
           {JSON.stringify(getOrganizationSchema())}
         </Script>
-        <Script type="application/ld+json" id="ld-website" strategy="beforeInteractive">
+        <Script
+          id="ld-website"
+          strategy="beforeInteractive"
+          type="application/ld+json"
+        >
           {JSON.stringify(getWebsiteSchema())}
         </Script>
-        <Script type="application/ld+json" id="ld-page" strategy="beforeInteractive">
-          {JSON.stringify(getPageSchema("Home"))}
+        <Script
+          id="ld-page"
+          strategy="beforeInteractive"
+          type="application/ld+json"
+        >
+          {JSON.stringify(getPageSchema('Home'))}
         </Script>
-        <Script type="application/ld+json" id="ld-breadcrumb" strategy="beforeInteractive">
+        <Script
+          id="ld-breadcrumb"
+          strategy="beforeInteractive"
+          type="application/ld+json"
+        >
           {JSON.stringify(getMainPagesBreadcrumb())}
         </Script>
 
         {/* Google Analytics */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-S3VL5X0CSQ" strategy="afterInteractive" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-S3VL5X0CSQ"
+          strategy="afterInteractive"
+        />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -123,30 +156,29 @@ export default function RootLayout({
           {`
             !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_gzm0k495zr8s');rdt('track', 'PageVisit');
           `}
-
         </Script>
       </head>
-      <body suppressHydrationWarning className={inter.className}>
-        <ClientProviders>
-          <StyleProvider />
-          <ErrorBoundary>
-            <Suspense fallback={null}>
-              <LoadingIndicatorClient />
-            </Suspense>
-            <Suspense fallback={
-              <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-xs z-50">
+      <body className={inter.className} suppressHydrationWarning>
+        <StyleProvider />
+        <ErrorBoundary>
+          <Suspense fallback={null}>
+            <LoadingIndicatorClient />
+          </Suspense>
+          <Suspense
+            fallback={
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-xs">
                 <div className="flex flex-col items-center">
-                  <div className="relative w-16 h-16 mb-4">
-                    <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-                    <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+                  <div className="relative mb-4 h-16 w-16">
+                    <div className="absolute inset-0 rounded-full border-4 border-gray-200" />
+                    <div className="absolute inset-0 animate-spin rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent" />
                   </div>
                 </div>
               </div>
-            }>
-              {children}
-            </Suspense>
-          </ErrorBoundary>
-        </ClientProviders>
+            }
+          >
+            {children}
+          </Suspense>
+        </ErrorBoundary>
         {/* LinkedIn Insights */}
         <LinkedInInsight />
       </body>

@@ -1,12 +1,7 @@
-import MainLayout from '@/src/components/layout/MainLayout';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s | Seller Portal - Commerce Central',
-    default: 'Seller Portal - Commerce Central',
-  },
-};
+import MainLayout from '@/src/components/layout/MainLayout';
+import { ClientProviders } from '@/src/components/providers/ClientProviders';
 
 interface SellerLayoutProps {
   children: React.ReactNode;
@@ -14,8 +9,8 @@ interface SellerLayoutProps {
 
 export default function SellerLayout({ children }: SellerLayoutProps) {
   return (
-    <MainLayout>
-      {children}
-    </MainLayout>
+    <ClientProviders>
+      <MainLayout>{children}</MainLayout>
+    </ClientProviders>
   );
-} 
+}

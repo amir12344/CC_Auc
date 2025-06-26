@@ -5,18 +5,18 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-/**
- * Main layout component - Server Component by default
+/**src\app\marketplace\layout.tsx
+ * Main layout component for app sections
+ * Note: ClientProviders should be provided by parent layouts (buyer, seller, marketplace)
  */
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen max-w-full">
+    <div className='flex min-h-screen max-w-full flex-col'>
       <Header />
-      <main id="main-content" className="grow" tabIndex={-1}>
+      <main className="grow" id="main-content" tabIndex={-1}>
         <div>{children}</div>
       </main>
       <Footer />
     </div>
   );
 }
-
