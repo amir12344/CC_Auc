@@ -103,12 +103,7 @@ export const blogPosts: BlogPost[] = [
     bannerImage: '/images/blog/How to Buy Smarter_banner.webp',
     thumbnailImage: '/images/blog/How-to-Buy-Smarter-thumbnail.webp',
     category: 'Liquidation',
-    tags: [
-      'Liquidation',
-      'Inventory Sourcing',
-      'Reselling',
-      'Pallet Sales',
-    ],
+    tags: ['Liquidation', 'Inventory Sourcing', 'Reselling', 'Pallet Sales'],
   },
   {
     id: 2,
@@ -151,15 +146,9 @@ export const blogPosts: BlogPost[] = [
     `,
     date: 'May 23, 2025',
     bannerImage: '/images/blog/Buying Liquidation Inventory_Banner.webp',
-    thumbnailImage:
-      '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
+    thumbnailImage: '/images/blog/Buying Liquidation Inventory_thumbnail.webp',
     category: 'Liquidation',
-    tags: [
-      'Liquidation',
-      'Buyer Guide',
-      'Reselling Tips',
-      'Pallet Sourcing',
-    ],
+    tags: ['Liquidation', 'Buyer Guide', 'Reselling Tips', 'Pallet Sourcing'],
   },
   {
     id: 3,
@@ -251,8 +240,7 @@ export const blogPosts: BlogPost[] = [
       <p>We don't just list random pallets. We show real photos, expiration dates (when applicable), and full manifests before you buy. You stay in control. We stay in the background.</p>
     `,
     date: 'May 25, 2025',
-    bannerImage:
-      '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
+    bannerImage: '/images/blog/How-to-Spot-Real-Closeout-Deals-Banner.webp',
     thumbnailImage:
       '/images/blog/How-to-Spot-Real-Closeout-Deals-thumbnail.webp',
     category: 'Liquidation',
@@ -344,19 +332,12 @@ export const blogPosts: BlogPost[] = [
     bannerImage: '/images/blog/apparel-liquidation-banner.webp',
     thumbnailImage: '/images/blog/apparel-liquidation-thumb.webp',
     category: 'Liquidation',
-    tags: [
-      'Apparel',
-      'Liquidation',
-      'Reselling',
-      'Fashion',
-      'Buying Guide',
-    ],
+    tags: ['Apparel', 'Liquidation', 'Reselling', 'Fashion', 'Buying Guide'],
   },
   {
     id: 5,
     type: 'buyer',
-    title:
-      'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
+    title: 'How to Score Real Liquidation Deals in Electronics (Not E-Waste)',
     description:
       'Get real liquidation deals on electronics without the junk. Avoid e-waste, spot resale-ready items, and source smarter with expert tips from Commerce Central.',
     content: `
@@ -444,8 +425,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 6,
     type: 'buyer',
-    title:
-      'How to Buy Beauty and Health Deals? (Without Getting Burned)',
+    title: 'How to Buy Beauty and Health Deals? (Without Getting Burned)',
     description:
       'Learn how to avoid costly mistakes when buying beauty and health deals. This guide reveals how to spot quality closeouts and avoid expired or damaged products.',
     content: `
@@ -612,44 +592,44 @@ export const blogPosts: BlogPost[] = [
     type: 'buyer',
     title: 'How the Liquidation Supply Chain Works (and Who’s Involved)',
     description:
-      'Discover how to source liquidation pallets for dollar and discount stores. Avoid damaged goods, control costs, and build trust with quality shelf-pull inventory.',
+      'Understand the liquidation supply chain, from manufacturers to resellers. Learn to source smarter, avoid risky brokers, and buy verified loads.',
     content: `
-      <h2>How the Liquidation Supply Chain Works (and Who&rsquo;s Involved)</h2>
-      <p>Understanding how liquidation works starts with knowing the key players&mdash;from the brands producing the goods to the resellers flipping them for profit. Whether you&rsquo;re sourcing for a dollar store, bin store, or eBay operation, you&rsquo;ll navigate a web of players. Here&rsquo;s how it all fits together.</p>
-      <h3><strong>The Liquidation Supply Chain Flowchart</strong></h3>
-      <img src="/images/blog/liquidation_flow_chart.webp" alt="The Liquidation Supply Chain Flowchart" style="max-width: 500px; max-height: 500px; width: 100%; height: auto; object-fit: contain;" />
-      <p>Each step adds a layer of sorting, markup, or access &mdash; and understanding each role helps you source smarter.</p>
-      <h3><strong>1. Manufacturers &amp; Brands</strong></h3>
-      <p>Sometimes excess goods originate from the factory floor: canceled orders, packaging errors, or surplus production. While most goods enter <a href="https://www.commercecentral.io/wholesale-liquidation-platform">wholesale liquidation</a> after retail, some manufacturers do liquidate directly typically via brokers or large liquidators. This inventory is often new, but may lack retail packaging.</p>
-      <h3><strong>2. Retailers</strong></h3>
-      <p>Big-box stores and e-commerce players generate massive liquidation supply. Returns, shelf pulls, and overstocks pile up fast. Rather than sort these manually, most retailers opt to offload them in bulk truckloads. Think Walmart, Target, Amazon &mdash; they sell mixed loads to recover warehouse space and capital.</p>
-      <p>Commerce Central sources inventory directly from major retailers, so buyers can access reliable truckloads with clear retailer attribution.</p>
-      <h3><strong>3. Large Liquidators</strong></h3>
-      <p>These are wholesale giants with retailer contracts. They buy entire truckloads blind, sort and grade the goods, then break them into pallets or cases for resale. They might charge more per pallet, but they often provide manifests and offer better condition control, and even specialize in <a href="https://www.commercecentral.io/website/blog/buyer/how-to-score-real-liquidation-deals-in-home-goods">Liquidation Deals in Home Goods</a> for targeted sourcing.</p>
-      <p>Commerce Central partners with select large liquidators to give resellers access to professionally sorted, condition-graded inventory with transparent pricing.</p>
-      <h3><strong>4. Brokers</strong></h3>
-      <p>Brokers don’t always own the product. They resell on behalf of others, sometimes offering access to hard-to-find loads, but also marking up heavily. Quality varies: some are trustworthy, others inflate prices or resell junk. Always ask: where is the product stored? Who’s fulfilling it?</p>
-      <p>Commerce Central removes that guesswork by listing verified sellers only &mdash; no middlemen brokers, no surprise re-routing.</p>
-      <h3><strong>5. Online Marketplaces</strong></h3>
-      <p>These platforms aggregate inventory from multiple sellers. Some are run by retailers themselves (e.g. Amazon Liquidation), others are independent (like B-Stock or Liquidation.com). They bring visibility, reviews, and <a href="https://www.commercecentral.io/online-liquidation-auctions">returns auctions</a> but buyers still must vet each seller.</p>
-      <p>Commerce Central is designed to combine the ease of a marketplace with the trust of a curated network with fewer sellers, better oversight, more support.</p>
-      <h3><strong>6. Buyers / Resellers</strong></h3>
-      <p>At the end of the chain are people like you: discount store owners, Amazon FBA sellers, flea market flippers. This is where product gets priced, prepped, and sold to the public. Each reseller model benefits from different types of loads, so understanding the upstream flow helps you source the right way.</p>
-      <h3><strong>Commerce Central: Your Guide Through the Liquidation Maze</strong></h3>
-      <p>Commerce Central helps you:</p>
-      <ul>
-        <li>Bypass low-value brokers</li>
-        <li>Source from retailers and top-tier liquidators</li>
-        <li>Understand where your inventory originates</li>
-        <li>Choose verified suppliers by condition, location, or category</li>
-      </ul>
-      <p>Whether you’re new to liquidation or scaling your resale business, knowing the chain is step one and having the right guide changes the game.</p>
-      <p>Explore verified liquidation inventory now at<a href="https://www.commercecentral.io"> www.commercecentral.io</a></p>
-      <h3><strong>FAQ: Liquidation Supply Chain</strong></h3>
-      <p><strong>What is the liquidation supply chain?</strong>It’s the flow of excess goods from retailers and brands to liquidators, brokers, and finally resellers. It includes returns, shelf pulls, and overstock being resold instead of thrown away.</p>
-      <p><strong>Who are the key players in liquidation?</strong>Manufacturers, retailers, large liquidators, brokers, online marketplaces, and resellers (like discount store owners or online sellers).</p>
-      <p><strong>Is it better to buy from a liquidator or a broker?</strong>Generally, buying from direct liquidators or verified marketplaces like Commerce Central reduces markup and risk. Brokers can add value, but they can also inflate prices.</p>
-      <p><strong>How can I avoid scams or bad pallets?</strong>Look for manifests, understand condition codes, research the seller, and start small. Commerce Central vets sellers and provides upfront pricing and transparency.</p>
+     <h2>How the Liquidation Supply Chain Works (and Who&rsquo;s Involved)</h2>
+<p>Understanding how liquidation works starts with knowing the key players&mdash;from the brands producing the goods to the resellers flipping them for profit. Whether you&rsquo;re sourcing for a dollar store, bin store, or eBay operation, you&rsquo;ll navigate a web of players. Here&rsquo;s how it all fits together.</p>
+<h3><strong>The Liquidation Supply Chain Flowchart</strong></h3>
+
+<p>Each step adds a layer of sorting, markup, or access &mdash; and understanding each role helps you source smarter.</p>
+<h3><strong>1. Manufacturers &amp; Brands</strong></h3>
+<p>Sometimes excess goods originate from the factory floor: canceled orders, packaging errors, or surplus production. While most goods enter <a href="https://www.commercecentral.io/wholesale-liquidation-platform">wholesale liquidation</a> after retail, some manufacturers do liquidate directly typically via brokers or large liquidators. This inventory is often new, but may lack retail packaging.</p>
+<h3><strong>2. Retailers</strong></h3>
+<p>Big-box stores and e-commerce players generate massive liquidation supply. Returns, shelf pulls, and overstocks pile up fast. Rather than sort these manually, most retailers opt to offload them in bulk truckloads. Think Walmart, Target, Amazon &mdash; they sell mixed loads to recover warehouse space and capital.</p>
+<p>Commerce Central sources inventory directly from major retailers, so buyers can access reliable truckloads with clear retailer attribution.</p>
+<h3><strong>3. Large Liquidators</strong></h3>
+<p>These are wholesale giants with retailer contracts. They buy entire truckloads blind, sort and grade the goods, then break them into pallets or cases for resale. They might charge more per pallet, but they often provide manifests and offer better condition control, and even specialize in <a href="https://www.commercecentral.io/website/blog/how-to-score-real-liquidation-deals-in-home-goods">Liquidation Deals in Home Goods</a> for targeted sourcing.</p>
+<p>Commerce Central partners with select large liquidators to give resellers access to professionally sorted, condition-graded inventory with transparent pricing.</p>
+<h3><strong>4. Brokers</strong></h3>
+<p>Brokers don&rsquo;t always own the product. They resell on behalf of others, sometimes offering access to hard-to-find loads, but also marking up heavily. Quality varies: some are trustworthy, others inflate prices or resell junk. Always ask: where is the product stored? Who&rsquo;s fulfilling it?</p>
+<p>Commerce Central removes that guesswork by listing verified sellers only &mdash; no middlemen brokers, no surprise re-routing.</p>
+<h3><strong>5. Online Marketplaces</strong></h3>
+<p>These platforms aggregate inventory from multiple sellers. Some are run by retailers themselves (e.g. Amazon Liquidation), others are independent (like B-Stock or Liquidation.com). They bring visibility, reviews, and <a href="https://www.commercecentral.io/online-liquidation-auctions">returns auctions</a> but buyers still must vet each seller.</p>
+<p>Commerce Central is designed to combine the ease of a marketplace with the trust of a curated network with fewer sellers, better oversight, more support.</p>
+<h3><strong>6. Buyers / Resellers</strong></h3>
+<p>At the end of the chain are people like you: discount store owners, Amazon FBA sellers, flea market flippers. This is where product gets priced, prepped, and sold to the public. Each reseller model benefits from different types of loads, so understanding the upstream flow helps you source the right way.</p>
+<h3><strong>Commerce Central: Your Guide Through the Liquidation Maze</strong></h3>
+<p>Commerce Central helps you:</p>
+<ul>
+<li>Bypass low-value brokers</li>
+<li>Source from retailers and top-tier liquidators</li>
+<li>Understand where your inventory originates</li>
+<li>Choose verified suppliers by condition, location, or category</li>
+</ul>
+<p>Whether you&rsquo;re new to liquidation or scaling your resale business, knowing the chain is step one and having the right guide changes the game.</p>
+<p>Explore verified liquidation inventory now at<a href="https://www.commercecentral.io"> www.commercecentral.io</a></p>
+<h3><strong>FAQ: Liquidation Supply Chain</strong></h3>
+<p><strong>What is the liquidation supply chain?</strong>It&rsquo;s the flow of excess goods from retailers and brands to liquidators, brokers, and finally resellers. It includes returns, shelf pulls, and overstock being resold instead of thrown away.</p>
+<p><strong>Who are the key players in liquidation?</strong>Manufacturers, retailers, large liquidators, brokers, online marketplaces, and resellers (like discount store owners or online sellers).</p>
+<p><strong>Is it better to buy from a liquidator or a broker?</strong>Generally, buying from direct liquidators or verified marketplaces like Commerce Central reduces markup and risk. Brokers can add value, but they can also inflate prices.</p>
+<p><strong>How can I avoid scams or bad pallets?</strong>Look for manifests, understand condition codes, research the seller, and start small. Commerce Central vets sellers and provides upfront pricing and transparency.</p>
     `,
     date: 'June 04, 2025',
     bannerImage:
@@ -662,8 +642,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 10,
     type: 'buyer',
-    title:
-      'How to Source Liquidation Pallets for Dollar & Discount Stores',
+    title: 'How to Source Liquidation Pallets for Dollar & Discount Stores',
     description:
       'Discover how to source liquidation pallets for dollar and discount stores. Avoid damaged goods, control costs, and build trust with quality shelf-pull inventory.',
     content: `
@@ -722,8 +701,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 11,
     type: 'buyer',
-    title:
-      'How to Buy Liquidation Pallets for Flea Market & Swap Meet Sellers',
+    title: 'How to Buy Liquidation Pallets for Flea Market & Swap Meet Sellers',
     description:
       'Source affordable liquidation pallets for flea market success. Tips on buying, pricing, and profit strategies with Commerce Central’s wholesale deals.',
     content: `
@@ -874,8 +852,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 14,
     type: 'buyer',
-    title:
-      'Feeling Lost in the Liquidation Channel? Read This First',
+    title: 'Feeling Lost in the Liquidation Channel? Read This First',
     description:
       'A clear guide to navigating the liquidation channel, with tips for sourcing smart, avoiding common pitfalls, and using trusted platforms like Commerce Central.',
     content: `
@@ -1117,8 +1094,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 16,
     type: 'buyer',
-    title:
-      '7 Liquidation Red Flags Every Reseller Should Know Before Buying',
+    title: '7 Liquidation Red Flags Every Reseller Should Know Before Buying',
     description:
       'New to liquidation? Don’t get burned. Discover 7 warning signs of bad deals and how Commerce Central ensures safe, smart sourcing for resellers.',
     content: `
@@ -1170,7 +1146,7 @@ export const blogPosts: BlogPost[] = [
       '/images/blog/7-Liquidation-Red-Flags-Every-Reseller-Should-Know-Before-Buying-thumbnail.webp',
     category: 'Liquidation',
     tags: ['Liquidation', 'Deals', 'Shopping Tips', 'Scam Prevention'],
-  }
+  },
 ]
 
 // Helper function to generate a slug from a title
