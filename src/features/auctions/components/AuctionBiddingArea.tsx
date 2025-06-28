@@ -100,25 +100,25 @@ export const AuctionBiddingArea: React.FC<AuctionBiddingAreaProps> = React.memo(
     return (
       <div className={className}>
         <Card className="border-none shadow-none">
-          <CardHeader className="pb-6">
-            <CardTitle className="font-semibold text-gray-900 text-lg leading-6">
+          <CardHeader className="lg:pb-6 px-0 lg:px-4 ">
+            <CardTitle className="lg:text-2xl font-bold text-gray-900 mb-2 leading-tight">
               {auction.title}
             </CardTitle>
 
-            <div className="mt-2 flex items-center gap-1.5 text-gray-500 text-sm">
+            <div className="flex items-center text-gray-500">
               <MapPin className="h-4 w-4" />
               <span>Austin, TX</span>
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-6 px-0 lg:px-4">
             {/* Current Bid */}
             <div className="flex items-center justify-between">
               <div>
-                <div className="mb-1 font-semibold text-gray-900 text-sm">
+                <div className="text-sm text-gray-600 font-medium">
                   Current bid
                 </div>
-                <div className="font-bold text-2xl text-gray-900">
+                <div className="text-2xl lg:text-4xl font-bold text-gray-900 mb-1">
                   {formatAuctionCurrency(auction.currentBid)}
                 </div>
               </div>
@@ -131,7 +131,7 @@ export const AuctionBiddingArea: React.FC<AuctionBiddingAreaProps> = React.memo(
             <div className="space-y-4">
               <div>
                 <label
-                  className="mb-2 block font-medium text-gray-700 text-sm"
+                  className="block text-sm text-gray-700 mb-3 font-semibold"
                   htmlFor="bid-amount-input"
                 >
                   Your Maximum Bid
@@ -159,7 +159,7 @@ export const AuctionBiddingArea: React.FC<AuctionBiddingAreaProps> = React.memo(
                     triggerAction="place_bid"
                   />
                 </div>
-                <div className="mt-1 text-gray-500 text-xs">
+                <div className="text-sm text-dark mt-2 font-small">
                   Enter {formatAuctionCurrency(minimumBid)} or more in whole USD
                   dollars
                 </div>
@@ -167,41 +167,41 @@ export const AuctionBiddingArea: React.FC<AuctionBiddingAreaProps> = React.memo(
             </div>
 
             {/* Information Grid */}
-            <div className="space-y-4 text-sm">
+            <div className="space-y-4 ">
               <div className="flex items-center justify-between border-gray-100 border-b py-2">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold text-gray-900">
+                  <span className="text-gray-600 font-medium text-sm lg:text-base">
                     Shipping Cost
                   </span>
                   <Info className="h-3.5 w-3.5 text-gray-400" />
                 </div>
                 <div className="text-right">
-                  <div className="font-medium text-gray-900">$3,195.37</div>
-                  <div className="text-gray-500 text-xs">to: Austin, TX</div>
+                  <div className="font-semibold lg:text-lg">$3,195.37</div>
+                  <div className="flex items-center text-sm lg:text-lg text-gray-500">to: Austin, TX</div>
                 </div>
               </div>
 
               <div className="flex items-center justify-between border-gray-100 border-b py-2">
-                <span className="font-semibold text-gray-900">
+                <span className="text-gray-600 font-medium text-sm lg:text-base">
                   Avg. Cost Per Unit
                 </span>
-                <span className="font-medium text-gray-900">$3.27</span>
+                <span className="font-semibold lg:text-lg">$3.27</span>
               </div>
 
               <div className="flex items-center justify-between border-gray-100 border-b py-2">
-                <span className="font-semibold text-gray-900">Closes in</span>
-                <span className="font-medium text-gray-900">1h 9m</span>
+                <span className="text-gray-600 font-medium text-sm lg:text-base text-md">Closes in</span>
+                <span className="font-semibold lg:text-lg text-red-600">1h 9m</span>
               </div>
 
               <div className="flex items-start justify-between py-2">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold text-gray-900">
+                  <span className="text-gray-600 font-medium text-sm lg:text-base">
                     Close Date
                   </span>
                   <Info className="h-3.5 w-3.5 text-gray-400" />
                 </div>
                 <div className="text-right">
-                  <div className="font-medium text-gray-900">
+                  <div className="font-semibold text-sm lg:text-lg">
                     Fri Jun 20, 2025 6:02:00 PM UTC
                   </div>
                 </div>
@@ -209,7 +209,7 @@ export const AuctionBiddingArea: React.FC<AuctionBiddingAreaProps> = React.memo(
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-2 pt-4">
+            <div className="space-y-2 pt-0 lg:pt-4">
               <Button
                 className="h-10 rounded-full border border-black bg-white px-6 font-medium text-black text-sm hover:bg-gray-50"
                 onClick={handleViewManifest}

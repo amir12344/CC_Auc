@@ -67,7 +67,7 @@ const AuctionContent = ({ id }: { id: string }) => {
         </div>
 
         {/* Auction Details Content */}
-        <div className="mx-auto max-w-8xl px-6 py-6">
+        <div className="mx-auto max-w-8xl px-4 lg:px-6 py-6">
           <AuctionDetailClient auction={auction} />
         </div>
       </div>
