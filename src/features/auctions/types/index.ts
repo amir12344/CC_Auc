@@ -56,8 +56,8 @@ export interface ApiAuctionDetailResponse extends ApiAuctionListingResponse {
 }
 
 /**
- * Simplified auction interface for UI display
- * Contains only the essential fields we actually have from the API
+ * Complete auction interface for UI display
+ * Contains all fields available from the API response
  */
 export interface Auction {
   id: string // From auction_listing_id
@@ -65,11 +65,31 @@ export interface Auction {
   image: string // From first auction_listing_images.images.image_url
   images: string[] // From all auction_listing_images.images.image_url
 
-  // API fields (when available)
+  // Core API fields
   description?: string
   category?: string
   subcategory?: string
   lot_condition?: string
+
+  // Detail fields from API
+  cosmetic_condition?: string
+  accessories?: string
+  total_units?: number
+  total_ex_retail_price?: number
+  seller_notes?: string
+
+  // Shipping fields from API
+  auction_shipping_type?: string
+  auction_freight_type?: string
+  number_of_pallets?: string
+  number_of_shipments?: string
+  number_of_truckloads?: string
+  estimated_weight?: string
+  weight_type?: string
+  lot_packaging?: string
+  is_hazmat?: boolean
+  pallet_spaces?: string
+  shipping_notes?: string
 
   // Mock data for basic functionality (can be enhanced later)
   currentBid: number

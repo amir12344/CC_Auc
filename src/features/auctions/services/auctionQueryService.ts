@@ -112,6 +112,26 @@ function transformToAuction(apiData: any): Auction {
     location,
     manifest: apiData.auction_listing_product_manifests || [],
 
+    // Detail fields from API
+    cosmetic_condition: apiData.cosmetic_condition,
+    accessories: apiData.accessories,
+    total_units: apiData.total_units,
+    total_ex_retail_price: apiData.total_ex_retail_price,
+    seller_notes: apiData.seller_notes,
+
+    // Shipping fields from API
+    auction_shipping_type: apiData.auction_shipping_type,
+    auction_freight_type: apiData.auction_freight_type,
+    number_of_pallets: apiData.number_of_pallets,
+    number_of_shipments: apiData.number_of_shipments,
+    number_of_truckloads: apiData.number_of_truckloads,
+    estimated_weight: apiData.estimated_weight,
+    weight_type: apiData.weight_type,
+    lot_packaging: apiData.lot_packaging,
+    is_hazmat: apiData.is_hazmat,
+    pallet_spaces: apiData.pallet_spaces,
+    shipping_notes: apiData.shipping_notes,
+
     // Mock data for bidding functionality
     currentBid: generateRandomBid(),
     timeLeft: generateRandomTimeLeft(),
@@ -204,6 +224,23 @@ export const fetchAuctionById = async (
         category: true,
         subcategory: true,
         lot_condition: true,
+        cosmetic_condition: true,
+        accessories: true,
+        total_units: true,
+        total_ex_retail_price: true,
+        seller_notes: true,
+        // Shipping fields
+        auction_shipping_type: true,
+        auction_freight_type: true,
+        number_of_pallets: true,
+        number_of_shipments: true,
+        number_of_truckloads: true,
+        estimated_weight: true,
+        weight_type: true,
+        lot_packaging: true,
+        is_hazmat: true,
+        pallet_spaces: true,
+        shipping_notes: true,
         addresses: {
           select: {
             address1: true,

@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, ReactNode } from 'react';
-import { usePublicPageAuth } from '@/src/hooks/useAuthState';
-import { Button, ButtonProps } from '@/src/components/ui/button';
+import { Loader2, Lock } from 'lucide-react';
+import { type ReactNode, useState } from 'react';
 import { LoginPromptModal } from '@/src/components/auth/LoginPromptModal';
-import { Lock, Loader2 } from 'lucide-react';
+import { Button, type ButtonProps } from '@/src/components/ui/button';
+import { usePublicPageAuth } from '@/src/hooks/useAuthState';
 
 interface ConditionalActionButtonProps extends Omit<ButtonProps, 'onClick'> {
   /** Action to perform when authenticated */
@@ -33,9 +33,9 @@ interface ConditionalActionButtonProps extends Omit<ButtonProps, 'onClick'> {
 
 /**
  * ConditionalActionButton - Smart button that adapts based on authentication state
- * 
+ *
  * - Guests: Shows login prompt with compelling messaging
- * - Wrong user type: Shows appropriate message  
+ * - Wrong user type: Shows appropriate message
  * - Authenticated: Normal button functionality
  * - Loading: Shows spinner and disabled state
  */
@@ -72,7 +72,10 @@ export function ConditionalActionButton({
     if (requiredUserType && userType !== requiredUserType) {
       // TODO: Show user type switching message
       // For now, just show alert
-      alert(wrongUserTypeMessage || `This action requires a ${requiredUserType} account.`);
+      alert(
+        wrongUserTypeMessage ||
+        `This action requires a ${requiredUserType} account.`
+      );
       return;
     }
 
@@ -106,7 +109,7 @@ export function ConditionalActionButton({
       return (
         <>
           <Lock className="mr-2 h-4 w-4" />
-          {`${requiredUserType} Account Required`}
+          {`${requiredUserType.toUpperCase()} Account Required`}
         </>
       );
     }
@@ -153,21 +156,27 @@ export function ConditionalActionButton({
     <>
       <Button
         {...buttonProps}
-        variant={getButtonVariant()}
         className={getButtonClasses()}
+        disabled={
+          disabled ||
+          isLoading ||
+          (requiredUserType && userType !== requiredUserType)
+        }
         onClick={handleClick}
-        disabled={disabled || isLoading || (requiredUserType && userType !== requiredUserType)}
+        variant={getButtonVariant()}
       >
         {getButtonContent()}
       </Button>
 
       <LoginPromptModal
         isOpen={showLoginPrompt}
-        onClose={() => setShowLoginPrompt(false)}
-        triggerAction={triggerAction}
         itemName={itemName}
-        returnUrl={typeof window !== 'undefined' ? window.location.href : undefined}
+        onClose={() => setShowLoginPrompt(false)}
+        returnUrl={
+          typeof window !== 'undefined' ? window.location.href : undefined
+        }
+        triggerAction={triggerAction}
       />
     </>
   );
-} 
+}

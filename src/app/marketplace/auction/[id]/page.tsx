@@ -1,81 +1,47 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { notFound } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import MainLayout from '@/src/components/layout/MainLayout';
+import { AuctionDetailSkeleton } from '@/src/components/skeletons/AuctionDetailSkeleton';
 import { DynamicBreadcrumb } from '@/src/components/ui/DynamicBreadcrumb';
 import { AuctionDetailClient } from '@/src/features/auctions/components/AuctionDetailClient';
 import { fetchAuctionById } from '@/src/features/auctions/services/auctionQueryService';
-import type { Auction } from '@/src/features/auctions/types';
 
 /**
- * Auction Detail Page - Client Component
- * Displays individual auction information using real-time database queries
- *
- * Features:
- * - Dynamic routing with real auction_listing_id parameter
- * - Real-time data fetching from centralized service
- * - 404 handling for non-existent auctions
- *
+ * Auction Detail Page - Optimized with TanStack Query
  * URL Structure: /marketplace/auction/[id]
  * Example: /marketplace/auction/12345 (real auction_listing_id)
- *
- * Data Flow:
- * - Extracts auction_listing_id from URL parameters
- * - Uses fetchAuctionById service for real-time query
- * - Service returns already transformed Auction objects
  */
-export default function AuctionPage({ params }: { params: Promise<{ id: string }> }) {
-  const [auction, setAuction] = useState<Auction | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  // Unwrap params Promise using React.use()
-  const { id } = React.use(params);
+interface AuctionPageProps {
+  params: Promise<{ id: string }>;
+}
 
-  useEffect(() => {
-    const loadAuction = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+// Custom hook for auction data with optimized caching
+const useAuctionData = (id: string) => {
+  return useQuery({
+    queryKey: ['auction', id],
+    queryFn: () => fetchAuctionById(id),
+    staleTime: 5 * 60 * 1000, // 5 minutes - data stays fresh
+    gcTime: 30 * 60 * 1000, // 30 minutes - cache retention
+    refetchOnWindowFocus: true, // Refetch when user returns to tab
+    retry: 3, // Retry failed requests 3 times
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30_000), // Exponential backoff
+    throwOnError: false, // Handle errors gracefully
+  });
+};
 
-        // Service now returns already transformed Auction objects
-        const auctionData = await fetchAuctionById(id);
+// Main auction content component
+const AuctionContent = ({ id }: { id: string }) => {
+  const { data: auction, isLoading, isError } = useAuctionData(id);
 
-        if (auctionData) {
-          setAuction(auctionData);
-        } else {
-          setError('Auction not found');
-        }
-      } catch (apiError) {
-        setError(
-          `Failed to load auction: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadAuction();
-  }, [id]);
-
-  if (loading) {
-    return (
-      <MainLayout>
-        <div className="min-h-screen bg-white">
-          <div className="mx-auto max-w-8xl px-6 py-6">
-            <div className="animate-pulse">
-              <div className="mb-4 h-8 w-1/3 rounded bg-gray-200" />
-              <div className="mb-4 h-64 rounded bg-gray-200" />
-              <div className="h-32 rounded bg-gray-200" />
-            </div>
-          </div>
-        </div>
-      </MainLayout>
-    );
+  if (isLoading) {
+    return <AuctionDetailSkeleton />;
   }
 
-  if (error || !auction) {
+  if (isError || !auction) {
     notFound();
     return null;
   }
@@ -84,7 +50,7 @@ export default function AuctionPage({ params }: { params: Promise<{ id: string }
     <MainLayout>
       <div className="min-h-screen bg-white">
         {/* Breadcrumb Navigation */}
-        <div className='border-gray-100 border-b'>
+        <div className="border-gray-100 border-b">
           <div className="mx-auto max-w-8xl px-6 py-4">
             <DynamicBreadcrumb
               items={[
@@ -106,5 +72,17 @@ export default function AuctionPage({ params }: { params: Promise<{ id: string }
         </div>
       </div>
     </MainLayout>
+  );
+};
+
+// Main page component with proper parameter handling
+export default function AuctionPage({ params }: AuctionPageProps) {
+  // Extract id from params promise using React.use() - Next.js 15.3 pattern
+  const { id } = React.use(params);
+
+  return (
+    <Suspense fallback={<AuctionDetailSkeleton />}>
+      <AuctionContent id={id} />
+    </Suspense>
   );
 }

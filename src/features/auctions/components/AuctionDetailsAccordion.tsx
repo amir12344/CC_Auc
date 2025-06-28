@@ -86,28 +86,57 @@ export const AuctionDetailsAccordion: React.FC<
           <AccordionContent className="p-0">
             <div className="bg-gray-50/50">
               <div className="divide-y divide-gray-200">
-                {Object.entries(auction.details || {}).map(
-                  ([key, value], index) => (
-                    <div
-                      className={`px-8 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'} transition-colors hover:bg-blue-50/30`}
-                      key={key}
-                    >
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                        <div className="sm:w-1/3">
-                          <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wide">
-                            {key}
-                          </h4>
-                        </div>
-                        <div className="sm:w-2/3">
-                          <p className="text-gray-700 leading-relaxed">
-                            {value}
-                          </p>
-                        </div>
+                {/* Dynamic details from auction properties */}
+                {[
+                  { key: 'DESCRIPTION', value: auction.description || 'No description available' },
+                  { key: 'CONDITION', value: auction.lot_condition || 'Not specified' },
+                  { key: 'COSMETIC CONDITION', value: auction.cosmetic_condition || 'Not specified' },
+                  { key: 'ACCESSORIES', value: auction.accessories || 'Not specified' },
+                  { key: 'QUANTITY', value: auction.total_units ? `${auction.total_units} Units` : 'Not specified' },
+                  {
+                    key: 'EXT. RETAIL', value: auction.total_ex_retail_price ?
+                      new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(auction.total_ex_retail_price) : 'Not specified'
+                  },
+                ].map(({ key, value }, index) => (
+                  <div
+                    className={`px-8 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'} transition-colors hover:bg-blue-50/30`}
+                    key={key}
+                  >
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                      <div className="sm:w-1/3">
+                        <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                          {key}
+                        </h4>
+                      </div>
+                      <div className="sm:w-2/3">
+                        <p className="text-gray-700 leading-relaxed">
+                          {value}
+                        </p>
                       </div>
                     </div>
-                  )
+                  </div>
+                )
                 )}
               </div>
+
+              {/* Enhanced Seller Notes */}
+              {auction.seller_notes && (
+                <div className="border-gray-200 border-t bg-green-50 px-8 py-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 rounded-lg bg-green-100 p-2">
+                      <Info className="h-5 w-5" style={{ color: '#43CD66' }} />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="mb-3 font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                        Seller Notes
+                      </h4>
+                      <p className="text-gray-700 leading-relaxed">
+                        {auction.seller_notes}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </AccordionContent>
         </AccordionItem>
@@ -134,49 +163,56 @@ export const AuctionDetailsAccordion: React.FC<
           </AccordionTrigger>
           <AccordionContent className="p-0">
             <div className="bg-gray-50/50">
-              {/* Shipping Details Table */}
+              {/* Dynamic shipping details from auction properties */}
               <div className="divide-y divide-gray-200">
-                {Object.entries(auction.shippingInfo || {})
-                  .filter(([key]) => key !== 'SHIPPING NOTES')
-                  .map(([key, value], index) => (
-                    <div
-                      className={`px-8 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'} transition-colors hover:bg-indigo-50/30`}
-                      key={key}
-                    >
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                        <div className="sm:w-1/3">
-                          <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wide">
-                            {key}
-                          </h4>
-                        </div>
-                        <div className="sm:w-2/3">
-                          <p className="text-gray-700 leading-relaxed">
-                            {value}
-                          </p>
-                        </div>
+                {[
+                  { key: 'SHIPPING TYPE', value: auction.auction_shipping_type || 'Not specified' },
+                  { key: 'FREIGHT TYPE', value: auction.auction_freight_type || 'Not specified' },
+                  { key: 'NUMBER OF PALLETS', value: auction.number_of_pallets || 'Not specified' },
+                  { key: 'NUMBER OF SHIPMENTS', value: auction.number_of_shipments || 'Not specified' },
+                  { key: 'NUMBER OF TRUCKLOADS', value: auction.number_of_truckloads || 'Not specified' },
+                  { key: 'ESTIMATED WEIGHT', value: auction.estimated_weight && auction.weight_type ? `${auction.estimated_weight} ${auction.weight_type}` : 'Not specified' },
+                  { key: 'LOT PACKAGING', value: auction.lot_packaging || 'Not specified' },
+                  { key: 'HAZMAT', value: auction.is_hazmat ? 'Yes' : 'No' },
+                  { key: 'PALLET SPACES', value: auction.pallet_spaces || 'Not specified' },
+                ].map(({ key, value }, index) => (
+                  <div
+                    className={`px-8 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'} transition-colors hover:bg-indigo-50/30`}
+                    key={key}
+                  >
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                      <div className="sm:w-1/3">
+                        <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                          {key}
+                        </h4>
+                      </div>
+                      <div className="sm:w-2/3">
+                        <p className="text-gray-700 leading-relaxed">
+                          {value}
+                        </p>
                       </div>
                     </div>
-                  ))}
+                  </div>
+                )
+                )}
               </div>
 
               {/* Enhanced Shipping Notes */}
-              {auction.shippingInfo?.['SHIPPING NOTES'] && (
-                <div className="border-gray-200 border-t bg-green-50 px-8 py-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 rounded-lg bg-green-100 p-2">
-                      <Info className="h-5 w-5" style={{ color: '#43CD66' }} />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="mb-3 font-semibold text-gray-900 text-sm uppercase tracking-wide">
-                        Shipping Notes
-                      </h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        {auction.shippingInfo?.['SHIPPING NOTES']}
-                      </p>
-                    </div>
+              <div className="border-gray-200 border-t bg-green-50 px-8 py-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 rounded-lg bg-green-100 p-2">
+                    <Info className="h-5 w-5" style={{ color: '#43CD66' }} />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="mb-3 font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                      Shipping Notes
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      {auction.shipping_notes || 'NA'}
+                    </p>
                   </div>
                 </div>
-              )}
+              </div>
 
               {/* Enhanced Shipping Information Link */}
               <div className="border-gray-200 border-t bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6">

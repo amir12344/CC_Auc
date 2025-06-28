@@ -1,13 +1,13 @@
 'use client';
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { usePublicPageAuth } from '@/src/hooks/useAuthState';
 
 interface ConditionalContentProps {
- children: ReactNode;
- showWhen: 'authenticated' | 'guest' | 'buyer' | 'seller';
- fallback?: ReactNode;
- className?: string;
+  children: ReactNode;
+  showWhen: 'authenticated' | 'guest' | 'buyer' | 'seller';
+  fallback?: ReactNode;
+  className?: string;
 }
 
 /**
@@ -15,82 +15,114 @@ interface ConditionalContentProps {
  * Safe for use on public pages - prevents hydration issues
  */
 export function ConditionalContent({
- children,
- showWhen,
- fallback = null,
- className
+  children,
+  showWhen,
+  fallback = null,
+  className,
 }: ConditionalContentProps) {
- const { isAuthenticated, userType } = usePublicPageAuth();
+  const { isAuthenticated, userType } = usePublicPageAuth();
 
- const shouldShow = () => {
-  switch (showWhen) {
-   case 'authenticated':
-    return isAuthenticated;
-   case 'guest':
-    return !isAuthenticated;
-   case 'buyer':
-    return isAuthenticated && userType === 'buyer';
-   case 'seller':
-    return isAuthenticated && userType === 'seller';
-   default:
-    return false;
+  const shouldShow = () => {
+    switch (showWhen) {
+      case 'authenticated':
+        return isAuthenticated;
+      case 'guest':
+        return !isAuthenticated;
+      case 'buyer':
+        return isAuthenticated && userType === 'buyer';
+      case 'seller':
+        return isAuthenticated && userType === 'seller';
+      default:
+        return false;
+    }
+  };
+
+  if (!shouldShow()) {
+    return fallback ? <div className={className}>{fallback}</div> : null;
   }
- };
 
- if (!shouldShow()) {
-  return fallback ? <div className={className}>{fallback}</div> : null;
- }
-
- return <div className={className}>{children}</div>;
+  return <div className={className}>{children}</div>;
 }
 
 /**
  * Specific components for common use cases
  */
-export function AuthenticatedOnly({ children, fallback, className }: {
- children: ReactNode;
- fallback?: ReactNode;
- className?: string;
+export function AuthenticatedOnly({
+  children,
+  fallback,
+  className,
+}: {
+  children: ReactNode;
+  fallback?: ReactNode;
+  className?: string;
 }) {
- return (
-  <ConditionalContent showWhen="authenticated" fallback={fallback} className={className}>
-   {children}
-  </ConditionalContent>
- );
+  return (
+    <ConditionalContent
+      className={className}
+      fallback={fallback}
+      showWhen="authenticated"
+    >
+      {children}
+    </ConditionalContent>
+  );
 }
 
-export function GuestOnly({ children, fallback, className }: {
- children: ReactNode;
- fallback?: ReactNode;
- className?: string;
+export function GuestOnly({
+  children,
+  fallback,
+  className,
+}: {
+  children: ReactNode;
+  fallback?: ReactNode;
+  className?: string;
 }) {
- return (
-  <ConditionalContent showWhen="guest" fallback={fallback} className={className}>
-   {children}
-  </ConditionalContent>
- );
+  return (
+    <ConditionalContent
+      className={className}
+      fallback={fallback}
+      showWhen="guest"
+    >
+      {children}
+    </ConditionalContent>
+  );
 }
 
-export function BuyerOnly({ children, fallback, className }: {
- children: ReactNode;
- fallback?: ReactNode;
- className?: string;
+export function BuyerOnly({
+  children,
+  fallback,
+  className,
+}: {
+  children: ReactNode;
+  fallback?: ReactNode;
+  className?: string;
 }) {
- return (
-  <ConditionalContent showWhen="buyer" fallback={fallback} className={className}>
-   {children}
-  </ConditionalContent>
- );
+  return (
+    <ConditionalContent
+      className={className}
+      fallback={fallback}
+      showWhen="buyer"
+    >
+      {children}
+    </ConditionalContent>
+  );
 }
 
-export function SellerOnly({ children, fallback, className }: {
- children: ReactNode;
- fallback?: ReactNode;
- className?: string;
+export function SellerOnly({
+  children,
+  fallback,
+  className,
+}: {
+  children: ReactNode;
+  fallback?: ReactNode;
+  className?: string;
 }) {
- return (
-  <ConditionalContent showWhen="seller" fallback={fallback} className={className}>
-   {children}
-  </ConditionalContent>
- );
-} 
+  return (
+    <ConditionalContent
+      className={className}
+      fallback={fallback}
+      showWhen="seller"
+    >
+      {children}
+    </ConditionalContent>
+  );
+}

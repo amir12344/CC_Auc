@@ -57,6 +57,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/src/components/ui/tabs';
+import { fileToDbCategoryBiMap, fileToDbConditionBiMap, fileToDbSubcategoryBiMap } from '../../../../amplify/functions/commons/converters/ListingTypeConverter';
 import type { ManifestItem } from '../types';
 
 interface ManifestTableProps {
@@ -70,12 +71,11 @@ const columns: ColumnDef<ManifestItem>[] = [
     accessorKey: 'title',
     header: 'Product Name',
     cell: ({ row }) => (
-      <Badge
-        className="border-slate-200 bg-slate-50 font-medium text-slate-700 text-xs"
-        variant="outline"
+      <div
+        className="font-medium text-slate-700 text-md"
       >
         {row.original.title}
-      </Badge>
+      </div>
     ),
     enableHiding: false,
   },
@@ -139,10 +139,10 @@ const columns: ColumnDef<ManifestItem>[] = [
     header: 'Category',
     cell: ({ row }) => (
       <Badge
-        className="border-blue-200 bg-blue-50 text-blue-700 text-xs"
+        className="border-gray-200 bg-gray-50 text-gray-700"
         variant="outline"
       >
-        {row.original.category}
+        {row.original.category ? fileToDbCategoryBiMap.getKey(row.original.category as never) : 'Not specified'}
       </Badge>
     ),
   },
@@ -151,10 +151,10 @@ const columns: ColumnDef<ManifestItem>[] = [
     header: 'Subcategory',
     cell: ({ row }) => (
       <Badge
-        className="border-purple-200 bg-purple-50 text-purple-700 text-xs"
+        className="border-gray-200 bg-gray-50 text-gray-700"
         variant="outline"
       >
-        {row.original.subcategory}
+        {row.original.subcategory ? fileToDbSubcategoryBiMap.getKey(row.original.subcategory as never) : 'Not specified'}
       </Badge>
     ),
   },
@@ -164,12 +164,12 @@ const columns: ColumnDef<ManifestItem>[] = [
     cell: ({ row }) => (
       <Badge
         className={`text-xs ${row.original.product_condition?.toLowerCase() === 'new'
-          ? 'border-green-200 bg-green-50 text-green-700'
-          : 'border-yellow-200 bg-yellow-50 text-yellow-700'
+          ? 'border-gray-200 bg-gray-50 text-gray-700'
+          : 'border-gray-200 bg-gray-50 text-gray-700'
           }`}
         variant="outline"
       >
-        {row.original.product_condition}
+        {row.original.product_condition ? fileToDbConditionBiMap.getKey(row.original.product_condition as never) : 'Not specified'}
       </Badge>
     ),
   },
@@ -372,7 +372,7 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
 
           {/* Tab Content */}
           <TabsContent
-            className="relative flex flex-col gap-4 overflow-auto px-4 px-0"
+            className='relative flex flex-col gap-4 overflow-auto px-0 px-4'
             value="full"
           >
             {/* Search Controls */}
@@ -414,7 +414,9 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                     .filter((column) => column.getCanHide())
                     .map((column) => {
                       // Map column IDs to proper display names
-                      const getColumnDisplayName = (columnId: string): string => {
+                      const getColumnDisplayName = (
+                        columnId: string
+                      ): string => {
                         const columnNameMap: Record<string, string> = {
                           title: 'Product Name',
                           description: 'Description',
@@ -429,7 +431,7 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                           identifier: 'Identifier',
                           identifier_type: 'ID Type',
                           is_hazmat: 'Hazmat',
-                          model_name: 'Model Name'
+                          model_name: 'Model Name',
                         };
                         return columnNameMap[columnId] || columnId;
                       };
@@ -461,7 +463,7 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                         <TableRow key={headerGroup.id}>
                           {headerGroup.headers.map((header) => (
                             <TableHead
-                              className='sticky top-0 z-10 whitespace-nowrap bg-slate-50 px-4 py-3 text-left font-medium text-slate-900'
+                              className="sticky top-0 z-10 whitespace-nowrap bg-slate-50 px-4 py-3 text-left font-medium text-slate-900"
                               colSpan={header.colSpan}
                               key={header.id}
                             >

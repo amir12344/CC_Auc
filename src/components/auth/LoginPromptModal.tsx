@@ -151,7 +151,7 @@ export function LoginPromptModal({
               {isLoading ? (
                 'Redirecting...'
               ) : (
-                'Sign In'
+                'Log In'
               )}
             </Button>
 
@@ -161,7 +161,7 @@ export function LoginPromptModal({
               variant="outline"
               className="w-full h-11 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium rounded-full"
             >
-              Create Free Account
+              Create Account
             </Button>
           </div>
         </div>
