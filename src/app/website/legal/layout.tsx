@@ -4,10 +4,8 @@ export default function LegalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
-        {children}
-      </div>
+    <div className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">{children}</div>
     </div>
   );
 }

@@ -1,17 +1,28 @@
-'use client';
+"use client";
 
-import { ChevronDown, Loader2, Package, Plus } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
-import { CreateListingDialog } from '@/src/components/seller/CreateListingDialog';
-import { Button } from '@/src/components/ui/button';
+import dynamic from "next/dynamic";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+
+import { ChevronDown, Loader2, Package, Plus } from "lucide-react";
+
+import { Button } from "@/src/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
+} from "@/src/components/ui/dropdown-menu";
+
+// Lazy-load the heavy create listing dialog to reduce initial JS
+const CreateListingDialog = dynamic(
+  () =>
+    import("@/src/components/seller/CreateListingDialog").then(
+      (m) => m.CreateListingDialog
+    ),
+  { ssr: false }
+);
 
 /**
  * Seller Listings dropdown component for header navigation
@@ -41,7 +52,7 @@ export function SellerListingsDropdown() {
       <DropdownMenu onOpenChange={setIsDropdownOpen} open={isDropdownOpen}>
         <DropdownMenuTrigger asChild>
           <Button
-            className="cursor-pointer font-medium text-[#D8F4CC] text-base transition-colors duration-300 hover:bg-[#43CD66]/10 hover:text-[#43CD66]"
+            className="cursor-pointer text-base font-medium text-[#D8F4CC] transition-colors duration-300 hover:bg-[#43CD66]/10 hover:text-[#43CD66]"
             disabled={isPending}
             size="sm"
             variant="ghost"
@@ -62,7 +73,7 @@ export function SellerListingsDropdown() {
 
         <DropdownMenuContent align="end" className="w-56" side="bottom">
           {/* All Listings */}
-          <DropdownMenuItem
+          {/* <DropdownMenuItem
             className={`cursor-pointer p-3 transition-all duration-200 ${isActive('/seller/listing')
               ? 'bg-[#43CD66]/10 text-[#43CD66]'
               : 'hover:bg-gray-50'
@@ -75,11 +86,11 @@ export function SellerListingsDropdown() {
             {isPending && <Loader2 className="ml-auto h-4 w-4 animate-spin" />}
           </DropdownMenuItem>
 
-          <DropdownMenuSeparator className="my-1" />
+          <DropdownMenuSeparator className="my-1" /> */}
 
           {/* Create Listing */}
           <DropdownMenuItem
-            className={`cursor-pointer p-3 transition-all duration-200 hover:bg-[#43CD66]/10 ${isPending ? 'pointer-events-none opacity-50' : ''}`}
+            className={`cursor-pointer p-3 transition-all duration-200 hover:bg-[#43CD66]/10 ${isPending ? "pointer-events-none opacity-50" : ""}`}
             disabled={isPending}
             onSelect={(e) => {
               e.preventDefault();
@@ -88,13 +99,16 @@ export function SellerListingsDropdown() {
             }}
           >
             <Plus className="mr-3 h-4 w-4 text-[#43CD66]" />
-            <span className="font-medium text-[#43CD66] text-sm">
+            <span className="text-sm font-medium text-[#43CD66]">
               Create Listing
             </span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <CreateListingDialog onOpenChange={setIsDialogOpen} open={isDialogOpen} />
+      <CreateListingDialog
+        onOpenChangeAction={setIsDialogOpen}
+        open={isDialogOpen}
+      />
     </>
   );
 }

@@ -1,8 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Logo from '../ui/Logo';
-import { Headphones, BookOpen, Users, Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import { BookOpen, Headphones, Menu } from "lucide-react";
+
 import {
   Accordion,
   AccordionContent,
@@ -26,7 +29,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/src/components/ui/sheet";
-import Link from 'next/link';
 
 interface MenuItem {
   title: string;
@@ -37,36 +39,40 @@ interface MenuItem {
 }
 
 // Utility functions for complex/repeated className strings
-const getNavbarClasses = (isScrolled: boolean) => 
+const getNavbarClasses = (isScrolled: boolean) =>
   `fixed w-full z-50 transition-all duration-300 ${
-    isScrolled 
-      ? 'bg-[#102D21]/95 shadow-lg border-b border-[#43CD66]/10' 
-      : 'bg-[#102D21]/90'
+    isScrolled
+      ? "bg-[#102D21]/95 shadow-lg border-b border-[#43CD66]/10"
+      : "bg-[#102D21]/90"
   }`;
 
-const earlyAccessButtonClasses = "px-6 py-2 rounded-full bg-[#43CD66] text-[#1C1E21] font-medium hover:bg-[#43CD66]/10 hover:text-[#43CD66] transition-all duration-200 shadow-xs border border-transparent hover:border-[#43CD66]";
+const earlyAccessButtonClasses =
+  "px-6 py-2 rounded-full bg-[#43CD66] text-[#1C1E21] font-medium hover:bg-[#43CD66]/10 hover:text-[#43CD66] transition-all duration-200 shadow-xs border border-transparent hover:border-[#43CD66]";
 
-const navigationTriggerClasses = "text-[#D8F4CC] hover:text-[#43CD66] bg-transparent hover:bg-[#43CD66]/10 font-medium text-base transition-colors duration-300 data-[state=open]:bg-[#43CD66]/10 data-[state=open]:text-[#43CD66] focus:bg-[#43CD66]/10 focus:text-[#43CD66]";
+const navigationTriggerClasses =
+  "text-[#D8F4CC] hover:text-[#43CD66] bg-transparent hover:bg-[#43CD66]/10 font-medium text-base transition-colors duration-300 data-[state=open]:bg-[#43CD66]/10 data-[state=open]:text-[#43CD66] focus:bg-[#43CD66]/10 focus:text-[#43CD66]";
 
-const navigationLinkClasses = "text-[#D8F4CC] hover:text-[#43CD66] font-medium text-base transition-colors duration-300 inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 hover:bg-[#43CD66]/10 focus:bg-[#43CD66]/10 focus:text-[#43CD66] active:bg-[#43CD66]/10";
+const navigationLinkClasses =
+  "text-[#D8F4CC] hover:text-[#43CD66] font-medium text-base transition-colors duration-300 inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 hover:bg-[#43CD66]/10 focus:bg-[#43CD66]/10 focus:text-[#43CD66] active:bg-[#43CD66]/10";
 
-const getSubMenuLinkClasses = (isMobile: boolean) => 
+const getSubMenuLinkClasses = (isMobile: boolean) =>
   `flex items-start gap-4 rounded-xl p-4 leading-none no-underline transition-all duration-300 outline-none select-none group ${
-    isMobile ? 'text-[#D8F4CC] hover:bg-[#43CD66]/10' : 'hover:bg-[#F9F9F9]'
+    isMobile ? "text-[#D8F4CC] hover:bg-[#43CD66]/10" : "hover:bg-[#F9F9F9]"
   }`;
 
-const subMenuIconClasses = "flex items-center justify-center mt-1 transition-transform duration-300 group-hover:scale-110 text-[#43CD66]";
+const subMenuIconClasses =
+  "flex items-center justify-center mt-1 transition-transform duration-300 group-hover:scale-110 text-[#43CD66]";
 
-const getSubMenuTitleClasses = (isMobile: boolean) => 
+const getSubMenuTitleClasses = (isMobile: boolean) =>
   `font-semibold text-[18px] mb-1.5 transition-colors duration-300 ${
-    isMobile 
-      ? 'text-[#D8F4CC] group-hover:text-[#43CD66]' 
-      : 'text-[#102D21] group-hover:text-[#43CD66]'
+    isMobile
+      ? "text-[#D8F4CC] group-hover:text-[#43CD66]"
+      : "text-[#102D21] group-hover:text-[#43CD66]"
   }`;
 
-const getSubMenuDescriptionClasses = (isMobile: boolean) => 
+const getSubMenuDescriptionClasses = (isMobile: boolean) =>
   `text-[16px] font-normal leading-relaxed ${
-    isMobile ? 'text-[#D8F4CC]/80' : 'text-[#475467]'
+    isMobile ? "text-[#D8F4CC]/80" : "text-[#475467]"
   }`;
 
 const Navbar = () => {
@@ -75,11 +81,11 @@ const Navbar = () => {
   const menu: MenuItem[] = [
     {
       title: "Sellers",
-      url: "/website/seller"
+      url: "/website/seller",
     },
     {
       title: "Buyers",
-      url: "/website/buyer"
+      url: "/website/buyer",
     },
     {
       title: "Media",
@@ -87,7 +93,8 @@ const Navbar = () => {
       items: [
         {
           title: "Podcast",
-          description: "Learn from industry experts and brands on The ReCommerce Podcast",
+          description:
+            "Learn from industry experts and brands on The ReCommerce Podcast",
           icon: <Headphones className="h-5 w-5 stroke-[2px]" />,
           url: "/website/podcast",
         },
@@ -103,12 +110,12 @@ const Navbar = () => {
           icon: <BookOpen className="h-5 w-5 stroke-[2px]" />,
           url: "/website/blog/seller",
         },
-        {
-          title: "Meet the team",
-          description: "Meet the team behind Commerce Central",
-          icon: <Users className="h-5 w-5 stroke-[2px]" />,
-          url: "/website/team",
-        },
+        // {
+        //   title: "Meet the team",
+        //   description: "Meet the team behind Commerce Central",
+        //   icon: <Users className="h-5 w-5 stroke-[2px]" />,
+        //   url: "/website/team",
+        // },
       ],
     },
   ];
@@ -123,28 +130,33 @@ const Navbar = () => {
     };
 
     checkInitialScroll();
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const renderMobileMenuItem = (item: MenuItem) => {
     if (item.items) {
       return (
         <Accordion
+          className="w-full"
+          collapsible
           key={item.title}
           type="single"
-          collapsible
-          className="w-full"
         >
-          <AccordionItem value={item.title} className="border-none">
-            <AccordionTrigger className="text-lg font-medium text-[#D8F4CC] hover:text-[#43CD66] hover:no-underline py-4 px-0 decoration-transparent">
+          <AccordionItem className="border-none" value={item.title}>
+            <AccordionTrigger className="px-0 py-4 text-lg font-medium text-[#D8F4CC] decoration-transparent hover:text-[#43CD66] hover:no-underline">
               {item.title}
             </AccordionTrigger>
-            <AccordionContent className="pt-2 pb-4 px-0">
+            <AccordionContent className="px-0 pt-2 pb-4">
               <div className="space-y-4 pl-4">
                 {item.items.map((subItem) => (
-                  <SubMenuLink key={subItem.title} item={subItem} isMobile onClick={() => setIsOpen(false)} />
+                  <SubMenuLink
+                    isMobile
+                    item={subItem}
+                    key={subItem.title}
+                    onClick={() => setIsOpen(false)}
+                  />
                 ))}
               </div>
             </AccordionContent>
@@ -154,10 +166,10 @@ const Navbar = () => {
     }
 
     return (
-      <Link 
-        key={item.title} 
-        href={item.url} 
-        className="text-lg font-medium text-[#D8F4CC] hover:text-[#43CD66] transition-colors duration-300 py-4 block"
+      <Link
+        className="block py-4 text-lg font-medium text-[#D8F4CC] transition-colors duration-300 hover:text-[#43CD66]"
+        href={item.url}
+        key={item.title}
         onClick={() => setIsOpen(false)}
       >
         {item.title}
@@ -167,15 +179,25 @@ const Navbar = () => {
 
   return (
     <header className={getNavbarClasses(isScrolled)}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-4">
           {/* Desktop Menu */}
-          <nav className="hidden md:flex justify-between items-center">
+          <nav className="hidden items-center justify-between md:flex">
             {/* Logo */}
             <div>
-              <Logo showFullOnMobile={true} />
+              {/* Lightweight static logo to keep marketing bundle small; bumped size */}
+              <Link href="/">
+                <Image
+                  alt="Commerce Central Logo"
+                  height={40}
+                  priority
+                  src="/CommerceCentral_logo_Green.svg"
+                  width={130}
+                  style={{ height: "auto" }}
+                />
+              </Link>
             </div>
-            
+
             {/* Navigation Items and Early Access - moved to right */}
             <div className="flex items-center gap-6">
               <div className="flex items-center">
@@ -185,11 +207,8 @@ const Navbar = () => {
                   </NavigationMenuList>
                 </NavigationMenu>
               </div>
-              <Button 
-                asChild 
-                className={earlyAccessButtonClasses}
-              >
-                <Link href="/earlyaccess">Early Access</Link>
+              <Button asChild className={earlyAccessButtonClasses}>
+                <Link href="/auth/login">Sign In</Link>
               </Button>
             </div>
           </nav>
@@ -199,29 +218,47 @@ const Navbar = () => {
             <div className="flex items-center justify-between">
               {/* Logo */}
               <div>
-                <Logo showFullOnMobile={true} />
+                {/* Lightweight static logo to keep marketing bundle small; bumped size */}
+                <Link href="/">
+                  <Image
+                    alt="Commerce Central Logo"
+                    height={36}
+                    priority
+                    src="/CommerceCentral_logo_Green.svg"
+                    width={140}
+                    style={{ height: "auto" }}
+                  />
+                </Link>
               </div>
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <Sheet onOpenChange={setIsOpen} open={isOpen}>
                 <SheetTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    className="text-[#D8F4CC] hover:text-[#43CD66] hover:bg-[#43CD66]/10"
+                  <Button
                     aria-label="Open navigation menu"
+                    className="text-[#D8F4CC] hover:bg-[#43CD66]/10 hover:text-[#43CD66]"
+                    size="icon"
+                    variant="ghost"
                   >
                     <Menu className="h-6 w-6" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent 
+                <SheetContent
+                  className="w-[300px] overflow-y-auto border-l border-[#43CD66]/20 bg-[#102D21] p-6 text-[#D8F4CC] sm:w-[350px]"
                   side="right"
-                  className="bg-[#102D21] border-l border-[#43CD66]/20 text-[#D8F4CC] overflow-y-auto w-[300px] sm:w-[350px] p-6"
                 >
-                  <SheetHeader className="mb-8">
-                    <SheetTitle className="text-[#D8F4CC] text-left">
-                      <Logo showFullOnMobile={true} />
+                  <SheetHeader className="mb-2">
+                    <SheetTitle className="text-left text-[#D8F4CC]">
+                      <Image
+                        alt="Commerce Central Logo"
+                        height={32}
+                        priority
+                        src="/CommerceCentral_logo_Green.svg"
+                        width={120}
+                        style={{ height: "auto" }}
+                      />
                     </SheetTitle>
                     <SheetDescription className="sr-only">
-                      Mobile navigation menu with links to different sections of the website
+                      Mobile navigation menu with links to different sections of
+                      the website
                     </SheetDescription>
                   </SheetHeader>
                   <div className="flex flex-col gap-6">
@@ -229,13 +266,13 @@ const Navbar = () => {
                       {menu.map((item) => renderMobileMenuItem(item))}
                     </div>
 
-                    <div className="pt-6 border-t border-[#43CD66]/20">
-                      <Button 
-                        asChild 
+                    <div className="border-t border-[#43CD66]/20 pt-6">
+                      <Button
+                        asChild
                         className={earlyAccessButtonClasses}
                         onClick={() => setIsOpen(false)}
                       >
-                        <Link href="/earlyaccess">Early Access</Link>
+                        <Link href="/auth/login">Sign In</Link>
                       </Button>
                     </div>
                   </div>
@@ -256,15 +293,15 @@ const renderMenuItem = (item: MenuItem) => {
         <NavigationMenuTrigger className={navigationTriggerClasses}>
           {item.title}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-white shadow-xl rounded-[13.632px] p-2.5 w-[350px] sm:w-[400px] lg:w-[450px]">
+        <NavigationMenuContent className="w-[350px] rounded-[13.632px] bg-white p-2.5 shadow-xl sm:w-[400px] lg:w-[450px]">
           <div className="space-y-1">
             {item.items.map((subItem, index) => (
               <div key={subItem.title}>
                 <NavigationMenuLink asChild>
                   <SubMenuLink item={subItem} />
                 </NavigationMenuLink>
-                {index < item.items!.length - 1 && (
-                  <div className="h-[1px] bg-[#E0D6C2]/70 mx-4 my-1" />
+                {index < (item.items?.length ?? 0) - 1 && (
+                  <div className="mx-4 my-1 h-[1px] bg-[#E0D6C2]/70" />
                 )}
               </div>
             ))}
@@ -277,28 +314,30 @@ const renderMenuItem = (item: MenuItem) => {
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink asChild className={navigationLinkClasses}>
-        <Link href={item.url}>
-          {item.title}
-        </Link>
+        <Link href={item.url}>{item.title}</Link>
       </NavigationMenuLink>
     </NavigationMenuItem>
   );
 };
 
-const SubMenuLink = ({ item, isMobile = false, onClick }: { item: MenuItem; isMobile?: boolean; onClick?: () => void }) => {
+const SubMenuLink = ({
+  item,
+  isMobile = false,
+  onClick,
+}: {
+  item: MenuItem;
+  isMobile?: boolean;
+  onClick?: () => void;
+}) => {
   return (
     <Link
       className={getSubMenuLinkClasses(isMobile)}
       href={item.url}
       onClick={onClick}
     >
-      <div className={subMenuIconClasses}>
-        {item.icon}
-      </div>
+      <div className={subMenuIconClasses}>{item.icon}</div>
       <div className="flex-1">
-        <div className={getSubMenuTitleClasses(isMobile)}>
-          {item.title}
-        </div>
+        <div className={getSubMenuTitleClasses(isMobile)}>{item.title}</div>
         {item.description && (
           <p className={getSubMenuDescriptionClasses(isMobile)}>
             {item.description}

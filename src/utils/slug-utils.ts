@@ -1,4 +1,4 @@
-import { Product } from '@/src/types';
+import { Product } from "@/src/types";
 
 /**
  * Helper function to get a product identifier for URLs
@@ -12,8 +12,13 @@ export function generateSlug(product: Product): string {
 /**
  * Helper function to find a product by ID
  */
-export function findProductBySlugOrId(products: Product[], productId: string): Product | undefined {
+export function findProductBySlugOrId(
+  products: Product[],
+  productId: string
+): Product | undefined {
   // Find an exact match by ID
-  const byId = products.find(p => p.id.toLowerCase() === productId.toLowerCase());
+  const byId = products.find(
+    (p) => p.id.toLowerCase() === productId.toLowerCase()
+  );
   return byId;
 }

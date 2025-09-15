@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * Custom hook for responsive design
@@ -13,7 +13,7 @@ export function useMediaQuery(query: string): boolean {
   useEffect(() => {
     // Create media query list
     const mediaQuery = window.matchMedia(query);
-    
+
     // Set initial value
     setMatches(mediaQuery.matches);
 
@@ -23,11 +23,11 @@ export function useMediaQuery(query: string): boolean {
     };
 
     // Add event listener
-    mediaQuery.addEventListener('change', handleChange);
-    
+    mediaQuery.addEventListener("change", handleChange);
+
     // Clean up
     return () => {
-      mediaQuery.removeEventListener('change', handleChange);
+      mediaQuery.removeEventListener("change", handleChange);
     };
   }, [query]);
 
@@ -36,18 +36,17 @@ export function useMediaQuery(query: string): boolean {
 
 // Predefined breakpoints
 export function useIsMobile(): boolean {
-  return useMediaQuery('(max-width: 767px)');
+  return useMediaQuery("(max-width: 767px)");
 }
 
 export function useIsTablet(): boolean {
-  return useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
+  return useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
 }
 
 export function useIsDesktop(): boolean {
-  return useMediaQuery('(min-width: 1024px)');
+  return useMediaQuery("(min-width: 1024px)");
 }
 
 export function useIsLargeDesktop(): boolean {
-  return useMediaQuery('(min-width: 1280px)');
+  return useMediaQuery("(min-width: 1280px)");
 }
-

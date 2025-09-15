@@ -1,4 +1,5 @@
 import { env } from "$amplify/env/query-data";
+
 import type { Schema } from "../../data/resource";
 import { importModuleFromLayer } from "../commons/importLayer";
 
@@ -11,6 +12,7 @@ type DatabaseConnectionDetails = {
 };
 
 const RESTRICTED_TABLES = new Set(["access_details"]);
+const ALLOWED_OPERATIONS = new Set(["findMany", "findFirst", "findUnique"]);
 
 export const handler: Schema["queryData"]["functionHandler"] = async (
   event,
@@ -31,6 +33,13 @@ export const handler: Schema["queryData"]["functionHandler"] = async (
 
     if (!modelName || !operation || !query) {
       throw new Error("modelName, operation, and query are required");
+    }
+
+    // Validate operation is allowed
+    if (!ALLOWED_OPERATIONS.has(operation)) {
+      throw new Error(
+        `Invalid operation: ${operation}. Allowed operations are: ${Array.from(ALLOWED_OPERATIONS).join(", ")}`
+      );
     }
 
     // Block sensitive data requests

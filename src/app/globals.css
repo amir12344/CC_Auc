@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 
@@ -57,8 +57,8 @@
   /* Use the variable from next/font for consistency */
   --font-sans: var(--font-geist-sans);
   /* Keep others if needed, or remove if Geist is sufficient */
-  /* --font-geist: var(--font-geist-sans); */ 
-  --font-roboto: Roboto, sans-serif; 
+  /* --font-geist: var(--font-geist-sans); */
+  --font-roboto: Roboto, sans-serif;
   --font-inter: Inter, sans-serif;
 
   --shadow-custom: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -108,7 +108,7 @@
 }
 
 @utility btn {
-  @apply px-4 py-2 rounded-md font-medium transition-colors;
+  @apply rounded-md px-4 py-2 font-medium transition-colors;
 }
 
 @utility btn-primary {
@@ -120,15 +120,15 @@
 }
 
 @utility btn-outline {
-  @apply border border-primary text-primary hover:bg-primary/10;
+  @apply border-primary text-primary hover:bg-primary/10 border;
 }
 
 @utility card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden;
+  @apply overflow-hidden rounded-lg bg-white shadow-md;
 }
 
 @utility container {
-  @apply mx-auto px-4 max-w-7xl;
+  @apply mx-auto max-w-7xl px-4;
 }
 
 @utility max-w-8xl {
@@ -149,8 +149,6 @@
       color 0.3s ease;
   }
 
-
-
   @keyframes progress {
     0% {
       width: 0%;
@@ -164,8 +162,12 @@
   }
 
   @keyframes progress-bar {
-    0% { transform: translateX(-100%) }
-    100% { transform: translateX(200%) }
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
   }
 
   .animate-progress {
@@ -236,12 +238,12 @@
 
   /* Hide scrollbars for horizontal scroll container */
   .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   .hide-scrollbar::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none; /* Chrome, Safari and Opera */
   }
 }
 
@@ -463,12 +465,12 @@
 
 /* styles.css */
 .mobile-card {
-  @apply w-full space-y-4 bg-transparent shadow-none ring-0 backdrop-blur-none px-4 py-5 mt-0 pt-[10px] rounded-2xl;
+  @apply mt-0 w-full space-y-4 rounded-2xl bg-transparent px-4 py-5 pt-[10px] shadow-none ring-0 backdrop-blur-none;
 }
 
 @media (min-width: 768px) {
   .mobile-card {
-    @apply space-y-6 bg-white/80 shadow-lg ring-1 ring-[#43cd66]/20 backdrop-blur-md px-8 py-10;
+    @apply space-y-6 bg-white/80 px-8 py-10 shadow-lg ring-1 ring-[#43cd66]/20 backdrop-blur-md;
   }
 }
 
@@ -478,30 +480,30 @@
 
 @layer components {
   .blog-content h1 {
-    @apply text-4xl font-bold mb-6 text-gray-900;
+    @apply mb-6 text-4xl font-bold text-gray-900;
   }
 
   .blog-content h2 {
-    @apply text-3xl font-bold mt-8 mb-4 text-gray-900;
+    @apply mt-8 mb-4 text-3xl font-bold text-gray-900;
   }
 
   .blog-content h3 {
-    @apply text-2xl font-semibold mt-6 mb-3 text-gray-900;
+    @apply mt-6 mb-3 text-2xl font-semibold text-gray-900;
   }
 
   .blog-content p {
-    @apply text-lg leading-relaxed mb-6 text-gray-700;
+    @apply mb-6 text-lg leading-relaxed text-gray-700;
   }
 
   .blog-content ul {
-    @apply list-disc pl-6 mb-6;
+    @apply mb-6 list-disc pl-6;
   }
 
   .blog-content li {
-    @apply text-lg mb-2 text-gray-700;
+    @apply mb-2 text-lg text-gray-700;
   }
 
   .blog-content a {
-    @apply text-blue-600 hover:text-blue-800 underline;
+    @apply text-blue-600 underline hover:text-blue-800;
   }
 }

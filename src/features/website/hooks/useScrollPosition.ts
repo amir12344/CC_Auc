@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 interface ScrollPosition {
   scrollY: number;
   scrollX: number;
-  direction: 'up' | 'down' | 'none';
+  direction: "up" | "down" | "none";
   isScrolled: boolean;
   isAtTop: boolean;
   isAtBottom: boolean;
@@ -20,7 +20,7 @@ export function useScrollPosition(threshold: number = 50): ScrollPosition {
   const [scrollPosition, setScrollPosition] = useState<ScrollPosition>({
     scrollY: 0,
     scrollX: 0,
-    direction: 'none',
+    direction: "none",
     isScrolled: false,
     isAtTop: true,
     isAtBottom: false,
@@ -32,12 +32,16 @@ export function useScrollPosition(threshold: number = 50): ScrollPosition {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const currentScrollX = window.scrollX;
-      const direction = currentScrollY > lastScrollY ? 'down' : 
-                        currentScrollY < lastScrollY ? 'up' : 'none';
-      
+      const direction =
+        currentScrollY > lastScrollY
+          ? "down"
+          : currentScrollY < lastScrollY
+            ? "up"
+            : "none";
+
       const isScrolled = currentScrollY > threshold;
       const isAtTop = currentScrollY === 0;
-      const isAtBottom = 
+      const isAtBottom =
         window.innerHeight + currentScrollY >= document.body.offsetHeight - 10;
 
       setScrollPosition({
@@ -53,17 +57,16 @@ export function useScrollPosition(threshold: number = 50): ScrollPosition {
     };
 
     // Add event listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     // Call once to set initial values
     handleScroll();
-    
+
     // Clean up
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [threshold]);
 
   return scrollPosition;
 }
-

@@ -1,0 +1,751 @@
+{
+ "Description": "An auto-generated nested stack for the @function directive.",
+ "AWSTemplateFormatVersion": "2010-09-09",
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "FnQueryDataLambdaDataSourceServiceRole48400A0B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource/ServiceRole/Resource"
+   }
+  },
+  "FnQueryDataLambdaDataSourceServiceRoleDefaultPolicyC78C6857": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FnQueryDataLambdaDataSourceServiceRoleDefaultPolicyC78C6857",
+    "Roles": [
+     {
+      "Ref": "FnQueryDataLambdaDataSourceServiceRole48400A0B"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "FnQueryDataLambdaDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "LambdaConfig": {
+     "LambdaFunctionArn": {
+      "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn"
+     }
+    },
+    "Name": "FnQueryDataLambdaDataSource",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "FnQueryDataLambdaDataSourceServiceRole48400A0B",
+      "Arn"
+     ]
+    },
+    "Type": "AWS_LAMBDA"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource/Resource"
+   }
+  },
+  "InvokeFnQueryDataLambdaDataSourceInvokeFnQueryDataLambdaDataSourceAppSyncFunction50353DD0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "FnQueryDataLambdaDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "InvokeFnQueryDataLambdaDataSource",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/231c051f79709bdcf9827f61ad303eda35cbc4e5bbee4b741240372d3a343425.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a20e304512b1fde77dc16ed9d5e0ed03817afcab629ce87ef11c99877b7b1e30.vtl"
+    }
+   },
+   "DependsOn": [
+    "FnQueryDataLambdaDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/InvokeFnQueryDataLambdaDataSource/InvokeFnQueryDataLambdaDataSource.AppSyncFunction"
+   }
+  },
+  "QueryqueryDataResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "FieldName": "queryData",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QueryQueryDataAuthFNQueryQueryDataAuthFNAppSyncFunction1C345242",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "InvokeFnQueryDataLambdaDataSourceInvokeFnQueryDataLambdaDataSourceAppSyncFunction50353DD0",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"queryData\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n{}\n## [End] Stash resolver specific context.. **"
+      ]
+     ]
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/387d5992f5fc03d05de27289457dcc374a84c42a889acb504aff1031047dde00.vtl"
+    },
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/queryQueryDataResolver"
+   }
+  },
+  "FnCreateAuctionListingFromFileLambdaDataSourceServiceRole7E6A6368": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource/ServiceRole/Resource"
+   }
+  },
+  "FnCreateAuctionListingFromFileLambdaDataSourceServiceRoleDefaultPolicy339481CE": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FnCreateAuctionListingFromFileLambdaDataSourceServiceRoleDefaultPolicy339481CE",
+    "Roles": [
+     {
+      "Ref": "FnCreateAuctionListingFromFileLambdaDataSourceServiceRole7E6A6368"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "FnCreateAuctionListingFromFileLambdaDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "LambdaConfig": {
+     "LambdaFunctionArn": {
+      "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn"
+     }
+    },
+    "Name": "FnCreateAuctionListingFromFileLambdaDataSource",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "FnCreateAuctionListingFromFileLambdaDataSourceServiceRole7E6A6368",
+      "Arn"
+     ]
+    },
+    "Type": "AWS_LAMBDA"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource/Resource"
+   }
+  },
+  "InvokeFnCreateAuctionListingFromFileLambdaDataSourceInvokeFnCreateAuctionListingFromFileLambdaDataSourceAppSyncFunction83B0EFEF": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "FnCreateAuctionListingFromFileLambdaDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "InvokeFnCreateAuctionListingFromFileLambdaDataSource",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f7e400effabc77933f1c02cfad4747966084f95b53c4ae321ebf113fae2fcfb8.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a20e304512b1fde77dc16ed9d5e0ed03817afcab629ce87ef11c99877b7b1e30.vtl"
+    }
+   },
+   "DependsOn": [
+    "FnCreateAuctionListingFromFileLambdaDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/InvokeFnCreateAuctionListingFromFileLambdaDataSource/InvokeFnCreateAuctionListingFromFileLambdaDataSource.AppSyncFunction"
+   }
+  },
+  "QuerycreateAuctionListingFromFileResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "FieldName": "createAuctionListingFromFile",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QueryCreateAuctionListingFromFileAuthFNQueryCreateAuctionListingFromFileAuthFNAppSyncFunction49D77657",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "InvokeFnCreateAuctionListingFromFileLambdaDataSourceInvokeFnCreateAuctionListingFromFileLambdaDataSourceAppSyncFunction83B0EFEF",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createAuctionListingFromFile\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n{}\n## [End] Stash resolver specific context.. **"
+      ]
+     ]
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/387d5992f5fc03d05de27289457dcc374a84c42a889acb504aff1031047dde00.vtl"
+    },
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/queryCreateAuctionListingFromFileResolver"
+   }
+  },
+  "QueryQueryDataAuthFNQueryQueryDataAuthFNAppSyncFunction1C345242": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryQueryDataAuthFN",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/830fd5a473c43e78ac02d7ec373d9543ca16c5b96b72acdde27ccd8277dec3f2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/QueryQueryDataAuthFN/QueryQueryDataAuthFN.AppSyncFunction"
+   }
+  },
+  "QueryCreateAuctionListingFromFileAuthFNQueryCreateAuctionListingFromFileAuthFNAppSyncFunction49D77657": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryCreateAuctionListingFromFileAuthFN",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/830fd5a473c43e78ac02d7ec373d9543ca16c5b96b72acdde27ccd8277dec3f2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/QueryCreateAuctionListingFromFileAuthFN/QueryCreateAuctionListingFromFileAuthFN.AppSyncFunction"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNTY7CMAyFz8I+9UBhFiyHjmaFEGoPgEziVqatg+oEhKreHSWsZvX5ye+nhM1+B+sVPrWwri8GvsJ8Ig3kmoC2N1UrlRfHgb0YfOplxvtdX2JhPuJ4dfiLARsfJ0vJ+1/9RbEpWHlpuYsT5paqlZrUDw+aFsM4wlz7Ifszz35g+0rycy1GtxdUpaDwk2B0C4doewoHVFpMKsuL+dsE7Fi6xYh3BDf9epQlbL5hvbopczFFCTwS1B++AUnE0scAAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Parameters": {
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName": {
+   "Type": "String"
+  }
+ }
+}

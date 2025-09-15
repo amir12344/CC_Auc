@@ -1,0 +1,10 @@
+type EarlyAccessRegistration @model @auth(rules: [{allow: public, provider: apiKey, operations: [create, read]}])
+{
+  firstName: String!
+  lastName: String!
+  companyName: String!
+  email: String!
+  phoneNumber: String!
+  termsAccepted: Boolean!
+  registrationDate: AWSDateTime!
+}

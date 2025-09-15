@@ -1,13 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { StepComponentProps } from '../../types/preferences';
-import { Checkbox } from '@/src/components/ui/checkbox';
-import { Label } from '@/src/components/ui/label';
+import React from "react";
+
+import { Checkbox } from "@/src/components/ui/checkbox";
+import { Label } from "@/src/components/ui/label";
+
+import { StepComponentProps } from "../../types/preferences";
 
 export const OffPriceRetailStep: React.FC<StepComponentProps> = ({
   preferences,
-  updatePreferences
+  updatePreferences,
 }) => {
   const isSelected = preferences.sellingPlatforms.offPriceRetail;
 
@@ -15,14 +17,14 @@ export const OffPriceRetailStep: React.FC<StepComponentProps> = ({
     updatePreferences({
       sellingPlatforms: {
         ...preferences.sellingPlatforms,
-        offPriceRetail: checked
-      }
+        offPriceRetail: checked,
+      },
     });
   };
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center space-x-3 p-4 border rounded-lg">
+      <div className="flex items-center space-x-3 rounded-lg border p-4">
         <Checkbox
           id="off-price-retail"
           checked={isSelected}
@@ -34,4 +36,4 @@ export const OffPriceRetailStep: React.FC<StepComponentProps> = ({
       </div>
     </div>
   );
-}; 
+};

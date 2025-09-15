@@ -1,4 +1,4 @@
-import { defineAuth } from '@aws-amplify/backend'
+import { defineAuth } from "@aws-amplify/backend";
 
 /**
  * Define and configure your auth resource
@@ -21,18 +21,18 @@ export const auth = defineAuth({
     },
 
     // === SHARED CUSTOM ATTRIBUTES ===
-    'custom:fullName': {
-      dataType: 'String', // Full name for both buyers and sellers
+    "custom:fullName": {
+      dataType: "String", // Full name for both buyers and sellers
       mutable: true,
     },
 
     // === BUYER-SPECIFIC CUSTOM ATTRIBUTES ===
-    'custom:jobTitle': {
-      dataType: 'String',
+    "custom:jobTitle": {
+      dataType: "String",
       mutable: true,
     },
-    'custom:companyName': {
-      dataType: 'String',
+    "custom:companyName": {
+      dataType: "String",
       mutable: true,
     },
 
@@ -40,31 +40,31 @@ export const auth = defineAuth({
     // Note: Seller-specific business attributes removed as they are not currently used
 
     // === SHARED ATTRIBUTES ===
-    'custom:userRole': {
-      dataType: 'String', // 'buyer' or 'seller'
+    "custom:userRole": {
+      dataType: "String", // 'buyer' or 'seller'
       mutable: true,
     },
-    'custom:termsAccepted': {
-      dataType: 'String', // Store as 'true'/'false' string
+    "custom:termsAccepted": {
+      dataType: "String", // Store as 'true'/'false' string
       mutable: true,
     },
 
     // === SELLER CERTIFICATE ATTRIBUTES ===
-    'custom:hasCert': {
-      dataType: 'String', // Store as 'true'/'false' string
+    "custom:hasCert": {
+      dataType: "String", // Store as 'true'/'false' string
       mutable: true,
     },
-    'custom:certPaths': {
-      dataType: 'String', // Store comma-separated file paths
+    "custom:certPaths": {
+      dataType: "String", // Store comma-separated file paths
       mutable: true,
     },
-    'custom:certUploadDate': {
-      dataType: 'String', // Store ISO date string
+    "custom:certUploadDate": {
+      dataType: "String", // Store ISO date string
       mutable: true,
     },
-    'custom:certStatus': {
-      dataType: 'String', // 'pending', 'approved', 'rejected'
+    "custom:certStatus": {
+      dataType: "String", // 'pending', 'approved', 'rejected'
       mutable: true,
     },
   },
-})
+});

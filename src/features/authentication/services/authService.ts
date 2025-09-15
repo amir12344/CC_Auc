@@ -4,50 +4,38 @@
  * signing in, confirming accounts, and managing sessions. This decouples the UI components
  * from the underlying Amplify implementation, improving maintainability and testability.
  */
-
 import {
-  signUp as amplifySignUp,
+  autoSignIn as amplifyAutoSignIn,
   confirmSignUp as amplifyConfirmSignUp,
+  getCurrentUser as amplifyGetCurrentUser,
+  resendSignUpCode as amplifyResendSignUpCode,
   signIn as amplifySignIn,
   signOut as amplifySignOut,
-  autoSignIn as amplifyAutoSignIn,
-  resendSignUpCode as amplifyResendSignUpCode,
-  getCurrentUser as amplifyGetCurrentUser,
+  signUp as amplifySignUp,
   updateUserAttributes as amplifyUpdateUserAttributes,
-  fetchAuthSession
-} from 'aws-amplify/auth';
-
-import type {
-  SignUpInput,
-  SignUpOutput,
-  SignInInput,
-  SignInOutput,
-  ConfirmSignUpInput,
-  ResendSignUpCodeInput,
-  UpdateUserAttributesInput,
-  ConfirmSignUpOutput,
-  ResendSignUpCodeOutput,
-  SignInOutput as AutoSignInOutput,
-  AuthUser,
-  AuthSession,
-  UpdateUserAttributesOutput
-} from 'aws-amplify/auth';
+  fetchAuthSession,
+  type AuthSession,
+  type AuthUser,
+  type SignInOutput as AutoSignInOutput,
+  type ConfirmSignUpInput,
+  type ConfirmSignUpOutput,
+  type ResendSignUpCodeInput,
+  type ResendSignUpCodeOutput,
+  type SignInInput,
+  type SignInOutput,
+  type SignUpInput,
+  type SignUpOutput,
+  type UpdateUserAttributesInput,
+  type UpdateUserAttributesOutput,
+} from "aws-amplify/auth";
 
 /**
  * Wraps the Amplify signUp function to provide a consistent API for the app.
  * @param {SignUpInput} input - The user's sign-up information.
  * @returns {Promise<SignUpOutput>} The result of the sign-up operation.
  */
-const signUp = async (input: SignUpInput): Promise<SignUpOutput> => {
-  try {
-    console.log('[Analytics] Auth Event: signUp_attempt', { username: input.username });
-    const result = await amplifySignUp(input);
-    console.log('[Analytics] Auth Event: signUp_success', { userId: result.userId });
-    return result;
-  } catch (error) {
-    console.error('[Analytics] Auth Event: signUp_failure', { error });
-    throw error;
-  }
+const signUp = (input: SignUpInput): Promise<SignUpOutput> => {
+  return amplifySignUp(input);
 };
 
 /**
@@ -55,16 +43,10 @@ const signUp = async (input: SignUpInput): Promise<SignUpOutput> => {
  * @param {ConfirmSignUpInput} input - The confirmation code and username.
  * @returns {Promise<ConfirmSignUpOutput>} The result of the confirmation operation.
  */
-const confirmSignUp = async (input: ConfirmSignUpInput): Promise<ConfirmSignUpOutput> => {
-  try {
-    console.log('[Analytics] Auth Event: confirmSignUp_attempt', { username: input.username });
-    const result = await amplifyConfirmSignUp(input);
-    console.log('[Analytics] Auth Event: confirmSignUp_success', { username: input.username });
-    return result;
-  } catch (error) {
-    console.error('[Analytics] Auth Event: confirmSignUp_failure', { error });
-    throw error;
-  }
+const confirmSignUp = (
+  input: ConfirmSignUpInput
+): Promise<ConfirmSignUpOutput> => {
+  return amplifyConfirmSignUp(input);
 };
 
 /**
@@ -72,32 +54,18 @@ const confirmSignUp = async (input: ConfirmSignUpInput): Promise<ConfirmSignUpOu
  * @param {ResendSignUpCodeInput} input - The username to resend the code to.
  * @returns {Promise<ResendSignUpCodeOutput>} The result of the resend code operation.
  */
-const resendSignUpCode = async (input: ResendSignUpCodeInput): Promise<ResendSignUpCodeOutput> => {
-  try {
-    console.log('[Analytics] Auth Event: resendSignUpCode_attempt', { username: input.username });
-    const result = await amplifyResendSignUpCode(input);
-    console.log('[Analytics] Auth Event: resendSignUpCode_success', { username: input.username });
-    return result;
-  } catch (error) {
-    console.error('[Analytics] Auth Event: resendSignUpCode_failure', { error });
-    throw error;
-  }
+const resendSignUpCode = (
+  input: ResendSignUpCodeInput
+): Promise<ResendSignUpCodeOutput> => {
+  return amplifyResendSignUpCode(input);
 };
 
 /**
  * Wraps the Amplify autoSignIn function.
  * @returns {Promise<AutoSignInOutput>} The result of the auto sign-in operation.
  */
-const autoSignIn = async (): Promise<AutoSignInOutput> => {
-  try {
-    console.log('[Analytics] Auth Event: autoSignIn_attempt');
-    const result = await amplifyAutoSignIn();
-    console.log('[Analytics] Auth Event: autoSignIn_success');
-    return result;
-  } catch (error) {
-    console.error('[Analytics] Auth Event: autoSignIn_failure', { error });
-    throw error;
-  }
+const autoSignIn = (): Promise<AutoSignInOutput> => {
+  return amplifyAutoSignIn();
 };
 
 /**
@@ -105,29 +73,38 @@ const autoSignIn = async (): Promise<AutoSignInOutput> => {
  * @param {SignInInput} input - The user's sign-in credentials.
  * @returns {Promise<SignInOutput>} The result of the sign-in operation.
  */
-const signIn = async (input: SignInInput): Promise<SignInOutput> => {
-  try {
-    console.log('[Analytics] Auth Event: signIn_attempt', { username: input.username });
-    const result = await amplifySignIn(input);
-    console.log('[Analytics] Auth Event: signIn_success');
-    return result;
-  } catch (error) {
-    console.error('[Analytics] Auth Event: signIn_failure', { error });
-    throw error;
-  }
+const signIn = (input: SignInInput): Promise<SignInOutput> => {
+  return amplifySignIn(input);
 };
 
 /**
- * Wraps the Amplify signOut function.
+ * Wraps the Amplify signOut function with enhanced error handling.
  * @returns {Promise<void>}
  */
 const signOut = async (): Promise<void> => {
   try {
-    console.log('[Analytics] Auth Event: signOut_attempt');
     await amplifySignOut();
-    console.log('[Analytics] Auth Event: signOut_success');
-  } catch (error) {
-    console.error('[Analytics] Auth Event: signOut_failure', { error });
+  } catch (err) {
+    const error = err as Error;
+    // Gracefully handle various Auth configuration errors
+    if (
+      error?.name === "AuthUserPoolException" ||
+      error?.name === "NotConfigured" ||
+      /UserPool not configured/i.test(error?.message || "") ||
+      /Auth is not configured/i.test(error?.message || "") ||
+      /Amplify has not been configured/i.test(error?.message || "")
+    ) {
+      // Clear any local storage or session data manually
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.clear();
+          sessionStorage.clear();
+        } catch {
+          // Ignore storage clearing errors
+        }
+      }
+      return;
+    }
     throw error;
   }
 };
@@ -136,30 +113,16 @@ const signOut = async (): Promise<void> => {
  * Wraps the Amplify getCurrentUser function.
  * @returns {Promise<AuthUser>} The current authenticated user.
  */
-const getCurrentUser = async (): Promise<AuthUser> => {
-  try {
-    const user = await amplifyGetCurrentUser();
-    console.log('AuthService: Fetched current user', user);
-    return user;
-  } catch (error) {
-    console.error('AuthService: Error fetching current user:', error);
-    throw error;
-  }
+const getCurrentUser = (): Promise<AuthUser> => {
+  return amplifyGetCurrentUser();
 };
 
 /**
  * Wraps the Amplify fetchAuthSession function.
  * @returns {Promise<AuthSession>} The current auth session.
  */
-const getSession = async (): Promise<AuthSession> => {
-  try {
-    const session = await fetchAuthSession();
-    console.log('AuthService: Fetched auth session');
-    return session;
-  } catch (error) {
-    console.error('AuthService: Error fetching auth session:', error);
-    throw error;
-  }
+const getSession = (): Promise<AuthSession> => {
+  return fetchAuthSession();
 };
 
 /**
@@ -167,15 +130,10 @@ const getSession = async (): Promise<AuthSession> => {
  * @param {UpdateUserAttributesInput} input - The attributes to update.
  * @returns {Promise<UpdateUserAttributesOutput>} The result of the update operation.
  */
-const updateUserAttributes = async (input: UpdateUserAttributesInput): Promise<UpdateUserAttributesOutput> => {
-  try {
-    const result = await amplifyUpdateUserAttributes(input);
-    console.log('AuthService: Updated user attributes successfully');
-    return result;
-  } catch (error) {
-    console.error('AuthService: Error updating user attributes:', error);
-    throw error;
-  }
+const updateUserAttributes = (
+  input: UpdateUserAttributesInput
+): Promise<UpdateUserAttributesOutput> => {
+  return amplifyUpdateUserAttributes(input);
 };
 
 export const authService = {
@@ -188,4 +146,4 @@ export const authService = {
   getCurrentUser,
   updateUserAttributes,
   getSession,
-}; 
+};

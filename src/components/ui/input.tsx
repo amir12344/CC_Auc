@@ -1,7 +1,9 @@
-import * as React from "react"
-import { useEffect, useState } from "react"
+"use client";
 
-import { cn } from "@/src/lib/utils"
+import * as React from "react";
+import { useEffect, useState } from "react";
+
+import { cn } from "@/src/lib/utils";
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   const [isMounted, setIsMounted] = useState(false);
@@ -30,7 +32,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       )}
       {...clientSideProps}
     />
-  )
+  );
 }
 
-export { Input }
+export { Input };

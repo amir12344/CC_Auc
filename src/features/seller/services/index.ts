@@ -1,2 +1,2 @@
 // Seller service exports
-export { AuctionService } from './auctionService'; 
+export { createAuctionListings } from "./auctionService";

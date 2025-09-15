@@ -68,4 +68,3 @@ export interface Stat {
   prefix?: string;
   suffix?: string;
 }
-

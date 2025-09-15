@@ -1,41 +1,24 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+
+import SharedBackgroundPattern from "@/src/components/common/SharedBackgroundPattern";
 import type { CarouselApi } from "@/src/components/ui/carousel";
-import HeroSection from '@/src/components/website/buyer/HeroSection';
-import FeaturesSection from '@/src/components/website/buyer/FeaturesSection';
-import NoJunkPlanSection from '@/src/components/website/buyer/NoJunkPlanSection';
-import TestimonialsSection from '@/src/components/website/buyer/TestimonialsSection';
-import FinalCTASection from '@/src/components/website/buyer/FinalCTASection';
-import SharedBackgroundPattern from '@/src/components/common/SharedBackgroundPattern';
+import BuyerFaqs from "@/src/components/website/buyer/BuyerFaqs";
+import FeaturesSection from "@/src/components/website/buyer/FeaturesSection";
+import FinalCTASection from "@/src/components/website/buyer/FinalCTASection";
+import HeroSection from "@/src/components/website/buyer/HeroSection";
+import NoJunkPlanSection from "@/src/components/website/buyer/NoJunkPlanSection";
 
 const BuyerPageClient = () => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-
-  useEffect(() => {
-    if (!api) return;
-    const onSelect = () => {
-      setCanScrollPrev(api.canScrollPrev());
-      setCanScrollNext(api.canScrollNext());
-    };
-    onSelect();
-    api.on('select', onSelect);
-    api.on('reInit', onSelect);
-    return () => {
-      api.off('select', onSelect);
-      api.off('reInit', onSelect);
-    };
-  }, [api]);
-
   return (
-    <main className="flex flex-col items-center bg-white relative">
+    <main className="relative flex flex-col items-center bg-white">
       <SharedBackgroundPattern className="h-[1000px]" />
       <HeroSection />
       <FeaturesSection />
       <NoJunkPlanSection />
-      <TestimonialsSection canScrollPrev={canScrollPrev} canScrollNext={canScrollNext} setApi={setApi} />
+      {/* <TestimonialsSection canScrollPrev={canScrollPrev} canScrollNext={canScrollNext} setApi={setApi} /> */}
+      <BuyerFaqs />
       <FinalCTASection />
     </main>
   );

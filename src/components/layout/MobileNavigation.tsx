@@ -1,4 +1,10 @@
-'use client';
+"use client";
+
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import {
   ChevronDown,
@@ -12,18 +18,14 @@ import {
   ShoppingBag,
   ShoppingCart,
   Store,
-} from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { CreateListingDialog } from '@/src/components/seller/CreateListingDialog';
-import { Button } from '@/src/components/ui/button';
+} from "lucide-react";
+
+import { Button } from "@/src/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/src/components/ui/collapsible';
+} from "@/src/components/ui/collapsible";
 import {
   Sheet,
   SheetClose,
@@ -31,58 +33,78 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/src/components/ui/sheet';
+} from "@/src/components/ui/sheet";
 import {
   selectCanAccessBuyerRoutes,
   selectCanAccessSellerRoutes,
   selectIsAuthenticated,
   selectIsSeller,
-} from '@/src/features/authentication/store/authSelectors';
-import Logo from '@/src/features/website/components/ui/Logo';
+} from "@/src/features/authentication/store/authSelectors";
+import Logo from "@/src/features/website/components/ui/Logo";
+
+// Lazy-load the heavy create listing dialog to reduce initial JS
+const CreateListingDialog = dynamic(
+  () =>
+    import("@/src/components/seller/CreateListingDialog").then(
+      (m) => m.CreateListingDialog
+    ),
+  { ssr: false }
+);
 
 // My Deals navigation items (same as desktop dropdown)
 const myDealsItems = [
   {
-    title: 'Overview',
-    href: '/buyer/deals',
+    title: "Overview",
+    href: "/buyer/deals",
     icon: LayoutDashboard,
   },
   {
-    title: 'All Deals',
-    href: '/buyer/deals/all-deals',
+    title: "All Deals",
+    href: "/buyer/deals/all-deals",
     icon: Package,
   },
   {
-    title: 'Offers',
-    href: '/buyer/deals/offers',
+    title: "Offers",
+    href: "/buyer/deals/offers",
     icon: Heart,
   },
   {
-    title: 'Orders',
-    href: '/buyer/deals/orders',
+    title: "Orders",
+    href: "/buyer/deals/orders",
     icon: ShoppingCart,
   },
   {
-    title: 'Messages',
-    href: '/buyer/deals/messages',
+    title: "Messages",
+    href: "/buyer/deals/messages",
     icon: MessageSquare,
   },
 ];
 
 // Main navigation items - function to filter based on user role
-const getMainNavItems = (isAuthenticated: boolean, isSeller: boolean) => [
-  { label: 'Home', href: '/' },
+const getMainNavItems = (
+  isAuthenticated: boolean,
+  isSeller: boolean,
+  canAccessBuyerRoutes: boolean
+) => [
+  { label: "Home", href: "/" },
   // Show Dashboard for authenticated sellers
   ...(isAuthenticated && isSeller
-    ? [{ label: 'Dashboard', href: '/seller/dashboard' }]
+    ? [{ label: "Dashboard", href: "/seller/dashboard" }]
+    : []),
+  // Show Wishlist and Inbox for authenticated buyers
+  ...(isAuthenticated && canAccessBuyerRoutes
+    ? [
+        { label: "Wishlist", href: "/buyer/wishlist" },
+        { label: "Inbox", href: "/buyer/inbox" },
+      ]
     : []),
   // Show Marketplace and Collections for non-sellers or guests
   ...(isSeller
     ? []
     : [
-      { label: 'Marketplace', href: '/marketplace' },
-      { label: 'Collections', href: '/collections' },
-    ]),
+        { label: "Home", href: "/marketplace" },
+        { label: "Collections", href: "/collections" },
+      ]),
 ];
 
 const MobileNavigation = () => {
@@ -100,13 +122,17 @@ const MobileNavigation = () => {
   const isSeller = useSelector(selectIsSeller);
 
   // Get filtered main nav items based on user role
-  const mainNavItems = getMainNavItems(isAuthenticated, isSeller);
+  const mainNavItems = getMainNavItems(
+    isAuthenticated,
+    isSeller,
+    canAccessBuyerRoutes
+  );
 
   // Check if My Deals item is active
   const isMyDealsItemActive = (href: string) => {
     return (
       pathname === href ||
-      (href !== '/buyer/deals' && pathname.startsWith(href))
+      (href !== "/buyer/deals" && pathname.startsWith(href))
     );
   };
 
@@ -148,10 +174,11 @@ const MobileNavigation = () => {
                 {mainNavItems.map((item) => (
                   <SheetClose asChild key={item.href}>
                     <Link
-                      className={`flex items-center rounded-lg px-3 py-2.5 font-medium text-base transition-colors ${pathname === item.href
-                        ? 'bg-[#43CD66]/10 text-[#43CD66]'
-                        : 'text-gray-700 hover:bg-gray-50'
-                        }`}
+                      className={`flex items-center rounded-lg px-3 py-2.5 text-base font-medium transition-colors ${
+                        pathname === item.href
+                          ? "bg-[#43CD66]/10 text-[#43CD66]"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
                       href={item.href}
                     >
                       {item.label}
@@ -171,7 +198,7 @@ const MobileNavigation = () => {
                   <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg p-3 transition-colors hover:bg-gray-50">
                     <div className="flex items-center space-x-3">
                       <ShoppingBag className="h-5 w-5 text-[#43CD66]" />
-                      <span className="font-medium text-base text-gray-900">
+                      <span className="text-base font-medium text-gray-900">
                         My Deals
                       </span>
                     </div>
@@ -188,10 +215,11 @@ const MobileNavigation = () => {
                       return (
                         <SheetClose asChild key={item.href}>
                           <Link
-                            className={`flex items-center rounded-md px-4 py-2 text-sm transition-colors ${isActive
-                              ? 'bg-[#43CD66]/10 font-medium text-[#43CD66]'
-                              : 'text-gray-700 hover:bg-gray-50'
-                              }`}
+                            className={`flex items-center rounded-md px-4 py-2 text-sm transition-colors ${
+                              isActive
+                                ? "bg-[#43CD66]/10 font-medium text-[#43CD66]"
+                                : "text-gray-700 hover:bg-gray-50"
+                            }`}
                             href={item.href}
                           >
                             <Icon className="mr-3 h-4 w-4" />
@@ -215,7 +243,7 @@ const MobileNavigation = () => {
                       href="/seller/dashboard"
                     >
                       <Store className="h-5 w-5 text-[#43CD66]" />
-                      <span className="font-medium text-base text-gray-900">
+                      <span className="text-base font-medium text-gray-900">
                         Seller Dashboard
                       </span>
                     </Link>
@@ -226,8 +254,8 @@ const MobileNavigation = () => {
                     onClick={handleCreateListingClick}
                     type="button"
                   >
-                    <Plus className="h-5 h-5 text-[#43CD66]" />
-                    <span className="font-medium text-base text-gray-900">
+                    <Plus className="h-5 text-[#43CD66]" />
+                    <span className="text-base font-medium text-gray-900">
                       Create Listing
                     </span>
                   </button>
@@ -265,7 +293,10 @@ const MobileNavigation = () => {
           </div>
         </SheetContent>
       </Sheet>
-      <CreateListingDialog onOpenChange={setIsDialogOpen} open={isDialogOpen} />
+      <CreateListingDialog
+        onOpenChangeAction={setIsDialogOpen}
+        open={isDialogOpen}
+      />
     </>
   );
 };

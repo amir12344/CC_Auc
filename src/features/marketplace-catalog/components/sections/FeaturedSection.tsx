@@ -1,12 +1,14 @@
-'use client';
+"use client";
 
-import { memo } from 'react';
-import { ErrorBoundary } from '@/src/components/ErrorBoundary';
-import { ProductSection } from '../ProductSection';
-import type { Product } from '@/src/types';
-import { useProducts } from '@/src/hooks/useProducts';
-import ProductCardSkeleton from '@/src/components/skeletons/ProductCardSkeleton';
-import ProductCard from '../ProductCard';
+import { memo } from "react";
+
+import { ErrorBoundary } from "@/src/components/ErrorBoundary";
+import ProductCardSkeleton from "@/src/components/skeletons/ProductCardSkeleton";
+import { useProducts } from "@/src/hooks/useProducts";
+import type { Product } from "@/src/types";
+
+import ProductCard from "../ProductCard";
+import { ProductSection } from "../ProductSection";
 
 export const FeaturedSection = memo(() => {
   const { getFeaturedProducts, loading } = useProducts();
@@ -14,36 +16,40 @@ export const FeaturedSection = memo(() => {
 
   if (loading) {
     return (
-      <ProductSection 
-        title="Private Offers" 
-        layout="grid" 
+      <ProductSection
+        title="Private Offers"
+        layout="grid"
         variant="light"
         viewAllLink="/collections/featured"
       >
-        {Array(4).fill(0).map((_, index) => (
-          <ProductCardSkeleton key={index} />
-        ))}
+        {Array(4)
+          .fill(0)
+          .map((_, index) => (
+            <ProductCardSkeleton key={index} />
+          ))}
       </ProductSection>
     );
   }
-  
+
   if (!products || products.length === 0) {
     return (
-      <ProductSection 
-        title="Private Offers" 
-        layout="grid" 
+      <ProductSection
+        title="Private Offers"
+        layout="grid"
         variant="light"
         viewAllLink="/collections/featured"
       >
-        <p className="text-center text-gray-500 mt-4 col-span-full">No featured products available at the moment.</p>
+        <p className="col-span-full mt-4 text-center text-gray-500">
+          No featured products available at the moment.
+        </p>
       </ProductSection>
     );
   }
 
   return (
-    <ProductSection 
-      title="Private Offers" 
-      layout="carousel" 
+    <ProductSection
+      title="Private Offers"
+      layout="carousel"
       variant="light"
       viewAllLink="/collections/featured"
     >
@@ -56,4 +62,4 @@ export const FeaturedSection = memo(() => {
   );
 });
 
-FeaturedSection.displayName = 'FeaturedSection';
+FeaturedSection.displayName = "FeaturedSection";

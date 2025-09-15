@@ -1,166 +1,273 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback, useMemo, useRef } from 'react';
-import { StepComponentProps } from '../../types/preferences';
-import { BRAND_OPTIONS } from '../../data/preferenceOptions';
-import { Button } from '@/src/components/ui/button';
-import { Badge } from '@/src/components/ui/badge';
-import { X, ChevronDown } from 'lucide-react';
+import React, { useCallback, useMemo, useRef, useState } from "react";
+
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { Check, ChevronDown, Search, X } from "lucide-react";
+
+import { Badge } from "@/src/components/ui/badge";
+import { Button } from "@/src/components/ui/button";
+import { Checkbox } from "@/src/components/ui/checkbox";
+import { Input } from "@/src/components/ui/input";
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/src/components/ui/popover";
+import { useToast } from "@/src/hooks/use-toast";
 
-const INITIAL_ITEMS = 15;
-const ITEMS_PER_PAGE = 15;
+import { useDebounce } from "../../hooks/useDebounce";
+import { getAllBrands } from "../../services/buyerPreferenceService";
+import type { Brand, StepComponentProps } from "../../types/preferences";
+
+// Note: not using virtualization here to keep UX snappy like categories/regions
 
 const BrandsStepComponent: React.FC<StepComponentProps> = ({
   preferences,
-  updatePreferences
+  updatePreferences,
 }) => {
-  const [displayCount, setDisplayCount] = useState(INITIAL_ITEMS);
-  const scrollElementRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 300);
+  const PAGE_SIZE = 50;
+  const { toast } = useToast();
+  const [error, setError] = useState<string | null>(null);
 
-  // Memoize displayed brands for performance
-  const displayedBrands = useMemo(() => {
-    return BRAND_OPTIONS.slice(0, displayCount);
-  }, [displayCount]);
+  const brandsQuery = useInfiniteQuery({
+    queryKey: ["brands", debouncedSearch],
+    queryFn: async ({ pageParam = 0 }) => {
+      try {
+        const data = await getAllBrands({
+          search: debouncedSearch,
+          skip: pageParam,
+          take: PAGE_SIZE,
+        });
+        return data as Brand[];
+      } catch (err) {
+        setError(
+          `Failed to fetch brands: ${err instanceof Error ? err.message : "Unknown error"}`
+        );
+        toast({
+          title: "Error",
+          description: "Failed to load brands",
+          variant: "destructive",
+        });
+        return [] as Brand[];
+      }
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) =>
+      lastPage.length === PAGE_SIZE ? pages.length * PAGE_SIZE : undefined,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 15 * 60 * 1000,
+    enabled: true,
+  });
 
-  const hasMore = useMemo(() =>
-    BRAND_OPTIONS.length > displayCount,
-    [displayCount]
+  const displayedBrands = useMemo(
+    () => (brandsQuery.data?.pages ?? []).flat(),
+    [brandsQuery.data?.pages]
   );
 
+  // Deduplicate by case-insensitive brand name for display
+  const { uniqueList, nameToIds } = useMemo(() => {
+    const nameToBrand = new Map<string, Brand>();
+    const nameToIdsLocal = new Map<string, string[]>();
+    for (const b of displayedBrands) {
+      const key = b.brand_name.trim().toLowerCase();
+      if (!nameToBrand.has(key)) {
+        nameToBrand.set(key, b);
+        nameToIdsLocal.set(key, [b.public_id]);
+      } else {
+        const arr = nameToIdsLocal.get(key)!;
+        arr.push(b.public_id);
+      }
+    }
+    return {
+      uniqueList: Array.from(nameToBrand.values()),
+      nameToIds: nameToIdsLocal,
+    };
+  }, [displayedBrands]);
+
   // Memoize selected brands set for O(1) lookup
-  const selectedBrandsSet = useMemo(() =>
-    new Set(preferences.brands),
+  const selectedBrandsSet = useMemo(
+    () => new Set(preferences.brands),
     [preferences.brands]
   );
 
-  // Optimized brand toggle
-  const handleBrandToggle = useCallback((brand: string) => {
-    const newBrands = selectedBrandsSet.has(brand)
-      ? preferences.brands.filter(b => b !== brand)
-      : [...preferences.brands, brand];
-
-    updatePreferences({ brands: newBrands });
-  }, [selectedBrandsSet, preferences.brands, updatePreferences]);
-
-  const removeBrand = useCallback((brand: string) => {
-    const newBrands = preferences.brands.filter(b => b !== brand);
-    updatePreferences({ brands: newBrands });
-  }, [preferences.brands, updatePreferences]);
-
-  // Optimized scroll handler
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    const element = e.currentTarget;
-    const isNearBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 50;
-
-    if (isNearBottom && hasMore) {
-      setDisplayCount(prev => Math.min(prev + ITEMS_PER_PAGE, BRAND_OPTIONS.length));
+  const brandMap = useMemo(() => {
+    const items = (brandsQuery.data?.pages ?? []).flat();
+    const map = new Map<string, string>();
+    for (const b of items) {
+      if (!map.has(b.public_id)) {
+        map.set(b.public_id, b.brand_name);
+      }
     }
-  }, [hasMore]);
+    return map;
+  }, [brandsQuery.data?.pages]);
+
+  // Optimized brand toggle
+  const handleBrandToggle = useCallback(
+    (brandId: string) => {
+      const newBrands = selectedBrandsSet.has(brandId)
+        ? preferences.brands.filter((b) => b !== brandId)
+        : [...preferences.brands, brandId];
+
+      updatePreferences({ brands: newBrands });
+    },
+    [selectedBrandsSet, preferences.brands, updatePreferences]
+  );
+
+  const removeBrand = useCallback(
+    (brandId: string) => {
+      const newBrands = preferences.brands.filter((b) => b !== brandId);
+      updatePreferences({ brands: newBrands });
+    },
+    [preferences.brands, updatePreferences]
+  );
+
+  const isNameSelected = useCallback(
+    (brand: Brand) => {
+      const key = brand.brand_name.trim().toLowerCase();
+      const ids = nameToIds.get(key) || [];
+      return ids.some((id) => selectedBrandsSet.has(id));
+    },
+    [nameToIds, selectedBrandsSet]
+  );
+
+  const toggleBrandByName = useCallback(
+    (brand: Brand) => {
+      const key = brand.brand_name.trim().toLowerCase();
+      const ids = nameToIds.get(key) || [brand.public_id];
+      const anySelected = ids.some((id) => selectedBrandsSet.has(id));
+      let newBrands: string[];
+      if (anySelected) {
+        newBrands = preferences.brands.filter((id) => !ids.includes(id));
+      } else {
+        const firstId = ids[0];
+        newBrands = [...preferences.brands, firstId];
+      }
+      updatePreferences({ brands: newBrands });
+    },
+    [nameToIds, selectedBrandsSet, preferences.brands, updatePreferences]
+  );
+
+  const handleEndReached = useCallback(() => {
+    if (brandsQuery.hasNextPage && !brandsQuery.isFetchingNextPage) {
+      void brandsQuery.fetchNextPage();
+    }
+  }, [brandsQuery]);
 
   // Memoize trigger button text for performance
   const triggerText = useMemo(() => {
     const count = preferences.brands.length;
-    return count > 0 ? `${count} brands selected` : 'Select brands...';
+    return count > 0 ? `${count} brands selected` : "Select brands...";
   }, [preferences.brands.length]);
 
   return (
     <div className="space-y-6">
       <div className="space-y-3">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
+          <PopoverTrigger asChild>
             <Button
+              className="h-12 w-full justify-between border-gray-300 text-left font-normal hover:bg-gray-50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
               variant="outline"
-              className="w-full justify-between h-12 text-left font-normal border-gray-300 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
-              <span className="text-foreground truncate">
-                {triggerText}
-              </span>
+              <span className="text-foreground truncate">{triggerText}</span>
               <ChevronDown className="h-4 w-4 opacity-50" />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="w-[var(--radix-dropdown-menu-trigger-width)] p-0"
+          </PopoverTrigger>
+          <PopoverContent
             align="start"
-            sideOffset={4}
+            className="w-[var(--radix-popover-trigger-width)] p-0"
           >
+            <div className="bg-background sticky top-0 z-10 border-b p-2">
+              <div className="relative">
+                <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                <Input
+                  className="h-9 pl-9"
+                  placeholder="Search brands..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+            </div>
             <div
-              ref={scrollElementRef}
               className="max-h-[300px] overflow-y-auto"
-              onScroll={handleScroll}
+              onWheel={(e) => e.stopPropagation()}
             >
-              {displayedBrands.length > 0 ? (
-                <>
-                  {displayedBrands.map((brand) => (
-                    <DropdownMenuCheckboxItem
-                      key={brand}
-                      checked={selectedBrandsSet.has(brand)}
-                      onCheckedChange={() => handleBrandToggle(brand)}
-                      className="cursor-pointer"
+              {uniqueList.length === 0 && (
+                <div className="text-muted-foreground p-4 text-center text-sm">
+                  {brandsQuery.isLoading
+                    ? "Loading brands..."
+                    : "No brands found."}
+                </div>
+              )}
+              {uniqueList.map((brand) => {
+                const checked = isNameSelected(brand);
+                const id = `brand-${brand.brand_name.toLowerCase()}`;
+                return (
+                  <div
+                    key={id}
+                    className="flex items-center p-3 hover:bg-gray-50"
+                  >
+                    <Checkbox
+                      checked={checked}
+                      className="mr-3"
+                      id={id}
+                      onCheckedChange={() => toggleBrandByName(brand)}
+                    />
+                    <label
+                      className="text-foreground/90 flex-1 cursor-pointer text-sm"
+                      htmlFor={id}
                     >
-                      {brand}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                  {hasMore && (
-                    <div className="p-2 text-center text-sm text-muted-foreground border-t bg-gray-50">
-                      Showing {displayedBrands.length} of {BRAND_OPTIONS.length} brands
-                      <br />
-                      <span className="text-xs">Scroll to load more</span>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="p-4 text-center text-sm text-muted-foreground">
-                  No brands available
+                      {brand.brand_name}
+                    </label>
+                  </div>
+                );
+              })}
+              {brandsQuery.hasNextPage && (
+                <div className="text-muted-foreground border-t bg-gray-50 p-2 text-center text-sm">
+                  <button
+                    className="text-xs underline"
+                    type="button"
+                    onClick={() => brandsQuery.fetchNextPage()}
+                  >
+                    Load more
+                  </button>
                 </div>
               )}
             </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </PopoverContent>
+        </Popover>
       </div>
 
       {/* Selected Brands */}
       {preferences.brands.length > 0 && (
         <div className="space-y-3">
-          <p className="text-sm font-medium text-foreground">
+          <p className="text-foreground text-sm font-medium">
             Selected brands ({preferences.brands.length}):
           </p>
-          <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
-            {preferences.brands.map((brand) => (
-              <Badge
-                key={brand}
-                variant="secondary"
-                className="text-sm"
-              >
-                {brand}
+          <div className="flex max-h-32 flex-wrap gap-2 overflow-y-auto">
+            {preferences.brands.map((brandId) => (
+              <Badge className="text-sm" key={brandId} variant="secondary">
+                {brandMap.get(brandId) || brandId}
                 <button
-                  onClick={() => removeBrand(brand)}
-                  className="ml-2 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                  aria-label={`Remove ${brand}`}
+                  aria-label={`Remove ${brandMap.get(brandId) || brandId}`}
+                  className="ring-offset-background focus:ring-ring ml-2 rounded-full outline-none focus:ring-2 focus:ring-offset-2"
+                  onClick={() => removeBrand(brandId)}
+                  type="button"
                 >
-                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                  <X className="text-muted-foreground hover:text-foreground h-3 w-3" />
                 </button>
               </Badge>
             ))}
           </div>
         </div>
       )}
-
-      {/* Description */}
-      <div className="text-sm text-muted-foreground">
-        {preferences.brands.length === 0 ? (
-          <p>Select the brands you're most interested in purchasing from. You can choose multiple brands or skip this step.</p>
-        ) : (
-          <p>Great! We'll prioritize showing you inventory from these brands.</p>
-        )}
-      </div>
     </div>
   );
 };
 
-export const BrandsStep = React.memo(BrandsStepComponent); 
+export const BrandsStep = React.memo(BrandsStepComponent);

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 // Generic data loading HOC
 export function withData<P extends object, T>(
@@ -21,7 +21,9 @@ export function withData<P extends object, T>(
           setData(result);
           setError(null);
         } catch (err) {
-          setError(err instanceof Error ? err : new Error('An unknown error occurred'));
+          setError(
+            err instanceof Error ? err : new Error("An unknown error occurred")
+          );
         } finally {
           setLoading(false);
         }
@@ -37,19 +39,27 @@ export function withData<P extends object, T>(
     }, []);
 
     if (loading) {
-      return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+      return (
+        <div className="flex min-h-screen items-center justify-center">
+          Loading...
+        </div>
+      );
     }
 
     if (error) {
       return (
-        <div className="flex justify-center items-center min-h-screen text-red-500">
+        <div className="flex min-h-screen items-center justify-center text-red-500">
           Error: {error.message}
         </div>
       );
     }
 
     if (!data) {
-      return <div className="flex justify-center items-center min-h-screen">No data available</div>;
+      return (
+        <div className="flex min-h-screen items-center justify-center">
+          No data available
+        </div>
+      );
     }
 
     return <Component {...props} data={data} />;
@@ -57,4 +67,3 @@ export function withData<P extends object, T>(
 
   return WithData;
 }
-

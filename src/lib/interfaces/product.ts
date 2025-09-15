@@ -2,13 +2,13 @@ export interface Product {
   id: string;
   title: string;
   price: string;
-  originalPrice?: string; 
+  originalPrice?: string;
   category: string;
   retailer: string;
   image: string;
   description: string;
   condition: string;
-  isNew?: boolean; 
+  isNew?: boolean;
   discount?: number;
   rating?: number;
   reviewCount?: number;
@@ -47,4 +47,3 @@ export interface ProductBid {
   amount: string;
   timestamp: string;
 }
-

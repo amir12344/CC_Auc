@@ -1,9 +1,15 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '@/src/lib/store';
-import { UserProfile } from '@/src/lib/interfaces/auth';
+import { createSelector } from "@reduxjs/toolkit";
+
+import type { UserProfile } from "@/src/lib/interfaces/auth";
+import type { RootState } from "@/src/lib/store";
+
+// Predeclare regexes for performance per lint rules
+const WHITESPACE_SPLIT_REGEX = /\s+/;
+const USERNAME_SPLIT_REGEX = /[._-]/;
 
 // Basic auth selectors
-export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
+export const selectIsAuthenticated = (state: RootState) =>
+  state.auth.isAuthenticated;
 export const selectUserType = (state: RootState) => state.auth.userType;
 export const selectAuthToken = (state: RootState) => state.auth.token;
 export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
@@ -11,38 +17,39 @@ export const selectAuthError = (state: RootState) => state.auth.error;
 
 // Amplify user selectors
 export const selectAmplifyUser = (state: RootState) => state.auth.user;
-export const selectUserAttributes = (state: RootState) => state.auth.user?.attributes;
+export const selectUserAttributes = (state: RootState) =>
+  state.auth.user?.attributes;
 
 // Computed user profile selector with proper memoization
 export const selectUserProfile = createSelector(
   [(state: RootState) => state.auth.user],
   (user): UserProfile | null => {
-    if (!user || !user.attributes) {
+    if (!user?.attributes) {
       return null;
     }
-    
+
     const { attributes } = user;
-    
+
     // Handle name logic with backward compatibility (matching auth slice logic)
-    let firstName = '';
-    let lastName = '';
-    let fullName = '';
-    
-            // New pattern - use the custom 'fullName' attribute first
-  if (attributes['custom:fullName']) {
-    fullName = attributes['custom:fullName'];
+    let firstName = "";
+    let lastName = "";
+    let fullName = "";
+
+    // New pattern - use the custom 'fullName' attribute first
+    if (attributes["custom:fullName"]) {
+      fullName = attributes["custom:fullName"];
       // Extract firstName/lastName from full name for backward compatibility
-      const nameParts = fullName.trim().split(/\s+/);
+      const nameParts = fullName.trim().split(WHITESPACE_SPLIT_REGEX);
       if (nameParts.length >= 2) {
         firstName = nameParts[0];
-        lastName = nameParts.slice(1).join(' ');
+        lastName = nameParts.slice(1).join(" ");
       } else if (nameParts.length === 1) {
         firstName = nameParts[0];
       }
     } else {
       // Old pattern - use custom attributes or standard attributes
-      firstName = attributes['custom:firstName'] || attributes.given_name || '';
-      lastName = attributes['custom:lastName'] || attributes.family_name || '';
+      firstName = attributes["custom:firstName"] || attributes.given_name || "";
+      lastName = attributes["custom:lastName"] || attributes.family_name || "";
       fullName = `${firstName} ${lastName}`.trim();
     }
 
@@ -54,21 +61,20 @@ export const selectUserProfile = createSelector(
       firstName,
       lastName,
       fullName,
-      userType: attributes['custom:userRole'] as 'buyer' | 'seller',
+      userType: attributes["custom:userRole"] as "buyer" | "seller",
       phoneNumber: attributes.phone_number,
       // New buyer fields
-      jobTitle: attributes['custom:jobTitle'],
-      companyName: attributes['custom:companyName'],
-      termsAccepted: attributes['custom:termsAccepted'] === 'true',
-      // Seller-specific fields
-      hasResellerCertificate: attributes['custom:hasCert'] === 'true',
-      certificateStatus: attributes['custom:certStatus'] as 'pending' | 'approved' | 'rejected' | undefined,
-      certificateUploadDate: attributes['custom:certUploadDate'] ? new Date(attributes['custom:certUploadDate']) : undefined,
+      jobTitle: attributes["custom:jobTitle"],
+      companyName: attributes["custom:companyName"],
+      termsAccepted: attributes["custom:termsAccepted"] === "true",
+      // Verification status fields (from Redux state, not Amplify attributes)
+      verificationStatus: null, // This will be populated from Redux state
+      accountLocked: false, // This will be populated from Redux state
       // Timestamps - using consistent dates to ensure referential equality
-      createdAt: new Date('2024-01-01T00:00:00.000Z'),
-      lastLoginAt: new Date('2024-01-01T00:00:00.000Z'),
+      createdAt: new Date("2024-01-01T00:00:00.000Z"),
+      lastLoginAt: new Date("2024-01-01T00:00:00.000Z"),
     };
-    
+
     return profile;
   }
 );
@@ -76,35 +82,40 @@ export const selectUserProfile = createSelector(
 // Convenience selectors for user information with memoization
 export const selectUserDisplayName = createSelector(
   [selectUserProfile],
-  (profile) => profile?.fullName || profile?.username || profile?.email || 'User'
+  (profile) =>
+    profile?.fullName || profile?.username || profile?.email || "User"
 );
 
 export const selectUserInitials = createSelector(
   [selectUserProfile],
   (profile) => {
-    let initials = 'U';
-    
+    let initials = "U";
+
     if (profile) {
       const firstName = profile.firstName?.trim();
       const lastName = profile.lastName?.trim();
-      
+
       if (firstName && lastName) {
         initials = `${firstName.charAt(0).toUpperCase()}${lastName.charAt(0).toUpperCase()}`;
       } else if (firstName) {
         initials = firstName.charAt(0).toUpperCase();
       } else if (lastName) {
         initials = lastName.charAt(0).toUpperCase();
-      } else if (profile.fullName && profile.fullName.trim()) {
+      } else if (profile.fullName?.trim()) {
         // Try to extract initials from fullName if firstName/lastName are empty
         const nameParts = profile.fullName.trim().split(/\s+/);
         if (nameParts.length >= 2) {
-          initials = `${nameParts[0].charAt(0).toUpperCase()}${nameParts[nameParts.length - 1].charAt(0).toUpperCase()}`;
+          const first = nameParts[0];
+          const last = nameParts.at(-1) ?? "";
+          initials = `${first.charAt(0).toUpperCase()}${last.charAt(0).toUpperCase()}`;
         } else if (nameParts.length === 1) {
           initials = nameParts[0].charAt(0).toUpperCase();
         }
-      } else if (profile.username && profile.username.trim()) {
+      } else if (profile.username?.trim()) {
         // Try to extract from username if it looks like a name
-        const usernameParts = profile.username.trim().split(/[._-]/);
+        const usernameParts = profile.username
+          .trim()
+          .split(USERNAME_SPLIT_REGEX);
         if (usernameParts.length >= 2) {
           initials = `${usernameParts[0].charAt(0).toUpperCase()}${usernameParts[1].charAt(0).toUpperCase()}`;
         } else {
@@ -112,8 +123,8 @@ export const selectUserInitials = createSelector(
         }
       } else if (profile.email) {
         // Extract from email as last resort
-        const emailPart = profile.email.split('@')[0];
-        const emailParts = emailPart.split(/[._-]/);
+        const emailPart = profile.email.split("@")[0];
+        const emailParts = emailPart.split(USERNAME_SPLIT_REGEX);
         if (emailParts.length >= 2) {
           initials = `${emailParts[0].charAt(0).toUpperCase()}${emailParts[1].charAt(0).toUpperCase()}`;
         } else {
@@ -121,29 +132,43 @@ export const selectUserInitials = createSelector(
         }
       }
     }
-    
+
     return initials;
   }
 );
 
 // Role-based selectors
-export const selectIsBuyer = (state: RootState) => selectUserType(state) === 'buyer';
-export const selectIsSeller = (state: RootState) => selectUserType(state) === 'seller';
+export const selectIsBuyer = (state: RootState) =>
+  selectUserType(state) === "buyer";
+export const selectIsSeller = (state: RootState) =>
+  selectUserType(state) === "seller";
 
-// Seller-specific selectors
-export const selectSellerCertificateStatus = (state: RootState) => {
-  const profile = selectUserProfile(state);
-  return profile?.certificateStatus;
+// Verification status selectors
+export const selectVerificationStatus = (state: RootState) =>
+  state.auth.verificationStatus;
+export const selectAccountLocked = (state: RootState) =>
+  state.auth.accountLocked;
+
+// Buyer verification selectors
+export const selectIsBuyerVerified = (state: RootState) => {
+  return selectIsBuyer(state) && selectVerificationStatus(state) === "verified";
 };
 
-export const selectHasResellerCertificate = (state: RootState) => {
-  const profile = selectUserProfile(state);
-  return profile?.hasResellerCertificate === true;
+export const selectIsBuyerPending = (state: RootState) => {
+  return selectIsBuyer(state) && selectVerificationStatus(state) === "pending";
+};
+
+export const selectIsBuyerRejected = (state: RootState) => {
+  return selectIsBuyer(state) && selectVerificationStatus(state) === "rejected";
 };
 
 // Authentication state selectors
 export const selectCanAccessBuyerRoutes = (state: RootState) => {
-  return selectIsAuthenticated(state) && selectIsBuyer(state);
+  return (
+    selectIsAuthenticated(state) &&
+    selectIsBuyer(state) &&
+    selectVerificationStatus(state) === "verified"
+  );
 };
 
 export const selectCanAccessSellerRoutes = (state: RootState) => {
@@ -168,4 +193,4 @@ export const selectAuthInfo = (state: RootState) => ({
   isAuthenticated: selectIsAuthenticated(state),
   userType: selectUserType(state),
   token: selectAuthToken(state),
-}); 
+});

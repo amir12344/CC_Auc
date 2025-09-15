@@ -1,65 +1,64 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { Inter } from 'next/font/google';
-import Script from 'next/script';
-import { Suspense } from 'react';
-import { ErrorBoundary } from '@/src/components/ErrorBoundary';
-import { StyleProvider } from '@/src/components/providers/StyleProvider';
-import { LoadingIndicatorClient } from '@/src/components/ui/LoadingIndicatorClient';
-import {
-  getMainPagesBreadcrumb,
-  getOrganizationSchema,
-  getPageSchema,
-  getWebsiteSchema,
-} from '@/src/utils/metadata';
-import { LinkedInInsight } from '../components/analytics/LinkedInInsight';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Script from "next/script";
+import { Suspense } from "react";
 
-const inter = Inter({ subsets: ['latin'] });
+import "@aws-amplify/ui-react/styles.css";
+
+import { BreadcrumbSchema } from "@/src/components/BreadcrumbSchema";
+import { ErrorBoundary } from "@/src/components/ErrorBoundary";
+import { getOrganizationSchema, getWebsiteSchema } from "@/src/utils/metadata";
+
+import { LinkedInInsight } from "../components/analytics/LinkedInInsight";
+
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s',
+    template: "%s",
     default:
-      'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+      "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
   },
   description:
-    'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
+    "Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.",
   keywords:
-    'surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction',
-  metadataBase: new URL('https://www.commercecentral.io'),
+    "surplus inventory, B2B marketplace, wholesale lots, excess inventory, Commerce Central, retail surplus, liquidation, trusted buyers, trusted sellers,Wholesale Liquidation, Liquidation Auction",
+  metadataBase: new URL("https://www.commercecentral.io"),
   icons: {
     icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
-      { url: '/commerce_central_logo.svg', type: 'image/svg+xml' },
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/commerce_central_logo.svg", type: "image/svg+xml" },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png', // Prefer PNG for Apple devices (create this file if needed)
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png", // Prefer PNG for Apple devices (create this file if needed)
   },
   openGraph: {
     title:
-      'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+      "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
     description:
-      'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
-    url: 'https://www.commercecentral.io',
-    siteName: 'Commerce Central',
+      "Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.",
+    url: "https://www.commercecentral.io",
+    siteName: "Commerce Central",
     images: [
       {
-        url: '/CC_opengraph.png',
+        url: "/CC_opengraph.png",
         width: 500,
         height: 500,
-        alt: 'Commerce Central Logo',
+        alt: "Commerce Central Logo",
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title:
-      'Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform',
+      "Buy & Sell Surplus Inventory | Commerce Central Liquidation Platform",
     description:
-      'Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.',
-    images: ['/CC_opengraph.png'],
+      "Buy and sell surplus inventory through trusted B2B liquidation auctions on Commerce Central. Verified sellers, clean manifests, and fast processing.",
+    images: ["/CC_opengraph.png"],
   },
   robots: {
     index: true,
@@ -67,16 +66,16 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
-    google: 'VstZpIvk8ZtH9QHwmmnQnb9KeTY_wCTnT_WrbzAAjsc',
+    google: "VstZpIvk8ZtH9QHwmmnQnb9KeTY_wCTnT_WrbzAAjsc",
   },
   alternates: {
-    canonical: 'https://www.commercecentral.io',
+    canonical: "https://www.commercecentral.io",
   },
 };
 
@@ -109,34 +108,19 @@ export default function RootLayout({
         <meta content="#102D21" name="theme-color" />
 
         {/* JSON-LD Structured Data */}
-        <Script
-          id="ld-org"
-          strategy="beforeInteractive"
+        <script
           type="application/ld+json"
-        >
-          {JSON.stringify(getOrganizationSchema())}
-        </Script>
-        <Script
-          id="ld-website"
-          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getOrganizationSchema()),
+          }}
+        />
+        <script
           type="application/ld+json"
-        >
-          {JSON.stringify(getWebsiteSchema())}
-        </Script>
-        <Script
-          id="ld-page"
-          strategy="beforeInteractive"
-          type="application/ld+json"
-        >
-          {JSON.stringify(getPageSchema('Home'))}
-        </Script>
-        <Script
-          id="ld-breadcrumb"
-          strategy="beforeInteractive"
-          type="application/ld+json"
-        >
-          {JSON.stringify(getMainPagesBreadcrumb())}
-        </Script>
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebsiteSchema()),
+          }}
+        />
+        <BreadcrumbSchema />
 
         {/* Google Analytics */}
         <Script
@@ -159,18 +143,14 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <StyleProvider />
         <ErrorBoundary>
-          <Suspense fallback={null}>
-            <LoadingIndicatorClient />
-          </Suspense>
           <Suspense
             fallback={
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-xs">
                 <div className="flex flex-col items-center">
                   <div className="relative mb-4 h-16 w-16">
                     <div className="absolute inset-0 rounded-full border-4 border-gray-200" />
-                    <div className="absolute inset-0 animate-spin rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent" />
+                    <div className="border-t-primary absolute inset-0 animate-spin rounded-full border-4 border-r-transparent border-b-transparent border-l-transparent" />
                   </div>
                 </div>
               </div>
@@ -180,7 +160,7 @@ export default function RootLayout({
           </Suspense>
         </ErrorBoundary>
         {/* LinkedIn Insights */}
-        <LinkedInInsight />
+        {/* <LinkedInInsight /> */}
       </body>
     </html>
   );

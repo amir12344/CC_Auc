@@ -1,0 +1,630 @@
+Shivang (00:07)
+Today on the e-commerce show, I'm joined by someone who has quietly become one of the most respected operators in consumer Vidula Sethi, most recently served as the VP of Supply Chain and Operations at but her impact goes beyond smart From New Balance to Coleman to Canadian Tired, she's helped world-class organizations build systems that just don't or move product, but protect margin, reduce waste, and deliver at She's led through launches,
+
+global disruptions like COVID and constraints. And she does it with a mindset that makes circularity not just a checkbox, but a competitive If you're trying to make your returns, refurb, or recovery programs actually this is an episode to bookmark. Vidula, welcome to the show, thrilled to
+
+Vidula Shetye (00:51)
+Thank you so much. This is really exciting.
+
+Shivang (00:53)
+Yeah, likewise, super excited for this conversation. Like I having conversed with you in the past, I have learned a lot from you. So I'm pretty sure others would learn a lot from this
+
+Vidula Shetye (01:03)
+I hope so.
+
+Shivang (01:04)
+Yes, definitely. I mean, I'm pretty confident they will. So yeah, let's start with something personal. ⁓ What's one motto or principle that you follow
+
+Vidula Shetye (01:15)
+So this was something my dad used to say to us and I realized that it's...
+
+like embedded itself quite deeply within me. When we were younger, he used to say, don't give excuses. Your friends don't need them and your enemies don't believe them. Right. And when I was younger, I categorized it as something like, you know, that dads say that, you know, you're like, yeah, okay, I get it. I get it kind of thing. But as I grew older, I realized a lot more of like when it says your friends don't need them, it's basically about the relationship.
+
+Shivang (01:37)
+Mm-hmm.
+
+Vidula Shetye (01:48)
+relationships
+
+you build and the integrity that you have. So in a workplace, if you've committed to doing something by a certain time and you can't get to it because something else happened, there's a fire or whatever else that you're dealing with, it's on you to maintain that relationship and recommit to a new date instead of leaving the person hanging. And then the enemies part of the conversation is more so that you can't really make everyone happy. So you need to
+
+Shivang (02:16)
+Mm-hmm.
+
+Vidula Shetye (02:17)
+like understand where you stand with all of those relationships.
+
+Shivang (02:21)
+Yeah, that's really, I mean, I think, insightful, especially from a perspective of as we grow up, we, you know, like we realize the value of the words that our parents speak to us. You know, when we are younger, it's like, yeah, I mean, why would we even care about what our parents think? But yeah, I mean, I think I definitely resonate with that excuses are just in our mind.
+
+Like as long as we we are working in a in an environment or just in our personal life. think ⁓ That just makes us weaker is like, you know, excuses I think are kind of self-harming in that manner and Yeah, super insightful with Allah
+
+Vidula Shetye (03:00)
+Yeah,
+
+no, you're absolutely right. Like from the excuses part, like when we were younger, it was more so like, why didn't you do this? Right. And then you're like, I did something else instead. But then the underlying meaning, it's with age comes wisdom.
+
+Shivang (03:05)
+Mm.
+
+Mm-hmm.
+
+Mm-hmm.
+
+Yeah, definitely. And when you peel the layer on any excuse or anything that didn't go our way, you would realize that yeah, there was something that we were also lacking. So that only comes with age and wisdom, as you were saying. ⁓ But that's like one mentality, which I'm glad let your father taught you because you know, that's that's a mentality if you don't learn it early, then it becomes a habit going into the future for sure. It's really insightful. Awesome. ⁓
+
+So with luck, can you walk us through your journey as an operator or in general in the supply chain industry?
+
+Vidula Shetye (03:45)
+So I've been lucky where in my career where I've had the opportunity to experience quite a few different things in the supply chain. like when I was in university through my internships, was got experience to like the manufacturing floor, the warehouse floor, really understanding how things operate in a factory environment, how things are made. Then early in my career through ⁓ Canadian Tire Coleman was where I understood
+
+you know, like, okay, what's the business behind all of this? So sourcing, procurement, supply planning, forecasting, all of that. And you know, everything that comes with that, both from like the retailer perspective, plus the supplier perspective. And then I got the opportunity at New Balance to understand like how things flow, right? What's the next step in that business journey or supply chain? So understanding like warehousing, logistics, and then the fun thing.
+
+of trade compliance that everyone's talking about right now. I'm pretty sure up until a couple of months ago, people didn't really know what trade compliance was. that, and then in my most recent role, I got the opportunity to bring all of this knowledge together. So at Ecobee, it was a fairly young company when I joined, like in terms of like their supply chain. And I got the, like I own pretty much end to end supply chain. like what
+
+Shivang (04:48)
+Mm-hmm.
+
+Vidula Shetye (05:14)
+with the factory supply planning, working with sales on demand planning, warehousing, logistics, trade compliance, and then even working with our customers, all the different customer channels. that was really an interesting experience because we established the first SNOP process over there. the ⁓ process that goes around with it of getting buy-in into a process when there wasn't really one, then looking at
+
+⁓
+
+their entire supply chain with the critical eye of like, where do we want our warehousing to be? Who are our logistics partners? And then just building processes from the ground up, right? Like what does customer onboarding look like? And so that was really like a interesting opportunity to like build something and you know. ⁓
+
+Yeah, build something where there wasn't really fully formalized processes.
+
+Shivang (06:11)
+Yeah, I mean, I think looking at listening to your journey, like you, you really scaled a startup into a like, think, a top five consumer electronics, not consumer electronics, but like the smart home industry player, because I mean, I have ecobee and I have seen many homes, you know, like use ecobee. So like, ⁓ I could only imagine those rapid scale that you guys must have moved during that time. And especially like supply chain is the
+
+is always the bottom line if not scaled properly for a brand like marketing department can always promote a sales department can always get those retail partnerships but if the supply chain cannot deliver ⁓ a company would not scale. like listening through this like was there any part in your journey from all the experiences that you had starting with Canadian Tire? Did you? ⁓
+
+Like was there any part of the supply chain that surprised you that looked very simple from the outside that yeah, this must be a very simple part. But when you got into it and you were like, no, this is not easy at all. Or like this is the most complex piece.
+
+Vidula Shetye (07:12)
+I think supply chain as a whole, and especially through COVID, it's one of those things that is actually complex. COVID and all the conversations on the news really brought it to the forefront. But if you don't do it right, that's when people talk about your supply chain. If you do it right, then it's just something that hums in the background. ⁓
+
+Shivang (07:17)
+Mm-hmm.
+
+Vidula Shetye (07:40)
+good supply chain operators are worth their weight in gold. So everything, like understanding the nuances of everything that went into you receiving that package, the way it looked is the truly fun part of supply chain. ⁓
+
+I encourage everyone to not just look at whatever they're doing in the different aspects of supply chain at surface value, like, what can I do to make this better? And really lift the hood to see what's happening under there.
+
+Shivang (08:15)
+Makes sense. It's like it's about the details that matter more. Got it. Got it. And did you find like with all the experiences, did you find the smart home industry supply chain to be much different or like any different than any other roles that you've taken in the past?
+
+Vidula Shetye (08:32)
+Actually, and this is one of the things that like a lot of like hiring folks do, they're like, well, you know, if you're in the food industry, you have to have food industry background or whatever.
+
+But like with my experience, what I realized is at the end of the day, if your fundamentals are there, there's really nothing different about supply chain. Right. And if you like going back to the fundamentals piece, if you understand that you can apply it in multiple different areas. Right. So like going back to like the food and tech example with food, the critical part when you're forecasting for it is
+
+Shivang (08:42)
+Mm-hmm.
+
+Vidula Shetye (09:12)
+is
+
+the expiration date of products, right? You can't really bring in all that product and sit on it and then have it go to waste, right? But in tech, or in any of my card consumables, you can bring it in and you don't really need to worry about expiration of the product. It's more so like, okay, the tech is outdated kind of thing, but like nobody's really planning on bringing that much product in at one point, right? So.
+
+Shivang (09:33)
+Mm-hmm.
+
+Vidula Shetye (09:38)
+Like fundamentally, the basics are the same. It's just understanding the differences to be able to apply it to different kinds of supply chains.
+
+Shivang (09:47)
+That makes sense. It's like the variables differ. So like the constraints one, the food industry might have constrained with expiry. The technology industry has constraints with respect to new models coming in. the technology becoming obsolete. So in this particular role or in general, did you feel there was a difference in the reverse logistics side of it? In the supply chain industry, do you find?
+
+reverse logistics as a piece which was different for smart homes than others.
+
+Vidula Shetye (10:19)
+At the end of the day, the process was the same, regardless of the product. Like the customer returned it, you needed to do something with it, whether, you know, scrap it, reuse it, refurbish it, whatever that was. But what I found interesting in supply chain that wasn't really there in like the other industries I worked with was, ⁓
+
+The ability to track metrics. So a lot of tech products come with serial numbers, right? So if you've recorded the serial number when it ships out or when it's being produced, right? It allowed for a lot of like interesting metrics for you to track. Like what price did I actually sell it? So I'll refund the customer at that exact price, right? So I don't need to give them like, during this particular period, you know, there was a promo. ⁓
+
+If there was a promo, you get refunded the promo price, right? You can actually track all of the sales orders, which made things. ⁓
+
+super easy. Another part is tracking metrics like how long before a customer returns a product, right? I sold this particular serial number on say July 2nd and on July 9th it's already back in my warehouse. Like what happened there in your customer journey, right? The like with your serial numbers if you're tracking them right from
+
+manufacturing, you could also use it to like trace issues, right? So like, hey, I suddenly see an uptick in this product, and all of these serial numbers are tied to this particular production run. Did something happen there? Should I actually like get the warehouse to pull all those units so that your engineering team can go in and, you know,
+
+look a bit deeper to understand like, hey, something's actually wrong. Something went wrong during that production run or something's wrong with a particular component that was used. It really allows for a lot more of that digging that other industries like when I worked at Coleman, you wouldn't really be able to tie it in. ⁓
+
+and go from there, right? And then in the tax space, like because the, ⁓ you know,
+
+is singular in a way, the refurbishment process is also standard. There's not a lot of, say for instance, in footwear and apparel, you could get products in multiple different conditions, And the way you deal with them leads to endless combinations, right? But in tech, you've received a product back. If it's open, you need to refurbish it. You can't just
+
+take a guess on what could be wrong with it.
+
+Shivang (13:13)
+makes sense. I guess like what I kind of got out of it was that in a tech industry, you're able to trace it back to the product development from what is happening on your reverse logistic sides. can kind of take you can take it back to the reverse to the product development and see whether something was wrong with respect to compatibility, firmware, software, whether it wasn't a fit for a particular ⁓
+
+you know, environment and whatnot. Like, so it kind of gives you signals that you can take back to the manufacturing and then improve the process. Were you able to kind of, ⁓ general trace back and see that, all right, we were able to reduce, ⁓ or we are, one is able to kind of, take some actionable items, I'm guessing from it where, ⁓ you know, like, ⁓ found that in a particular time period, had so many returns, you able to see that? All right, let's change something about.
+
+product and whatnot.
+
+Vidula Shetye (14:07)
+Yeah, for us, a lot of our focus was on the customer and returns. We were lucky that we didn't really find big manufacturing issues that weren't caught earlier. But from a customer perspective, it really allowed us to understand the return patterns for all of our customers and put processes in place that minimize waste. So for instance, one of our customers
+
+Shivang (14:34)
+makes sense.
+
+Vidula Shetye (14:37)
+we used to find that as we were looking at the data that...
+
+from a single location, they would do multiple returns in a day. If you look at it from a shipping perspective, how inefficient, like put all of them in one box, ship it to me at the end of the day instead of shipping me three different boxes on the exact same day. It's a waste from an environmental perspective, it's a waste from a money perspective as well. And that's what our data really allowed us to get.
+
+Shivang (15:07)
+Make sense, make sense. In general, how do you kind of look at, ⁓ there are multiple paths a returned good can take. It can be refurbished, it can be resold, it could be reshelved and whatnot. what is a mental model that you kind of delegate to your teams to kind of follow when they have to decide? Or what is the your mental model with respect to deciding between which path to take? And not just for the smart home industry, but in general, given that you've worked
+
+at New Balance which is I believe it's a footwear brand so you must have seen that you know the other side of the apparel and the footwear where sometimes people would wear shoes and they would return it the other day so you know the quality and the grading would be much different so like what is your gentle and mental model when it comes to deciding which path to ⁓
+
+Vidula Shetye (15:54)
+So I would say,
+
+because it's not like you or me on the warehouse floor processing all of the returns, the biggest part is you need your process to not have.
+
+like to be really clear, right? And ⁓ it needs to be a process that any person, because on a warehouse floor, people rotate, right? Like there might be person A on like doing returns this month, but when you hit peak, there's more people on it. The process needs to be simple for everyone. So for us, we kept it really simple. If the product came back in pristine condition and we outlined to the warehouse, like, Hey, this is what we
+
+mean by pristine. It needs to have its shrink wrap in place. It shouldn't be ripped at any place or any of that. These are our minimum requirements. Put it back into stock.
+
+if it's like, you know, the shrink wrap is slightly ripped, but you know, it's still intact in a way, then it went into like a reshink process. So all we needed to do was, hey, remove the shrink wrap, reshink it to make it look grade A again, right? Everything else we were like, because it's tech and you don't know what's wrong, like, you know, like something could be wrong to your point earlier with the tech inside. We kept it simple. If it's open, it goes
+
+into this bin, this is the bin that goes to our refurbishment facility, where the experts start looking at it. We did allow a bit of like, you know, to minimize waste in the process, a bit of like, ⁓ judgment at the warehouse level. So if they were like, my God, you know, the screen of this service status completely shattered for whatever reason, right, like there's no way you're going to be able to like recover that, then that would go immediately into like our ⁓
+
+waist a bit. So there was a bit of flexibility there, but it's very important to make sure that your criteria are clear.
+
+Shivang (17:52)
+that makes mean, there needs to be some process, but also leeway for some human judgment where things obviously look wrong enough ⁓ to be able to that. like SOPs, mean, listening to the pretty I was on the floor and was told the SOP, I would be able to follow it. And makes sense. And how do you kind of approach the...
+
+financial ROI side of it right because when a product has been returned as a company someone has already taken a hit on shipping it getting it back and now it's in the warehouse you know if employees are touching it it's time again so like how do you kind of the cost analysis
+
+Vidula Shetye (18:34)
+So I would say a lot of companies, like from what I've spoken to people, this is one of the areas where a lot of companies struggle. I would almost separate that into like two different discussions. So from a cost perspective, you really need to understand the...
+
+path your return takes. So this starts right from the beginning. How does a customer request a return? Is there a call center involved? Do they email someone and then someone responds back with the shipping label? Or is it self-serve on the website? What's the cost that's there? Then you brought up some good points of, hey, the customer shipping the return back to you, the warehouse processing it. ⁓
+
+you know, ⁓ after that. ⁓
+
+What path does it take after that? Are you like scrapping it? What's the cost involved there? Are you shipping it somewhere to like refurbish? Are you refurbishing it in-house? Like really understanding that, all of these different aspects make up the cogs of my product, my refurbished product, right? And many people just look at it from the perspective of like, hey, this is how much I spent to refurbish it without taking any of the other costs.
+
+into account and you're not really looking at a true like you know cost benefit analysis over there so like I encourage everyone to like you know really think about the entire process and to figure out what your cost is and then from a benefit perspective
+
+People tend to focus just from like the financial aspect, but what I would suggest to everyone is make sure you're bringing all the right people into the room, right? It's not just operations and finance, but you need to bring in your sales team, your marketing team, your ESG team. ⁓ If you're looking at it from a sales perspective, ⁓ when you sell your refurbished product, is it opening up a new market for you, right? Which you wouldn't have had like a new sales channel.
+
+So in the ⁓ thermostat, the Ecobee thermostat, the refurbished ones are sold at a lower price point. So it opens it up to people who want a smart thermostat but don't have the money to spend it on.
+
+best of the best, but they still have like a good product that's gone through all of the checks and balances to, you know, be fit to be sold again. ⁓ The other part is, does the product like you, whatever actions you're taking, does it divert from landfill? Are you able to like sell part of the components or reuse it that way? And really hear everyone's perspectives to understand like, hey,
+
+actually like is there a benefit right because yeah you're like from the sales perspective yes you can like measure it but like hey you're diverting it from landfill that's a good you know outcome to have even though like you know rather than doing nothing right so I really get everyone involved to understand how they're looking at your process to determine like is it really beneficial to me and what are the costs involved.
+
+Shivang (21:54)
+Yeah, I mean, that's really insightful, like getting alignment across sales, marketing, ESG, branding, and all these folks kind of makes the process not just about saving cost, but more about what do we represent as a brand and how many things that we kind of divert away from landfills. And that kind of creates a good ⁓ will among the consumers that the brand that I've chosen for my home is, or in general, any brand for, I mean, if I wear, you know,
+
+kind of sustainable clothes or whatnot, like I kind of feel I would feel better about the choices I made as a consumer. And I really like the point about opening up a secondary market, people who want to, you know, for the same product, but for some reason cannot can also buy it. And that that actually gets you more customers in the future because, know, like more, more people know your brand now. So, you know, it kind of becomes it becomes you know, it
+
+it becomes a way for your brand to become even bigger in the future. ⁓ what I got out of what you said is like, like not just, there's not just a cost to it, but there is so much involved with, know, how much of it is not directly measurable when it comes to kind of approaching processes. ⁓ Would you say that ⁓ like some brands and some retailers would
+
+should also look at it from a, like bake it in as in the pricing. Like, do you think that that would be an approach to kind of consider where if you know that you will have X percent returns, does that also feature going to the pricing aspect of it or should not? Like just your general opinion.
+
+Vidula Shetye (23:38)
+I don't think it should, like if you're planning to sell it as a standalone item, then I think the cogs of the product ⁓ should include everything right from like, you know, when a customer calls you to make a return and that gets incorporated into ⁓ your cogs. I don't think it should be incorporated into like the original pricing because then ⁓
+
+It plays with your margin, your unit economics and all of that. And it's almost like you're counting it in two different places from my financial perspective. for like, if you're reselling it into the market as you know, and in tech, like a lot of people like don't realize that like the refurbished products have gone through a lot of like rigorous checks. It's not just someone, know, like looking at a laptop and being like, yeah, this looks good enough. Let me just sell it.
+
+Shivang (24:13)
+No.
+
+Vidula Shetye (24:35)
+Again, of thing. There's a lot of like risks that comes with it, right? So because of the process that goes into it, you can absolutely take into account the different aspects of your product journey until it's ready to be sold as a refurbished item.
+
+Shivang (24:54)
+Makes sense. That makes sense. If a different retailer or brand has to approach circularity like the way you described it, where should they start?
+
+Vidula Shetye (25:04)
+I would say the number one thing is to understand your product and then your customer. So when you look at your product.
+
+first look at it from the perspective of can it be refurbished? The beauty industry has completely different standards. You can't really ⁓ refurb a cosmetic item or whatever there. Then the next part is like, okay, it can't actually be refurbished. What else can I do? Can I donate it or recycle it? ⁓ If that's not possible, then what are the other uses? So I remember from when I was
+
+Shivang (25:24)
+Of course.
+
+Vidula Shetye (25:42)
+at home and one of like the unique things that our warehouse associate did. We used to get tents back and I'm not a massive camper but apparently like tent poles sometimes bend or break or whatever so if a tent wasn't like you know
+
+we weren't able to salvage it, he would salvage the tent poles. So if anyone called, ⁓ we were able to say, yeah, no problem for this model. We have extra tent poles and ship it to the customer. And it was such a wonderful opportunity to surprise and delight the customer, right? Because the tent's a big ticket item. And if your poles don't work, your tent is essentially useless, right? So that's
+
+Shivang (26:04)
+Hmm.
+
+Vidula Shetye (26:25)
+That's where understanding your product and what your customer might have issues with, you can find ways to make something out of even your waste, if you can't straight up refurbish the product.
+
+And then it's also important, I think you mentioned it earlier about like understanding your customer base, right? Like, would they be willing to buy a refurbished item, right? And then what's the price point that they would want to buy a refurbished item, right? Do I want it to be cheaper? Like most people would say yes, a refurbished item, like in their mind, they want it to be cheaper. I wouldn't pay the same price as a brand new item for a refurbished item, right? And then what's their
+
+expectation on condition, right? So for my New Balance days was when I got really like first-hand experience with the sneaker head culture. like, for me, I don't care what the box looks like for the shoe that I get, right? But for sneaker heads, the actual box matters. They want it to be pristine condition, right? So that's when you start developing your processes and then ⁓
+
+Shivang (27:19)
+Mm-hmm.
+
+Vidula Shetye (27:37)
+understanding what it's going to cost you to meet your customer where they're at. But in other cases, someone might be okay with the scratch and dent appliance. ⁓ What does that look like for your customer? Understanding that, ⁓ figuring out how much it'll cost you to get to where you're meeting.
+
+Shivang (27:48)
+Yeah.
+
+Vidula Shetye (28:00)
+the expectations of your customer from your brand and then establish your final returns process.
+
+Shivang (28:08)
+That makes sense. mean, it's like for a sneaker head or for a clothing, they would have a different, like a consumer would have a different perception or mindset of what a return product should look like. If someone's collecting sneakers, they would not, they want the box to be pristine. you know, I've seen some people who would even like laminate the bar, like the shoe, which I don't really get. What's the point of getting a shoe if you're not going to wear it, or if you're just going to just put it on a, um,
+
+a shelf so it's almost like making a shoe showroom at your home. yeah, that's yeah, mean shoe I think is a really good example of where the return good has to look pristine as well. ⁓
+
+Vidula Shetye (28:47)
+Yeah,
+
+and a lot of work goes into that experience, right? So ⁓ my Disney New Balance shoes, the box is gorgeous, right? And I actually have it in a separate bag, because I'm like, yeah, these are not shoes I'm going to be wearing everywhere. But everything from the box is gorgeous, and ⁓ it's the experience of it, right? So I wouldn't ask any
+
+Shivang (28:52)
+Mm-hmm.
+
+Mm-hmm. Mm-hmm. Mm-hmm.
+
+Mm-hmm.
+
+Vidula Shetye (29:16)
+brand or company out there to like, you know, hey, you know, to meet all of this, you need to let go of all of that. Like, you know, your customer experience and those are all things you need to take into account before deciding your ideal path that your product takes once it comes back to you.
+
+Shivang (29:24)
+Mm-hmm.
+
+That makes sense because I mean, products are also experiences as you kind of rightly described where the customer is not just buying it for buying the actual commodity, but for the way it kind of gets packaged and sent at your home. ⁓ I mean, there's a recent example. I think there's this doll called Laboohoo and like people are crazy about the packaging itself because the experience of opening it, the excitement of not knowing what exactly is going to be in there itself is an experience.
+
+Whereas a doll is just a doll, right? So ⁓ It's I think it's more about the experience more than the product sometimes and Returns play a role in it because if you just send that return product as is and without taking into consideration Okay, maybe I need to change the packaging of it just like you were describing right like if the shrink wrap is Not good. You would change the shrink wrap if the box is not good. You would do that I think that's very important in the returns process where
+
+you're making it as pristine as you can possible without breaking the bank or at the same time providing a good price point for them. ⁓ many brands in general are very cost sensitive, right? Margins are single digit. What would your advice be? How do you kind of...
+
+balance between it, right? Like because a lot of brands that I have worked with or I've had a chance to observe from from a distance is that many times they would not look at returns as something they want to refurbish and put back into the cycle just because the cost of it is like 30-40 % of the product itself. So they'll essentially make a loss if they try to, you know, put it back into circulation, at least through their channels. So like what would be your advice of how to balance between
+
+the sustainability, is so important at the same time, the cost that goes into making sustainability a success.
+
+Vidula Shetye (31:27)
+I would say honestly in this part, it's data.
+
+A lot of things that I've seen like through my career is that there's a lot of like anecdotal information that floats around there. Right. So like, Hey, ⁓ I got like this call and there's an issue here and whatever else. like data is king. Like that's one of the things teams that I've worked with, they know about me. Like, Hey, we can make whatever decision we need to, but let's make sure it's grounded in data. And what it does, it allows you.
+
+to look at your operations with a critical eye, right? And then start to make trade-offs around what decisions you're making and ⁓ investigate your outliers as well. So ⁓ a brand, for instance, could look at their returns, especially if they're working like direct to consumer as well as working in wholesale, working with retail and all of that.
+
+is ⁓ what's my cost to serve the customer? So if an e-comm customer calls us and says, hey, ⁓ my product's damaged, I need a replacement. I've shipped a new replacement to them. But what's my cost to get that return back from them? And in the grand scheme of my returns process, how much volume am I getting from them? So you could then actually make the case to say that ⁓
+
+you know, ⁓ e-waste facilities, like, you you have e-waste bins at pretty much every single, like, Home Depot, Lowe's, their entrances.
+
+Shivang (33:04)
+Mm-hmm.
+
+Vidula Shetye (33:06)
+You could actually say that, yeah, I'll ship a replacement to these customers, but ⁓ tell them to go e-waste it near them, right? I don't really want them because I get 10 units back from this process. But for my retailers, I actually get like thousands of units that are enough to actually put through my refurb process and make my refurb process like more viable, right? I gave you the example earlier of like customers actually like returning
+
+⁓ making multiple returns ⁓ from a single location. Once you have that data, you can actually talk to them and ⁓ maybe change the behaviors that are around ⁓ that. The other example would be around ⁓
+
+like, you know, return allowances, a lot of retailers take return allowance. If you look at the math behind like what your costs are, is the return allowance percentage that the customer is actually asking for actually lower, right? There's more money in your pocket, right? ⁓
+
+Shivang (34:01)
+Mm-hmm. Mm-hmm.
+
+Mm-hmm.
+
+Vidula Shetye (34:16)
+Then the other part is like, look at your process. Like if you're sending your product, your refurbishing isn't happening on site. ⁓ Even though you get individuals shipped to you, can you ship back in bulk to your refurb facility, right? To keep costs down. Like it's very much ⁓ the more you...
+
+data you start collecting, the more you can start making trade-offs, right? Like, hey, this customer is really abusing our returns policy, right? Here's the data to back it up and have those conversations that allow you to reduce the amount of money you're leaving on the table. ⁓ One of the unique things we found when I was at Ecobee was with one of our retailers.
+
+Shivang (34:47)
+That's true.
+
+Vidula Shetye (35:02)
+they would send us automatic notifications saying that, I'm going to be returning. ⁓
+
+But they did everything right, Consolidate the product and all of that and say, hey, I'm returning 100 units back to you. And every time our warehouse associate started processing it, we found that it was never 100 units, right? It would be slightly less. So in those situations, we developed a process where we actually went back to the retailer and said, hey, you're taking a credit for 100 units. We only got 80, right? ⁓
+
+Shivang (35:10)
+Mm.
+
+Wow.
+
+Mm-hmm.
+
+Vidula Shetye (35:36)
+Kind of like a reverse charge back. Like you get charged for shortages when shipping to the customer. If they're shipping something back to you and they're taking the credit for it, you expect to receive everything incomplete. Right. And it's only once like, I'm not saying anyone should do it like on day one, but as you start looking at your outliers, right. You can start putting processes in place that leave more money in your pocket. ⁓
+
+Shivang (35:41)
+Exactly.
+
+Mm-hmm.
+
+Vidula Shetye (36:03)
+just like, know this answer has gone on for long, but one other thing ⁓ many years ago is walking the warehouse and I was looking at the returns and I think it was a Costco return and Costco puts these stickers on the product with a reason for return, right? And one of the reasons for return was my wife made me return it, right? ⁓
+
+Shivang (36:06)
+No worries.
+
+Vidula Shetye (36:26)
+start looking at your data. How many people are returning product to you because of buyers remorse ? Is there something that you could do on your...
+
+website that you know that man could have perhaps shown it to his wife you know to like tell her like hey these are all of the benefits from the process right it's i know returns are not number one and like i wouldn't like if there's chaos in your supply chain not the first place i would tell anyone to go look for money but once you're the rest of your supply chain is stable
+
+Shivang (36:49)
+Mm-hmm.
+
+Thank
+
+Vidula Shetye (37:04)
+or you have a dedicated person working on returns, that's where absolutely you can look at your sustainability with a very clear lens and the costs that are involved.
+
+Shivang (37:16)
+Yeah, mean, that that that makes sense looking at your data to be able to segment what are the reasons reason codes essentially in technical terms of why people are returning things and then kind of realizing can I refuse this particular segment of returns, maybe by doing x, y, When I was at Amazon, you know, there was this thing that we did with respect to return codes was like, can we involve third party? So cycles, right? Like bicycles are
+
+something people buy and by the time they realize when it reaches home, they realize, right, this is going to take five hours to assemble and I don't know how to do it. Right. so a lot of people would return it just because no, this is not happening. I don't have five hours to assemble a piece of furniture or whatnot. And then I think this is something now we see on all Ecom websites where they have these third party, like I'll come to your home. I'll assemble it for you. You just have to pay 20 bucks, 30 bucks more. So that's the one way to kind of like that. I have seen an action to kind of reduce returns where
+
+you realize what is just like you were mentioning right what is the reason why people are returning obviously there's no answer for my wife made me return it i think there is no solution for that other than then what you describe with respect to maybe have some reasoning on the website but i think there are many reasons why there are common reasons why people return things and if you can kind of come up with a solution where they feel more comfortable returning it obviously there are also
+
+You know, people return return fraud is a big thing. This, this thing on the LinkedIn, I think this cup from, ⁓ from a founder of a company called two returns, two boxes, sorry. And they have this thing, they have this series, which is called as a shit people return. Right. So it's like they would, they would buy a shoe and they would send back a bag of stones. Right. So that's that return fraud is a real thing, which every brand.
+
+And retailer has to think about how to curb and how to get those bad actors out of your consumer base. 90 % of the people I would say are returning things because they didn't work out for them for one reason or the So for those 90 % of the people, if you can make it easier for them use it or like make it possible for them, think it's still like, that's one way you can return. One thing that I've also seen, especially we're talking about hot know, like microwaves and those things like that.
+
+Some brands make their customers keep the product just like you were like mentioning But I think in your case that you described is very insightful is that you can take it to an e-waste But I have seen where someone would just say that hey send me a photo after cutting the cord of it So it's like it's of nobody's use which I think is not the right approach because the customer is returning it but why cut a cord where nobody else can use it now and it actually has to go back to a facility for somebody to
+
+use it, could be like, yeah, you give it to e-waste, maybe they send it to Goodwill or some charity and whatnot, and it can still be used, right? It's why just make it like somebody cut the cord and then just dump it in ⁓ your regular dumpster that come to our home. that's something that's something ways I have seen are good with the return process and somewhere it doesn't make sense, especially the cutting of cord didn't make sense to me. ⁓ You can even
+
+sell it through secondary channels, right? Or like create some sort of a resale program that, hey, I'm just going to send you a shipping label maybe in a month or so, but it can go, you know, I'm going to resell it through my website or my resale channel. Just slap that label and send it to me.
+
+Vidula Shetye (40:44)
+Yeah, it very much like in the tech space, it opens up a couple of different avenues for us, like for because we have the serial number of the product, we knew.
+
+Shivang (40:55)
+Mm-hmm.
+
+Vidula Shetye (40:56)
+that it was completely useless as a product. So the risk of them reselling it or fraud in the process minimizes it. But looking at the two boxes example, some of the stuff that they've posted. ⁓
+
+Shivang (41:09)
+Mm-hmm
+
+Vidula Shetye (41:14)
+people who are bad actors, they'll figure out a way to like defraud the process. But again, your data, right? Like how many times, you know, how big an issue is it like, okay, one person out of the thousands of returns you're getting versus, know, like, okay, yeah, 10 % of my customers are like messing with my entire returns process. Like that's where like your data really helps you make, you know, those critical decisions.
+
+Shivang (41:42)
+Yeah, definitely. ⁓ Very interesting. I think let's make a segue going into the other very important aspect and with your experience, how do you approach supply chains during peak or disruptions or where it's not business as usual?
+
+Vidula Shetye (41:59)
+I think for that, like it really comes down to me, like looking at your process with a very critical eye. Everything needs to be built for scalability, right? You need to understand like what's the bare minimum I need ⁓ to meet all of my requirements, right? And then start designing your process around it.
+
+If you don't understand what that process needs to be, that's where I've seen tech ⁓ implementations go completely sideways and whatever else, because you didn't understand your process well enough to actually define the requirements for your IT team to go and do what they do best. So I'll give you an example. At Ecobee, we were looking at our returns process. ⁓
+
+we were looking at the amount of information we were collecting from the customer to, and this is before anything was automated. So this was like a manual process of like, what information are we collecting from the customer to process a return? So one of the questions we asked was like, hey, are you shipping us an open box or a sealed box? Right? Fairly valid question, but then look at it from the process perspective, right? If a customer
+
+said, I'm sending you a sealed box and when you received it at the warehouse it was an open box. What exactly are you going to do with that information? Like you're not going to go back to the customer and say, hey you were going to send me a sealed box but you sent me an open box. Look at pieces of information like that. Like hey, it's a good question maybe to ask but if I want to track
+
+the condition of my returns, track it when you get it rather than the source of where the process is starting. Another part we used to do was ask customers for the serial number. For ⁓ DTC processes, it worked because they weren't really buying bulk unless they had multiple thermostats in a house. But from a
+
+in a wholesale B2B perspective.
+
+What we found is that it would be someone in the field who would say, hey, here's the serial number, send it to head office. Head office would do their process to initiate the return and whatever. So that would be a serial number mismatch. ⁓ What are you going to do with that if there's a mismatch? You're not really going back to them and saying, hey, you were going to send me one, two, three. You sent me three, four, five. I'm going to ship three, four, five back to you. You ship one, two, three to me. Like so much inheritance.
+
+Shivang (44:46)
+Mm-hmm.
+
+Vidula Shetye (44:47)
+ways, but we used to waste time asking them, like for them to collect that information. Like for me, what actually matters is like, Hey, ⁓ what's your name? What's your address? What product are you returning and how many, right? Everything else happens at the warehouse. The warehouse records, like, ⁓ what's the condition of the return? Did it come back pristine? Did it not come back pristine? And looking at the process from that,
+
+Shivang (44:54)
+Mm-hmm.
+
+Vidula Shetye (45:14)
+perspective rather than like, let's collect all the information that we're not going to do anything with. And it applies similarly to like other processes. Like, okay, are you doing something just because it was good or like, you it sounds nice or does it actually have some value at the end of it?
+
+Shivang (45:21)
+Mm-hmm.
+
+Yeah, I mean, is there is it? Are you really solving a problem or just trying to like, like put a problem aside? I think it's very important. So on the forward flow, right? Like when Black Friday or you know, Christmas or you know, like the big events would, you know, come in, would anything change about your approach to your supply chains? Like would you have, you know, like the all hands sort of meetings, which you know, some companies have like, all right, all the or like, would you plan for temps or like,
+
+Like what does your mental model look like when big events are coming in or a big launch is coming in? Would you do anything differently during that time? Both sides, like forward or reverse, any side.
+
+Vidula Shetye (46:14)
+So.
+
+So planning for that.
+
+would start way in advance and it would actually start with our supply planning team and our demand planning team. Where they're going through the motions of like figuring out, okay, what's the uplift that I'm expecting from, you know, XYZ, ⁓ you know, promotional event? What does that look like? And then what we would do is actually take that information and with the data that we had, share it with our warehousing team that would go ahead and figure out, okay, what are the peaks that we
+
+Shivang (46:25)
+Mm-hmm.
+
+Vidula Shetye (46:48)
+need to plan for, right? So yes, it's Prime Day right now, but we already shipped our Prime Day product to Amazon like weeks ago, right? So. ⁓
+
+The peak that the warehouse is planning for happened quite a few weeks ago, right? But if it's Black Friday, then what do historical patterns show us? And then working with our customer team as well, right? Is there anything that you can do to like a customer that always places their order at like month end? Can you do something to move that big order earlier, right? For me, the way I would look at it with our team is that every single team is involved.
+
+Shivang (47:20)
+Mm-hmm.
+
+Vidula Shetye (47:29)
+in trying to figure out what we can do to make whatever promotional event happen as seamlessly as possible. So the all hands or ⁓ collaboration that would happen would happen right from the beginning. If there's delays in production that would impact a couple of weeks from now.
+
+what we're going to ship out onto customers, we're tracking it right from there. Like logistics knows what's important to supply and demand. Warehousing knows when exactly product is going to hit the warehouse and how to plan for it, right? Like, hey, you're going to get this massive receipt tomorrow. Let's finish receiving everything else that's on our floor so that tomorrow when the hot receipt comes in, you're able to process it right away, right? So for me, the key is making sure that
+
+Shivang (48:13)
+Mm-hmm.
+
+Vidula Shetye (48:20)
+that every aspect of the supply chain knows how important they are to the process and that there's information flowing as quickly as possible. The example I would give my team, very corny, but it's kind of like if you watch a basketball game, Not everyone is shooting for the hoop, but everyone knows what they need to do to pass the ball to get it to the person who's ultimately going to shoot, right? And that's where the magic of your supply chain also.
+
+Shivang (48:26)
+Very nice.
+
+Mm-hmm.
+
+Mm-hmm.
+
+Vidula Shetye (48:50)
+happens right like everyone knows what role they're playing so that you can actually shoot.
+
+Shivang (48:55)
+That's really like, I think I would relate with that analogy a lot because you you're trying to make them feel important that they're important to the process because if you know, the point guard doesn't give the ball to the other person, it's not going to go through the hoop. So, and it's important, like every role is important with respect to that. And if one, if one role is, is running behind, it's like a cascading effect that it would be seen across the supply chain. Yeah. I mean, I think planning definitely
+
+plays a big role, knowing what to expect and preparing teams to what to expect, I think is very important in supply chain. One last question from me, I think, would be over here, would be like, know, it's more of an advice question. So, you know, like, let's assume that you're looking at, and there are many brands like this right now. They have, you know, assume there's a brand or a retailer that has like 20%, 15 % returns rate.
+
+What would be your advice? Where should they start ⁓ some tangible advice that a fellow supply chain leader can take?
+
+Vidula Shetye (49:59)
+I think for the first part is like the thing they need to look into is ⁓ what's actually happening with the returns when it comes to your warehouse, right? ⁓ Understand like, you know, ⁓ like the actual flow of the product so you're not building up like, know.
+
+weird process where there's just overflow everywhere right make sure that you don't really allow like ⁓ backlog to accumulate and then go ⁓ and ⁓ like
+
+Sorry, let me summarize this better. Make sure that you actually have a process for handling all of your returns, right? And then the next part is start with the data, right? Like once you actually have a good flowing process at the warehouse, let's start collecting information that tells us a bit more about like the nature of the returns, right? Why are there returns, right? What is the condition of the returns? Like, yes, you have like 20 % returns, but everything's coming back
+
+Shivang (50:39)
+again.
+
+Vidula Shetye (51:07)
+team, what's causing that? Right? Like, is it just like overall buyers or mores from like every single promotion that you're running or whatever else it is? Right? So ⁓ that's really important for me. Like the first thing I would say is that make sure you have like, if your returns are truly that high, this is a part of the process that you do need to look at and ensure that you have a process at the warehouse to ensure that there's no backlog and then start looking at your data. Right?
+
+Yes, it might be 20 % but it may also not be 20 % because there's something that's going wrong and ⁓ causing like I've seen all sorts of like reasons that inflate your returns numbers but it comes down to like bad process.
+
+Shivang (51:53)
+make sense and I mean I think ⁓ what what I can take out of it is looking at your data which is something I think most brands would not do until it's too late with respect to all right if if that's that's also a very cost-effective way to kind of start approaching the problem where you're not involving your warehouse teams or your operations team but you're just simply analyzing the data and seeing what exactly is causing this return rate
+
+And if it's just bad data, is it just for some any other reason? Can it be informed at least in the forward flow with respect to maybe we are messing up the packaging every time and that's why the brands are returning? maybe ⁓ people were looking for one Pantone color, but the other Pantone color is getting delivered, so there's something wrong with your ⁓ product itself.
+
+And data, think it gives you an easier way to kind of segment this problem, especially when as things pile up. But what, what, what, know, like many brands would do, I think is, especially when you're kind of growing, when you're going, because it turns is never somebody's top of mind. It's always the problem that comes last, especially when you're growing as a brand. It's like, yeah, I'm, I'm having, I'm having so much workload fulfilling the forward flow. I, that will be the last problem I would want to solve.
+
+But as you scale, the problem increases. And as the problem increases, the cost tied to it increases and the space tied to it increases.
+
+Vidula Shetye (53:21)
+Yeah. And it's the 80-20 rule, right? You're not going to fix every aspect. It's the same thing like with your forward.
+
+There's multiple different ways you need to ensure your forward flow is working the right way. Shipping to Amazon is not the same process as shipping to Home Depot. And you have different processes for that. Same thing with your returns. It's coming from multiple different areas. You don't need to boil the ocean. Start with your biggest problem and then work your way down.
+
+Shivang (53:51)
+Yeah, and that's really insightful. And when one would do that, they would realize that 50 % of their problem can be solved by just one reason, that the returns are coming from one particular segment. It won't be like that fragmented where one is not able to choose which path or which return problem to start with. This has been a pleasure. Please go ahead. You were saying something.
+
+Vidula Shetye (54:15)
+no, nothing, sorry.
+
+Shivang (54:16)
+Got it, got it. Well, as I was saying, this has been a pleasure. I'd love to kind of go through the rapid fire with you. This is more to know you more as a person. Are you ready for those?
+
+Vidula Shetye (54:26)
+Sure.
+
+Shivang (54:27)
+Awesome. So I'm a big book reader. like one question I always ask my guests are like any favorite book or a podcast that you'd recommend others to listen to.
+
+Vidula Shetye (54:37)
+So for me, from a supply chain perspective, a book I would recommend to everyone is "The Goal" by Eli Goldratt. It looks at everything from a very common sense perspective and is a good foundation for anyone interested in supply chain, interested in processes, 100 % recommend.
+
+Shivang (54:55)
+That's very nice. I think I have the book. still haven't had a chance to. It's very dense is what I would say my experiences. ⁓ But I think for a supply chain, it's definitely a really good book that everyone should read.
+
+Vidula Shetye (55:07)
+You know, that book was actually like my very first internship. My manager gave me the book and said, hey, ⁓ your onboarding is basically reading the book. So I remember the first week actually reading the book that was onboarding before I was given any other tasks.
+
+Shivang (55:26)
+I I think it must have served you a lot because that book is, think, almost recommended by many supply chain leaders as a Bible of learning about supply chain. What's your favorite app on your phone?
+
+Vidula Shetye (55:40)
+So I have family all across the world. So my favorite app is actually WhatsApp. ⁓ When I look at how much I use it now versus like, you know, what we used to do 20 years ago, I'm like, my God, the world has come forward so much.
+
+Shivang (55:55)
+Mm-hmm.
+
+WhatsApp, think even for me as well, have family all across. So WhatsApp has been, I use it a lot too. it actually, I think it evolved the entire messaging industry because I can also relate to 20 years ago when we were getting those mobile packs and 20 cents, 20 cents a message and you
+
+Vidula Shetye (56:16)
+Yep, the phone cards.
+
+Shivang (56:20)
+Yeah, and then,
+
+you know, at some your messages would run out and you'll be like, all right, this is my last message. I'll talk to you later. Which, which.
+
+Vidula Shetye (56:27)
+⁓ even before that,
+
+like when you were really young kids, it would be a once a week phone call to your grandparents or whatever, right? Because like calls were so expensive and now you're like, ⁓ I'll just leave the phone on as I cook and we're cooking together.
+
+Shivang (56:35)
+Yes.
+
+Yeah, exactly. We've come a long way with that for sure, like communication. What's the most underrated skill in operations you feel like?
+
+Vidula Shetye (56:57)
+I would say critical thinking.
+
+Shivang (56:59)
+Critical thinking, yeah. I think in life in general, like critical thinking is an underrated skill. Like the more you have it, it's better because it... Another one I would say is emotional intelligence, I think is an underrated skill as well. Your favorite city that you've traveled or worked in?
+
+Vidula Shetye (57:16)
+So, traveled, would always say Bombay at the top of the list. But I've always worked in Toronto, so it's the only city.
+
+Shivang (57:26)
+Got it, got it, got it. Yeah, I think you've mentioned to me that you've traveled for work to Vancouver, but yeah, would you still prefer Toronto among?
+
+Vidula Shetye (57:35)
+Well, Toronto is home right now, but I've really loved all the places that I've traveled to. So I think, yeah, if I was given the opportunity to go somewhere else, yeah, that'd be a new adventure.
+
+Shivang (57:47)
+Awesome. One leadership lesson that you wish that you learned a little earlier in your life, in your career.
+
+Vidula Shetye (57:53)
+I
+
+would say it's probably listening.
+
+Like I was fortunate enough, like when I was early in my career where a coworker kind of pulled me aside and said like, hey, you you might actually be right about the answer, but it'll really help you if you start listening to like what everyone else's inputs are into the process to like help you go further. So I'm really thankful. Like I was talking to that coworker all these years later and she was like, wow, I'm so proud of you.
+
+Shivang (58:26)
+Yeah, that's yeah, listening is definitely like an important skill. ⁓ Like earlier in my career, I you know, you used to have these instances where, you know, someone would be speaking and I'm already formulating my answer, which I think is a very bad habit, which I had to work through as well where active listening is so underrated is what I would say like listen through listening, training, internalizing and then coming up with your response is much better than just, you know, like ⁓ half baked listening.
+
+What's your personal hobby or like, you know, like things that keep you grounded outside work.
+
+Vidula Shetye (58:59)
+I really like reading. So any sort of book, doesn't really need to be work related, fiction, whatever else would 100 % recommend. Last week I read a book called How to Age Disgracefully, fiction, but yeah, complete comedy about like these people who are trying to save a community center. So yeah, it was an interesting book.
+
+Shivang (59:04)
+Mm-hmm.
+
+you
+
+Mm-hmm.
+
+Wow, I'll have to look that one up for sure like disgracefully like I was the first time you said it was like gracefully is she saying gracefully or disgracefully but I'll have to look that up for sure. Awesome. So if not supply chain and operations what career you would you have been?
+
+Vidula Shetye (59:40)
+So ⁓ I would say an architect. Like that was my ambition growing up. But then eventually I realized like just how the housing market is changing where people are not really like, you know, in India, for instance, people have that architect who helps them design their dream home, but that's not really the norm anymore. People are going buying directly from builders who already have all of that. And it's the exact same thing. So it was ⁓ gentle.
+
+Shivang (59:50)
+Mm-hmm.
+
+Mm-hmm.
+
+Mm-hmm.
+
+Vidula Shetye (1:00:10)
+encourage not to become an architect, but if I wasn't in supply chain I think I would have definitely been there.
+
+Shivang (1:00:12)
+you
+
+Yeah, that's actually it's it would have some overlap with the supply chain as well because it needs planning, execution and know, kind of coordinating with teams. For me, it would have been like archaeologist. But you know, growing up, I was really interested in like Harappan culture and then the Mughal empires and whatnot, whatever happened in India. And I quickly realized there's no money in it. So, you know, like my parents were like, there's going to be no point of being a history major or anything of that sort.
+
+⁓ So yeah, super interesting with light. I really had a great time speaking with you. Learned a ton. I'm sure. Well, I'm glad I hope we didn't bore you and it was a real pleasure talking to you. Thanks a lot for coming on the show.
+
+Vidula Shetye (1:00:52)
+I'm doing as well.
+
+Thank you so much.
+

@@ -1,15 +1,14 @@
 /**
  * Backend Integration File
  */
-
-import axios from 'axios';
-import { z } from 'zod';
+import axios from "axios";
+import { z } from "zod";
 
 // Create an Axios instance for internal API calls
 const internalApiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   // withCredentials: true,
 });
@@ -25,7 +24,7 @@ internalApiClient.interceptors.request.use(
     // }
     return config;
   },
-  (error: unknown) => { 
+  (error: unknown) => {
     return Promise.reject(error);
   }
 );
@@ -40,14 +39,14 @@ internalApiClient.interceptors.response.use(
       const { status /*, data */ } = error.response;
       if (status === 401) {
         // Handle unauthorized access (e.g., redirect to login)
-        console.log('Unauthorized access - redirecting to login...');
+        console.warn("Unauthorized access - redirecting to login...");
         // window.location.href = '/login'; // Consider using router for SPA navigation
       } else if (status === 403) {
         // Handle forbidden access
-        console.log('Forbidden access');
+        console.warn("Forbidden access");
       } else if (status >= 500) {
         // Handle server errors
-        console.error('Server error occurred');
+        console.error("Server error occurred");
       }
     }
     return Promise.reject(error);
@@ -73,9 +72,12 @@ const earlyAccessApi = {
       // Validate payload against the schema before sending
       const validatedPayload = EarlyAccessPayloadSchema.parse(payload);
       // Use the correct API endpoint
-      const response = await internalApiClient.post('http://localhost:5000/api/earlyAccessRegistrations/register', validatedPayload);
+      const response = await internalApiClient.post(
+        "http://localhost:5000/api/earlyAccessRegistrations/register",
+        validatedPayload
+      );
       return response.data;
-    } catch (error: unknown) { 
+    } catch (error: unknown) {
       // Handle Zod validation errors specifically
       if (error instanceof z.ZodError) {
       }
@@ -84,7 +86,4 @@ const earlyAccessApi = {
   },
 };
 
-export {
-  internalApiClient,
-  earlyAccessApi,
-};
+export { internalApiClient, earlyAccessApi };

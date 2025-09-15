@@ -1,0 +1,92 @@
+﻿"use client";
+
+import { notFound } from "next/navigation";
+import React from "react";
+
+import { useQuery } from "@tanstack/react-query";
+
+import { DynamicBreadcrumb } from "@/src/components/ui/DynamicBreadcrumb";
+import PageSkeleton from "@/src/components/ui/PageSkeleton";
+import { LotListingDetailClient } from "@/src/features/marketplace-catalog/components/lot-listing";
+import { fetchLotListingById } from "@/src/features/marketplace-catalog/services/lotListingQueryService";
+
+/**
+ * Lot Listing Details Page - Optimized with TanStack Query
+ * URL Structure: /marketplace/lot/[id]
+ * Example: /marketplace/lot/923-191-1493 (real public_id)
+ *
+ * Displays image and title, logs everything to console
+ */
+
+interface LotPageProps {
+  params: Promise<{ id: string }>;
+}
+
+// Custom hook for lot listing data with optimized caching
+const useLotListingData = (id: string) => {
+  return useQuery({
+    queryKey: ["lotListing", id],
+    queryFn: () => fetchLotListingById(id),
+    staleTime: 5 * 60 * 1000, // 5 minutes - data stays fresh
+    gcTime: 30 * 60 * 1000, // 30 minutes - cache retention
+    refetchOnWindowFocus: true, // Refetch when user returns to tab
+    retry: 3, // Retry failed requests 3 times
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30_000), // Exponential backoff
+    throwOnError: false, // Handle errors gracefully
+  });
+};
+
+// Main page component with proper parameter handling
+export default function LotPage({ params }: LotPageProps) {
+  // Extract id from params promise using React.use() - Next.js 15.3 pattern
+  const { id } = React.use(params);
+
+  const { data: lotListing, isLoading, isError, error } = useLotListingData(id);
+
+  // Console logging as requested - logs everything
+  console.log("ðŸ·ï¸ LOT LISTING DETAILS PAGE - Full Data:", {
+    id,
+    isLoading,
+    isError,
+    error,
+    lotListing,
+    fullData: lotListing,
+  });
+
+  if (isLoading) {
+    // Use the reusable PageSkeleton component
+    return <PageSkeleton type="lot" />;
+  }
+
+  if (isError || !lotListing) {
+    notFound();
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Breadcrumb Navigation */}
+      <div className="border-b border-gray-100">
+        <div className="max-w-8xl mx-auto px-6 py-4">
+          <DynamicBreadcrumb
+            items={[
+              { label: "Home", href: "/marketplace" },
+              { label: "Lot Listings", href: "/collections/lots" },
+              {
+                label: lotListing.title,
+                href: `/marketplace/lot/${id}`,
+                current: true,
+              },
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* Lot Listing Details Content */}
+      <div className="max-w-8xl mx-auto px-4 py-6 lg:px-6">
+        <LotListingDetailClient lotListing={lotListing} />
+      </div>
+    </div>
+  );
+}
+

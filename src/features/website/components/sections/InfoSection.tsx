@@ -1,53 +1,53 @@
-'use client'
+"use client";
 
-import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { FaBriefcase, FaShoppingBag } from 'react-icons/fa'
-import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/image";
+import Link from "next/link";
+import React, { useRef } from "react";
+import { FaBriefcase, FaShoppingBag } from "react-icons/fa";
+
+import { motion, useInView } from "framer-motion";
 
 const InfoSection: React.FC = () => {
-  const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      id='stats'
-      ref={ref}
-      className='py-12 md:py-16 bg-white'
-    >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center mb-16 md:mb-20'>
-          <h2 className='text-3xl md:text-5xl font-bold'>
-            Where brand protection meets{' '}
-            <span className='relative text-[#43cd66]'>
+    <section id="stats" ref={ref} className="bg-white py-12 md:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 text-center md:mb-20">
+          <h2 className="text-3xl font-bold md:text-5xl">
+            Where brand protection meets{" "}
+            <span className="relative text-[#43cd66]">
               buyer confidence
-              <span className='absolute -bottom-1 left-0 w-full h-1 bg-[#43cd66] rounded-full opacity-70'></span>
+              <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-[#43cd66] opacity-70"></span>
             </span>
           </h2>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20'>
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-20">
           {/* Sellers Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className='relative group'
+            className="group relative"
           >
             {/* Card with image overlay */}
-            <div className='relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 h-full'>
+            <div className="relative h-full overflow-hidden rounded-3xl border border-gray-100 shadow-xl">
               {/* Background gradient */}
-              <div className='absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 z-0'></div>
+              <div className="absolute inset-0 z-0 bg-gradient-to-br from-white via-white to-gray-50"></div>
 
               {/* Single person smiling photo */}
-              <div className='absolute top-0 right-0 w-full md:w-3/5 h-full overflow-hidden z-10'>
-                <div className='relative w-full h-full'>
+              <div className="absolute top-0 right-0 z-10 h-full w-full overflow-hidden md:w-3/5">
+                <div className="relative h-full w-full">
                   <Image
                     src="https://images.unsplash.com/photo-1633367583895-08545d733dfe?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Smiling business person"
                     fill
-                    style={{ objectFit: 'cover', objectPosition: 'center left' }}
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "center left",
+                    }}
                     className="transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
@@ -57,26 +57,28 @@ const InfoSection: React.FC = () => {
               </div>
 
               {/* Content section */}
-              <div className='relative p-10 md:p-12 flex flex-col h-full z-20'>
-                <div className='w-full md:w-3/5 z-10'>
-                  <div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#ecfdf3] shadow-sm mb-6'>
+              <div className="relative z-20 flex h-full flex-col p-10 md:p-12">
+                <div className="z-10 w-full md:w-3/5">
+                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfdf3] shadow-sm">
                     <FaBriefcase
-                      className='w-7 h-7 text-[#43CD66]'
-                      aria-hidden='true'
+                      className="h-7 w-7 text-[#43CD66]"
+                      aria-hidden="true"
                     />
                   </div>
-                  <h3 className='text-3xl font-bold text-gray-800 mb-6'>Sellers</h3>
-                  <p className='text-gray-700 text-lg leading-relaxed mb-8'>
-                    Brands and retailers list surplus on Commerce Central to recover
-                    more while staying in full control of where, how, and to whom it
-                    sells.
+                  <h3 className="mb-6 text-3xl font-bold text-gray-800">
+                    Sellers
+                  </h3>
+                  <p className="mb-8 text-lg leading-relaxed text-gray-700">
+                    Brands and retailers list surplus on Commerce Central to
+                    recover more while staying in full control of where, how,
+                    and to whom it sells.
                   </p>
                   <div className="transition-transform duration-300 group-hover:translate-x-2">
                     <Link
-                      href='/earlyaccess'
-                      className='inline-flex items-center justify-center px-7 py-3.5 bg-[#43CD66] text-[#ffffff] font-medium rounded-full transition-all duration-300 hover:bg-[#38b158] hover:shadow-lg hover:shadow-[#43CD66]/30'
+                      href="/auth/login"
+                      className="inline-flex items-center justify-center rounded-full bg-[#43CD66] px-7 py-3.5 font-medium text-[#ffffff] transition-all duration-300 hover:bg-[#38b158] hover:shadow-lg hover:shadow-[#43CD66]/30"
                     >
-                      Early Access
+                      Sell on Commerce Central
                     </Link>
                   </div>
                 </div>
@@ -89,21 +91,24 @@ const InfoSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className='relative group'
+            className="group relative"
           >
             {/* Card with image overlay */}
-            <div className='relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 h-full'>
+            <div className="relative h-full overflow-hidden rounded-3xl border border-gray-100 shadow-xl">
               {/* Background gradient */}
-              <div className='absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 z-0'></div>
+              <div className="absolute inset-0 z-0 bg-gradient-to-br from-white via-white to-gray-50"></div>
 
               {/* Single person smiling photo */}
-              <div className='absolute top-0 right-0 w-full md:w-3/5 h-full overflow-hidden z-10'>
-                <div className='relative w-full h-full'>
+              <div className="absolute top-0 right-0 z-10 h-full w-full overflow-hidden md:w-3/5">
+                <div className="relative h-full w-full">
                   <Image
                     src="https://images.unsplash.com/photo-1592275772614-ec71b19e326f?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Smiling shopping person"
                     fill
-                    style={{ objectFit: 'cover', objectPosition: 'center left' }}
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "center left",
+                    }}
                     className="transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
@@ -113,36 +118,37 @@ const InfoSection: React.FC = () => {
               </div>
 
               {/* Content section */}
-              <div className='relative p-10 md:p-12 flex flex-col h-full z-20'>
-                <div className='w-full md:w-3/5 z-10'>
-                  <div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#ecfdf3] shadow-sm mb-6'>
+              <div className="relative z-20 flex h-full flex-col p-10 md:p-12">
+                <div className="z-10 w-full md:w-3/5">
+                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfdf3] shadow-sm">
                     <FaShoppingBag
-                      className='w-7 h-7 text-[#43CD66]'
-                      aria-hidden='true'
+                      className="h-7 w-7 text-[#43CD66]"
+                      aria-hidden="true"
                     />
                   </div>
-                  <h3 className='text-3xl font-bold text-gray-800 mb-6'>Buyers</h3>
-                  <p className='text-gray-700 text-lg leading-relaxed mb-8'>
-                    Manually vetted buyers purchase inventory with tools and support
-                    to avoid bad loads and finally trust what shows up.
+                  <h3 className="mb-6 text-3xl font-bold text-gray-800">
+                    Buyers
+                  </h3>
+                  <p className="mb-8 text-lg leading-relaxed text-gray-700">
+                    Manually vetted buyers purchase inventory with tools and
+                    support to avoid bad loads and finally trust what shows up.
                   </p>
                   <div className="transition-transform duration-300 group-hover:translate-x-2">
                     <Link
-                      href='/earlyaccess'
-                      className='inline-flex items-center justify-center px-7 py-3.5 bg-white border border-[#43CD66] text-[#43CD66] font-medium rounded-full transition-all duration-300 hover:bg-[#43CD66] hover:text-white hover:shadow-lg hover:shadow-[#43CD66]/30'
+                      href="/auth/login"
+                      className="inline-flex items-center justify-center rounded-full border border-[#43CD66] bg-white px-7 py-3.5 font-medium text-[#43CD66] transition-all duration-300 hover:bg-[#43CD66] hover:text-white hover:shadow-lg hover:shadow-[#43CD66]/30"
                     >
-                      Early Access
+                      Buy on Commerce Central
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
-
           </motion.div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default InfoSection
+export default InfoSection;

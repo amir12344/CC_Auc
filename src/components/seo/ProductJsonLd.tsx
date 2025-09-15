@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Product } from '@/src/types';
+import { useEffect, useState } from "react";
+
+import { Product } from "@/src/types";
 
 interface ProductJsonLdProps {
   product: Product;
@@ -12,33 +13,35 @@ interface ProductJsonLdProps {
  * Adds structured data for products to improve SEO
  */
 export function ProductJsonLd({ product }: ProductJsonLdProps) {
-  const [jsonString, setJsonString] = useState('');
+  const [jsonString, setJsonString] = useState("");
 
   useEffect(() => {
     // Only run this on the client to prevent hydration mismatches
     const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
+      "@context": "https://schema.org",
+      "@type": "Product",
       name: product.title,
       description: product.description,
       image: product.image,
       sku: product.id,
       mpn: product.id,
       brand: {
-        '@type': 'Brand',
-        name: product.seller?.name || 'Commerce Central',
+        "@type": "Brand",
+        name: product.seller?.name || "Commerce Central",
       },
       offers: {
-        '@type': 'Offer',
+        "@type": "Offer",
         url: window.location.href,
-        priceCurrency: 'USD',
+        priceCurrency: "USD",
         price: product.price,
-        priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-        itemCondition: `https://schema.org/${product.condition || 'NewCondition'}`,
-        availability: 'https://schema.org/InStock',
+        priceValidUntil: new Date(
+          new Date().setFullYear(new Date().getFullYear() + 1)
+        ).toISOString(),
+        itemCondition: `https://schema.org/${product.condition || "NewCondition"}`,
+        availability: "https://schema.org/InStock",
         seller: {
-          '@type': 'Organization',
-          name: product.seller?.name || 'Commerce Central',
+          "@type": "Organization",
+          name: product.seller?.name || "Commerce Central",
         },
       },
     };
@@ -56,4 +59,3 @@ export function ProductJsonLd({ product }: ProductJsonLdProps) {
     />
   );
 }
-

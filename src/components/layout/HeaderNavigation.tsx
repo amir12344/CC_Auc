@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/src/lib/store';
+import Link from "next/link";
+import { useSelector } from "react-redux";
+
+import { RootState } from "@/src/lib/store";
 
 const HeaderNavigation = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
@@ -11,28 +12,28 @@ const HeaderNavigation = () => {
   if (!isAuthenticated) return null;
 
   return (
-    <nav className='md:flex items-center ml-6 space-x-6'>
+    <nav className="ml-6 items-center space-x-6 md:flex">
       <Link
-        href='/'
-        className='text-black font-medium hover:underline transition-colors'
+        href="/"
+        className="font-medium text-black transition-colors hover:underline"
       >
         Home
       </Link>
       <Link
-        href='/inbox'
-        className='text-black font-medium hover:underline transition-colors'
+        href="/inbox"
+        className="font-medium text-black transition-colors hover:underline"
       >
         Inbox
       </Link>
       <Link
-        href='/wishlist'
-        className='text-black font-medium hover:underline transition-colors'
+        href="/wishlist"
+        className="font-medium text-black transition-colors hover:underline"
       >
         Wishlist
       </Link>
       <Link
-        href='/buyer/deals'
-        className='text-black font-medium hover:underline transition-colors'
+        href="/buyer/deals"
+        className="font-medium text-black transition-colors hover:underline"
       >
         My Deals
       </Link>
@@ -40,4 +41,4 @@ const HeaderNavigation = () => {
   );
 };
 
-export default HeaderNavigation; 
+export default HeaderNavigation;

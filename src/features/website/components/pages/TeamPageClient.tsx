@@ -1,25 +1,24 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 // Dynamically import the TeamSection component
 const TeamSection = dynamic(
   () => import("@/src/features/website/components/sections/TeamSection"),
   {
     loading: () => (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse flex flex-col items-center">
-          <div className="h-32 w-32 bg-gray-200 rounded-full mb-4"></div>
-          <div className="h-8 w-64 bg-gray-200 rounded mb-2"></div>
-          <div className="h-4 w-48 bg-gray-200 rounded"></div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="flex animate-pulse flex-col items-center">
+          <div className="mb-4 h-32 w-32 rounded-full bg-gray-200"></div>
+          <div className="mb-2 h-8 w-64 rounded bg-gray-200"></div>
+          <div className="h-4 w-48 rounded bg-gray-200"></div>
         </div>
       </div>
     ),
-    ssr: true
+    ssr: true,
   }
 );
 
 export default function TeamPageClient() {
   return <TeamSection />;
 }
-

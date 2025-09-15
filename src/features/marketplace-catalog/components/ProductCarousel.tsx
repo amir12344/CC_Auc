@@ -1,10 +1,8 @@
-'use client'
+"use client";
 
-import React from 'react';
-import {
-  CarouselContent,
-  CarouselItem,
-} from "@/src/components/ui/carousel";
+import React from "react";
+
+import { CarouselContent, CarouselItem } from "@/src/components/ui/carousel";
 import { cn } from "@/src/lib/utils";
 
 interface ProductCarouselProps {
@@ -16,9 +14,12 @@ export function ProductCarousel({ items, className }: ProductCarouselProps) {
   if (!items?.length) return null;
 
   return (
-    <CarouselContent className={cn("-ml-6", className)}>
+    <CarouselContent className={cn("-ml-8", className)}>
       {items.map((item, index) => (
-        <CarouselItem key={index} className="pl-6 basis-1/2 lg:basis-1/4">
+        <CarouselItem
+          key={`carousel-item-${index}`}
+          className="basis-1/2 pl-8 md:basis-1/3 lg:basis-1/5"
+        >
           {item}
         </CarouselItem>
       ))}

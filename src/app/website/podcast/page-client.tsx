@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import SharedBackgroundPattern from '@/src/components/common/SharedBackgroundPattern';
+import { useEffect, useState } from "react";
 
+import SharedBackgroundPattern from "@/src/components/common/SharedBackgroundPattern";
+import PodcastEpisodesSection from "@/src/features/website/components/podcast/PodcastEpisodesSection";
 // Import the separate section components
-import PodcastHeroSection from '@/src/features/website/components/podcast/PodcastHeroSection';
-import PodcastPlatformsSection from '@/src/features/website/components/podcast/PodcastPlatformsSection';
-import PodcastEpisodesSection from '@/src/features/website/components/podcast/PodcastEpisodesSection';
-import TestimonialsSection from '@/src/features/website/components/sections/OnboardingSection';
+import PodcastHeroSection from "@/src/features/website/components/podcast/PodcastHeroSection";
+import PodcastPlatformsSection from "@/src/features/website/components/podcast/PodcastPlatformsSection";
+import TestimonialsSection from "@/src/features/website/components/sections/OnboardingSection";
 
 const PodcastPageClient = () => {
   return (
-    <main className="flex flex-col items-center relative">
+    <main className="relative flex flex-col items-center">
       {/* We're removing the SharedBackgroundPattern as we now have a background image in the hero section */}
       <div className="w-full">
         <PodcastHeroSection />

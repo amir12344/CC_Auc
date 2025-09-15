@@ -1,0 +1,708 @@
+Shivang (00:07)
+Today on the ReCommerce Show I'm thrilled to welcome Desta Raines. Desta is a distinguished sustainability leader with over two decades of experience shaping how some of the world's most influential companies think about sourcing, responsibility, and the circular economy. Most recently, she led sustainability strategy at North America's Sephora, where she launched the high impact program, Beauty (Re)Purposed a take back initiative that collected over 68,000 pounds of hard to recycle materials as of April 2025.
+
+Before Sephora, Desta held critical roles at Apple and Fairtrade USA, working at the intersection of ethical sourcing, labor rights, and global supplier program on innovation. She's also the current board chair of Responsible Sourcing Network and serves as a treasurer of International Society of Sustainability Professionals. In 2023, she was named Retail Sustainability Leader of the Year by RIS News.
+
+a testament to both her impact and her leadership. Today, she continues to shape the future of sustainable retail through board service, public speaking, and behind the scenes strategy. And we are honored to have her here. Desta, welcome to the show.
+
+Desta Raines (01:14)
+Thank you for having me today.
+
+Shivang (01:16)
+It's our pleasure. So let's start with something personal. What's a favorite quote or mantra that guides your career?
+
+Desta Raines (01:22)
+really like the line from the poem, The Road Not Taken by Robert Frost. It says something like, two roads diverged in the wood or in a wood, and I took the one that was less traveled, and that's made all the difference. And the reason I really like that is because I do feel like I have taken this other pathway where I have had this willingness to explore and to push the boundaries of what's considered to be a boundary.
+
+which has really helped me to lead on breakthrough ideas and partnerships and ⁓ create catalytic change.
+
+Shivang (01:54)
+Yeah, definitely. mean, looking into your career, I think you've chosen roles and paths that are very different than what others would choose. I mean, that's what makes you stand out and makes your role and impact very valuable, especially looking at it from a perspective of also the impact you've had in a consumer economy. So sustainability as a subject has been
+
+has so much value and you being a leader created so much impact there is so much valuable for the world.
+
+Awesome. So you've, you know, I already touched on, you've already, you've built a career in sustainability. You've worked in tech, you've worked in fashion, you've worked in beauty at some of the iconic brands like Apple, Fairtrade USA and Sephora. What originally drew you to this work?
+
+Desta Raines (02:39)
+That's a really great and true story. In the late 90s, I was the director of the American Chamber of Commerce in Vietnam. at that time, Nike had their big expose where a report was leaked about the factory conditions for one of their suppliers in Vietnam.
+
+Aaron Kramer, leads business for social responsibility and Michael Kobori, who is recently retired as a CSO at Starbucks. At that time he was working, I think at BSR, came to Vietnam sort of ⁓ on the behalf of Nike, who was one of those members and to check out like what was happening. And I just sat in this conversation and I was so intrigued about, you know, why the private sector would need to be auditing factories because wouldn't the government be taking responsibility and.
+
+seeing what the conditions were, like doing labor inspections. I just was super fascinated with that. And I took that when I left Vietnam and I returned to the U S I took that thought with me. And I just really started trying to explore, like, is there something here? And this is again, in the late nineties, I think, you know, at that time, I want to say 1995 Levi's had just launched the first code of conduct for supply chains. So this is very early, early days. And, ⁓ it was very,
+
+really interesting to find out like this function just sort of emerging. oftentimes I was being told it's a public relations function or it's a function in the legal department. But because I knew Nike was doing something, I knew the other companies must be doing something as well. So I was just I would say, to answer your question, it was really an intellectual pursuit at first and then has evolved into a career of passion for me.
+
+Shivang (04:16)
+Nice, mean, listening through this, I can say that you're one of the pioneers who kind of define what sustainability looks like in the retail industry or in the corporate environment.
+
+your time at Vietnam? Did you enjoy living in Vietnam?
+
+Desta Raines (04:29)
+Absolutely. It's a beautiful country. was a really wonderful time. And I was there when we were normalizing relations between the United States and Vietnam. So I was really involved with that whole process. We had lots of delegations coming over. All the Vietnam vets who were supporting the normalization of relations were there. The ambassador at that time was a former POW who had been John McCain and him were roommates at the Hanoi Hilton. So there was a huge amount of...
+
+Shivang (04:38)
+I
+
+Desta Raines (04:56)
+know, uplift happening at that time and American businesses were really coming in and it was, was a great time to be in Vietnam. And I've spent time there, of course, ever since going back and visiting it's, it's still say that it's changed quite a lot over the years, but I was really grateful to have that time there.
+
+Shivang (05:11)
+Yeah, definitely. I mean, it's very like, know, insightful to kind of head through how you've kind of used that opportunity to build a career altogether. So what was your, you like, you've kind of touched on it a little bit already, it was you were looking at different companies, but what was your initial mindset that made you a leader into this industry?
+
+Desta Raines (05:33)
+think my first job in the space was with a nonprofit called Social Accountability International. And it was really, they really focused first of all on a voluntary labor standard that they had created called SA8000. But I think the more important lesson I learned there was the multi-stakeholder engagement, right? So they had a board and they always engage with business government, trade unions and non-governmental organizations. I think I was groomed in the right way from the beginning.
+
+Shivang (05:50)
+Mm-hmm.
+
+Desta Raines (05:59)
+to think about the opportunities from a wider lens than I think many other people and companies were thinking about at that time. And I really took that forward, and I've taken that forward throughout the rest of the time that I've been working in this space to really consider not just the impact, but also the partnerships that can be possible. And I always think of this line that...
+
+My manager at Apple once said to me, but you're not a leader if nobody else is following you. And the only way to get engagement is to really engage all the people who are impacted in the space. And so I think that's really helped me and really framed how I approach the work. And just de facto, you become a leader because you're engaging people and organizations in the conversations. I'd say it's a bit of ⁓
+
+you know, like human centered design in there, but I think I didn't know what it was at the time. I didn't know the term, but that's essentially what I've been practicing.
+
+Shivang (06:49)
+Mm-hmm.
+
+That's insightful. mean, you've kind of looked at it from a nonprofit angle, from a corporate angle. And I really like the fact that you kind of narrated it in a partnership, kind of the partnership aspect of it. I think that's completely missed at times. So really insightful to hear that.
+
+So moving on more towards some of your recent work. So you've led Sustainability Roadmap at Sephora. How did you think about resale, re-commerce, packaging, all of those factors into your circularity goals at Sephora?
+
+Desta Raines (07:26)
+Yeah, there was a couple. know when I when I got to Sephora, we already had just launched a product donation program that was that was being run by somebody on our inventory team and I thought that was really great. Had strong partnership and Sephora still has a strong partnership today with a nonprofit called Project Glimmer where unexpired unsold product is donated and it supports women, women and girls of color. It's really a great great really great and strong partnership and then.
+
+Shivang (07:42)
+Mm-hmm.
+
+Desta Raines (07:53)
+You when I came to Sephora in 2020, was a goal and a priority of the CEO at that time to launch a take back program. And so that was really where I think I got my hands into it and my head into it to figure out how to make that really happen. And fortunately, around the time I was trying to unpack that we were approached by a nonprofit called PACT Collective, who solely focused on reducing and eliminating packaging waste in the beauty industry. So was just a perfect, perfect match at that time.
+
+Shivang (08:01)
+Mm-hmm.
+
+Desta Raines (08:20)
+And we were able to partner with them and launch the Beauty (Re)Purposed program, which is a take back program for every store in North America now has that. And I think that was really, really, really great. And I think for me, the power in that is that the subtext of that is that consumers, it's a consumer education program, right? In my mind, because it teaches consumers about the packaging, about the packaging problem, and also what they can do to.
+
+to help alleviate it by cleaning out their clean empty packaging that they cannot recycle at home and bringing it into a Sephora store and beyond Sephora, other brands and other retailers have joined in the interim. So Ulta, Nordstrom, Saks, there's a bunch of other companies and retailers who've come on board. And it's just like really nice to see the, as they say, the rising tide, all the boats.
+
+Shivang (09:04)
+Yeah, I really like the idea of, know, like, it's also good for businesses well, because, you know, if consumers are coming back into the store, there's an opportunity to do, you know, more business. So it kind of balances both aspects. You're helping them educate, get educated about how to be more sustainable in their practices with respect to packaging and whatnot. At the same time, I think businesses would find value by, you know, taking this approach where you're not just educating a consumer about how to be more sustainable, but
+
+creating a way for them to visit the stores again and again.
+
+Desta Raines (09:36)
+Yeah, I that was always my hope that we would help to inspire conscious consumerism and make people think about, you know, what they're buying, you know, rather because, yeah, and rather than like buying it and then returning it, which creates a whole other way stream, which I'm sure we will talk about today. And I think maybe the other thing is that, you know, when I saw this opportunity with Project Glimmer, I was also able to add hair tools to that donation program. before the hair tools.
+
+Shivang (09:42)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (10:00)
+were getting disassembled and going different places. And now we were at same thing. We were able to take those hair tools that had been returned to the stores and get them also donated to Project Glimmer. So I think these again go back to this idea of circularity and looking for opportunities wherever you can find them.
+
+Shivang (10:16)
+Yeah, and mean, having to do like your impact being scaled at all store levels, it must be counting every minute. Like the impact that program must have created must be like counting every minute with respect to not just letting good products go to people who can use it at the same time recycling of goods. Beauty is a very, think, is an industry where I think
+
+This sort of a program that you worked on creating can have a huge impact on the environment.
+
+Desta Raines (10:45)
+Yeah, I definitely can. It has a lot of potential.
+
+Shivang (10:48)
+Yeah, definitely. There's a lot more work can be done. That can be done for sure. Awesome. Can we unpack a little bit about the Beauty (Re)Purposed What was the early spark behind that program? Were you looking at any consumer's behavior studies? did you incorporate and bake in other elements like e-commerce, returns, and other consumer behavior studies into your decision-making during that time?
+
+Desta Raines (11:11)
+We did, spent, you as we went, you know, from pilot to scale to launch, did, spent a lot of time in the stores, just talking to the store employees, which, you know, it's for, called beauty advisors and talking to, you know, the clients, know, the, the consumers and really trying to unpack like the consumer behavior side of it to make sure that it was something that if we did it, would it be utilized, right? Like what,
+
+what were consumers looking for and how easy would it be for the beauty advisors to flag it to the consumers and where we should place the bins in the stores. All of that was a huge amount of thought and effort that went into that. did surveys of our most loyal customers who were part of our Beauty Insider program to understand what they thought about it. And we definitely saw that there was huge amount, 90 plus percent interest. There was a huge amount of interest in Insofar launching something like this.
+
+Shivang (11:38)
+Mm-hmm.
+
+Desta Raines (12:06)
+⁓ but also I think, you know, we learned over time because the program launched in May of 2023 that we still needed to keep the, keep the Beauty (Re)Purposed program top of mind, right? You know, both with the beauty advisors and the stores, well as with the consumers. Otherwise it just became like a fixture in the store. And you always had to keep reminding and looking for opportunities through our marketing and other channels to make sure we were constantly pulsing it so that it was like increasing the amount of,
+
+Shivang (12:33)
+you
+
+Desta Raines (12:36)
+product or empty packaging that was going into the bins, as well as the availability and excitement from consumers to use them. But I do think we know that changing behavior is hard, but once think we found that once customers knew about it and they got in the habit of using it, there was a huge amount of excitement and they would just get a big part of their day. Like I'm running errands, I'm going to go to the Sephora store and drop this off.
+
+And keep going. You know, I'm going to start collecting. have actually here in my linen closet. I've got a huge bag full of empty packaging that I need to clean out, and I'm going to take that to the Sephora store next week. So I've got my homework to do too, so I definitely think it's a really good program, but you have to obviously participate in it to make the impact.
+
+Shivang (13:20)
+Yeah, I mean, I think the adoption piece of it must be a bit of a process as well as a positioning strategy where both the employees and the consumers are encouraged and excited to see through it. Were there any initial adoption challenges that you had to work through while you were executing it, maybe during the pilot phase or later down the line?
+
+Desta Raines (13:46)
+There were definitely like things around like the design of the bin to make it like we, I guess one example I can give you is that the opening at the top of the bin was a bit large and we were finding like not surprisingly that some, customers are using it as a trash receptacle. So we realized pretty quickly, we better shrink the opening at the top. So you can actually, so what actually should go in there is clean empty packaging that is about the size of a fist or a yogurt cup.
+
+Shivang (14:01)
+Hmm.
+
+Desta Raines (14:10)
+So we definitely like, you know, learn from our pilot phase that we needed to do that. So we made some adaptations. We also have a QR code and we put a QR code on all of the bins so people can scan and scan and get more information. And we work through the process of the information and the logic tree that you would need to follow depending on what you were bringing back. So there was definitely some key learnings and insights that we got based on the piloting. And that's why I think I also learned the.
+
+this huge importance in piloting and ⁓ being really not just piloting, like we could have piloted in many, many different stores, but we really picked different markets, different demographics to really get a true insight of what was going to work the best for both the stores and then also for the customers.
+
+Shivang (14:40)
+Mm-hmm.
+
+That makes sense. makes sense. like during that time, like listening through it, like a thought came to my mind, know, like brands can also kind of think about incentivizing brand, sorry, consumers while doing this practice, right? Like some, mean, I used to live in Vancouver and over there, there was this program. If you send back your cans or recycles, you get 50 cents back or 60 seconds cents back.
+
+for every can that you kind of provide. And there were recycling centers all across the country, ⁓ all across the city in Vancouver, Canada. if there are ways for even brands to create ⁓ incentives for consumers to recycle, to send back whatever packaging that can be reused, I that could be a benefit as well for both parties.
+
+Desta Raines (15:37)
+Right, like last year we did a beauty insider challenge that was a sustainability focused challenge and one of the actions was to engage with the bins.
+
+Shivang (15:45)
+Nice.
+
+Desta Raines (15:46)
+So yeah, definitely.
+
+actually when we, you when we looked into it, seemed like people were equally, almost equally excited, whether there was an incentive or not an incentive. And it's interesting when you talk about incentives, right? Cause incentives always on are not necessarily incentives. If you look at like, when you think about it from the consumer behavior perspective, you're more incentivized. If you think it's a time bound thing, then, then if it's just like, you're always can say, get 50 cents for a can or something, then it becomes less compelling.
+
+Shivang (16:01)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (16:13)
+in some way because you're not propelled to take action.
+
+Shivang (16:16)
+Yeah, that's true, if it's time bound. But I think some administrations and some governments, for example, the example that I was giving in that they would add it to the cost of the product itself. if a 12-pack can of Coca-Cola was 10 bucks, it was already $10, $10.50. So it was more like getting your money back. So it's like changing the consumer behavior by telling them that you're paying already extra, something that I kind of
+
+Desta Raines (16:26)
+Mm-hmm.
+
+Mm-hmm.
+
+Shivang (16:43)
+So that really worked because there was always a long line outside when I used to go recycle my cans.
+
+Desta Raines (16:49)
+That's so great. I mean, it's just great that they really took it up and also was across the whole city, right? So that everybody was like, gets in. And again, it's kind of, think, around that forming those habits, right? Like you went and gotten, everybody just did it because that's what you had to do.
+
+Shivang (16:55)
+Yes.
+
+Yeah, that's what you had to do. And I think it's, it's countrywide. It's all across Canada, as far as I remember, but it was, uh, uh, initially it felt like why, why, why does, as a consumer, you have to pay extra, but then you realize what the benefit and the point of it is. Uh, and you just make it a chore, like just like everything else.
+
+Desta Raines (17:08)
+Yeah.
+
+Shivang (17:21)
+Awesome. Let's make a segue because you've worked also on the upstream decisions that impact sustainability of an organization and consumers decision making. you've worked on labor rights, ethical sourcing, sustainable material decision making. How do those upstream decisions impact the downstream e-commerce or resale outcomes?
+
+Desta Raines (17:41)
+mean, of course, in an ideal world, the inventory management would be really tight and then you wouldn't have the excess. But I think we all know that's not always the case. So, especially in, say, more trend forward types of retail, like fashion or beauty. So it can be sometimes hard to forecast the peaks and valley of like whatever the trend could be. So when you have the re-commerce and re-sales,
+
+Um, you know, trends that are, I do see them taking off now, right? Especially in fashion. I mean, there's a lot of, um, companies and even tech companies and novel companies that are playing in this space now of, you know, circularity and, uh, know whether it would be like using the material, excess material, or you're taking the actual product and, uh, turning it into something new, you know, so there's a lot of really interesting things happening there. But with beauty, I mean, this is a really different.
+
+Shivang (18:09)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (18:33)
+conversation because you can't, it's not circular, right? In that sense, right? You can't like just take out the formulation or the cream and, and, and make it into new cream. I mean, that doesn't work like that, right? So if it's expired, you have to dispose of it, right? And if it's not expired, but you have excess inventory, then it needs to be, you know, it needs to be re-homed. needs to go someplace else. So it could be donated. It could be sold.
+
+Shivang (18:46)
+of course.
+
+question.
+
+Desta Raines (19:00)
+you know, off price. It could be, you know, you know, we could try to find another home. There's actually a new, a new business called it's a beauty. think that is just like looking at sort of the impossible foods version of, of beauty products, right? Damaged packaging and things. And I think that's really a really cool idea as well. I think it's just challenging with the agreements between the retailers and the brands around where things go. So I think.
+
+A lot of a lot of times you'll see the unused or expired and unexpired products. Worst case will go to landfill and at the best case, go waste energy, which means that they get burned and then create new create energy. But again, not really solving this problem. And that's really because once a product is expired, you can't sell it. I mean, they have to think about it in terms of the way you would treat medication. And so it becomes.
+
+Shivang (19:35)
+Mm-hmm.
+
+Mm-hmm.
+
+Mm.
+
+Of course.
+
+Desta Raines (19:52)
+becomes a challenge. think it's especially a challenge in an industry like beauty for these reasons. And so I think the best bet is to find, and that's why that product donation program that I mentioned before is so powerful and impactful because when you have excess product, oftentimes it goes back to the brands and they figure out the pathway that they want.
+
+Shivang (19:59)
+Mm-hmm.
+
+Desta Raines (20:12)
+But this again was something that PAC Collective was really starting to hone in on. I think it's really a good place to go with the members to figure out where where excess can go and can find a home.
+
+Shivang (20:13)
+Mm-hmm.
+
+Mm-hmm.
+
+Yeah, mean, like touching upon like the things that you touched upon, like, yeah, inventory management, hopefully, you know, our decision making in terms of production itself can get better as artificial intelligence and more better forecasting models come in. But to your point, yeah, it's, know, especially like fashion, fashion, beauty, these are trend oriented industries. So it's very hard to kind of predict no matter how much prediction.
+
+how much forecasting one can do, there always is going to be access inventory. Yeah, beauty is a very hard industry to be able to implement a circular process. And to your testament, having worked in it, I'm sure you must have felt so many challenges, especially around expiry, disposed off. You can't reuse it. It can't live on a shelf for five or six years.
+
+So that's definitely a challenge, which I don't personally have an answer to, but it's essentially makes it a very hard industry to, know, like ⁓ implement a circular economy. what they're like with donation, I think is definitely a great, great way to, you know, like deal with the problem where you're still making the use the useful product going to places where it can still be used for, you know, the right purposes. Do you feel that
+
+the larger brands, because beauty is also a very price perception industry where prices are decided based on the quality, the impact and whatnot. you think large brands care a lot about brand integrity while deciding which channel to go? Much like, should it go to this channel? Should it be in this off-price retail store? Should it be sold?
+
+in the secondary market and whatnot. So do you think large brands care about that?
+
+Desta Raines (21:59)
+Yeah, absolutely. 100 % the brands like 90 some percent of the time want to control that passageway. And so, you know, what's excess inventory? Typically the brands were controlling where it went, right? It wasn't, it's not, it's not, it's not the retailer that really has, really takes that final say on depending on what the, you know, what the contractual relationship is, but typically it's the brands for sure want to control the pipeline. And again, because they don't want to
+
+Shivang (22:08)
+Mm-hmm.
+
+Mm-hmm.
+
+I see.
+
+Desta Raines (22:26)
+see their brand devalued. Sometimes, of course, you can see on Instagram or TikTok, there'll be a find at an off price with here, like a Marshall's or something. And you can find high-end beauty products there very rarely, but they do show up. ⁓ again, that's through like, but most of the time, you'll see that the brands are controlling their inventory and controlling what happens with it.
+
+Shivang (22:29)
+Mm-hmm.
+
+Mm-hmm.
+
+Yeah, definitely. I I think that has been my assessment and experiences well where brands want to control where exactly it lands, who exactly gets to resell in it, whatnot. And in that light, I think the marketplaces and the pre-loved goods or this recycling of goods marketplaces that have come up like Poshmark and many brands, I saw yesterday itself, like a few brands that have created their own resale programs where they are able to kind of...
+
+sell the same goods through their own platform in the resale setting where this is used. Obviously that doesn't apply to beauty, right? But it applies to apparel and furniture industry and other electronics industry where you can still create a channel for your reused goods, access inventory through your own means, through creating private marketplaces where other consumers can buy it and...
+
+You know, like as long as more and more things don't make it to the landfill, that's a win. think more both for the retailer because retailer and brand because they have to pay margins on something like that while they can make better margins by reselling it, even if it's at a lower cost.
+
+Desta Raines (23:58)
+Right. That's right. mean, it's, you know, unfortunately, beauty, the beauty, beauty is what it is, right? It's formally, it's formulations and packaging. So it does, it does not like, you know, lend itself as easily, but I do think we're seeing like even some of the larger brands are definitely like thinking through this, this, this now and figuring it out. mean, whether it's through refillables or other means to, reduce the impact.
+
+Shivang (24:05)
+Mm-hmm. Mm-hmm.
+
+Mm-hmm.
+
+you
+
+Yeah, like while you were sharing your thoughts, an idea came to my mind was about, just like forecasting is something that we forecast, there's also this perspective of forecasting how much product is going to get expired by the end of the year. So maybe a year in advance or one and a half year in advance, brands can look at it that based on the trends that I'm seeing, I am still going to be sitting on this much inventory.
+
+at the end of the year or after one and a 18 months, whatever that cycle needs to be for a product to be still reused. And maybe they can use that same mental model, which we use in the forecasting of how much needs to be produced. Then how much can, how much needs to be, you know, like sold in as an excess inventory as well, well in advance so that it doesn't become like a fire sale in the end where now it needs to go, we need to, you know, either landfill at dispose of it and whatnot, especially with beauty industry.
+
+Desta Raines (25:15)
+Yeah,
+
+beauty products, six months, know, six months shelf life. So it's quick.
+
+Shivang (25:20)
+Six months well.
+
+Wow. Yeah, yeah, yeah. Then that's a challenge. And yeah, scratch whatever I said, because that's not going to work if it's six months. Awesome. You know.
+
+Desta Raines (25:31)
+Well, it still works. It's just on a very tight timeline,
+
+right? You're moving really fast.
+
+Shivang (25:36)
+Yes, definitely. You need very fast moving channels as well to be able to deal with beauty, where you have the consumers or the B2B buyers ready to take it off your hands as soon as the product is available, which is very hard to do, to be honest. So, know, like, yeah, there are a lot of...
+
+Desta Raines (25:52)
+Right, right.
+
+Shivang (25:55)
+businesses across US and outside US as well, like the smaller resellers and there's an entire new generation of entrepreneurs that are into live marketplaces, selling on Poshmark, selling on eBay, reselling on Amazon and whatnot. How do these smaller resellers get access to these premium brands that are very, that they want to control where exactly their product ends up?
+
+Desta Raines (26:22)
+Right, I mean, that's the thing it's going to be really hard for these for this group of resellers to get access to it. There's it's virtually impossible because, you know, like, think that's we've been discussing here, the brands and the retailers want to control the pipeline. And want to control where the inventory goes. And so I don't ever imagine a time where you'll see like a huge amount of access because. That would, you know, there's just potential for just.
+
+devaluation, right? If it ends up in a reseller's market and you can get it for like X amount less. Like, like it just, I don't see it happening intentionally. And I think that's why you're seeing the brands and retailers focusing more on some of the things that we've been discussing here. Whether it's like donations or it's, you know, going into the world of refillable, it's reduced reduction of packing, you know, there's, there's other ways I think to go for it. But when it just comes to getting access.
+
+Shivang (26:49)
+Of course.
+
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (27:13)
+to the actual product and get it into resellers hands, I'm not super optimistic that you're gonna see a big uptake on that at any time.
+
+Shivang (27:19)
+Mm-hmm.
+
+No, I mean, and that makes sense, especially around beauty and these larger brands, pricing is a lever for them, like their brand and pricing, that's how kind of, consumers perceive them for being premium quality. And if they find the same product at a lower price, especially in the public channels, if someone's publicly selling it, I think that becomes a problem.
+
+⁓ One strategy that I have seen in execution is looking at international markets. It's something, know, some brands would do where, all right, if US is my primary market or if, you know, maybe I can resell it in Africa or Asia or New Zealand or, you know, Latin America. there are some, there's some success with it, but there's no, you know, like beauty is the very hard industry to be in. If you're a reseller, it's very hard to touch, as you rightly said.
+
+Desta Raines (28:07)
+And also then going back to the expiration conversation, right? You definitely don't want to like tarnish your brand image because some expired product was sold in some other country and then caused some type of damaging effect or cause of, again, contributing to the environmental challenges in some of these markets. I think the easiest thing is just keep the pipeline tight, keep the inventory tight.
+
+Shivang (28:11)
+Yes.
+
+course.
+
+Mm-hmm.
+
+Desta Raines (28:31)
+try to think it through. And then of course, I think the adaptation of things like refillables will reduce the packaging and just really kind of can meet consumers where the demand is. If you actually get to control that, then that could help as well.
+
+Shivang (28:32)
+Yeah
+
+Hehehehe
+
+Yeah, I think donation refillables those channels would serve a better interest for a beauty brand than the other channels, especially if If they can do just in like I don't know like about I don't know much about the manufacturing aspect of it but if there is a way to be just in time with the inventory where I'm just gonna manufacture for the next three months so that there is no access to start with if those kind of things could be put in place I think beauty brands can do even better
+
+Desta Raines (29:11)
+Yes. Yeah.
+
+Shivang (29:12)
+Awesome. Let's make a segue into your board participation and your work outside as well. So you serve on boards like Responsible Sourcing Network, International Society of Sustainability Professionals. What collective effort that you have seen being a member and a board leader at these groups that are actually helping in the reverse logistics and sustainable resale industry?
+
+Desta Raines (29:34)
+And I think the best indicator that I can think of that's somewhat recent is that when the reverse logistics association merged with the national retail federation, I do think this was a real bellwether indication, you know, showing that retailers are ready to, you know, get more serious about, you know, playing in this space and it's now become a mainstream conversation.
+
+Shivang (29:55)
+Yeah, definitely. mean, I so I've had an opportunity to speak with Tony once and you know, I was also I'm very excited to kind of see the see the two, you know, the brands merge. I'm going to be at the N.R.F. rev in January. Hopefully, if you're there, we can beat as well. But yeah, definitely that kind of puts it in the right light that reverse logistics is a key part of retail, especially around 17, 18 percent of returns. It's.
+
+It's not no more a back office problem. It's something that needs to be addressed as just a regular, just, just, just equally important part of the supply chain, retail supply chains.
+
+Desta Raines (30:31)
+It is, and I think it's really good that now it's elevated, right? Like people, think, you there are, you're seeing retailers even like Amazon that are, you know, taking these returns, reselling them. There's all these channels that have emerged where before, think, returns or things just went into some black hole and nobody really thought about where they were going and what was happening with them. And now I think there's a lot more, I mean, I think people are seeing there's monetary benefits, right? You can monetize this.
+
+Shivang (30:42)
+Mm-hmm.
+
+You
+
+Desta Raines (30:59)
+and make money on it. So why would you just keep it in the background? And you have this opportunity. I do think it's great that I don't know if I'll be at the conference in January, but if I am, I'll definitely have a chance to meet in person. That would be fantastic.
+
+Shivang (31:12)
+Yeah, definitely. Yeah, I mean, to your point, yeah, I mean, there's a lot of value in those kind of returns. These are publicly available numbers, but if you look at Amazon, $90 billion worth of inventory is just returned or sits in an access. that's a lot of value that, and I'm super excited to see my...
+
+you know, my ex company kind of looking at different channels like the wholesale deals, there's a with other e-commerce platform as well. And it's a growing industry. That's why, know, like that's partly the reason I kind of joined the industry because it's a growing industry. It's an important subject and it's not just from a sustainability perspective, but it's...
+
+There's lot of value in business that can be created by creating products that can help move these returned goods or these excess goods away from landfills to, you know, like homes that can actually use it. One interesting stat that I came across initially earlier was that the amount of returns that we collect overall in US right now is almost like 23 Empire State buildings worth of returns it just said. that's a
+
+So, you know, we're sitting on a lot of return goods that actually has value and many times just because the cost of processing these returns is so much that they go to waste in landfills. So if, you know, companies and important organizations that you serve in, as well as RLA and NRF, they continue to shed light on it, I think more brands would change their practices, which is only going to be good for the world and for the industry.
+
+Desta Raines (32:40)
+I
+
+think about the consumers as well. think really this whole idea of conscious consumerism, going back to Sephora as an example, you come into the store and you buy an eyeshadow and then you take it home and you're like, I don't like the color. Then you bring it back. Of course, there's no opportunity to do anything with that, but send it waste to energy. That was the only place it could go. Somebody's finger or somebody's stuck in it, you don't know where it's been. Obviously, you have to...
+
+Shivang (32:47)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (33:07)
+It never has a second home and so that really was kind of sad for me because I was thinking, you know, the consumer just taking a sample and then tried it on in the store or try, you know, there's no need to kind of necessarily buy it and try it and then return it. There's other ways to get out right through and then sampling is a whole other area which
+
+Shivang (33:10)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (33:29)
+There was definitely a rise in what I would call sustainable sampling, sustainable sampling packaging, all of that, which is kind of a subset of the conversation we're having today. But certainly this conversation, I think has a huge amount of opportunity across the retail sector in general, matter what you are. So of course with clothing and things like that, there's a little bit of a different lens on that. You can try it on. I don't like the shirt. I'll take it back to the store and somebody else can get the shirt, right?
+
+Shivang (33:38)
+Mm-hmm.
+
+Desta Raines (33:55)
+Certainly for certain product categories, it's absolutely impossible. And they never will have a chance to end up in somebody else's hands once they go back to the retailer.
+
+Shivang (33:56)
+Mm-hmm.
+
+Yeah, especially if it's a consumer good, somebody opened the bottle and things like that. It's just, you know, it's, it's a lot of legal, you know, liabilities as well to be able to resell those goods.
+
+Desta Raines (34:14)
+Yeah. And I think it was interesting because it seems
+
+to be a really a North American focused issue, you know, and I speak about it with other people. It just was not a behavior that you see in Europe or in other parts of the world. So I thought that was so interesting. Like, I guess I didn't think about it as much as I realized, you know, through my last role that this seems to be specifically and exponentially a North American habit that we have grown into the ability to just
+
+Shivang (34:22)
+Mm-hmm. Mm-hmm.
+
+Desta Raines (34:42)
+buy and try return, buy, try, return. It becomes so accessible and so easy. you know, but nobody considers the carbon footprint of stuff shipping back and forth all the time. And if you don't like it or if it gets tear in it, what happens to it? So I think there's a lot of ⁓ opportunity and I don't know whether it will be NRF or anybody else who will specifically start to elevate that conversation. But I think there's a huge opportunity there to.
+
+Shivang (34:57)
+Mm-hmm.
+
+Desta Raines (35:09)
+to be having that conversation and to be talking about it more openly.
+
+Shivang (35:13)
+Yeah, definitely. I I think I've seen that same different mindset in Europe and North America as well. I think it also comes from the top down where they have regulations and, know, compliances that companies are expected to follow. There's one coming in 2026 about where no item can be destroyed. Everything has to be resold. And it's almost like keeping like a ledger of every piece of product that you're making where exactly it's going in. So it's also a top down approach. think it also works with the
+
+consumers there where they really are conscious about the decisions that they make here. And I think it's also something to do with, you know, like how easy it is to make a return in the US versus over there. Like, I don't know about Europe much, but back in India, you have to literally go back and, you know, return it into a store. So that kind of makes somebody, you know, make a conscious decision to start with that I would have to travel all the way.
+
+to return it or in some cases even the sellers or the brands would not even have a, they would have a shorter return policy. They would have more constraints around what can be written, what can not be returned, which I don't think is a thing over here due to which, you know, consumers are more encouraged to that. Yeah, I'm going to try five t-shirts and I'm just going to return the three that don't fit or don't not just fit the ones that I don't like and they can go back.
+
+And they're hard to process, know, like once they reach a warehouse, there's a of labor that needs to be involved to be able to process them. And that itself takes away the margin and that discourages brands to do anything about it. I'm talking specifically around like apparel and what.
+
+Desta Raines (36:47)
+Mm-hmm.
+
+Shivang (36:47)
+Awesome. So, you these there are you've you've what what are your thoughts on like these in industry certifications, collections, scorecards that play, you know, is there a way for these these avenues to be able to shape how companies approach end of life inventory?
+
+Desta Raines (37:04)
+I know I mentioned before about PAC Collective is working with its members to look more deeply into the product donation and ensure that product donation is top of mind when we talk about inventory. I think that NRF example we have been just discussing here is also a really interesting one. But I think really what companies are most interested in is cost savings and
+
+You know, then the flip of that art is that if you're going to spend money to destroy product that could be donated, you know, for a tax write-off because, you know, the brand of brand value, I think there's just like so many more opportunities to re-commerce that companies are just really starting to think about from a value creation and not from like a value devaluation perspective. think, you know, the, the thinking for a long time has been
+
+Shivang (37:37)
+Mm-hmm.
+
+Desta Raines (37:49)
+Like sort of from the not from the additive, but from the non-additive perspective. And I think now there's a way of thinking that's starting to emerge, which is really exciting. I think for all of us who are in the sustainability space or thinking about this, that this can actually be something positive, right? And the market, of course we see for second-hand, across many, many areas, whether it's people buying and trading on Facebook marketplace or.
+
+You know, there's places to do, you know, free trades and, know, of goods and, you know, just see so much of this happening at a, at a local level. And I think it's starting to scale back up into like the retail, you know, national, international retailers. And again, like to your point, some of this is, is, ⁓ coming through legislation. And, which I think is always a lever that pushes, ⁓ but then also really, I think more from, ⁓ companies and brands and retailers realizing that there's actually a.
+
+financial, there's actually, you can actually make money on this if you're strategic about how you're managing it.
+
+Shivang (38:50)
+Yeah, definitely, Given your experience, where do you think the next five or 10 years look like from a retail perspective for the circularity and the commerce industry?
+
+Desta Raines (39:00)
+Yeah, you know, I see a lot of potential for the big brands to team up with and the retailers to team up on this. You know, like when I was at Sephora, there was one of our bigger brands that was, you know, kind of set, had set their aggressive sustainability program and they were like, hey, you know, don't destroy anything of ours. You make sure you donate it. So they were kind of telling us what they wanted, which was really a kind of changing of the guard where before I think it was like, Hey retailer, you know, send it back to us.
+
+Shivang (39:22)
+Mm-hmm.
+
+Desta Raines (39:28)
+You know, but more than that, if you have it, you know, sort of the retailers had the chance to kind of make some of these decisions. so I definitely think that we're going to, I think, see more of this elevation, elevated conversations happening across the ecosystem. And I think that's only going to lead to bigger and better things. And then obviously with, ⁓ refillables in the beauty space or, know, we see it, I mean, in the grocery store with, with nuts and cereals, but I think that, I mean, what's been interesting is that it's not like.
+
+Shivang (39:42)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (39:56)
+Consumers are in the habit of this, right? And I think it's interesting, like we just didn't have to really work on it on the refillable side to get consumers to think about it more from, you know, this is just how I do it. Right. But it's also from retail perspective, you have to manage how you get to the refillables, right? Like I think all of us are familiar with the refillable stores. go in and have these huge jugs and you bring your bottle and you put your shampoo in there. You put your.
+
+Laundry detergent, you squeeze it in and you take your bottle, you take it back. And I think that that works. But I think, of course, the other area is when the forecasting just gets really better and there is better coordination and agreements to allow more of this re-commerce thing to happen. So, I think that will be really like kind of the North Star of where we have to go and where we need to go. I think slowly but surely we're going in that direction. But having
+
+Shivang (40:42)
+Mm-hmm.
+
+Desta Raines (40:51)
+The ability to be commerce versus destroy or send back and have, you know, the brands or whomever like just destroy or, you know, you know, in white one way, shape or form is just seems like not the conversation we really want to be having in the next five to 10 years here. I think we want to be looking at everything from a re-commerce perspective and thinking about if it can't be re-commerce, what is the barrier then to that? Like, why, why not? Why not?
+
+Shivang (41:17)
+Mm-hmm.
+
+Definitely. mean, why not make it a part of your retail processes in general if it's going to exist? Why look at it as a back problem where the solutions are like the last thing that is evaluated? So definitely, mean,
+
+That would be amazing. If there's one thing, go ahead. Please go ahead.
+
+Desta Raines (41:33)
+It will be.
+
+It would be, no, I'm
+
+just echoing what you're saying. Absolutely. And I'm hopeful that we're going to see that.
+
+Shivang (41:41)
+Yeah, definitely. I'm going to manifest that for that to happen. Awesome. If there's one thing that you can change today, though, what would that thing be that you would want that, all right, if something that can be changed today itself about how brands handle surplus or sustainability goals, what would that thing be?
+
+Desta Raines (41:44)
+Me too.
+
+Yeah, I think that, you know, really brands need to recognize the value and ensuring that every item that gets produced finds a home and then not a waste stream to go into. I mean, that would be to me the most important point that I could share, the most important thing that could happen.
+
+Shivang (42:08)
+Mm-hmm.
+
+Yeah, definitely. mean, if they can, from the very get go, start with this mindset in mind that everything that I produce has to find a home and not worry about it later or not even think about it. think that would be the dream.
+
+I mean, last question from me with respect to sustainability would be, if there are companies that are just starting to think about it, what is that one no regret step that they can work towards circularity?
+
+Desta Raines (42:42)
+Yeah, I think, you know, the place to start in this is start at the start with the end in mind. Right. So if you're a beauty brand, you have to think about reusable, recyclable, refillable packaging for apparel. You'd to think about like where you want your product to show up, you know, at the end of life. So I think, um, I'm going to remember forgetting the term for this, but, know, instead of like doing a, you kind of like, um, there's a way to do this, right? There's this part of like sort of management structure, but like when you, you go, when you think about.
+
+Shivang (42:49)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (43:11)
+the end point instead of starting at the front end. And I think sometimes that can like, you can back into like where the points of contact could be and where the opportunities could be if you start at the very, very, very, very end of life of that product and where you want it to, where you want it to come, where you want it to show up. you, you hope that it's going to have many, many, many years of life and not end up in a clothing market in, in Africa or.
+
+Shivang (43:25)
+Mm-hmm.
+
+Desta Raines (43:38)
+⁓ For beauty products not end up in a landfill or going, I think waste energy is a solve, but it's not the sure thing of just making sure you don't even have those options. think going in this direction will actually make companies more profitable. And I think then of course the benefit to that is then you're also more sustainable de facto. But I think really thinking about this from a
+
+Shivang (43:38)
+Mm-hmm.
+
+Mm-hmm.
+
+Desta Raines (44:01)
+business perspective and it's going to be the way that it's going to start driving the change that's needed. It's like starting with the end in mind and not the end of like, I produced it and I pushed it out to a retailer. For a retailer, I didn't sell it, so I shipped it back to the brand or I donated it. Like really getting a little more on point with that I think will be like super powerful and create real lasting change.
+
+Shivang (44:25)
+Yeah, definitely. mean, ⁓ like not passing the ball, but just trying to take care of it from the very get go itself. listening through it. Like I, I feel really bullish and I could already like visualize how the fillable strategy would work at large scale where let's assume, you know, like, you know, you, even you, you buy a cologne, you go back to a store and they have, you know, big bottles of colognes in the back and you just go them and show them, Hey, I just want this particular cologne and they're able to kind of refill for you versus
+
+you know, you buying a new bottle and that one going into the waste or whatnot. Similarly with shampoo and things like that. If not, even if not just as a, there's a way that they can make that as well as a premium experience where someone's walking into a store and you know, like they use a particular shampoo or a face wash or whatnot. And there are bigger bottles that are, and that would also save cost from a retailer's perspective. So.
+
+Those kind of strategies are not just listening through, are not just sustainable, but also good for the business, just like you said, where even in more business for these brands.
+
+Desta Raines (45:25)
+Right, right, exactly. think,
+
+you know, yes, getting getting getting those conversations happening way way, you know, up the up the street or downstream, right? You know where you're actually like, you know, designing and talking about that. But this of course is happening a little bit more in Europe at this time. This idea of going in, refilling colognes and perfumes and things. ⁓ But yeah, no, I think I think, you know, overtime we'll see more and then really.
+
+Shivang (45:46)
+Mm-hmm.
+
+Desta Raines (45:50)
+it's going to be having the consumers who are going to have to start to have the uptake, right? Cause the brands are and retailers are reacting to the consumer demand. And if the consumers are willing to adapt the behavior, then I think that you will see it. think this is a big challenge though, to be honest.
+
+Shivang (46:04)
+Mm-hmm.
+
+Yeah, definitely. And it needs leaders like you to keep pushing the boundaries of how we can move, how we can change it. Awesome. So moving on to the last section, the rapid fire round, this is just like one liners, you know, no much thinking, just giving an answer. Let me know when you're ready for it.
+
+Desta Raines (46:13)
+Mm hmm.
+
+Sure, let's jump in.
+
+Shivang (46:27)
+Alrighty, so what's your favorite sustainable beauty product?
+
+Desta Raines (46:30)
+I like the Amika dry shampoo. It's, of course, I discovered it when I was at Sephora and it's clean and planet aware, packaging the formulation and everything. So I do think it works really, really well.
+
+Shivang (46:41)
+Nice nice, my wife is into dry shampoos, I'll let her know about this one.
+
+Desta Raines (46:44)
+Good.
+
+Shivang (46:46)
+One word to describe your leadership style.
+
+Desta Raines (46:49)
+Collaborative.
+
+Shivang (46:50)
+Nice, that's really good. Most underrated practice in circular retail.
+
+Desta Raines (46:54)
+I would say modular fixtures.
+
+because they're reusable, right? You don't have to keep changing out the fixtures and creating a lot of waste from the retail side.
+
+Shivang (46:57)
+Mm-hmm. Got it.
+
+I see, I see. Are you talking about the cardboard ones, the ones I recently saw in Kohl's where you can reuse them for multiple purposes versus using them just one time?
+
+Desta Raines (47:14)
+Right,
+
+they're like not even necessarily made from cardboard, but yes, they like they you can change out the design of the of the fixtures. So you can move the trays around and move the move pieces around so that they're able to be reused in many, in many different ways in many different configurations. Otherwise, what typically happens with retail fixtures is that they, you when there's a, when there's a refresh, they get, they get, they get carted off and turn, you know, that, that, and that's that. So think there's a lot of opportunity.
+
+Shivang (47:23)
+I see.
+
+Mm-hmm.
+
+Desta Raines (47:42)
+and the retail fixture side.
+
+Shivang (47:43)
+Makes sense. Makes sense, makes sense. A sustainability leader or thinker that you admire.
+
+Desta Raines (47:50)
+I mean, honestly, there's, ⁓ I have to say, I really think I admire like all of us, because we're all trying, all the people who work in this space are trying our best to make headway. And it's not necessarily easy to make progress as fast and as easily as we might like it to happen. So I think we, I really just admire, there's a lot of us here who really are at the forefront of.
+
+Shivang (48:06)
+Mm-hmm.
+
+Desta Raines (48:14)
+But it really does. It really does take a lot of collaboration and a lot of a lot of work and teamwork across organizations to lift. Those things.
+
+Shivang (48:23)
+Yeah, I mean, the space that you're in, it has its headwinds and it needs collaboration and more leaders like you are needed in the retail industry to be able to make an impact and change behaviors. So if you were not working in sustainability, what would you be doing?
+
+Desta Raines (48:40)
+I think I might be a college professor who would teach about sustainable business. even, you know, I'm so interested in this that I actually created a course about how to operationalize sustainability in organizations. And I'm super passionate about that topic. So I could see myself enjoying being a teacher because I do a professor, because I really do enjoy guest lecturing when I've had the opportunities, I find them really, really inspiring. And, you know, maybe.
+
+That and ⁓ having a membership program for for young women, because I do. I do this on an ad hoc basis. I have some some regular regular women who I didn't. I just actually get so inspired from. I'm engaging and really learning from from them about their journeys and where they want to take their lives and careers and to have impact. It's really, I find it just really, really interesting. So there's probably. ⁓
+
+Two areas where if I wasn't working in sustainability, I may be doing these things. And maybe, I mean, I'm doing some of it. Maybe someday I'll be an adjunct professor and be doing all of it, working and teaching and mentoring.
+
+Shivang (49:44)
+Nice nice nice. But if you ever decide to put up a live course you can count me in for that class for sure. ⁓
+
+Desta Raines (49:48)
+Thank you. I'll let you know.
+
+Shivang (49:52)
+Awesome. Last question. If you could have dinner with any historical figure passionate about the planet, who would it be?
+
+Desta Raines (49:59)
+Yeah, I'd be actually kind of curious to sit down with Joe Biden to understand, you know, how and if he thinks there could be any way to resurrect some of the gains we made under his administration. mean, the IRA was really a cornerstone of legislation that really brought a lot of engagement on solar and wind and other aspects of sustainability, especially around infrastructure.
+
+Shivang (50:16)
+Mm-hmm.
+
+Desta Raines (50:21)
+And so, you know, I wonder if he would be able to help us to think about like strategically how we can make up some of these games that we that we've currently lost, you know, and if there's how we can how we can get that support from a support, you know, sort of at the national level and then, you know, because right now it's happening much more at the local level and the state level. But is there a way to is it just is I guess I'm curious to would he have would he have hope and if he had hope on what would.
+
+What could we do? And if he didn't have hope, well, then that would be sad that he would have some strategic ideas on like how that legislation was able to come to pass and maybe what he he feel what he feels could could work.
+
+Shivang (51:02)
+Yeah, I mean, he has seen the highs of it and the lows of his work. I I hope some of the work that he has done can be approached at a local level and then can be brought back at a national level in the future because it's important work and not a problem that can be overlooked.
+
+Desta Raines (51:21)
+Right,
+
+right, exactly. I mean, there's like an ecosystem, it's an ecosystem and then there's like the ecosystem, the larger ecosystem. And so I think, I do think the private sector will take it up and it will come from private sector initiatives and local initiatives and state initiatives, et cetera. So I'm not, I'm not saying like I'm totally without hope, but I'm just saying I'd be intellectually curious to sit with him because he did crap. This was such a cornerstone of his, ⁓ of his, of his, legislation and progress.
+
+Shivang (51:44)
+Definitely.
+
+Definitely, there would be lot of insights that one can get from that dinner as well, learning about what he thought about it, how he thought about it and what not.
+
+Desta Raines (51:57)
+And there's a lot of these, it interconnects into trade
+
+many, many other topics. don't think really, you know, there's a lot of things that connect into this idea of a clean economy and the legislation or the supply chain related. mean, there's a lot there to unpack.
+
+Shivang (52:11)
+Definitely, definitely. Well, I hope you get to get that dinner sometime. But yes, yes, yes, that's where you will find him now. Awesome. Well, this has been a real pleasure, Destha. I really enjoyed the conversation. I'm sure the listeners would get a lot out of it, especially people who are considering a career in this noble profession and in general about who think about the retail industry. So I really value the time that you give.
+
+Desta Raines (52:15)
+Might have to go to Delaware, right?
+
+You
+
+Shivang (52:36)
+on this particular podcast. And thanks for being here. It's been a pleasure.
+
+Desta Raines (52:39)
+Yeah, no, thank you so much
+
+for having me. It's been a really wide ranging and interesting conversation. Hopefully I expect the listeners will find it a value.
+
+Shivang (52:47)
+Definitely they will. Thanks a lot for your time.
+
+Desta Raines (52:48)
+Thank you.
+

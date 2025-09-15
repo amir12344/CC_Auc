@@ -1,66 +1,60 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Button } from '@/src/components/ui/button';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React from "react";
 
-interface NavigationButtonsProps {
+import { Button } from "@/src/components/ui/button";
+
+export interface NavigationButtonsProps {
   currentStep: number;
   totalSteps: number;
   onBack: () => void;
   onNext: () => void;
   onSkip: () => void;
-  canSkip?: boolean;
-  isLoading?: boolean;
+  isSaving?: boolean;
 }
 
-export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
+export const NavigationButtons = ({
   currentStep,
   totalSteps,
   onBack,
   onNext,
   onSkip,
-  canSkip = true,
-  isLoading = false
-}) => {
+  isSaving = false,
+}: NavigationButtonsProps) => {
   const isFirstStep = currentStep === 0;
   const isLastStep = currentStep === totalSteps - 1;
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        {!isFirstStep && (
+      <div>
+        {isFirstStep ? (
           <Button
-            variant="outline"
-            onClick={onBack}
-            disabled={isLoading}
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back
-          </Button>
-        )}
-        
-        {canSkip && (
-          <Button
-            variant="ghost"
+            className="cursor-pointer rounded-full border border-gray-300 px-5 py-2.5 shadow-none hover:bg-gray-100"
             onClick={onSkip}
-            disabled={isLoading}
-            className="text-gray-600 hover:text-gray-900"
+            type="button"
+            variant="outline"
           >
             Skip for now
           </Button>
+        ) : (
+          <Button
+            className="cursor-pointer rounded-full border border-gray-300 px-5 py-2.5 shadow-none hover:bg-gray-100"
+            onClick={onBack}
+            type="button"
+            variant="outline"
+          >
+            Back
+          </Button>
         )}
       </div>
-
       <Button
+        className="cursor-pointer rounded-full bg-black px-5 py-2.5 text-white shadow-none hover:bg-gray-800"
+        disabled={isSaving}
         onClick={onNext}
-        disabled={isLoading}
-        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
+        type="button"
       >
-        {isLastStep ? 'Complete' : 'Next'}
-        {!isLastStep && <ArrowRight className="h-4 w-4" />}
+        {isLastStep ? (isSaving ? "Saving..." : "Complete") : "Next"}
       </Button>
     </div>
   );
-}; 
+};

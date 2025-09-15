@@ -1,6 +1,7 @@
-import React from 'react';
-import Navbar from '@/src/features/website/components/layout/Navbar';
-import Footer from '@/src/features/website/components/layout/Footer';
+import React from "react";
+
+import Footer from "@/src/features/website/components/layout/Footer";
+import Navbar from "@/src/features/website/components/layout/Navbar";
 
 interface HiddenPagesLayoutProps {
   children: React.ReactNode;
@@ -8,14 +9,12 @@ interface HiddenPagesLayoutProps {
 
 const HiddenPagesLayout: React.FC<HiddenPagesLayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="flex-grow">
-        {children}
-      </main>
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   );
 };
 
-export default HiddenPagesLayout; 
+export default HiddenPagesLayout;

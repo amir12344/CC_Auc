@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 /**
  * Global loading indicator component
@@ -24,7 +24,7 @@ export default function LoadingIndicator() {
 
       // Simulate progress increments - optimized for perceived performance
       interval = setInterval(() => {
-        setProgress(prev => {
+        setProgress((prev) => {
           const increment = prev < 60 ? 15 : prev < 85 ? 5 : 1; // Faster initial progress
           const newProgress = Math.min(prev + increment, 98);
           return newProgress;
@@ -57,9 +57,9 @@ export default function LoadingIndicator() {
   if (!loading && progress === 0) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-1">
+    <div className="fixed top-0 right-0 left-0 z-50 h-1">
       <div
-        className="h-full bg-primary transition-all duration-300 ease-out"
+        className="bg-primary h-full transition-all duration-300 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

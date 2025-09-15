@@ -1,84 +1,134 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { BuyerPreferences } from '../types/preferences';
-import { usePreferenceData } from './usePreferenceData';
+import { useCallback, useRef, useState } from "react";
 
-const POPUP_SHOWN_KEY = 'buyer-preferences-popup-shown';
+import { getBuyerPreferences } from "../services/buyerPreferenceService";
+import { usePreferenceData } from "./usePreferenceData";
 
 export const usePreferencePopup = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [hasShownPopup, setHasShownPopup] = useState(false);
-  const { preferences, savePreferences } = usePreferenceData();
+  const [hasExistingPreferences, setHasExistingPreferences] = useState(false);
+  const [isCheckingPreferences, setIsCheckingPreferences] = useState(false);
+  const hasTriggeredRef = useRef(false);
+  const { preferences } = usePreferenceData();
 
-  // Load popup state from localStorage on mount
-  useEffect(() => {
-    const popupShown = localStorage.getItem(POPUP_SHOWN_KEY);
-    setHasShownPopup(popupShown === 'true');
-  }, []);
-
-  // Show popup for new users or those who haven't completed preferences
-  const shouldShowPopup = () => {
-    return !hasShownPopup && !preferences.isCompleted;
-  };
-
-  const openPopup = () => {
-    setIsPopupOpen(true);
-  };
-
-  const closePopup = () => {
-    setIsPopupOpen(false);
-    markPopupAsShown();
-  };
-
-  const skipPopup = () => {
-    setIsPopupOpen(false);
-    markPopupAsShown();
-  };
-
-  const markPopupAsShown = () => {
-    setHasShownPopup(true);
-    localStorage.setItem(POPUP_SHOWN_KEY, 'true');
-  };
-
-  const completePreferences = async (completedPreferences: BuyerPreferences) => {
-    try {
-      await savePreferences(completedPreferences);
-      setIsPopupOpen(false);
-      markPopupAsShown();
-    } catch (error) {
-      console.error('Error completing preferences:', error);
-      // Still close the popup even if save fails
-      setIsPopupOpen(false);
-      markPopupAsShown();
+  const checkExistingPreferences = useCallback(async () => {
+    if (isCheckingPreferences) {
+      return false;
     }
+
+    try {
+      setIsCheckingPreferences(true);
+      const existingPreferences = await getBuyerPreferences();
+
+      const hasPrefs =
+        existingPreferences.length > 0 &&
+        existingPreferences.some(
+          (prefs) =>
+            (prefs.preferredCategories &&
+              prefs.preferredCategories.length > 0) ||
+            (prefs.preferredSubcategories &&
+              prefs.preferredSubcategories.length > 0) ||
+            (prefs.listingTypePreferences &&
+              prefs.listingTypePreferences.length > 0) ||
+            (prefs.buyerSegments && prefs.buyerSegments.length > 0) ||
+            (prefs.preferredRegions && prefs.preferredRegions.length > 0) ||
+            (prefs.preferredBrandIds && prefs.preferredBrandIds.length > 0) ||
+            prefs.budgetMin !== null ||
+            prefs.budgetMax !== null ||
+            (prefs.minimumDiscountPercentage &&
+              prefs.minimumDiscountPercentage > 0)
+        );
+
+      setHasExistingPreferences(hasPrefs);
+      return hasPrefs;
+    } catch {
+      setHasExistingPreferences(false);
+      return false;
+    } finally {
+      setIsCheckingPreferences(false);
+    }
+  }, [isCheckingPreferences]);
+
+  const shouldShowPopup = () => !hasExistingPreferences;
+
+  const openPopup = () => setIsPopupOpen(true);
+
+  const closePopup = () => setIsPopupOpen(false);
+
+  const skipPopup = () => setIsPopupOpen(false);
+
+  const completePreferences = () => {
+    setHasExistingPreferences(true);
+    setIsPopupOpen(false);
   };
 
   const clearPreferences = () => {
-    // Clear both preference data and popup state
-    localStorage.removeItem(POPUP_SHOWN_KEY);
-    setHasShownPopup(false);
+    setHasExistingPreferences(false);
+    hasTriggeredRef.current = false;
   };
 
-  const triggerPopupForBuyer = () => {
-    if (shouldShowPopup()) {
-      // Small delay to ensure the page is loaded
+  const triggerPopupForBuyer = useCallback(async () => {
+    // Use ref to prevent multiple calls
+    if (hasTriggeredRef.current || isCheckingPreferences) {
+      return;
+    }
+
+    hasTriggeredRef.current = true;
+
+    try {
+      setIsCheckingPreferences(true);
+      const existingPreferences = await getBuyerPreferences();
+
+      const hasPrefs =
+        existingPreferences.length > 0 &&
+        existingPreferences.some(
+          (prefs) =>
+            (prefs.preferredCategories &&
+              prefs.preferredCategories.length > 0) ||
+            (prefs.preferredSubcategories &&
+              prefs.preferredSubcategories.length > 0) ||
+            (prefs.listingTypePreferences &&
+              prefs.listingTypePreferences.length > 0) ||
+            (prefs.buyerSegments && prefs.buyerSegments.length > 0) ||
+            (prefs.preferredRegions && prefs.preferredRegions.length > 0) ||
+            (prefs.preferredBrandIds && prefs.preferredBrandIds.length > 0) ||
+            prefs.budgetMin !== null ||
+            prefs.budgetMax !== null ||
+            (prefs.minimumDiscountPercentage &&
+              prefs.minimumDiscountPercentage > 0)
+        );
+
+      setHasExistingPreferences(hasPrefs);
+
+      if (!hasPrefs) {
+        setTimeout(() => {
+          setIsPopupOpen(true);
+        }, 1000);
+      }
+    } catch {
+      setHasExistingPreferences(false);
+      // Show popup on error (assume no preferences)
       setTimeout(() => {
         setIsPopupOpen(true);
       }, 1000);
+    } finally {
+      setIsCheckingPreferences(false);
     }
-  };
+  }, [isCheckingPreferences]);
 
   return {
     isPopupOpen,
     preferences,
-    hasShownPopup,
+    hasExistingPreferences,
+    isCheckingPreferences,
     shouldShowPopup,
     openPopup,
     closePopup,
     skipPopup,
     completePreferences,
     clearPreferences,
-    triggerPopupForBuyer
+    triggerPopupForBuyer,
+    checkExistingPreferences,
   };
-}; 
+};

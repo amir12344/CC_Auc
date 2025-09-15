@@ -2,9 +2,14 @@
  * Product API service
  * Contains functions for fetching products from the API with optimized performance
  */
-
-import { Product } from '@/src/types';
-import { trendingDeals, featuredDeals, moreDeals, bargainListings, amazonListings } from '@/src/mocks/productData';
+import {
+  amazonListings,
+  bargainListings,
+  featuredDeals,
+  moreDeals,
+  trendingDeals,
+} from "@/src/mocks/productData";
+import { Product } from "@/src/types";
 
 interface ProductsResponse {
   products: Product[];
@@ -34,23 +39,27 @@ const allMockProducts = [
   ...featuredDeals,
   ...moreDeals,
   ...bargainListings,
-  ...amazonListings
+  ...amazonListings,
 ];
 
 // Helper function to check if running in development environment
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === "development";
 
 /**
  * Fetch products from the API with optimized caching
  */
-export async function fetchProducts(params: ProductsParams = {}): Promise<ProductsResponse> {
+export async function fetchProducts(
+  params: ProductsParams = {}
+): Promise<ProductsResponse> {
   // Fast path for development - use mock data directly
   if (isDevelopment) {
     // Apply category filter if specified
     let filteredProducts = allMockProducts;
     if (params.category) {
-      filteredProducts = allMockProducts.filter(p =>
-        p.category && p.category.toLowerCase() === params.category?.toLowerCase()
+      filteredProducts = allMockProducts.filter(
+        (p) =>
+          p.category &&
+          p.category.toLowerCase() === params.category?.toLowerCase()
       );
     }
 
@@ -69,32 +78,40 @@ export async function fetchProducts(params: ProductsParams = {}): Promise<Produc
         page,
         pageSize: limit,
         totalPages: Math.ceil(filteredProducts.length / limit),
-        hasMore: endIndex < filteredProducts.length
-      }
+        hasMore: endIndex < filteredProducts.length,
+      },
     };
   }
 
   // Build query string from params
   const queryParams = new URLSearchParams();
-  if (params.category) queryParams.append('category', params.category);
-  if (params.limit) queryParams.append('limit', params.limit.toString());
-  if (params.page) queryParams.append('page', params.page.toString());
+  if (params.category) queryParams.append("category", params.category);
+  if (params.limit) queryParams.append("limit", params.limit.toString());
+  if (params.page) queryParams.append("page", params.page.toString());
 
   // Construct an absolute URL for the API endpoint
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ||
-    (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_URL ||
+    (typeof window !== "undefined"
+      ? window.location.origin
+      : "http://localhost:3000");
 
-  const url = new URL(`/api/products?${queryParams.toString()}`, baseUrl).toString();
+  const url = new URL(
+    `/api/products?${queryParams.toString()}`,
+    baseUrl
+  ).toString();
 
   // Fetch products from the API with improved caching
   const response = await fetch(url, {
     next: { revalidate: 600 }, // 10 minutes
-    cache: 'force-cache',
+    cache: "force-cache",
   });
 
   // Handle errors
   if (!response.ok) {
-    throw new Error(`Failed to fetch products: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Failed to fetch products: ${response.status} ${response.statusText}`
+    );
   }
 
   // Return the products
@@ -107,7 +124,7 @@ export async function fetchProducts(params: ProductsParams = {}): Promise<Produc
 export async function fetchProduct(id: string): Promise<ProductResponse> {
   // Fast path for development - use mock data directly
   if (isDevelopment) {
-    const product = allMockProducts.find(p => p.id === id);
+    const product = allMockProducts.find((p) => p.id === id);
 
     if (!product) {
       throw new Error(`Product not found: ${id}`);
@@ -115,25 +132,30 @@ export async function fetchProduct(id: string): Promise<ProductResponse> {
 
     return {
       product,
-      additionalImages: [product.image, product.image, product.image]
+      additionalImages: [product.image, product.image, product.image],
     };
   }
 
   // Construct an absolute URL for the API endpoint
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ||
-    (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_URL ||
+    (typeof window !== "undefined"
+      ? window.location.origin
+      : "http://localhost:3000");
 
   const url = new URL(`/api/products/${id}`, baseUrl).toString();
 
   // Fetch product from the API with improved caching
   const response = await fetch(url, {
     next: { revalidate: 600 }, // 10 minutes
-    cache: 'force-cache',
+    cache: "force-cache",
   });
 
   // Handle errors
   if (!response.ok) {
-    throw new Error(`Failed to fetch product: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Failed to fetch product: ${response.status} ${response.statusText}`
+    );
   }
 
   // Return the product
@@ -146,9 +168,11 @@ export async function fetchProduct(id: string): Promise<ProductResponse> {
 export async function searchProducts(query: string): Promise<ProductsResponse> {
   // Fast path for development - use mock data directly
   if (isDevelopment) {
-    const filteredProducts = allMockProducts.filter(p =>
-      (p.title && p.title.toLowerCase().includes(query.toLowerCase())) ||
-      (p.description && p.description.toLowerCase().includes(query.toLowerCase()))
+    const filteredProducts = allMockProducts.filter(
+      (p) =>
+        (p.title && p.title.toLowerCase().includes(query.toLowerCase())) ||
+        (p.description &&
+          p.description.toLowerCase().includes(query.toLowerCase()))
     );
 
     return {
@@ -158,29 +182,36 @@ export async function searchProducts(query: string): Promise<ProductsResponse> {
         page: 1,
         pageSize: filteredProducts.length,
         totalPages: 1,
-        hasMore: false
-      }
+        hasMore: false,
+      },
     };
   }
 
   // Construct an absolute URL for the API endpoint
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ||
-    (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_URL ||
+    (typeof window !== "undefined"
+      ? window.location.origin
+      : "http://localhost:3000");
 
-  const url = new URL(`/api/products/search?q=${encodeURIComponent(query)}`, baseUrl).toString();
+  const url = new URL(
+    `/api/products/search?q=${encodeURIComponent(query)}`,
+    baseUrl
+  ).toString();
 
   // Fetch products from the API with caching
   const response = await fetch(url, {
     next: { revalidate: 600 }, // 10 minutes
-    cache: 'force-cache',
+    cache: "force-cache",
   });
 
   // Handle errors
   if (!response.ok) {
-    throw new Error(`Failed to search products: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Failed to search products: ${response.status} ${response.statusText}`
+    );
   }
 
   // Return the products
   return response.json();
 }
-

@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState, ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { ReactNode, useEffect, useState } from "react";
+
+import { motion } from "framer-motion";
 
 interface LazyLoadProps {
   children: ReactNode;
@@ -17,12 +18,14 @@ interface LazyLoadProps {
 export default function LazyLoad({
   children,
   threshold = 0.1,
-  rootMargin = '200px',
+  rootMargin = "200px",
   placeholder,
   fadeInDuration = 0.5,
 }: LazyLoadProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [elementId] = useState(`lazy-load-${Math.random().toString(36).substring(2, 9)}`);
+  const [elementId] = useState(
+    `lazy-load-${Math.random().toString(36).substring(2, 9)}`
+  );
 
   useEffect(() => {
     // Create an intersection observer to detect when the element is in the viewport
@@ -52,9 +55,9 @@ export default function LazyLoad({
   return (
     <div id={elementId} className="relative">
       {!isVisible && placeholder ? (
-        <div className="w-full h-full">{placeholder}</div>
+        <div className="h-full w-full">{placeholder}</div>
       ) : null}
-      
+
       {isVisible && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -67,4 +70,3 @@ export default function LazyLoad({
     </div>
   );
 }
-

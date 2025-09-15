@@ -1,122 +1,182 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback, useMemo, useRef } from 'react';
-import { StepComponentProps } from '../../types/preferences';
-import { CATEGORY_OPTIONS, SUBCATEGORY_OPTIONS } from '../../data/preferenceOptions';
-import { Button } from '@/src/components/ui/button';
-import { Badge } from '@/src/components/ui/badge';
-import { X, ChevronDown, ChevronRight } from 'lucide-react';
+import React, { useCallback, useMemo, useRef, useState } from "react";
+
+import { ChevronDown, ChevronRight, Search, X } from "lucide-react";
+
+import { Badge } from "@/src/components/ui/badge";
+import { Button } from "@/src/components/ui/button";
+import { Checkbox } from "@/src/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
-import { Checkbox } from '@/src/components/ui/checkbox';
+} from "@/src/components/ui/dropdown-menu";
+
+import {
+  CATEGORY_OPTIONS,
+  SUBCATEGORY_OPTIONS,
+} from "../../data/preferenceOptions";
+import type { StepComponentProps } from "../../types/preferences";
 
 const INITIAL_ITEMS = 15;
 const ITEMS_PER_PAGE = 10;
 
-interface CategoryWithSubcategories {
-  category: string;
-  subcategories: string[];
-  isExpanded: boolean;
-}
-
 const CategoryStepComponent: React.FC<StepComponentProps> = ({
   preferences,
-  updatePreferences
+  updatePreferences,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [displayCount, setDisplayCount] = useState(INITIAL_ITEMS);
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+    new Set()
+  );
+  const [searchTerm, setSearchTerm] = useState("");
   const scrollElementRef = useRef<HTMLDivElement>(null);
 
+  const categoryMap = useMemo(() => {
+    return new Map(CATEGORY_OPTIONS.map((opt) => [opt.value, opt.label]));
+  }, []);
+
+  const subcategoryMap = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const subcategoryList of Object.values(SUBCATEGORY_OPTIONS)) {
+      for (const sub of subcategoryList) {
+        map.set(sub.value, sub.label);
+      }
+    }
+    return map;
+  }, []);
+
+  const baseCategories = searchTerm
+    ? CATEGORY_OPTIONS
+    : CATEGORY_OPTIONS.slice(0, displayCount);
   // Prepare categories with their subcategories
   const categoriesWithSubs = useMemo(() => {
-    return CATEGORY_OPTIONS.slice(0, displayCount).map(category => ({
-      category,
-      subcategories: SUBCATEGORY_OPTIONS[category] || [],
-      isExpanded: expandedCategories.has(category)
+    return baseCategories.map((category) => ({
+      ...category,
+      subcategories: SUBCATEGORY_OPTIONS[category.value] || [],
+      isExpanded: expandedCategories.has(category.value),
     }));
-  }, [displayCount, expandedCategories]);
+  }, [baseCategories, expandedCategories]);
+
+  const filteredCategories = useMemo(() => {
+    if (!searchTerm) {
+      return categoriesWithSubs;
+    }
+    const lowerSearch = searchTerm.toLowerCase();
+    return categoriesWithSubs.filter((category) => {
+      const categoryMatch = category.label.toLowerCase().includes(lowerSearch);
+      const subMatches = category.subcategories.some((sub) =>
+        sub.label.toLowerCase().includes(lowerSearch)
+      );
+      return categoryMatch || subMatches;
+    });
+  }, [categoriesWithSubs, searchTerm]);
 
   const hasMore = CATEGORY_OPTIONS.length > displayCount;
 
   // Toggle category expansion
-  const toggleCategoryExpansion = useCallback((category: string) => {
-    setExpandedCategories(prev => {
+  const toggleCategoryExpansion = useCallback((categoryValue: string) => {
+    setExpandedCategories((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(category)) {
-        newSet.delete(category);
+      if (newSet.has(categoryValue)) {
+        newSet.delete(categoryValue);
       } else {
-        newSet.add(category);
+        newSet.add(categoryValue);
       }
       return newSet;
     });
   }, []);
 
   // Handle category selection
-  const handleCategoryToggle = useCallback((category: string, isChecked: boolean) => {
-    const newCategories = isChecked
-      ? [...preferences.categories, category]
-      : preferences.categories.filter(c => c !== category);
-    
-    // If unchecking category, remove all its subcategories
-    const newSubcategories = isChecked
-      ? preferences.subcategories
-      : preferences.subcategories.filter(sub => 
-          !(SUBCATEGORY_OPTIONS[category] || []).includes(sub)
+  const handleCategoryToggle = useCallback(
+    (categoryValue: string, isChecked: boolean) => {
+      const newCategories = isChecked
+        ? [...preferences.categories, categoryValue]
+        : preferences.categories.filter((c) => c !== categoryValue);
+      const subcategoriesToHandle = (
+        SUBCATEGORY_OPTIONS[categoryValue] || []
+      ).map((s) => s.value);
+      let newSubcategories = preferences.subcategories;
+      if (isChecked) {
+        newSubcategories = [
+          ...new Set([...newSubcategories, ...subcategoriesToHandle]),
+        ];
+      } else {
+        newSubcategories = newSubcategories.filter(
+          (sub) => !subcategoriesToHandle.includes(sub)
         );
-    
-    updatePreferences({ 
-      categories: newCategories,
-      subcategories: newSubcategories
-    });
-  }, [preferences.categories, preferences.subcategories, updatePreferences]);
+      }
+      updatePreferences({
+        categories: newCategories,
+        subcategories: newSubcategories,
+      });
+    },
+    [preferences.categories, preferences.subcategories, updatePreferences]
+  );
 
   // Handle subcategory selection
-  const handleSubcategoryToggle = useCallback((subcategory: string, category: string, isChecked: boolean) => {
-    const newSubcategories = isChecked
-      ? [...preferences.subcategories, subcategory]
-      : preferences.subcategories.filter(s => s !== subcategory);
-    
-    // Auto-select parent category if subcategory is selected
-    const newCategories = isChecked && !preferences.categories.includes(category)
-      ? [...preferences.categories, category]
-      : preferences.categories;
-    
-    updatePreferences({ 
-      categories: newCategories,
-      subcategories: newSubcategories
-    });
-  }, [preferences.categories, preferences.subcategories, updatePreferences]);
+  const handleSubcategoryToggle = useCallback(
+    (subcategoryValue: string, categoryValue: string, isChecked: boolean) => {
+      const newSubcategories = isChecked
+        ? [...preferences.subcategories, subcategoryValue]
+        : preferences.subcategories.filter((s) => s !== subcategoryValue);
+
+      // Auto-select parent category if subcategory is selected
+      const newCategories =
+        isChecked && !preferences.categories.includes(categoryValue)
+          ? [...preferences.categories, categoryValue]
+          : preferences.categories;
+
+      updatePreferences({
+        categories: newCategories,
+        subcategories: newSubcategories,
+      });
+    },
+    [preferences.categories, preferences.subcategories, updatePreferences]
+  );
 
   // Remove selected item
-  const removeSelectedItem = useCallback((item: string, type: 'category' | 'subcategory') => {
-    if (type === 'category') {
-      const newCategories = preferences.categories.filter(c => c !== item);
-      const newSubcategories = preferences.subcategories.filter(sub => 
-        !(SUBCATEGORY_OPTIONS[item] || []).includes(sub)
-      );
-      updatePreferences({ 
-        categories: newCategories,
-        subcategories: newSubcategories
-      });
-    } else {
-      const newSubcategories = preferences.subcategories.filter(s => s !== item);
-      updatePreferences({ subcategories: newSubcategories });
-    }
-  }, [preferences.categories, preferences.subcategories, updatePreferences]);
+  const removeSelectedItem = useCallback(
+    (itemValue: string, type: "category" | "subcategory") => {
+      if (type === "category") {
+        const newCategories = preferences.categories.filter(
+          (c) => c !== itemValue
+        );
+        const subcategoriesToRemove = (
+          SUBCATEGORY_OPTIONS[itemValue] || []
+        ).map((s) => s.value);
+        const newSubcategories = preferences.subcategories.filter(
+          (sub) => !subcategoriesToRemove.includes(sub)
+        );
+        updatePreferences({
+          categories: newCategories,
+          subcategories: newSubcategories,
+        });
+      } else {
+        const newSubcategories = preferences.subcategories.filter(
+          (s) => s !== itemValue
+        );
+        updatePreferences({ subcategories: newSubcategories });
+      }
+    },
+    [preferences.categories, preferences.subcategories, updatePreferences]
+  );
 
   // Load more items when scrolling
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    const element = e.currentTarget;
-    const isNearBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 10;
-    
-    if (isNearBottom && hasMore) {
-      setDisplayCount(prev => prev + ITEMS_PER_PAGE);
-    }
-  }, [hasMore]);
+  const handleScroll = useCallback(
+    (e: React.UIEvent<HTMLDivElement>) => {
+      const element = e.currentTarget;
+      const isNearBottom =
+        element.scrollTop + element.clientHeight >= element.scrollHeight - 10;
+
+      if (isNearBottom && hasMore) {
+        setDisplayCount((prev) => prev + ITEMS_PER_PAGE);
+      }
+    },
+    [hasMore]
+  );
 
   // Reset when dropdown opens
   const handleDropdownOpenChange = useCallback((open: boolean) => {
@@ -127,72 +187,90 @@ const CategoryStepComponent: React.FC<StepComponentProps> = ({
   }, []);
 
   // Get total selected count
-  const totalSelectedCount = preferences.categories.length + preferences.subcategories.length;
+  const totalSelectedCount =
+    preferences.categories.length + preferences.subcategories.length;
 
   return (
     <div className="space-y-6">
       {/* Cascading Multi-Select Dropdown */}
       <div className="space-y-3">
-        <DropdownMenu open={isDropdownOpen} onOpenChange={handleDropdownOpenChange}>
+        <DropdownMenu
+          onOpenChange={handleDropdownOpenChange}
+          open={isDropdownOpen}
+        >
           <DropdownMenuTrigger asChild>
-            <Button 
-              variant="outline" 
-              className="w-full justify-between h-12 text-left font-normal border-gray-300 hover:bg-gray-50"
+            <Button
+              className="h-12 w-full justify-between border-gray-300 text-left font-normal hover:bg-gray-50"
+              variant="outline"
             >
               <span className="text-foreground">
-                {totalSelectedCount > 0 
-                  ? `${totalSelectedCount} items selected` 
-                  : 'Select categories and subcategories...'
-                }
+                {totalSelectedCount > 0
+                  ? `${totalSelectedCount} items selected`
+                  : "Select categories and subcategories..."}
               </span>
               <ChevronDown className="h-4 w-4 opacity-50" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent 
-            ref={scrollElementRef}
-            className="w-[var(--radix-dropdown-menu-trigger-width)] max-h-[min(300px,calc(100vh-200px))] overflow-y-auto p-0" 
+          <DropdownMenuContent
             align="start"
+            avoidCollisions={true}
+            className="max-h-[min(300px,calc(100vh-200px))] w-[var(--radix-dropdown-menu-trigger-width)] overflow-y-auto p-0"
+            onScroll={handleScroll}
+            ref={scrollElementRef}
             side="bottom"
             sideOffset={4}
-            avoidCollisions={true}
-            onScroll={handleScroll}
           >
-            {categoriesWithSubs.length > 0 ? (
+            <div className="bg-background sticky top-0 z-10 border-b p-2">
+              <div className="relative">
+                <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                <input
+                  className="border-input placeholder:text-muted-foreground focus:ring-ring h-9 w-full rounded-md border bg-transparent py-2 pr-3 pl-9 text-sm focus:ring-1 focus:outline-none"
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search categories..."
+                  type="search"
+                  value={searchTerm}
+                />
+              </div>
+            </div>
+            {filteredCategories.length > 0 ? (
               <>
-                {categoriesWithSubs.map(({ category, subcategories }) => (
-                  <div key={category} className="border-b border-gray-100 last:border-b-0">
+                {filteredCategories.map(({ value, label, subcategories }) => (
+                  <div
+                    className="border-b border-gray-100 last:border-b-0"
+                    key={value}
+                  >
                     {/* Category Item */}
                     <div className="flex items-center p-3 hover:bg-gray-50">
                       <Checkbox
-                        id={`category-${category}`}
-                        checked={preferences.categories.includes(category)}
-                        onCheckedChange={(checked) => 
-                          handleCategoryToggle(category, checked as boolean)
-                        }
+                        checked={preferences.categories.includes(value)}
                         className="mr-3"
+                        id={`category-${value}`}
+                        onCheckedChange={(checked) =>
+                          handleCategoryToggle(value, checked as boolean)
+                        }
                       />
-                      <div className="flex-1 flex items-center justify-between">
-                        <label 
-                          htmlFor={`category-${category}`}
-                          className="text-sm font-medium cursor-pointer flex-1"
+                      <div className="flex flex-1 items-center justify-between">
+                        <label
+                          className="flex-1 cursor-pointer text-sm font-medium"
+                          htmlFor={`category-${value}`}
                         >
-                          {category}
+                          {label}
                         </label>
                         {subcategories.length > 0 && (
                           <Button
-                            variant="ghost"
-                            size="sm"
                             className="h-6 w-6 p-0"
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              toggleCategoryExpansion(category);
+                              toggleCategoryExpansion(value);
                             }}
+                            size="sm"
+                            variant="ghost"
                           >
-                            <ChevronRight 
+                            <ChevronRight
                               className={`h-3 w-3 transition-transform ${
-                                expandedCategories.has(category) ? 'rotate-90' : ''
-                              }`} 
+                                expandedCategories.has(value) ? "rotate-90" : ""
+                              }`}
                             />
                           </Button>
                         )}
@@ -200,44 +278,62 @@ const CategoryStepComponent: React.FC<StepComponentProps> = ({
                     </div>
 
                     {/* Subcategories */}
-                    {subcategories.length > 0 && expandedCategories.has(category) && (
-                      <div className="bg-gray-50/50">
-                        {subcategories.map((subcategory) => (
-                          <div 
-                            key={subcategory} 
-                            className="flex items-center p-3 pl-10 hover:bg-gray-50"
-                          >
-                            <Checkbox
-                              id={`subcategory-${subcategory}`}
-                              checked={preferences.subcategories.includes(subcategory)}
-                              onCheckedChange={(checked) => 
-                                handleSubcategoryToggle(subcategory, category, checked as boolean)
-                              }
-                              className="mr-3"
-                            />
-                            <label 
-                              htmlFor={`subcategory-${subcategory}`}
-                              className="text-sm cursor-pointer flex-1 text-foreground/90"
-                            >
-                              {subcategory}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    {subcategories.length > 0 &&
+                      expandedCategories.has(value) && (
+                        <div className="bg-gray-50/50">
+                          {subcategories
+                            .filter(
+                              (sub) =>
+                                !searchTerm ||
+                                sub.label
+                                  .toLowerCase()
+                                  .includes(searchTerm.toLowerCase())
+                            )
+                            .map((subcategory) => (
+                              <div
+                                className="flex items-center p-3 pl-10 hover:bg-gray-50"
+                                key={subcategory.value}
+                              >
+                                <Checkbox
+                                  checked={preferences.subcategories.includes(
+                                    subcategory.value
+                                  )}
+                                  className="mr-3"
+                                  id={`subcategory-${subcategory.value}`}
+                                  onCheckedChange={(checked) =>
+                                    handleSubcategoryToggle(
+                                      subcategory.value,
+                                      value,
+                                      checked as boolean
+                                    )
+                                  }
+                                />
+                                <label
+                                  className="text-foreground/90 flex-1 cursor-pointer text-sm"
+                                  htmlFor={`subcategory-${subcategory.value}`}
+                                >
+                                  {subcategory.label}
+                                </label>
+                              </div>
+                            ))}
+                        </div>
+                      )}
                   </div>
                 ))}
-                {hasMore && (
-                  <div className="p-3 text-center text-sm text-muted-foreground border-t">
-                    Showing {categoriesWithSubs.length} of {CATEGORY_OPTIONS.length} categories
+                {!searchTerm && hasMore && (
+                  <div className="text-muted-foreground border-t p-3 text-center text-sm">
+                    Showing {displayCount} of {CATEGORY_OPTIONS.length}{" "}
+                    categories
                     <br />
                     <span className="text-xs">Scroll down to load more</span>
                   </div>
                 )}
               </>
             ) : (
-              <div className="p-4 text-center text-sm text-muted-foreground">
-                No categories available
+              <div className="text-muted-foreground p-4 text-center text-sm">
+                {searchTerm
+                  ? "No matching categories found"
+                  : "No categories available"}
               </div>
             )}
           </DropdownMenuContent>
@@ -250,21 +346,24 @@ const CategoryStepComponent: React.FC<StepComponentProps> = ({
           {/* Selected Categories */}
           {preferences.categories.length > 0 && (
             <div className="space-y-3">
-              <p className="text-sm font-medium text-foreground">
+              <p className="text-foreground text-sm font-medium">
                 Selected categories ({preferences.categories.length}):
               </p>
               <div className="flex flex-wrap gap-2">
-                {preferences.categories.map((category) => (
-                  <Badge 
-                    key={category} 
-                    variant="default" 
-                    className="text-sm bg-blue-100 text-blue-800 hover:bg-blue-200"
+                {preferences.categories.map((categoryValue) => (
+                  <Badge
+                    className="bg-blue-100 text-sm text-blue-800 hover:bg-blue-200"
+                    key={categoryValue}
+                    variant="default"
                   >
-                    {category}
+                    {categoryMap.get(categoryValue) || categoryValue}
                     <button
-                      onClick={() => removeSelectedItem(category, 'category')}
-                      className="ml-2 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                      aria-label={`Remove ${category}`}
+                      aria-label={`Remove ${categoryMap.get(categoryValue) || categoryValue}`}
+                      className="ring-offset-background focus:ring-ring ml-2 rounded-full outline-none focus:ring-2 focus:ring-offset-2"
+                      onClick={() =>
+                        removeSelectedItem(categoryValue, "category")
+                      }
+                      type="button"
                     >
                       <X className="h-3 w-3 text-blue-600 hover:text-blue-800" />
                     </button>
@@ -277,21 +376,24 @@ const CategoryStepComponent: React.FC<StepComponentProps> = ({
           {/* Selected Subcategories */}
           {preferences.subcategories.length > 0 && (
             <div className="space-y-3">
-              <p className="text-sm font-medium text-foreground">
+              <p className="text-foreground text-sm font-medium">
                 Selected subcategories ({preferences.subcategories.length}):
               </p>
               <div className="flex flex-wrap gap-2">
-                {preferences.subcategories.map((subcategory) => (
-                  <Badge 
-                    key={subcategory} 
-                    variant="secondary" 
-                    className="text-sm bg-gray-100 text-gray-700 hover:bg-gray-200"
+                {preferences.subcategories.map((subcategoryValue) => (
+                  <Badge
+                    className="bg-gray-100 text-sm text-gray-700 hover:bg-gray-200"
+                    key={subcategoryValue}
+                    variant="secondary"
                   >
-                    {subcategory}
+                    {subcategoryMap.get(subcategoryValue) || subcategoryValue}
                     <button
-                      onClick={() => removeSelectedItem(subcategory, 'subcategory')}
-                      className="ml-2 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                      aria-label={`Remove ${subcategory}`}
+                      aria-label={`Remove ${subcategoryMap.get(subcategoryValue) || subcategoryValue}`}
+                      className="ring-offset-background focus:ring-ring ml-2 rounded-full outline-none focus:ring-2 focus:ring-offset-2"
+                      onClick={() =>
+                        removeSelectedItem(subcategoryValue, "subcategory")
+                      }
+                      type="button"
                     >
                       <X className="h-3 w-3 text-gray-500 hover:text-gray-700" />
                     </button>
@@ -302,17 +404,9 @@ const CategoryStepComponent: React.FC<StepComponentProps> = ({
           )}
         </div>
       )}
-
-      {/* Description */}
-      <div className="text-sm text-muted-foreground">
-        {totalSelectedCount === 0 ? (
-          <p>Choose the product categories and subcategories that interest you most. This helps us show you the most relevant inventory.</p>
-        ) : (
-          <p>Perfect! We'll focus on showing you inventory in these categories and subcategories. You can expand categories to see their subcategories.</p>
-        )}
-      </div>
     </div>
   );
 };
 
-export const CategoryStep = React.memo(CategoryStepComponent); 
+export const CategoryStep = React.memo(CategoryStepComponent);
+export default CategoryStep;

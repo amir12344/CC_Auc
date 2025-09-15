@@ -23,8 +23,6 @@ export interface Product {
   tags?: string[];
 }
 
-
-
 export interface SearchFilters {
   category?: string;
   priceRange?: {
@@ -33,8 +31,8 @@ export interface SearchFilters {
   };
   brands?: string[];
   tags?: string[];
-  sortBy?: 'price' | 'name' | 'date' | 'popularity';
-  sortOrder?: 'asc' | 'desc';
+  sortBy?: "price" | "name" | "date" | "popularity";
+  sortOrder?: "asc" | "desc";
 }
 
 export interface MarketplaceState {
@@ -50,4 +48,4 @@ export interface MarketplaceState {
     itemsPerPage: number;
     totalItems: number;
   };
-} 
+}

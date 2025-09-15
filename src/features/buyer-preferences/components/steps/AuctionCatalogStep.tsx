@@ -1,17 +1,27 @@
-'use client';
+"use client";
 
-import React, { useCallback, useMemo } from 'react';
-import { StepComponentProps } from '../../types/preferences';
-import { Checkbox } from '@/src/components/ui/checkbox';
-import { Label } from '@/src/components/ui/label';
-import { Badge } from '@/src/components/ui/badge';
-import { Gavel, ShoppingBag, Clock, DollarSign, CheckCircle2 } from 'lucide-react';
+import React, { useCallback, useMemo } from "react";
+
+import { CheckCircle2, Gavel, ShoppingBag } from "lucide-react";
+
+import { Badge } from "@/src/components/ui/badge";
+import { Checkbox } from "@/src/components/ui/checkbox";
+import { Label } from "@/src/components/ui/label";
+
+import type { StepComponentProps } from "../../types/preferences";
 
 // Types for better type safety
-type ListingType = 'auction' | 'catalog';
+type ListingType = "auction" | "catalog";
+type ListingTypeApiValue = "AUCTION" | "CATALOG";
+
+// Type guard to check if a string is a valid ListingTypeApiValue
+const isListingTypeApiValue = (value: string): value is ListingTypeApiValue => {
+  return ["AUCTION", "CATALOG"].includes(value);
+};
 
 interface ListingOption {
   id: ListingType;
+  key: ListingTypeApiValue;
   title: string;
   description: string;
   icon: React.ComponentType<{ className?: string }>;
@@ -21,20 +31,23 @@ interface ListingOption {
 // Configuration for listing types
 const LISTING_OPTIONS: ListingOption[] = [
   {
-    id: 'auction',
-    title: 'Auction-Based Sourcing',
-    description: ' Place bids on live lots, competing in time-bound auctions',
+    id: "auction",
+    key: "AUCTION",
+    title: "Auction-Based Sourcing",
+    description: " Place bids on live lots, competing in time-bound auctions",
     icon: Gavel,
-    iconColor: 'text-dark-600',
+    iconColor: "text-dark-600",
   },
   {
-    id: 'catalog',
-    title: 'Offer-Based Sourcing',
-    description: ' Browse available catalog listings and submit a private offer on specific items',
+    id: "catalog",
+    key: "CATALOG",
+    title: "Offer-Based Sourcing",
+    description:
+      " Browse available catalog listings and submit a private offer on specific items",
     icon: ShoppingBag,
-    iconColor: 'text-dark-600',
-  }
-];
+    iconColor: "text-dark-600",
+  },
+] as const;
 
 // Extracted component for listing option
 interface ListingOptionCardProps {
@@ -43,133 +56,145 @@ interface ListingOptionCardProps {
   onToggle: (type: ListingType, checked: boolean) => void;
 }
 
-const ListingOptionCard = React.memo(({ option, isSelected, onToggle }: ListingOptionCardProps) => {
-  const { id, title, description, icon: Icon, iconColor } = option;
+const ListingOptionCard = React.memo(
+  ({ option, isSelected, onToggle }: ListingOptionCardProps) => {
+    const { id, title, description, icon: Icon, iconColor } = option;
 
-  const handleToggle = useCallback((checked: boolean) => {
-    onToggle(id, checked);
-  }, [id, onToggle]);
+    const handleToggle = useCallback(
+      (checked: boolean) => {
+        onToggle(id, checked);
+      },
+      [id, onToggle]
+    );
 
-  return (
-    <div className={`
-      flex items-start space-x-4 p-4 border rounded-lg transition-all duration-200 cursor-pointer
-      ${isSelected
-        ? 'border-blue-300 bg-blue-50 shadow-sm'
-        : 'border-gray-200 hover:bg-gray-50 hover:border-gray-300'
-      }
-    `}>
-      <Checkbox
-        id={`${id}-type`}
-        checked={isSelected}
-        onCheckedChange={handleToggle}
-        className="mt-1"
-      />
-      <div className="flex-1">
-        <Label
-          htmlFor={`${id}-type`}
-          className="text-base font-medium text-gray-900 cursor-pointer flex items-center gap-2"
-        >
-          <Icon className={`h-5 w-5 ${iconColor}`} />
-          {title}
-          {isSelected && <CheckCircle2 className="h-4 w-4 text-green-600" />}
-        </Label>
-        <p className="text-sm text-gray-600 mt-1">
-          {description}
-        </p>
+    return (
+      <div
+        className={`flex cursor-pointer items-start space-x-4 rounded-lg border p-4 transition-all duration-200 ${
+          isSelected
+            ? "border-blue-300 bg-blue-50 shadow-sm"
+            : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+        } `}
+      >
+        <Checkbox
+          checked={isSelected}
+          className="mt-1"
+          id={`${id}-type`}
+          onCheckedChange={handleToggle}
+        />
+        <div className="flex-1">
+          <Label
+            className="flex cursor-pointer items-center gap-2 text-base font-medium text-gray-900"
+            htmlFor={`${id}-type`}
+          >
+            <Icon className={`h-5 w-5 ${iconColor}`} />
+            {title}
+            {isSelected && <CheckCircle2 className="h-4 w-4 text-green-600" />}
+          </Label>
+          <p className="mt-1 text-sm text-gray-600">{description}</p>
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
-ListingOptionCard.displayName = 'ListingOptionCard';
+ListingOptionCard.displayName = "ListingOptionCard";
 
-// Extracted component for selection summary
+// Updated SelectionSummary component
 interface SelectionSummaryProps {
-  selectedTypes: ListingType[];
+  selectedTypes: ListingTypeApiValue[];
 }
 
-const SelectionSummary = React.memo(({ selectedTypes }: SelectionSummaryProps) => {
-  if (selectedTypes.length === 0) return null;
+const SelectionSummary = React.memo(
+  ({ selectedTypes }: SelectionSummaryProps) => {
+    if (selectedTypes.length === 0) {
+      return null;
+    }
 
-  return (
-    <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-      <div className="flex items-center gap-2 mb-3">
-        <CheckCircle2 className="h-4 w-4 text-green-600" />
-        <p className="text-sm font-medium text-gray-700">
-          Your preferences ({selectedTypes.length} selected):
-        </p>
+    return (
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <div className="mb-3 flex items-center gap-2">
+          <CheckCircle2 className="h-4 w-4 text-green-600" />
+          <p className="text-sm font-medium text-gray-700">
+            Your preferences ({selectedTypes.length} selected):
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {selectedTypes.map((typeKey) => {
+            const option = LISTING_OPTIONS.find((opt) => opt.key === typeKey);
+            if (!option) {
+              return null;
+            }
+
+            const Icon = option.icon;
+            return (
+              <Badge
+                className={
+                  "inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm"
+                }
+                key={option.id}
+                variant="secondary"
+              >
+                <Icon className="h-3 w-3" />
+                {option.title}
+              </Badge>
+            );
+          })}
+        </div>
       </div>
-      <div className="flex flex-wrap gap-2">
-        {selectedTypes.map((type) => {
-          const option = LISTING_OPTIONS.find(opt => opt.id === type);
-          if (!option) return null;
+    );
+  }
+);
 
-          const Icon = option.icon;
-          return (
-            <Badge
-              key={type}
-              variant="secondary"
-              className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm`}
-            >
-              <Icon className="h-3 w-3" />
-              {type === 'auction' ? 'Auctions' : 'Catalog'}
-            </Badge>
-          );
-        })}
-      </div>
-    </div>
-  );
-});
-
-SelectionSummary.displayName = 'SelectionSummary';
+SelectionSummary.displayName = "SelectionSummary";
 
 // Main component
 export const AuctionCatalogStep: React.FC<StepComponentProps> = ({
   preferences,
-  updatePreferences
+  updatePreferences,
 }) => {
   // Memoized values for performance
-  const selectedTypes = useMemo(() =>
-    preferences.preferredTypes as ListingType[],
+  const selectedApiValues = useMemo(
+    () => (preferences.preferredTypes || []).filter(isListingTypeApiValue),
     [preferences.preferredTypes]
   );
 
-  const isAuctionSelected = useMemo(() =>
-    selectedTypes.includes('auction'),
-    [selectedTypes]
+  const isAuctionSelected = useMemo(
+    () => selectedApiValues.includes("AUCTION"),
+    [selectedApiValues]
   );
 
-  const isCatalogSelected = useMemo(() =>
-    selectedTypes.includes('catalog'),
-    [selectedTypes]
+  const isCatalogSelected = useMemo(
+    () => selectedApiValues.includes("CATALOG"),
+    [selectedApiValues]
   );
 
-  const hasSelections = useMemo(() =>
-    selectedTypes.length > 0,
-    [selectedTypes.length]
+  const hasSelections = useMemo(
+    () => selectedApiValues.length > 0,
+    [selectedApiValues.length]
   );
 
   // Optimized handlers with proper type casting
-  const handleTypeToggle = useCallback((type: ListingType, checked: boolean) => {
-    const newTypes: ('auction' | 'catalog')[] = checked
-      ? [...selectedTypes, type]
-      : selectedTypes.filter(t => t !== type);
+  const handleTypeToggle = useCallback(
+    (typeId: ListingType, checked: boolean) => {
+      const option = LISTING_OPTIONS.find((opt) => opt.id === typeId);
+      if (!option) {
+        return;
+      }
 
-    updatePreferences({ preferredTypes: newTypes });
-  }, [selectedTypes, updatePreferences]);
+      const apiKey = option.key;
 
-  // Helper text based on selection state
-  const helperText = useMemo(() => {
-    if (!hasSelections) {
-      return "Choose the types of listings you're interested in. You can select both options to see all available inventory.";
-    }
+      const currentApiValues = (preferences.preferredTypes || []).filter(
+        isListingTypeApiValue
+      );
 
-    if (selectedTypes.length === 2) {
-      return "Perfect! You'll see both auction and catalog listings, giving you access to the full marketplace inventory.";
-    }
+      const newApiValues = checked
+        ? [...currentApiValues, apiKey]
+        : currentApiValues.filter((t) => t !== apiKey);
 
-    return `Great! We'll prioritize ${selectedTypes[0]} listings in your recommendations. You can change this anytime in your settings.`;
-  }, [hasSelections, selectedTypes]);
+      updatePreferences({ preferredTypes: newApiValues });
+    },
+    [preferences.preferredTypes, updatePreferences]
+  );
 
   return (
     <div className="space-y-6">
@@ -177,28 +202,18 @@ export const AuctionCatalogStep: React.FC<StepComponentProps> = ({
       <div className="space-y-4">
         {LISTING_OPTIONS.map((option) => (
           <ListingOptionCard
+            isSelected={
+              option.id === "auction" ? isAuctionSelected : isCatalogSelected
+            }
             key={option.id}
-            option={option}
-            isSelected={option.id === 'auction' ? isAuctionSelected : isCatalogSelected}
             onToggle={handleTypeToggle}
+            option={option}
           />
         ))}
       </div>
 
       {/* Selection feedback */}
-      <SelectionSummary selectedTypes={selectedTypes} />
-
-      {/* Helper text */}
-      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-        <div className="flex items-start gap-2">
-          <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-            <span className="text-blue-600 text-xs font-bold">i</span>
-          </div>
-          <p className="text-sm text-blue-800">
-            {helperText}
-          </p>
-        </div>
-      </div>
+      <SelectionSummary selectedTypes={selectedApiValues} />
     </div>
   );
-}; 
+};

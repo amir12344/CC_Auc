@@ -1,16 +1,10 @@
-import Footer from '@/src/features/website/components/layout/Footer';
-import Navbar from '@/src/features/website/components/layout/Navbar';
+import WebsiteLayoutClient from "./layout-client";
 
 export default function WebsiteLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <Navbar />
-      {children}
-      <Footer />
-    </>
-  );
+  // Server wrapper renders a small client island for Navbar/Footer
+  return <WebsiteLayoutClient>{children}</WebsiteLayoutClient>;
 }

@@ -1,85 +1,103 @@
-import { cn } from "@/src/lib/utils";
 import Link from "next/link";
 import React from "react";
-import { ProductCarousel } from "./ProductCarousel";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import {
   Carousel,
   CarouselNext,
   CarouselPrevious,
 } from "@/src/components/ui/carousel";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { cn } from "@/src/lib/utils";
+
+import { ProductCarousel } from "./ProductCarousel";
 
 interface ProductSectionProps {
   title: string;
   viewAllLink?: string;
   children: React.ReactNode;
-  variant?: 'light' | 'trending' | 'custom';
-  layout?: 'grid' | 'carousel';
+  variant?: "light" | "trending" | "custom";
+  layout?: "grid" | "carousel";
   darkMode?: boolean;
 }
 
-export function ProductSection({ 
-  title, 
-  viewAllLink, 
+export function ProductSection({
+  title,
+  viewAllLink,
   children,
-  variant = 'light',
-  layout = 'grid',
-  darkMode = false
+  variant = "light",
+  layout = "grid",
+  darkMode = false,
 }: ProductSectionProps) {
   const childrenArray = React.Children.toArray(children);
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const visibleCount = isMobile ? 2 : 4;
+  // Visible card counts: mobile (<768px) = 2, tablet (>=768px & <1024px) = 3, desktop (>=1024px) = 5
+  const visibleCount = windowWidth >= 1024 ? 5 : windowWidth >= 768 ? 3 : 2;
   const showArrows = childrenArray.length > visibleCount;
 
   if (!childrenArray.length) return null;
 
-  if (layout === 'carousel') {
+  if (layout === "carousel") {
     return (
-      <main className="container mx-auto py-12 px-4">
+      <main className="max-w-8xl mx-auto px-6 py-4 sm:py-12">
         <Carousel
+          className="w-full"
           opts={{
             align: "start",
             loop: false,
           }}
-          className="w-full"
         >
-          <div className="flex flex-col gap-6 min-w-0 w-full">
+          <div className="flex w-full min-w-0 flex-col gap-6">
             <div className="flex items-center justify-between">
-              <h2 className={cn("text-2xl font-[500] tracking-tighter", darkMode ? "text-white" : "text-gray-900")}>{title}</h2>
+              <h2
+                className={cn(
+                  "text-2xl font-[500] tracking-tighter",
+                  darkMode ? "text-white" : "text-gray-900"
+                )}
+              >
+                {title}
+              </h2>
               <div className="flex items-center gap-2">
                 {viewAllLink && (
-                  <Link 
+                  <Link
+                    className={cn(
+                      "mr-4 text-sm",
+                      darkMode
+                        ? "text-gray-300 hover:text-white"
+                        : "text-muted-foreground hover:text-primary"
+                    )}
                     href={viewAllLink}
-                    className={cn("text-sm mr-4", darkMode ? "text-gray-300 hover:text-white" : "text-muted-foreground hover:text-primary")}
                   >
                     View all
                   </Link>
                 )}
                 {showArrows && (
                   <>
-                    <CarouselPrevious 
-                      variant="default"
+                    <CarouselPrevious
                       className={cn(
-                        "relative static translate-y-0 left-0 right-0 top-0 bottom-0 h-8 w-8 bg-[#43CD66] text-[#1C1E21] hover:bg-[#3ABF5A] hover:text-[#1C1E21] border-0",
+                        "relative static top-0 right-0 bottom-0 left-0 h-8 w-8 translate-y-0 border-0 bg-[#43CD66] text-[#1C1E21] hover:bg-[#3ABF5A] hover:text-[#1C1E21]",
                         "focus-visible:ring-2 focus-visible:ring-[#43CD66] focus-visible:ring-offset-2"
                       )}
+                      variant="default"
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </CarouselPrevious>
-                    <CarouselNext 
-                      variant="default"
+                    <CarouselNext
                       className={cn(
-                        "relative static translate-y-0 left-0 right-0 top-0 bottom-0 h-8 w-8 bg-[#43CD66] text-[#1C1E21] hover:bg-[#3ABF5A] hover:text-[#1C1E21] border-0",
+                        "relative static top-0 right-0 bottom-0 left-0 h-8 w-8 translate-y-0 border-0 bg-[#43CD66] text-[#1C1E21] hover:bg-[#3ABF5A] hover:text-[#1C1E21]",
                         "focus-visible:ring-2 focus-visible:ring-[#43CD66] focus-visible:ring-offset-2"
                       )}
+                      variant="default"
                     >
                       <ChevronRight className="h-4 w-4" />
                     </CarouselNext>
@@ -96,22 +114,34 @@ export function ProductSection({
 
   // Default to grid layout
   return (
-    <main className="container mx-auto py-12 px-4">
-      <div className="flex flex-col gap-6 min-w-0 w-full">
+    <main className="max-w-8xl mx-auto px-6 py-4 sm:py-12">
+      <div className="flex w-full min-w-0 flex-col gap-6">
         <div className="flex items-center justify-between">
-          <h2 className={cn("text-2xl font-[500] tracking-tighter", darkMode ? "text-white" : "text-gray-900")}>{title}</h2>
+          <h2
+            className={cn(
+              "text-2xl font-[500] tracking-tighter",
+              darkMode ? "text-white" : "text-gray-900"
+            )}
+          >
+            {title}
+          </h2>
           {viewAllLink && (
-            <Link 
+            <Link
+              className={cn(
+                "text-sm",
+                darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-muted-foreground hover:text-primary"
+              )}
               href={viewAllLink}
-              className={cn("text-sm", darkMode ? "text-gray-300 hover:text-white" : "text-muted-foreground hover:text-primary")}
             >
               View all
             </Link>
           )}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full">
+        <div className="grid w-full grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-5">
           {childrenArray.map((child, index) => (
-            <div key={index} className="min-w-0">
+            <div className="min-w-0" key={index}>
               {child}
             </div>
           ))}

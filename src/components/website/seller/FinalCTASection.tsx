@@ -1,37 +1,42 @@
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import Link from "next/link";
+
+import { motion } from "framer-motion";
 
 export const FinalCTASection = () => (
-  <section className="w-full py-24 relative overflow-hidden bg-linear-to-br from-[#102D21] to-[#0A2318] text-white">
+  <section className="relative w-full overflow-hidden bg-linear-to-br from-[#102D21] to-[#0A2318] py-24 text-white">
     {/* Background Elements */}
-    <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-      <div className="absolute top-1/4 -left-24 w-96 h-96 rounded-full bg-[#43CD66] blur-3xl opacity-20"></div>
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 rounded-full bg-[#43CD66] blur-3xl opacity-20"></div>
+    <div className="absolute top-0 left-0 h-full w-full overflow-hidden">
+      <div className="absolute top-1/4 -left-24 h-96 w-96 rounded-full bg-[#43CD66] opacity-20 blur-3xl"></div>
+      <div className="absolute -right-48 bottom-1/4 h-96 w-96 rounded-full bg-[#43CD66] opacity-20 blur-3xl"></div>
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
     </div>
-    <div className="container mx-auto px-4 text-center relative z-10">
+    <div className="relative z-10 container mx-auto px-4 text-center">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="max-w-4xl mx-auto"
+        className="mx-auto max-w-4xl"
       >
-        <div className="inline-block px-6 py-2 bg-white/10 rounded-full mb-6 backdrop-blur-xs">
-          <span className="text-[#43CD66] font-medium text-sm tracking-wider">GET STARTED TODAY</span>
+        <div className="mb-6 inline-block rounded-full bg-white/10 px-6 py-2 backdrop-blur-xs">
+          <span className="text-sm font-medium tracking-wider text-[#43CD66]">
+            GET STARTED TODAY
+          </span>
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-[500] mb-8 leading-tight">
-          Join the world&apos;s best <span className="text-[#43CD66]">surplus distribution</span> platform
+        <h2 className="mb-8 text-4xl leading-tight font-[500] md:text-5xl lg:text-6xl">
+          Join the world&apos;s best{" "}
+          <span className="text-[#43CD66]">surplus distribution</span> platform
         </h2>
-        <p className="text-xl mb-10 max-w-3xl mx-auto text-gray-200">
-          No open marketplaces. No brand dilution. Just clean, controlled exits on your terms.
+        <p className="mx-auto mb-10 max-w-3xl text-xl text-gray-200">
+          No open marketplaces. No brand dilution. Just clean, controlled exits
+          on your terms.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-5">
+        <div className="flex flex-col justify-center gap-5 sm:flex-row">
           <Link
-            href='/earlyaccess'
-            className='px-8 sm:px-10 py-4 rounded-full bg-[#43CD66] font-medium transition-all duration-300 text-base md:text-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group'
+            href="/auth/seller-signup"
+            className="group flex items-center justify-center rounded-full bg-[#43CD66] px-8 py-4 text-base font-medium shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:px-10 md:text-lg"
           >
-            <span>Early Access</span>
+            <span>Sell on Commerce Central</span>
           </Link>
         </div>
       </motion.div>

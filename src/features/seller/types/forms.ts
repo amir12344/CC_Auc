@@ -1,11 +1,10 @@
 /**
  * Seller Form Types
- * 
+ *
  * Form-specific type definitions for reusable components
  * and validation schemas
  */
-
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 // =============================================================================
 // REUSABLE FORM COMPONENT TYPES
@@ -52,7 +51,7 @@ export interface CustomInputProps {
   onChange?: (value: string) => void;
   onBlur?: () => void;
   className?: string;
-  type?: 'text' | 'number' | 'email' | 'tel' | 'password';
+  type?: "text" | "number" | "email" | "tel" | "password";
 }
 
 /**
@@ -111,13 +110,13 @@ export interface DimensionsInputProps {
     width: number;
     length: number;
     height: number;
-    unit: 'in' | 'cm' | 'ft' | 'm';
+    unit: "in" | "cm" | "ft" | "m";
   };
   onChange?: (dimensions: {
     width: number;
     length: number;
     height: number;
-    unit: 'in' | 'cm' | 'ft' | 'm';
+    unit: "in" | "cm" | "ft" | "m";
   }) => void;
   onBlur?: () => void;
   className?: string;
@@ -136,7 +135,7 @@ export interface CurrencyInputProps {
   value?: number;
   onChange?: (value: number) => void;
   onBlur?: () => void;
-  currency?: 'USD' | 'EUR' | 'GBP';
+  currency?: "USD" | "EUR" | "GBP";
   className?: string;
   min?: number;
   max?: number;
@@ -165,7 +164,7 @@ export interface FileUploadProps {
 /**
  * Image upload component props (specialized file upload)
  */
-export interface ImageUploadProps extends Omit<FileUploadProps, 'accept'> {
+export interface ImageUploadProps extends Omit<FileUploadProps, "accept"> {
   accept?: string; // Allow override but default to images
   maxWidth?: number;
   maxHeight?: number;
@@ -185,7 +184,7 @@ export interface RadioGroupProps {
   value?: string;
   onChange?: (value: string) => void;
   onBlur?: () => void;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: "horizontal" | "vertical";
   className?: string;
 }
 
@@ -286,7 +285,7 @@ export interface FormProgressProps {
   currentStep: number;
   className?: string;
   showLabels?: boolean;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: "horizontal" | "vertical";
 }
 
 // =============================================================================
@@ -400,11 +399,11 @@ export const FORM_CONSTANTS = {
   MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
   MAX_IMAGE_SIZE: 5 * 1024 * 1024, // 5MB
   MAX_IMAGES_PER_LISTING: 10,
-  SUPPORTED_IMAGE_FORMATS: ['jpg', 'jpeg', 'png', 'webp'],
-  SUPPORTED_VIDEO_FORMATS: ['mp4', 'mov', 'avi'],
-  SUPPORTED_EXCEL_FORMATS: ['xlsx', 'xls', 'csv'],
+  SUPPORTED_IMAGE_FORMATS: ["jpg", "jpeg", "png", "webp"],
+  SUPPORTED_VIDEO_FORMATS: ["mp4", "mov", "avi"],
+  SUPPORTED_EXCEL_FORMATS: ["xlsx", "xls", "csv"],
   MIN_AUCTION_DURATION: 1,
   MAX_AUCTION_DURATION: 30,
-  DEFAULT_CURRENCY: 'USD' as const,
-  DEFAULT_DIMENSION_UNIT: 'in' as const,
-} as const; 
+  DEFAULT_CURRENCY: "USD" as const,
+  DEFAULT_DIMENSION_UNIT: "in" as const,
+} as const;

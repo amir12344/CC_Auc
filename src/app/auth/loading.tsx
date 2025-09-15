@@ -3,11 +3,11 @@
  */
 export default function AuthLoading() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="relative w-16 h-16">
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="relative h-16 w-16">
         <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-        <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+        <div className="border-t-primary absolute inset-0 animate-spin rounded-full border-4 border-r-transparent border-b-transparent border-l-transparent"></div>
       </div>
     </div>
   );
-} 
+}

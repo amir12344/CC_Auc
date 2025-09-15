@@ -1,82 +1,53 @@
-'use client'
+"use client";
 
-import { useState, FormEvent } from 'react'
-import { useRouter } from 'next/navigation'
-import { Search } from 'lucide-react'
-import { SearchSuggestions } from '@/src/features/search/components/SearchSuggestions'
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
+
+import { Search } from "lucide-react";
 
 /**
  * Search Bar Component
  * Used in both desktop and mobile layouts with form submission and autocomplete support
  */
 const SearchBar = () => {
-  const [query, setQuery] = useState('')
-  const [showSuggestions, setShowSuggestions] = useState(false)
-  const router = useRouter()
+  const [query, setQuery] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (query.trim()) {
-      setShowSuggestions(false)
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`)
+      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
     }
-  }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setQuery(value)
-    setShowSuggestions(true)
-  }
+    const value = e.target.value;
+    setQuery(value);
+  };
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setQuery(suggestion)
-    setShowSuggestions(false)
-    router.push(`/search?q=${encodeURIComponent(suggestion)}`)
-  }
-
-  const handleInputFocus = () => {
-    setShowSuggestions(true)
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      if (query.trim()) {
-        setShowSuggestions(false)
-        router.push(`/search?q=${encodeURIComponent(query.trim())}`)
-      }
-    } else if (e.key === 'Escape') {
-      setShowSuggestions(false)
-    }
-  }
+  // Removed custom suggestion overlay; rely on native browser history/autocomplete
 
   return (
-    <div className='relative'>
-      <form onSubmit={handleSubmit} className='relative'>
-        <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-          <Search className='h-5 w-5 text-neutral-400' />
+    <div className="relative">
+      {/* Enable native browser autocomplete/history */}
+      <form onSubmit={handleSubmit} className="relative" autoComplete="on">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <Search className="h-5 w-5 text-neutral-400" />
         </div>
         <input
-          type='text'
+          type="search"
           value={query}
           onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onKeyDown={handleKeyDown}
-          placeholder='Search brands or products'
-          className='w-full pl-10 pr-4 py-2 border border-neutral-300 rounded-full focus:outline-hidden focus:ring-2 focus:ring-black bg-white text-black placeholder-neutral-400'
+          name="q"
+          placeholder="Search brands or products"
+          className="w-full rounded-full border border-neutral-300 bg-white py-2 pr-4 pl-10 text-black placeholder-neutral-400 focus:ring-2 focus:ring-black focus:outline-hidden"
           spellCheck={false}
-          autoComplete='off'
+          autoComplete="on"
+          enterKeyHint="search"
         />
       </form>
-      
-      <SearchSuggestions
-        query={query}
-        onSuggestionClick={handleSuggestionClick}
-        onClose={() => setShowSuggestions(false)}
-        isVisible={showSuggestions}
-      />
     </div>
   );
 };
 
-export default SearchBar; 
+export default SearchBar;

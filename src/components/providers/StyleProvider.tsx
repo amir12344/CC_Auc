@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { GeistSans } from 'geist/font/sans';
-import { useEffect } from 'react';
+import { useEffect } from "react";
+
+import { GeistSans } from "geist/font/sans";
 
 export const StyleProvider = () => {
   useEffect(() => {
     // Add classes after hydration
     document.documentElement.classList.add(GeistSans.className);
-    document.body.classList.add('antialiased');
+    document.body.classList.add("antialiased");
   }, []);
 
   return null;
-}; 
+};

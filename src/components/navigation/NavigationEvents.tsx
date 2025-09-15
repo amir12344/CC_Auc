@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 /**
  * Navigation Events component
@@ -29,21 +29,20 @@ export function NavigationEvents() {
     // };
 
     // Add event listeners for route changes
-    document.addEventListener('beforeunload', handleRouteChangeStart);
-    window.addEventListener('popstate', handleRouteChangeStart);
+    document.addEventListener("beforeunload", handleRouteChangeStart);
+    window.addEventListener("popstate", handleRouteChangeStart);
 
     return () => {
-      document.removeEventListener('beforeunload', handleRouteChangeStart);
-      window.removeEventListener('popstate', handleRouteChangeStart);
+      document.removeEventListener("beforeunload", handleRouteChangeStart);
+      window.removeEventListener("popstate", handleRouteChangeStart);
     };
   }, []);
 
   if (!isNavigating) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 z-50 bg-primary-100">
-      <div className="h-full bg-primary-600 animate-progress"></div>
+    <div className="bg-primary-100 fixed top-0 left-0 z-50 h-1 w-full">
+      <div className="bg-primary-600 animate-progress h-full"></div>
     </div>
   );
 }
-

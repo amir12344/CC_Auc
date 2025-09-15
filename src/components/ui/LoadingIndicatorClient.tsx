@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import LoadingIndicator from './LoadingIndicator';
+import LoadingIndicator from "./LoadingIndicator";
 
 /**
  * Client-side wrapper for the loading indicator

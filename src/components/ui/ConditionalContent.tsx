@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
-import type { ReactNode } from 'react';
-import { usePublicPageAuth } from '@/src/hooks/useAuthState';
+import type { ReactNode } from "react";
+
+import { usePublicPageAuth } from "@/src/hooks/useAuthState";
 
 interface ConditionalContentProps {
   children: ReactNode;
-  showWhen: 'authenticated' | 'guest' | 'buyer' | 'seller';
+  showWhen: "authenticated" | "guest" | "buyer" | "seller";
   fallback?: ReactNode;
   className?: string;
 }
@@ -24,14 +25,14 @@ export function ConditionalContent({
 
   const shouldShow = () => {
     switch (showWhen) {
-      case 'authenticated':
+      case "authenticated":
         return isAuthenticated;
-      case 'guest':
+      case "guest":
         return !isAuthenticated;
-      case 'buyer':
-        return isAuthenticated && userType === 'buyer';
-      case 'seller':
-        return isAuthenticated && userType === 'seller';
+      case "buyer":
+        return isAuthenticated && userType === "buyer";
+      case "seller":
+        return isAuthenticated && userType === "seller";
       default:
         return false;
     }

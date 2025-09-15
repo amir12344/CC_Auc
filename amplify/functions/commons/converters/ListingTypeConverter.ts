@@ -1,13 +1,19 @@
 // Map Excel values to database enum values
-
 import {
   freight_type,
   length_type,
+  listing_inspection_status,
+  listing_source_name,
+  listing_source_type,
+  load_program_type,
+  load_type,
   lot_condition_type,
+  lot_listing_type,
   lot_packaging_type,
   packaging_type,
   product_category_type,
   product_condition_type,
+  product_external_identifier_type,
   product_identifier_type,
   product_sub_category_type,
   shipping_type,
@@ -117,21 +123,24 @@ fileToDbVariationBiMap.set("STYLE", "STYLE");
 fileToDbVariationBiMap.set("CAPACITY", "CAPACITY");
 fileToDbVariationBiMap.set("FLAVOR", "FLAVOR");
 
-export const fileToDbIdentifierBiMap = new BiMap<
+export const fileToDbIdentifierTypeBiMap = new BiMap<
   string,
   product_identifier_type
 >();
-fileToDbIdentifierBiMap.set("GTIN", "GTIN");
-fileToDbIdentifierBiMap.set("UPC", "UPC");
-fileToDbIdentifierBiMap.set("EAN", "EAN");
-fileToDbIdentifierBiMap.set("ISBN", "ISBN");
-fileToDbIdentifierBiMap.set("ISSN", "ISSN");
+fileToDbIdentifierTypeBiMap.set("GTIN", "GTIN");
+fileToDbIdentifierTypeBiMap.set("UPC", "UPC");
+fileToDbIdentifierTypeBiMap.set("EAN", "EAN");
+fileToDbIdentifierTypeBiMap.set("ISBN", "ISBN");
+fileToDbIdentifierTypeBiMap.set("ISSN", "ISSN");
+
+export const fileToDbExternalIdentifierTypeBiMap = new BiMap<
+  string,
+  product_external_identifier_type
+>();
+fileToDbExternalIdentifierTypeBiMap.set("ASIN", "ASIN");
 
 export const fileToDbCategoryBiMap = new BiMap<string, product_category_type>();
-fileToDbCategoryBiMap.set(
-  "Home, Kitchen & Organization",
-  "HOME_KITCHEN_ORGANIZATION"
-);
+fileToDbCategoryBiMap.set("Home", "HOME_KITCHEN_ORGANIZATION");
 fileToDbCategoryBiMap.set("Apparel", "APPAREL");
 fileToDbCategoryBiMap.set("Footwear", "FOOTWEAR");
 fileToDbCategoryBiMap.set("Apparel Accessories", "APPAREL_ACCESSORIES");
@@ -162,7 +171,7 @@ fileToDbCategoryBiMap.set(
   "Office, School & Stationery",
   "OFFICE_SCHOOL_STATIONERY"
 );
-fileToDbCategoryBiMap.set("Bags, Luggage & Travel", "BAGS_LUGGAGE_TRAVEL");
+fileToDbCategoryBiMap.set("Travel", "BAGS_LUGGAGE_TRAVEL");
 fileToDbCategoryBiMap.set(
   "Outdoors, Garden & Sporting Goods",
   "OUTDOORS_GARDEN_SPORTING_GOODS"
@@ -551,6 +560,374 @@ fileToDbLengthUnitTypeBiMap.set("YARD", "YARD");
 fileToDbLengthUnitTypeBiMap.set("FOOT", "FOOT");
 fileToDbLengthUnitTypeBiMap.set("INCH", "INCH");
 fileToDbLengthUnitTypeBiMap.set("NAUTICAL_MILE", "NAUTICAL_MILE");
+
+// Load Type mappings
+export const textToLoadTypeBiMap = new BiMap<string, load_type>();
+textToLoadTypeBiMap.set("Case Pack", "CASE_PACK");
+textToLoadTypeBiMap.set("Pallet", "PALLET");
+textToLoadTypeBiMap.set("Gaylord", "GAYLORD");
+textToLoadTypeBiMap.set("Mixed Lot", "MIXED_LOT");
+textToLoadTypeBiMap.set("Less Than Truckload", "LESS_THAN_TRUCKLOAD");
+textToLoadTypeBiMap.set("Full Truckload", "FULL_TRUCKLOAD");
+textToLoadTypeBiMap.set("Multiple Truckloads", "MULTIPLE_TRUCKLOADS");
+
+// Lot Listing Type mappings
+export const textToLotListingTypeBiMap = new BiMap<string, lot_listing_type>();
+textToLotListingTypeBiMap.set("Manifested", "MANIFESTED");
+textToLotListingTypeBiMap.set("Unmanifested", "UNMANIFESTED");
+textToLotListingTypeBiMap.set("Partially Manifested", "PARTIALLY_MANIFESTED");
+
+// Listing Source Type mappings
+export const textToListingSourceTypeBiMap = new BiMap<
+  string,
+  listing_source_type
+>();
+textToListingSourceTypeBiMap.set(
+  "Retailer - Store Returns",
+  "RETAILER_STORE_RETURNS"
+);
+textToListingSourceTypeBiMap.set(
+  "Retailer - Dotcom/E-commerce Returns",
+  "RETAILER_ECOMMERCE_RETURNS"
+);
+textToListingSourceTypeBiMap.set(
+  "Retailer - Shelf Pulls",
+  "RETAILER_SHELF_PULLS"
+);
+textToListingSourceTypeBiMap.set(
+  "Retailer - Overstocks/Closeouts",
+  "RETAILER_OVERSTOCKS_CLOSEOUTS"
+);
+textToListingSourceTypeBiMap.set(
+  "3PL - Consolidated Returns",
+  "THREE_PL_CONSOLIDATED_RETURNS"
+);
+textToListingSourceTypeBiMap.set(
+  "3PL - Unclaimed/Abandoned Freight",
+  "THREE_PL_UNCLAIMED_ABANDONED_FREIGHT"
+);
+textToListingSourceTypeBiMap.set(
+  "Distributor - Overstocks/Closeouts",
+  "DISTRIBUTOR_OVERSTOCKS_CLOSEOUTS"
+);
+textToListingSourceTypeBiMap.set(
+  "Brand/Manufacturer - Returns/Refurb/Excess",
+  "BRAND_MANUFACTURER_RETURNS_REFURB_EXCESS"
+);
+textToListingSourceTypeBiMap.set(
+  "Marketplace - FBA/3P Returns",
+  "MARKETPLACE_FBA_3P_RETURNS"
+);
+
+// Listing Source Name mappings
+export const textToListingSourceNameBiMap = new BiMap<
+  string,
+  listing_source_name
+>();
+textToListingSourceNameBiMap.set("Amazon", "AMAZON");
+textToListingSourceNameBiMap.set("Walmart", "WALMART");
+textToListingSourceNameBiMap.set("Target", "TARGET");
+textToListingSourceNameBiMap.set("Costco", "COSTCO");
+textToListingSourceNameBiMap.set("Sam's Club", "SAMS_CLUB");
+textToListingSourceNameBiMap.set("BJ's Wholesale", "BJS_WHOLESALE");
+textToListingSourceNameBiMap.set("Best Buy", "BEST_BUY");
+textToListingSourceNameBiMap.set("Home Depot", "HOME_DEPOT");
+textToListingSourceNameBiMap.set("Lowe's", "LOWES");
+textToListingSourceNameBiMap.set("Wayfair", "WAYFAIR");
+textToListingSourceNameBiMap.set("Kohl's", "KOHLS");
+textToListingSourceNameBiMap.set("Macy's", "MACYS");
+textToListingSourceNameBiMap.set("Nordstrom", "NORDSTROM");
+textToListingSourceNameBiMap.set("Nordstrom Rack", "NORDSTROM_RACK");
+textToListingSourceNameBiMap.set(
+  "Dick's Sporting Goods",
+  "DICKS_SPORTING_GOODS"
+);
+textToListingSourceNameBiMap.set("Tractor Supply", "TRACTOR_SUPPLY");
+textToListingSourceNameBiMap.set("Dollar General", "DOLLAR_GENERAL");
+textToListingSourceNameBiMap.set("Family Dollar", "FAMILY_DOLLAR");
+textToListingSourceNameBiMap.set("Five Below", "FIVE_BELOW");
+textToListingSourceNameBiMap.set("CVS", "CVS");
+textToListingSourceNameBiMap.set("Walgreens", "WALGREENS");
+textToListingSourceNameBiMap.set("Ulta", "ULTA");
+textToListingSourceNameBiMap.set("Sephora", "SEPHORA");
+textToListingSourceNameBiMap.set("Bed Bath & Beyond", "BED_BATH_BEYOND");
+textToListingSourceNameBiMap.set("Overstock", "OVERSTOCK");
+textToListingSourceNameBiMap.set("Office Depot", "OFFICE_DEPOT");
+textToListingSourceNameBiMap.set("OfficeMax", "OFFICEMAX");
+textToListingSourceNameBiMap.set("Staples", "STAPLES");
+textToListingSourceNameBiMap.set("Ace Hardware", "ACE_HARDWARE");
+textToListingSourceNameBiMap.set("Academy Sports", "ACADEMY_SPORTS");
+textToListingSourceNameBiMap.set("Ashley Furniture", "ASHLEY_FURNITURE");
+textToListingSourceNameBiMap.set("Other", "OTHER");
+
+// Load Program Type mappings
+export const textToLoadProgramTypeBiMap = new BiMap<
+  string,
+  load_program_type
+>();
+textToLoadProgramTypeBiMap.set(
+  "Amazon Returns Pallets",
+  "AMAZON_RETURNS_PALLETS"
+);
+textToLoadProgramTypeBiMap.set("Amazon Truckloads", "AMAZON_TRUCKLOADS");
+textToLoadProgramTypeBiMap.set("Amazon Smalls Loads", "AMAZON_SMALLS_LOADS");
+textToLoadProgramTypeBiMap.set("Amazon Medium Loads", "AMAZON_MEDIUM_LOADS");
+textToLoadProgramTypeBiMap.set("Amazon Bigs Loads", "AMAZON_BIGS_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Amazon High Retail Loads",
+  "AMAZON_HIGH_RETAIL_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Amazon Apparel Loads", "AMAZON_APPAREL_LOADS");
+textToLoadProgramTypeBiMap.set("Amazon LPN Pallets", "AMAZON_LPN_PALLETS");
+textToLoadProgramTypeBiMap.set("Amazon LPN Loads", "AMAZON_LPN_LOADS");
+textToLoadProgramTypeBiMap.set("Amazon FC Loads", "AMAZON_FC_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Amazon FC Returns Loads",
+  "AMAZON_FC_RETURNS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Amazon Mixed GM Loads",
+  "AMAZON_MIXED_GM_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Amazon HPC Loads", "AMAZON_HPC_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Amazon Bulk Loads (Mech Lift)",
+  "AMAZON_BULK_LOADS_MECH_LIFT"
+);
+textToLoadProgramTypeBiMap.set("Amazon Recycle Loads", "AMAZON_RECYCLE_LOADS");
+textToLoadProgramTypeBiMap.set("Amazon Monsters", "AMAZON_MONSTERS");
+textToLoadProgramTypeBiMap.set(
+  "Amazon Coffin Box Loads (Lex)",
+  "AMAZON_COFFIN_BOX_LOADS_LEX"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart General Merchandise Loads",
+  "WALMART_GENERAL_MERCHANDISE_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Store Returns",
+  "WALMART_STORE_RETURNS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Dotcom Returns",
+  "WALMART_DOTCOM_RETURNS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Overstock Loads",
+  "WALMART_OVERSTOCK_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Shelf Pull Loads",
+  "WALMART_SHELF_PULL_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Electronics Loads",
+  "WALMART_ELECTRONICS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Apparel Loads",
+  "WALMART_APPAREL_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Sporting Goods Loads",
+  "WALMART_SPORTING_GOODS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Walmart Bicycle Loads",
+  "WALMART_BICYCLE_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Target Store Returns", "TARGET_STORE_RETURNS");
+textToLoadProgramTypeBiMap.set("Target Salvage Loads", "TARGET_SALVAGE_LOADS");
+textToLoadProgramTypeBiMap.set("Target GM Loads", "TARGET_GM_LOADS");
+textToLoadProgramTypeBiMap.set("Target Raw Loads", "TARGET_RAW_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Target High Piece Count Loads",
+  "TARGET_HIGH_PIECE_COUNT_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Target Bullseye Loads",
+  "TARGET_BULLSEYE_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Target Case Pack Loads",
+  "TARGET_CASE_PACK_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Target IRC Loads", "TARGET_IRC_LOADS");
+textToLoadProgramTypeBiMap.set("Target GM DC Loads", "TARGET_GM_DC_LOADS");
+textToLoadProgramTypeBiMap.set("Target Toy Loads", "TARGET_TOY_LOADS");
+textToLoadProgramTypeBiMap.set("Target Apparel Loads", "TARGET_APPAREL_LOADS");
+textToLoadProgramTypeBiMap.set("Target Shoe Loads", "TARGET_SHOE_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Target Furniture Loads",
+  "TARGET_FURNITURE_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Target Tall Pallets", "TARGET_TALL_PALLETS");
+textToLoadProgramTypeBiMap.set(
+  "Costco Member Returns",
+  "COSTCO_MEMBER_RETURNS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Costco Grade A/B Loads",
+  "COSTCO_GRADE_A_B_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Costco Grade C/D Loads",
+  "COSTCO_GRADE_C_D_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Costco Overstock Loads",
+  "COSTCO_OVERSTOCK_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Costco Mixed GM Loads",
+  "COSTCO_MIXED_GM_LOADS"
+);
+textToLoadProgramTypeBiMap.set("CVS HBA Loads", "CVS_HBA_LOADS");
+textToLoadProgramTypeBiMap.set("CVS Shelf Pull Loads", "CVS_SHELF_PULL_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "CVS High Piece Count Loads",
+  "CVS_HIGH_PIECE_COUNT_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Walgreens HBA Loads", "WALGREENS_HBA_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Walgreens Shelf Pull Loads",
+  "WALGREENS_SHELF_PULL_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Walgreens GM Loads", "WALGREENS_GM_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Best Buy Returns Loads",
+  "BEST_BUY_RETURNS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Best Buy Salvage Electronics Loads",
+  "BEST_BUY_SALVAGE_ELECTRONICS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Best Buy Scratch and Dent Appliance Loads",
+  "BEST_BUY_SCRATCH_AND_DENT_APPLIANCE_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Returns Loads",
+  "HOME_DEPOT_RETURNS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Shelf Pull Loads",
+  "HOME_DEPOT_SHELF_PULL_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Overstock Loads",
+  "HOME_DEPOT_OVERSTOCK_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Tier 1 Loads",
+  "HOME_DEPOT_TIER_1_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Tier 2 Loads",
+  "HOME_DEPOT_TIER_2_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Tier 3 Loads",
+  "HOME_DEPOT_TIER_3_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Turbo Loads",
+  "HOME_DEPOT_TURBO_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Home Depot OPE Loads", "HOME_DEPOT_OPE_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Home Depot Small HPC Loads",
+  "HOME_DEPOT_SMALL_HPC_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Lowe's Returns Loads", "LOWES_RETURNS_LOADS");
+textToLoadProgramTypeBiMap.set("Lowe's GM Loads", "LOWES_GM_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Lowe's Shelf Pull Loads",
+  "LOWES_SHELF_PULL_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Lowe's Overstock Loads",
+  "LOWES_OVERSTOCK_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Sam's Club GM Loads", "SAMS_CLUB_GM_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Sam's Club Returns Loads",
+  "SAMS_CLUB_RETURNS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Sam's Club Overstock Loads",
+  "SAMS_CLUB_OVERSTOCK_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Wayfair Furniture Returns Loads",
+  "WAYFAIR_FURNITURE_RETURNS_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Wayfair Box Damage Loads",
+  "WAYFAIR_BOX_DAMAGE_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Wayfair Overstock Furniture Loads",
+  "WAYFAIR_OVERSTOCK_FURNITURE_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "Wayfair Mixed Furniture Loads",
+  "WAYFAIR_MIXED_FURNITURE_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Macy's Loads", "MACYS_LOADS");
+textToLoadProgramTypeBiMap.set("Macy's Apparel Loads", "MACYS_APPAREL_LOADS");
+textToLoadProgramTypeBiMap.set("Kohl's Loads", "KOHLS_LOADS");
+textToLoadProgramTypeBiMap.set("Kohl's GM Loads", "KOHLS_GM_LOADS");
+textToLoadProgramTypeBiMap.set("JC Penney Loads", "JC_PENNEY_LOADS");
+textToLoadProgramTypeBiMap.set("Nordstrom Loads", "NORDSTROM_LOADS");
+textToLoadProgramTypeBiMap.set("Nordstrom Rack Loads", "NORDSTROM_RACK_LOADS");
+textToLoadProgramTypeBiMap.set("Bloomingdale's Loads", "BLOOMINGDALES_LOADS");
+textToLoadProgramTypeBiMap.set("Sears Loads", "SEARS_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "Department Store GM Loads",
+  "DEPARTMENT_STORE_GM_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "TJ Maxx Clothing Loads",
+  "TJ_MAXX_CLOTHING_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "TJ Maxx Seasonal Loads",
+  "TJ_MAXX_SEASONAL_LOADS"
+);
+textToLoadProgramTypeBiMap.set("Dollar General Loads", "DOLLAR_GENERAL_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "3PL Consolidated Returns",
+  "THREE_PL_CONSOLIDATED_RETURNS"
+);
+textToLoadProgramTypeBiMap.set("3PL Mixed GM Loads", "THREE_PL_MIXED_GM_LOADS");
+textToLoadProgramTypeBiMap.set(
+  "3PL LPN Stickered Pallets",
+  "THREE_PL_LPN_STICKERED_PALLETS"
+);
+textToLoadProgramTypeBiMap.set(
+  "3PL Mail Return Loads",
+  "THREE_PL_MAIL_RETURN_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "3PL Unmanifested Assorted Loads",
+  "THREE_PL_UNMANIFESTED_ASSORTED_LOADS"
+);
+textToLoadProgramTypeBiMap.set(
+  "3PL Abandoned Freight Loads",
+  "THREE_PL_ABANDONED_FREIGHT_LOADS"
+);
+
+// Inspection Status mappings
+export const textToInspectionStatusBiMap = new BiMap<
+  string,
+  listing_inspection_status
+>();
+textToInspectionStatusBiMap.set("Uninspected", "UNINSPECTED");
+textToInspectionStatusBiMap.set("As Is", "AS_IS");
+textToInspectionStatusBiMap.set("Visual Check Only", "VISUAL_CHECK_ONLY");
+textToInspectionStatusBiMap.set("Tested", "TESTED");
+textToInspectionStatusBiMap.set("Certified", "CERTIFIED");
 
 export function mapCategory(category: string | undefined): string | null {
   if (!category) return null;

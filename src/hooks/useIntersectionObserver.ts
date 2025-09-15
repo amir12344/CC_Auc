@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useRef, RefObject, useCallback } from 'react';
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 interface UseIntersectionObserverProps {
   threshold?: number;
@@ -17,7 +17,7 @@ interface UseIntersectionObserverProps {
 export function useIntersectionObserver({
   threshold = 0,
   root = null,
-  rootMargin = '0px',
+  rootMargin = "0px",
   freezeOnceVisible = false,
   elementRef,
 }: UseIntersectionObserverProps = {}) {
@@ -72,4 +72,3 @@ export function useIntersectionObserver({
 
   return { ref: internalRef, entry, isVisible };
 }
-

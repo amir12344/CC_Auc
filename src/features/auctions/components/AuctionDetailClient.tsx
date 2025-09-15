@@ -1,35 +1,36 @@
-'use client';
+"use client";
+
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 import {
   ArrowLeft,
   CheckCircle,
   FileText,
   MapPin,
-  Package,
   Tag,
   Truck,
-} from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import type React from 'react';
-import { useState } from 'react';
-import { LoginPromptModal } from '@/src/components/auth/LoginPromptModal';
-import { RestrictedContentPlaceholder } from '@/src/components/auth/RestrictedContentPlaceholder';
-import { Button } from '@/src/components/ui/button';
-import { usePublicPageAuth } from '@/src/hooks/useAuthState';
-import type { Auction } from '../types';
-import { AuctionBiddingArea } from './AuctionBiddingArea';
-import { AuctionDetailsAccordion } from './AuctionDetailsAccordion';
-import { AuctionGallery } from './AuctionGallery';
-import { ManifestTable } from './AuctionManifest';
-import { fileToDbCategoryBiMap } from '../../../../amplify/functions/commons/converters/ListingTypeConverter';
+} from "lucide-react";
+
+import { LoginPromptModal } from "@/src/components/auth/LoginPromptModal";
+import { RestrictedContentPlaceholder } from "@/src/components/auth/RestrictedContentPlaceholder";
+import { Button } from "@/src/components/ui/button";
+import { usePublicPageAuth } from "@/src/hooks/useAuthState";
+
+import { fileToDbCategoryBiMap } from "../../../../amplify/functions/commons/converters/ListingTypeConverter";
+import type { Auction } from "../types";
+import { AuctionBiddingArea } from "./AuctionBiddingArea";
+import { AuctionDetailsAccordion } from "./AuctionDetailsAccordion";
+import { AuctionGallery } from "./AuctionGallery";
+import { ManifestTable } from "./AuctionManifest";
 
 /**
  * Format currency for auction displays
  */
 const formatAuctionCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
@@ -60,13 +61,11 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
   const [showLoginModal, setShowLoginModal] = useState(false);
   const { isAuthenticated, userType } = usePublicPageAuth();
 
-
-
   /**
    * Handle go back navigation - always go to marketplace
    */
   const handleGoBack = () => {
-    router.push('/marketplace');
+    router.push("/marketplace");
   };
 
   /**
@@ -81,8 +80,13 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
    */
   const renderManifestSection = () => {
     // Buyers can see full manifest
-    if (isAuthenticated && userType === 'buyer') {
-      return <ManifestTable manifestData={auction.manifest || []} />;
+    if (isAuthenticated && userType === "buyer") {
+      return (
+        <ManifestTable
+          manifestData={auction.manifest || []}
+          retailPrice={auction.total_ex_retail_price}
+        />
+      );
     }
 
     // Guests (not authenticated) - show sign in prompt
@@ -119,12 +123,12 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
    */
   const renderAdditionalDetailsSection = () => {
     // Buyers can see full details
-    if (isAuthenticated && userType === 'buyer') {
+    if (isAuthenticated && userType === "buyer") {
       return (
         <AuctionDetailsAccordion
           auction={auction}
           className="w-full"
-          defaultOpenSections={['details']}
+          defaultOpenSections={["details"]}
         />
       );
     }
@@ -190,7 +194,7 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
 
       {/* Professional Auction Information */}
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="mb-6 font-bold text-2xl text-gray-900">
+        <h2 className="mb-6 text-2xl font-bold text-gray-900">
           Auction Details
         </h2>
 
@@ -202,9 +206,11 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
                 <Tag className="h-5 w-5 text-gray-600" />
               </div>
               <div>
-                <span className="block text-gray-500 text-sm">Category</span>
+                <span className="block text-sm text-gray-500">Category</span>
                 <span className="font-semibold text-gray-900">
-                  {auction.category ? fileToDbCategoryBiMap.getKey(auction.category as never) : 'Not specified'}
+                  {auction.category
+                    ? fileToDbCategoryBiMap.getKey(auction.category as never)
+                    : "Not specified"}
                 </span>
               </div>
             </div>
@@ -214,9 +220,7 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
                 <CheckCircle className="h-5 w-5 text-gray-600" />
               </div>
               <div>
-                <span className="block text-gray-500 text-sm">
-                  Type
-                </span>
+                <span className="block text-sm text-gray-500">Type</span>
                 <span className="font-semibold text-gray-900">
                   {auction.lot_condition}
                 </span>
@@ -227,7 +231,7 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
           {/* Elegant Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-gray-200 border-t" />
+              <div className="w-full border-t border-gray-200" />
             </div>
             <div className="relative flex justify-center">
               <div className="bg-white px-4">
@@ -243,13 +247,15 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
                 <FileText className="h-5 w-5 text-gray-600" />
               </div>
               <div>
-                <span className="block text-gray-500 text-sm">Manifest</span>
+                <span className="block text-sm text-gray-500">Manifest</span>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-gray-900">
-                    {auction.quantity} Units
+                    {auction.total_units} Units
                   </span>
-                  <span className="text-gray-500 text-sm">
-                    • {formatAuctionCurrency(auction.extRetail || 0)} MSRP
+                  <span className="text-sm text-gray-500">
+                    •{" "}
+                    {formatAuctionCurrency(auction.total_ex_retail_price || 0)}{" "}
+                    MSRP
                   </span>
                 </div>
               </div>
@@ -260,7 +266,7 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
                 <MapPin className="h-5 w-5 text-gray-600" />
               </div>
               <div>
-                <span className="block text-gray-500 text-sm">Location</span>
+                <span className="block text-sm text-gray-500">Location</span>
                 <span className="font-semibold text-gray-900">
                   {auction.location}
                 </span>
@@ -272,10 +278,10 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
                 <Truck className="h-5 w-5 text-gray-600" />
               </div>
               <div>
-                <span className="block text-gray-500 text-sm">Shipping</span>
+                <span className="block text-sm text-gray-500">Shipping</span>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-gray-900">LTL</span>
-                  <span className="text-gray-500 text-sm">• Palletized</span>
+                  <span className="text-sm text-gray-500">• Palletized</span>
                 </div>
               </div>
             </div>
@@ -297,7 +303,7 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
         itemName={auction.title}
         onClose={() => setShowLoginModal(false)}
         returnUrl={
-          typeof window !== 'undefined' ? window.location.href : undefined
+          typeof window !== "undefined" ? window.location.href : undefined
         }
         triggerAction="view_manifest"
       />
@@ -305,4 +311,4 @@ export const AuctionDetailClient: React.FC<AuctionDetailClientProps> = ({
   );
 };
 
-AuctionDetailClient.displayName = 'AuctionDetailClient';
+AuctionDetailClient.displayName = "AuctionDetailClient";

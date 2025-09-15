@@ -1,0 +1,263 @@
+type EarlyAccessRegistration @aws_iam @aws_api_key {
+  firstName: String!
+  lastName: String!
+  companyName: String
+  email: String!
+  phoneNumber: String
+  termsAccepted: Boolean!
+  registrationDate: AWSDateTime!
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  getEarlyAccessRegistration(id: ID!): EarlyAccessRegistration @aws_api_key @aws_iam
+  listEarlyAccessRegistrations(filter: ModelEarlyAccessRegistrationFilterInput, limit: Int, nextToken: String): ModelEarlyAccessRegistrationConnection @aws_api_key @aws_iam
+  queryData(modelName: String, operation: String, query: String): String @aws_iam @aws_api_key
+  createAuctionListingFromFile(listingDetailsFilePath: String!, manifestFilePath: String!, sellerId: String, sellerProfileId: String, cognitoId: String, visibility: String): String @aws_iam @aws_api_key
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelEarlyAccessRegistrationConnection @aws_api_key @aws_iam {
+  items: [EarlyAccessRegistration]!
+  nextToken: String
+}
+
+input ModelEarlyAccessRegistrationFilterInput {
+  firstName: ModelStringInput
+  lastName: ModelStringInput
+  companyName: ModelStringInput
+  email: ModelStringInput
+  phoneNumber: ModelStringInput
+  termsAccepted: ModelBooleanInput
+  registrationDate: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelEarlyAccessRegistrationFilterInput]
+  or: [ModelEarlyAccessRegistrationFilterInput]
+  not: ModelEarlyAccessRegistrationFilterInput
+}
+
+input ModelEarlyAccessRegistrationConditionInput {
+  firstName: ModelStringInput
+  lastName: ModelStringInput
+  companyName: ModelStringInput
+  email: ModelStringInput
+  phoneNumber: ModelStringInput
+  termsAccepted: ModelBooleanInput
+  registrationDate: ModelStringInput
+  and: [ModelEarlyAccessRegistrationConditionInput]
+  or: [ModelEarlyAccessRegistrationConditionInput]
+  not: ModelEarlyAccessRegistrationConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateEarlyAccessRegistrationInput {
+  firstName: String!
+  lastName: String!
+  companyName: String
+  email: String!
+  phoneNumber: String
+  termsAccepted: Boolean!
+  registrationDate: AWSDateTime!
+  id: ID
+}
+
+input UpdateEarlyAccessRegistrationInput {
+  firstName: String
+  lastName: String
+  companyName: String
+  email: String
+  phoneNumber: String
+  termsAccepted: Boolean
+  registrationDate: AWSDateTime
+  id: ID!
+}
+
+input DeleteEarlyAccessRegistrationInput {
+  id: ID!
+}
+
+type Mutation {
+  createEarlyAccessRegistration(input: CreateEarlyAccessRegistrationInput!, condition: ModelEarlyAccessRegistrationConditionInput): EarlyAccessRegistration @aws_api_key @aws_iam
+  updateEarlyAccessRegistration(input: UpdateEarlyAccessRegistrationInput!, condition: ModelEarlyAccessRegistrationConditionInput): EarlyAccessRegistration @aws_api_key @aws_iam
+  deleteEarlyAccessRegistration(input: DeleteEarlyAccessRegistrationInput!, condition: ModelEarlyAccessRegistrationConditionInput): EarlyAccessRegistration @aws_api_key @aws_iam
+}
+
+input ModelSubscriptionEarlyAccessRegistrationFilterInput {
+  firstName: ModelSubscriptionStringInput
+  lastName: ModelSubscriptionStringInput
+  companyName: ModelSubscriptionStringInput
+  email: ModelSubscriptionStringInput
+  phoneNumber: ModelSubscriptionStringInput
+  termsAccepted: ModelSubscriptionBooleanInput
+  registrationDate: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionEarlyAccessRegistrationFilterInput]
+  or: [ModelSubscriptionEarlyAccessRegistrationFilterInput]
+}
+
+type Subscription {
+  onCreateEarlyAccessRegistration(filter: ModelSubscriptionEarlyAccessRegistrationFilterInput): EarlyAccessRegistration @aws_subscribe(mutations: ["createEarlyAccessRegistration"]) @aws_api_key @aws_iam
+  onUpdateEarlyAccessRegistration(filter: ModelSubscriptionEarlyAccessRegistrationFilterInput): EarlyAccessRegistration @aws_subscribe(mutations: ["updateEarlyAccessRegistration"]) @aws_api_key @aws_iam
+  onDeleteEarlyAccessRegistration(filter: ModelSubscriptionEarlyAccessRegistrationFilterInput): EarlyAccessRegistration @aws_subscribe(mutations: ["deleteEarlyAccessRegistration"]) @aws_api_key @aws_iam
+}

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Script from 'next/script';
+import Script from "next/script";
+import { useEffect, useState } from "react";
 
 interface OptimizedScriptProps {
   src: string;
-  strategy?: 'beforeInteractive' | 'afterInteractive' | 'lazyOnload';
+  strategy?: "beforeInteractive" | "afterInteractive" | "lazyOnload";
   id?: string;
   onLoad?: () => void;
   defer?: boolean;
@@ -17,7 +17,7 @@ interface OptimizedScriptProps {
  */
 export default function OptimizedScript({
   src,
-  strategy = 'lazyOnload',
+  strategy = "lazyOnload",
   id,
   onLoad,
   defer = true,
@@ -48,7 +48,7 @@ export default function OptimizedScript({
   }, []);
 
   // Only render the script when it's visible or for critical scripts
-  if (!isVisible && strategy === 'lazyOnload') {
+  if (!isVisible && strategy === "lazyOnload") {
     return null;
   }
 
@@ -63,4 +63,3 @@ export default function OptimizedScript({
     />
   );
 }
-

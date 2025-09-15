@@ -1,17 +1,19 @@
-'use client';
+"use client";
+
+import { useMemo, useState } from "react";
 
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  type SortingState,
   useReactTable,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
   type VisibilityState,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 import {
   ChevronDown,
   ChevronLeft,
@@ -21,28 +23,29 @@ import {
   Download,
   Info,
   LayoutGrid,
+  Loader2,
   Search,
-} from 'lucide-react';
-import { useMemo, useState } from 'react';
-import { Alert, AlertDescription } from '@/src/components/ui/alert';
-import { Badge } from '@/src/components/ui/badge';
-import { Button } from '@/src/components/ui/button';
-import { Card, CardHeader } from '@/src/components/ui/card';
+} from "lucide-react";
+
+import { Alert, AlertDescription } from "@/src/components/ui/alert";
+import { Badge } from "@/src/components/ui/badge";
+import { Button } from "@/src/components/ui/button";
+import { Card, CardHeader } from "@/src/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
+} from "@/src/components/ui/dropdown-menu";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
+} from "@/src/components/ui/select";
 import {
   Table,
   TableBody,
@@ -50,153 +53,174 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/src/components/ui/table';
+} from "@/src/components/ui/table";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@/src/components/ui/tabs';
-import { fileToDbCategoryBiMap, fileToDbConditionBiMap, fileToDbSubcategoryBiMap } from '../../../../amplify/functions/commons/converters/ListingTypeConverter';
-import type { ManifestItem } from '../types';
+} from "@/src/components/ui/tabs";
+import { useToastNotification } from "@/src/hooks/useToastNotification";
+
+import {
+  fileToDbCategoryBiMap,
+  fileToDbConditionBiMap,
+  fileToDbSubcategoryBiMap,
+} from "../../../../amplify/functions/commons/converters/ListingTypeConverter";
+import type { ManifestItem } from "../types";
+import { exportManifestToCsv } from "../utils/csvExport";
+import {
+  CategoryTab,
+  GIDescriptionTab,
+  ProductClassTab,
+  SubcategoryTab,
+} from "./tabs";
 
 interface ManifestTableProps {
   /** Auction manifest data from API */
   manifestData: ManifestItem[];
+  retailPrice: number;
 }
 
 // Define columns for ManifestItem data - in same order as query
 const columns: ColumnDef<ManifestItem>[] = [
   {
-    accessorKey: 'title',
-    header: 'Product Name',
+    accessorKey: "title",
+    header: "Product Name",
     cell: ({ row }) => (
-      <div
-        className="font-medium text-slate-700 text-md"
-      >
+      <div className="text-md font-medium text-slate-700">
         {row.original.title}
       </div>
     ),
     enableHiding: false,
   },
   {
-    accessorKey: 'description',
-    header: 'Description',
+    accessorKey: "description",
+    header: "Description",
     cell: ({ row }) => (
-      <div className="max-w-[300px] truncate text-slate-900 text-sm">
+      <div className="max-w-[300px] truncate text-sm text-slate-900">
         {row.original.description}
       </div>
     ),
   },
   {
-    accessorKey: 'retail_price',
+    accessorKey: "retail_price",
     header: () => <div className="text-right">Retail Price</div>,
     cell: ({ row }) => {
       const price =
-        Number.parseFloat(row.original.retail_price.replace(/[$,]/g, '')) || 0;
+        Number.parseFloat(row.original.retail_price.replace(/[$,]/g, "")) || 0;
       return (
-        <div className="text-right font-medium text-slate-900 text-sm">
+        <div className="text-right text-sm font-medium text-slate-900">
           ${price.toLocaleString()}
         </div>
       );
     },
   },
   {
-    accessorKey: 'ext_retail',
+    accessorKey: "ext_retail",
     header: () => <div className="text-right">Ext. Retail</div>,
     cell: ({ row }) => {
       const price =
         Number.parseFloat(
-          row.original.ext_retail?.replace(/[$,]/g, '') || '0'
+          row.original.ext_retail?.replace(/[$,]/g, "") || "0"
         ) || 0;
       return (
-        <div className="text-right font-medium text-slate-900 text-sm">
+        <div className="text-right text-sm font-medium text-slate-900">
           ${price.toLocaleString()}
         </div>
       );
     },
   },
   {
-    accessorKey: 'sku',
-    header: 'SKU',
+    accessorKey: "sku",
+    header: "SKU",
     cell: ({ row }) => (
-      <span className="font-mono text-slate-600 text-xs">
+      <span className="font-mono text-xs text-slate-600">
         {row.original.sku}
       </span>
     ),
   },
   {
-    accessorKey: 'available_quantity',
+    accessorKey: "available_quantity",
     header: () => <div className="text-center">Qty</div>,
     cell: ({ row }) => (
-      <div className="text-center font-medium text-slate-900 text-sm">
+      <div className="text-center text-sm font-medium text-slate-900">
         {row.original.available_quantity}
       </div>
     ),
   },
   {
-    accessorKey: 'category',
-    header: 'Category',
+    accessorKey: "category",
+    header: "Category",
     cell: ({ row }) => (
       <Badge
         className="border-gray-200 bg-gray-50 text-gray-700"
         variant="outline"
       >
-        {row.original.category ? fileToDbCategoryBiMap.getKey(row.original.category as never) : 'Not specified'}
+        {row.original.category
+          ? fileToDbCategoryBiMap.getKey(row.original.category as never)
+          : "Not specified"}
       </Badge>
     ),
   },
   {
-    accessorKey: 'subcategory',
-    header: 'Subcategory',
+    accessorKey: "subcategory",
+    header: "Subcategory",
     cell: ({ row }) => (
       <Badge
         className="border-gray-200 bg-gray-50 text-gray-700"
         variant="outline"
       >
-        {row.original.subcategory ? fileToDbSubcategoryBiMap.getKey(row.original.subcategory as never) : 'Not specified'}
+        {row.original.subcategory
+          ? fileToDbSubcategoryBiMap.getKey(row.original.subcategory as never)
+          : "Not specified"}
       </Badge>
     ),
   },
   {
-    accessorKey: 'product_condition',
-    header: 'Product Condition',
+    accessorKey: "product_condition",
+    header: "Product Condition",
     cell: ({ row }) => (
       <Badge
-        className={`text-xs ${row.original.product_condition?.toLowerCase() === 'new'
-          ? 'border-gray-200 bg-gray-50 text-gray-700'
-          : 'border-gray-200 bg-gray-50 text-gray-700'
-          }`}
+        className={`text-xs ${
+          row.original.product_condition?.toLowerCase() === "new"
+            ? "border-gray-200 bg-gray-50 text-gray-700"
+            : "border-gray-200 bg-gray-50 text-gray-700"
+        }`}
         variant="outline"
       >
-        {row.original.product_condition ? fileToDbConditionBiMap.getKey(row.original.product_condition as never) : 'Not specified'}
+        {row.original.product_condition
+          ? fileToDbConditionBiMap.getKey(
+              row.original.product_condition as never
+            )
+          : "Not specified"}
       </Badge>
     ),
   },
   {
-    accessorKey: 'cosmetic_condition',
-    header: 'Cosmetic Condition',
+    accessorKey: "cosmetic_condition",
+    header: "Cosmetic Condition",
     cell: ({ row }) => (
-      <span className="text-slate-600 text-sm">
+      <span className="text-sm text-slate-600">
         {row.original.cosmetic_condition}
       </span>
     ),
   },
   {
-    accessorKey: 'identifier',
-    header: 'Identifier',
+    accessorKey: "identifier",
+    header: "Identifier",
     cell: ({ row }) => (
-      <span className="font-mono text-slate-600 text-xs">
+      <span className="font-mono text-xs text-slate-600">
         {row.original.identifier}
       </span>
     ),
   },
   {
-    accessorKey: 'identifier_type',
-    header: 'ID Type',
+    accessorKey: "identifier_type",
+    header: "ID Type",
     cell: ({ row }) => (
       <Badge
-        className="border-gray-200 bg-gray-50 text-gray-700 text-xs"
+        className="border-gray-200 bg-gray-50 text-xs text-gray-700"
         variant="outline"
       >
         {row.original.identifier_type}
@@ -204,20 +228,20 @@ const columns: ColumnDef<ManifestItem>[] = [
     ),
   },
   {
-    accessorKey: 'is_hazmat',
+    accessorKey: "is_hazmat",
     header: () => <div className="text-center">Hazmat</div>,
     cell: ({ row }) => (
       <div className="text-center">
         {row.original.is_hazmat ? (
           <Badge
-            className="border-red-200 bg-red-50 text-red-700 text-xs"
+            className="border-red-200 bg-red-50 text-xs text-red-700"
             variant="outline"
           >
             Yes
           </Badge>
         ) : (
           <Badge
-            className="border-gray-200 bg-gray-50 text-gray-700 text-xs"
+            className="border-gray-200 bg-gray-50 text-xs text-gray-700"
             variant="outline"
           >
             No
@@ -227,45 +251,79 @@ const columns: ColumnDef<ManifestItem>[] = [
     ),
   },
   {
-    accessorKey: 'model_name',
-    header: 'Model Name',
+    accessorKey: "model_name",
+    header: "Model Name",
     cell: ({ row }) => (
-      <span className="text-slate-900 text-sm">{row.original.model_name}</span>
+      <span className="text-sm text-slate-900">{row.original.model_name}</span>
     ),
   },
 ];
 
 const tabOptions = [
-  { value: 'full', label: 'Full Manifest' },
-  { value: 'product-class', label: 'Product Class' },
-  { value: 'gi-description', label: 'GI Description' },
-  { value: 'category', label: 'Category' },
-  { value: 'subcategory', label: 'Subcategory' },
+  { value: "full", label: "Full Manifest" },
+  { value: "product-class", label: "Product Class" },
+  { value: "category", label: "Category" },
+  { value: "subcategory", label: "Subcategory" },
+  { value: "marketplace-data", label: "Marketplace Data" },
 ];
 
-export function ManifestTable({ manifestData }: ManifestTableProps) {
+export function ManifestTable({
+  manifestData,
+  retailPrice,
+}: ManifestTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [activeTab, setActiveTab] = useState('full');
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [activeTab, setActiveTab] = useState("full");
+  const [isDownloading, setIsDownloading] = useState(false);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   });
 
-  // Calculate total value using ext_retail
-  const totalValue = useMemo(() => {
+  // Toast notifications
+  const toast = useToastNotification();
+
+  // Calculate total extended retail value
+  const totalExtRetailValue = useMemo(() => {
     return manifestData.reduce((sum, row) => {
       const extRetail =
-        Number.parseFloat(row.ext_retail?.replace(/[$,]/g, '') || '0') || 0;
-      const retailPrice =
-        Number.parseFloat(row.retail_price?.replace(/[$,]/g, '') || '0') || 0;
-      // Use ext_retail if available, fallback to retail_price
-      const price = extRetail > 0 ? extRetail : retailPrice;
-      return sum + price;
+        Number.parseFloat(row.ext_retail?.replace(/[$,]/g, "") || "0") || 0;
+      return sum + extRetail;
     }, 0);
   }, [manifestData]);
+
+  // Handle CSV download
+  const handleDownloadManifest = () => {
+    if (isDownloading) {
+      return;
+    }
+
+    setIsDownloading(true);
+
+    // Show loading toast
+    toast.info("Preparing manifest download...");
+
+    // Use setTimeout to prevent blocking the UI during CSV generation
+    setTimeout(() => {
+      try {
+        exportManifestToCsv(manifestData, "Auction Manifest");
+
+        // Show success toast
+        toast.success(
+          `Manifest downloaded successfully! ${manifestData.length} items exported to CSV.`
+        );
+      } catch {
+        // Show error toast
+        toast.error(
+          "Failed to download manifest. Please try again or contact support if the issue persists."
+        );
+      } finally {
+        setIsDownloading(false);
+      }
+    }, 100); // Small delay to allow UI to update
+  };
 
   const table = useReactTable({
     data: manifestData,
@@ -287,22 +345,22 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    globalFilterFn: 'includesString',
+    globalFilterFn: "includesString",
   });
 
   return (
     <div className="bg-gray-50">
-      <div className="mx-auto max-w-8xl space-y-4 p-4 md:space-y-6 md:p-6">
+      <div className="max-w-8xl mx-auto space-y-4 p-4 md:space-y-6 md:p-6">
         {/* Header */}
-        <Card className="!p-0 rounded-lg shadow-sm ">
+        <Card className="rounded-lg !p-0 shadow-sm">
           <CardHeader className="bg-slate-900 p-4 text-white md:p-6">
             <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
-              <h1 className="font-semibold text-xl tracking-tight md:text-2xl">
+              <h1 className="text-xl font-semibold tracking-tight md:text-2xl">
                 MANIFEST
               </h1>
-              <div className="text-slate-300 text-xs md:text-sm">
-                {manifestData.length} items • ${totalValue.toLocaleString()}{' '}
-                total value
+              <div className="text-xs text-slate-300 md:text-sm">
+                {manifestData.length} items • ${retailPrice.toLocaleString()}{" "}
+                total ext. retail value
               </div>
             </div>
           </CardHeader>
@@ -311,7 +369,7 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
         {/* Alert */}
         <Alert className="border-slate-200 bg-slate-50">
           <Info className="h-4 w-4 flex-shrink-0 text-slate-600" />
-          <AlertDescription className="text-slate-700 text-sm">
+          <AlertDescription className="text-sm text-slate-700">
             Product manifest from auction listing. Individual items and
             quantities may vary.
           </AlertDescription>
@@ -362,26 +420,32 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
               {/* Download Manifest Button */}
               <Button
                 className="bg-slate-900 text-white shadow-sm hover:bg-slate-800"
+                disabled={isDownloading}
+                onClick={handleDownloadManifest}
                 size="sm"
               >
-                <Download className="mr-2 h-4 w-4" />
-                Download Manifest
+                {isDownloading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="mr-2 h-4 w-4" />
+                )}
+                {isDownloading ? "Downloading..." : "Download Manifest"}
               </Button>
             </div>
           </div>
 
           {/* Tab Content */}
           <TabsContent
-            className='relative flex flex-col gap-4 overflow-auto px-0 px-4'
+            className="relative flex flex-col gap-4 overflow-auto px-0 px-4"
             value="full"
           >
             {/* Search Controls */}
-            <div className="flex flex-col space-y-2 md:flex-row md:items-center md:space-x-3 md:space-y-0">
-              <span className="font-medium text-slate-700 text-sm">
+            <div className="flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-3">
+              <span className="text-sm font-medium text-slate-700">
                 Filter:
               </span>
               <div className="relative flex-1 md:max-w-md">
-                <Search className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-slate-400" />
+                <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <Input
                   className="border-slate-200 pl-10 focus:border-slate-400 focus:ring-slate-400"
                   onChange={(e) => setGlobalFilter(e.target.value)}
@@ -418,20 +482,20 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                         columnId: string
                       ): string => {
                         const columnNameMap: Record<string, string> = {
-                          title: 'Product Name',
-                          description: 'Description',
-                          retail_price: 'Retail Price',
-                          ext_retail: 'Ext. Retail',
-                          sku: 'SKU',
-                          available_quantity: 'Qty',
-                          category: 'Category',
-                          subcategory: 'Subcategory',
-                          product_condition: 'Product Condition',
-                          cosmetic_condition: 'Cosmetic Condition',
-                          identifier: 'Identifier',
-                          identifier_type: 'ID Type',
-                          is_hazmat: 'Hazmat',
-                          model_name: 'Model Name',
+                          title: "Product Name",
+                          description: "Description",
+                          retail_price: "Retail Price",
+                          ext_retail: "Ext. Retail",
+                          sku: "SKU",
+                          available_quantity: "Qty",
+                          category: "Category",
+                          subcategory: "Subcategory",
+                          product_condition: "Product Condition",
+                          cosmetic_condition: "Cosmetic Condition",
+                          identifier: "Identifier",
+                          identifier_type: "ID Type",
+                          is_hazmat: "Hazmat",
+                          model_name: "Model Name",
                         };
                         return columnNameMap[columnId] || columnId;
                       };
@@ -463,16 +527,16 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                         <TableRow key={headerGroup.id}>
                           {headerGroup.headers.map((header) => (
                             <TableHead
-                              className="sticky top-0 z-10 whitespace-nowrap bg-slate-50 px-4 py-3 text-left font-medium text-slate-900"
+                              className="sticky top-0 z-10 bg-slate-50 px-4 py-3 text-left font-medium whitespace-nowrap text-slate-900"
                               colSpan={header.colSpan}
                               key={header.id}
                             >
                               {header.isPlaceholder
                                 ? null
                                 : flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                  )}
                             </TableHead>
                           ))}
                         </TableRow>
@@ -483,12 +547,12 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                         table.getRowModel().rows.map((row) => (
                           <TableRow
                             className="hover:bg-slate-50"
-                            data-state={row.getIsSelected() && 'selected'}
+                            data-state={row.getIsSelected() && "selected"}
                             key={row.id}
                           >
                             {row.getVisibleCells().map((cell) => (
                               <TableCell
-                                className="whitespace-nowrap px-4 py-3 text-sm"
+                                className="px-4 py-3 text-sm whitespace-nowrap"
                                 key={cell.id}
                               >
                                 {flexRender(
@@ -515,30 +579,30 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
               </div>
 
               {/* Scroll hint for mobile */}
-              <div className="mt-2 text-center text-muted-foreground text-xs md:hidden">
+              <div className="text-muted-foreground mt-2 text-center text-xs md:hidden">
                 ← Scroll horizontally to view all columns →
               </div>
             </div>
 
             {/* Pagination */}
             <div className="flex items-center justify-between">
-              <div className="hidden flex-1 text-muted-foreground text-sm lg:flex">
-                Showing{' '}
+              <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
+                Showing{" "}
                 {table.getState().pagination.pageIndex *
                   table.getState().pagination.pageSize +
-                  1}{' '}
-                to{' '}
+                  1}{" "}
+                to{" "}
                 {Math.min(
                   (table.getState().pagination.pageIndex + 1) *
-                  table.getState().pagination.pageSize,
+                    table.getState().pagination.pageSize,
                   table.getFilteredRowModel().rows.length
-                )}{' '}
+                )}{" "}
                 of {table.getFilteredRowModel().rows.length} entries
               </div>
               <div className="flex w-full items-center gap-4 lg:w-fit lg:gap-8">
                 <div className="hidden items-center gap-2 lg:flex">
                   <Label
-                    className="font-medium text-sm"
+                    className="text-sm font-medium"
                     htmlFor="rows-per-page"
                   >
                     Rows per page
@@ -567,8 +631,8 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex w-fit items-center justify-center font-medium text-sm">
-                  Page {table.getState().pagination.pageIndex + 1} of{' '}
+                <div className="flex w-fit items-center justify-center text-sm font-medium">
+                  Page {table.getState().pagination.pageIndex + 1} of{" "}
                   {table.getPageCount()}
                 </div>
                 <div className="ml-auto flex items-center gap-2 lg:ml-0">
@@ -615,14 +679,20 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
             {/* Summary */}
             <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
               <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
-                <div className="text-slate-600 text-sm">
-                  <span className="font-medium">Total Items:</span>{' '}
-                  {manifestData.length}
+                <div className="text-sm text-slate-600">
+                  <span className="font-medium">Total Items:</span>{" "}
+                  {manifestData
+                    .reduce(
+                      (sum, item) =>
+                        sum + (Number(item.available_quantity) || 0),
+                      0
+                    )
+                    .toLocaleString()}
                 </div>
-                <div className="text-slate-600 text-sm">
-                  <span className="font-medium">Total Retail Value:</span>{' '}
+                <div className="text-sm text-slate-600">
+                  <span className="font-medium">Total Ext. Retail Value:</span>{" "}
                   <span className="font-bold text-slate-900">
-                    ${totalValue.toLocaleString()}
+                    ${retailPrice.toLocaleString()}
                   </span>
                 </div>
               </div>
@@ -630,44 +700,33 @@ export function ManifestTable({ manifestData }: ManifestTableProps) {
           </TabsContent>
 
           {/* Other Tab Contents */}
-          <TabsContent
-            className="flex flex-col px-4 lg:px-6"
-            value="product-class"
-          >
-            <div className="flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed bg-muted/10">
-              <p className="text-muted-foreground">
-                Product Class view coming soon...
-              </p>
-            </div>
+          <TabsContent value="product-class">
+            <ProductClassTab manifestData={manifestData} />
           </TabsContent>
 
-          <TabsContent
-            className="flex flex-col px-4 lg:px-6"
-            value="gi-description"
-          >
-            <div className="flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed bg-muted/10">
-              <p className="text-muted-foreground">
-                GI Description view coming soon...
-              </p>
-            </div>
+          <TabsContent value="category">
+            <CategoryTab manifestData={manifestData} />
           </TabsContent>
 
-          <TabsContent className="flex flex-col px-4 lg:px-6" value="category">
-            <div className="flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed bg-muted/10">
-              <p className="text-muted-foreground">
-                Category view coming soon...
-              </p>
-            </div>
+          <TabsContent value="subcategory">
+            <SubcategoryTab manifestData={manifestData} />
           </TabsContent>
 
-          <TabsContent
-            className="flex flex-col px-4 lg:px-6"
-            value="subcategory"
-          >
-            <div className="flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed bg-muted/10">
-              <p className="text-muted-foreground">
-                Subcategory view coming soon...
-              </p>
+          <TabsContent value="marketplace-data">
+            <div className="flex min-h-[400px] items-center justify-center">
+              <div className="text-center">
+                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+                  <LayoutGrid className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900">
+                  Marketplace Data
+                </h3>
+                <p className="text-gray-500">Data coming soon</p>
+                <div className="mt-4 text-sm text-gray-400">
+                  We&apos;re preparing comprehensive marketplace insights for
+                  you
+                </div>
+              </div>
             </div>
           </TabsContent>
         </Tabs>

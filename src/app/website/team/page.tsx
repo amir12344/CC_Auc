@@ -1,26 +1,28 @@
-import type { Metadata } from 'next';
-import TeamSection from '@/src/features/website/components/sections/TeamSection';
-import { defaultMetadata, defaultOpenGraph } from '@/src/utils/metadata';
+import type { Metadata } from "next";
+
+import TeamSection from "@/src/features/website/components/sections/TeamSection";
+import { defaultMetadata, defaultOpenGraph } from "@/src/utils/metadata";
 
 // Export metadata for this page
 export const metadata: Metadata = {
   ...defaultMetadata,
-  title: 'Our Team',
-  description: 'Meet the Commerce Central team.',
+  title: "Our Team",
+  description: "Meet the Commerce Central team.",
   alternates: {
-    canonical: 'https://www.commercecentral.io/website/team',
+    canonical: "https://www.commercecentral.io/marketplace",
   },
+  robots: "noindex, nofollow",
   openGraph: {
     ...defaultOpenGraph,
-    url: 'https://www.commercecentral.io/website/team',
-    title: 'Our Team',
-    description: 'Meet the Commerce Central team.',
+    url: "https://www.commercecentral.io/marketplace",
+    title: "Our Team",
+    description: "Meet the Commerce Central team.",
     images: [
       {
-        url: '/CC_opengraph.png',
+        url: "/CC_opengraph.png",
         width: 500,
         height: 500,
-        alt: 'Commerce Central Logo',
+        alt: "Commerce Central Logo",
       },
     ],
   },

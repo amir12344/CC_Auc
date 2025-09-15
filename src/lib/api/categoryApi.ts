@@ -19,14 +19,13 @@ interface CategoriesResponse {
  */
 export async function fetchCategories(): Promise<CategoriesResponse> {
   // Fetch categories from the API
-  const response = await fetch('/api/categories');
-  
+  const response = await fetch("/api/categories");
+
   // Handle errors
   if (!response.ok) {
-    throw new Error('Failed to fetch categories');
+    throw new Error("Failed to fetch categories");
   }
-  
+
   // Return the categories
   return response.json();
 }
-

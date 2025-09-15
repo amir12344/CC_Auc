@@ -1,40 +1,49 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { initializeAuth } from '@/src/features/authentication/store/authSlice';
-import { selectAuthLoading } from '@/src/features/authentication/store/authSelectors';
-import type { AppDispatch } from '@/src/lib/store';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { initializeAuth } from "@/src/features/authentication/store/authSlice";
+import type { AppDispatch } from "@/src/lib/store";
 
 /**
- * AuthInitializer component that automatically initializes authentication state
- * This is the SINGLE source of truth for auth initialization
- * All other components should rely on Redux state instead of making direct Amplify calls
+ * Handles authentication state initialization with proper error handling
+ * and prevents authentication loops
  */
-export const AuthInitializer = ({ children }: { children: React.ReactNode }) => {
+export default function AuthInitializer() {
   const dispatch = useDispatch<AppDispatch>();
-  const isLoading = useSelector(selectAuthLoading);
-  const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+    let initializationAttempted = false;
+
     const initAuth = async () => {
+      // Prevent multiple initialization attempts
+      if (initializationAttempted) {
+        return;
+      }
+      initializationAttempted = true;
+
       try {
-        await dispatch(initializeAuth()).unwrap();
-      } catch (error) {
-        console.error('Auth initialization failed:', error);
-      } finally {
-        setHasInitialized(true);
+        // Only initialize if component is still mounted
+        if (isMounted) {
+          await dispatch(initializeAuth());
+        }
+      } catch {
+        // Silently handle errors - initializeAuth already handles error states
+        // This prevents unhandled promise rejections that could break the app
       }
     };
 
-    // Initialize auth once on mount
-    initAuth();
+    // Small delay to ensure Amplify is fully configured
+    const timeoutId = setTimeout(initAuth, 100);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
   }, [dispatch]);
 
-  // Don't render anything until initial auth check is complete
-  if (!hasInitialized) {
-    return null;
-  }
-
-  return <>{children}</>;
-}; 
+  // This component doesn't render anything
+  return null;
+}

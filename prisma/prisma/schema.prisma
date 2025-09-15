@@ -1,7 +1,7 @@
 generator client {
   provider        = "prisma-client-js"
   output          = "../../amplify/functions/lambda-layers/core-layer/nodejs/prisma/generated/client"
-  previewFeatures = ["omitApi", "relationJoins"]
+  previewFeatures = ["fullTextSearchPostgres", "relationJoins"]
   binaryTargets   = ["rhel-openssl-3.0.x"]
 }
 
@@ -11,32 +11,93 @@ datasource db {
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model addresses {
-  address_id       String             @id(map: "pk_addresses") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  first_name       String?
-  last_name        String?
-  address1         String?
-  address2         String?
-  address3         String?
-  city             String?
-  province         String?
-  province_code    String?
-  country          String?
-  country_code     String?
-  zip              String?
-  phone            String?
-  company          String?
-  latitude         Decimal?           @db.Decimal(10, 7)
-  longitude        Decimal?           @db.Decimal(10, 7)
-  created_at       DateTime           @default(now()) @db.Timestamp(6)
-  updated_at       DateTime?          @db.Timestamp(6)
-  auction_listings auction_listings[]
-  catalog_listings catalog_listings[]
-  user_addresses   user_addresses[]
+  address_id                                   String             @id(map: "pk_addresses") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  first_name                                   String?
+  last_name                                    String?
+  address1                                     String
+  address2                                     String?
+  address3                                     String?
+  city                                         String
+  province                                     String
+  province_code                                String?
+  country                                      String
+  country_code                                 String?
+  zip                                          String
+  phone                                        String?
+  company                                      String?
+  latitude                                     Decimal?           @db.Decimal(10, 7)
+  longitude                                    Decimal?           @db.Decimal(10, 7)
+  created_at                                   DateTime           @default(now()) @db.Timestamp(6)
+  updated_at                                   DateTime?          @db.Timestamp(6)
+  public_id                                    String             @unique @default(dbgenerated("generate_simple_public_id()"))
+  auction_listings                             auction_listings[]
+  catalog_listings                             catalog_listings[]
+  lot_listings                                 lot_listings[]
+  orders_orders_billing_address_idToaddresses  orders[]           @relation("orders_billing_address_idToaddresses")
+  orders_orders_shipping_address_idToaddresses orders[]           @relation("orders_shipping_address_idToaddresses")
+  user_addresses                               user_addresses[]
 
+  @@index([country_code], map: "idx_addresses_country_code")
   @@index([created_at], map: "idx_addresses_created_at")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model auction_bid_history {
+  auction_bid_history_id String                   @id(map: "pk_auction_bid_history") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auction_listing_id     String                   @db.Uuid
+  previous_bid_amount    Decimal?                 @db.Decimal(16, 4)
+  new_bid_amount         Decimal                  @db.Decimal(16, 4)
+  bid_amount_currency    currency_code_type
+  bidder_user_id         String                   @db.Uuid
+  action_type            auction_bid_action_type? @default(BID_PLACED)
+  timestamp              DateTime?                @default(now()) @db.Timestamp(6)
+  created_at             DateTime?                @default(now()) @db.Timestamp(6)
+  auction_listings       auction_listings         @relation(fields: [auction_listing_id], references: [auction_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bid_history_auction_listing_id")
+  users                  users                    @relation(fields: [bidder_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bid_history_bidder_user_id")
+
+  @@index([action_type], map: "idx_auction_bid_history_action_type")
+  @@index([bidder_user_id], map: "idx_auction_bid_history_bidder_user_id")
+  @@index([auction_listing_id], map: "idx_auction_bid_history_listing_id")
+  @@index([timestamp], map: "idx_auction_bid_history_timestamp")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model auction_bids {
+  auction_bid_id                           String             @id(map: "pk_auction_bids") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auction_listing_id                       String             @db.Uuid
+  seller_user_id                           String             @db.Uuid
+  seller_profile_id                        String             @db.Uuid
+  bidder_user_id                           String             @db.Uuid
+  bidder_buyer_profile_id                  String             @db.Uuid
+  bid_amount                               Decimal            @db.Decimal(16, 4)
+  bid_amount_currency                      currency_code_type
+  bid_type                                 auction_bid_type?  @default(REGULAR)
+  is_winning_bid                           Boolean?           @default(false)
+  bid_timestamp                            DateTime?          @default(now()) @db.Timestamp(6)
+  created_at                               DateTime?          @default(now()) @db.Timestamp(6)
+  public_id                                String             @unique @default(dbgenerated("generate_simple_public_id()"))
+  bid_sequence_number                      Int                @default(autoincrement())
+  auction_listings                         auction_listings   @relation(fields: [auction_listing_id], references: [auction_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bids_auction_listing_id")
+  buyer_profiles                           buyer_profiles     @relation(fields: [bidder_buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bids_bidder_buyer_profile_id")
+  users_auction_bids_bidder_user_idTousers users              @relation("auction_bids_bidder_user_idTousers", fields: [bidder_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bids_bidder_user_id")
+  seller_profiles                          seller_profiles    @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bids_seller_profile_id")
+  users_auction_bids_seller_user_idTousers users              @relation("auction_bids_seller_user_idTousers", fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_bids_seller_user_id")
+
+  @@index([bidder_user_id], map: "idx_auction_bids_bidder_user_id")
+  @@index([auction_listing_id], map: "idx_auction_bids_listing_id")
+  @@index([public_id], map: "idx_auction_bids_public_id")
+  @@index([seller_user_id], map: "idx_auction_bids_seller_id")
+  @@index([seller_profile_id], map: "idx_auction_bids_seller_profile_id")
+  @@index([seller_user_id, bid_timestamp], map: "idx_auction_bids_seller_timestamp")
+  @@index([bid_timestamp], map: "idx_auction_bids_timestamp")
+  @@index([auction_listing_id, bid_timestamp, bid_amount], map: "idx_auction_bids_listing_timestamp_amount")
+  @@index([bid_sequence_number], map: "idx_auction_bids_sequence")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model auction_listing_images {
   auction_listing_image_id String           @id(map: "pk_auction_listing_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   auction_listing_id       String           @db.Uuid
@@ -48,6 +109,8 @@ model auction_listing_images {
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model auction_listing_product_manifests {
   auction_listing_product_manifest_id String                            @id(map: "pk_auction_listing_product_manifests") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   auction_listing_id                  String?                           @db.Uuid
@@ -56,7 +119,7 @@ model auction_listing_product_manifests {
   title                               String
   description                         String?
   brand_id                            String                            @db.Uuid
-  sku                                 String                            @unique(map: "idx_auction_manifests_sku")
+  sku                                 String
   identifier                          String?
   identifier_type                     product_identifier_type?
   external_identifier                 String?
@@ -81,15 +144,47 @@ model auction_listing_product_manifests {
   product_length_type                 length_type?
   created_at                          DateTime?                         @default(now()) @db.Timestamp(6)
   updated_at                          DateTime?                         @db.Timestamp(6)
+  retail_price_currency               currency_code_type?
+  ext_retail_currency                 currency_code_type?
+  case_pack                           Int?
+  case_weight_type                    weight_type?
+  case_weight                         Decimal?                          @db.Decimal(10, 2)
+  case_dimension_type                 length_type?
+  case_length                         Decimal?                          @db.Decimal(10, 2)
+  case_width                          Decimal?                          @db.Decimal(10, 2)
+  case_height                         Decimal?                          @db.Decimal(10, 2)
   auction_listings                    auction_listings?                 @relation(fields: [auction_listing_id], references: [auction_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listing_product_manifests_auction_listing_id")
   brands                              brands                            @relation(fields: [brand_id], references: [brand_id], onUpdate: NoAction, map: "fk_auction_listing_product_manifests_brand_id")
+  order_items                         order_items[]
 
+  @@unique([auction_listing_id, sku], map: "uk_auction_manifests_sku_per_listing")
   @@index([auction_listing_id], map: "idx_auction_manifests_auction_listing_id")
   @@index([brand_id], map: "idx_auction_manifests_brand_id")
+  @@index([category], map: "idx_auction_manifests_category")
+  @@index([product_condition], map: "idx_auction_manifests_condition")
   @@index([identifier], map: "idx_auction_manifests_identifier")
+  @@index([sku], map: "idx_auction_manifests_sku")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model auction_listing_visibility_rules {
+  rule_id            String               @id(map: "pk_auction_listing_visibility_rules") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auction_listing_id String               @db.Uuid
+  rule_type          visibility_rule_type
+  rule_value         String
+  is_inclusion       Boolean?             @default(true)
+  created_at         DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamp(6)
+  auction_listings   auction_listings     @relation(fields: [auction_listing_id], references: [auction_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listing_visibility_rules_auction_listing_id")
+
+  @@unique([auction_listing_id, rule_type, rule_value], map: "uk_auction_listing_visibility_rules")
+  @@index([auction_listing_id], map: "idx_auction_visibility_rules_listing_id")
+  @@index([rule_type, rule_value], map: "idx_auction_visibility_rules_type_value")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model auction_listings {
   auction_listing_id                                                              String                              @id(map: "pk_auction_listings") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   seller_profile_id                                                               String                              @db.Uuid
@@ -118,7 +213,6 @@ model auction_listings {
   is_fda_registered                                                               Boolean?                            @default(false)
   is_hazmat                                                                       Boolean?                            @default(false)
   is_private                                                                      Boolean?                            @default(false)
-  visibility_settings                                                             Json?                               @default("{}")
   location_address_id                                                             String?                             @db.Uuid
   auction_shipping_type                                                           shipping_type?
   auction_freight_type                                                            freight_type?
@@ -147,8 +241,20 @@ model auction_listings {
   auction_end_time                                                                DateTime?                           @db.Timestamp(6)
   created_at                                                                      DateTime?                           @default(now()) @db.Timestamp(6)
   updated_at                                                                      DateTime?                           @db.Timestamp(6)
+  public_id                                                                       String                              @unique @default(dbgenerated("generate_simple_public_id()"))
+  shipping_cost_currency                                                          currency_code_type?
+  total_ex_retail_price_currency                                                  currency_code_type?
+  estimated_retail_value_currency                                                 currency_code_type?
+  minimum_bid_currency                                                            currency_code_type?
+  current_bid_currency                                                            currency_code_type?
+  bid_increment_value_currency                                                    currency_code_type?
+  short_title                                                                     String?
+  version                                                                         Int                                 @default(1)
+  auction_bid_history                                                             auction_bid_history[]
+  auction_bids                                                                    auction_bids[]
   auction_listing_images                                                          auction_listing_images[]
   auction_listing_product_manifests                                               auction_listing_product_manifests[]
+  auction_listing_visibility_rules                                                auction_listing_visibility_rules[]
   buyer_profiles_auction_listings_current_bidder_buyer_profile_idTobuyer_profiles buyer_profiles?                     @relation("auction_listings_current_bidder_buyer_profile_idTobuyer_profiles", fields: [current_bidder_buyer_profile_id], references: [buyer_profile_id], onUpdate: NoAction, map: "fk_auction_listings_current_bidder_buyer_profile_id")
   users_auction_listings_current_bidder_user_idTousers                            users?                              @relation("auction_listings_current_bidder_user_idTousers", fields: [current_bidder_user_id], references: [user_id], onUpdate: NoAction, map: "fk_auction_listings_current_bidder_user_id")
   addresses                                                                       addresses?                          @relation(fields: [location_address_id], references: [address_id], onUpdate: NoAction, map: "fk_auction_listings_location_address_id")
@@ -156,6 +262,7 @@ model auction_listings {
   users_auction_listings_seller_user_idTousers                                    users                               @relation("auction_listings_seller_user_idTousers", fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_auction_listings_seller_user_id")
   buyer_profiles_auction_listings_winner_buyer_profile_idTobuyer_profiles         buyer_profiles?                     @relation("auction_listings_winner_buyer_profile_idTobuyer_profiles", fields: [winner_buyer_profile_id], references: [buyer_profile_id], onUpdate: NoAction, map: "fk_auction_listings_winner_buyer_profile_id")
   users_auction_listings_winner_user_idTousers                                    users?                              @relation("auction_listings_winner_user_idTousers", fields: [winner_user_id], references: [user_id], onUpdate: NoAction, map: "fk_auction_listings_winner_user_id")
+  orders                                                                          orders[]
 
   @@index([auction_end_time], map: "idx_auction_listings_auction_end_time")
   @@index([auction_status], map: "idx_auction_listings_auction_status")
@@ -164,13 +271,18 @@ model auction_listings {
   @@index([created_at], map: "idx_auction_listings_created_at")
   @@index([current_bid], map: "idx_auction_listings_current_bid")
   @@index([is_private], map: "idx_auction_listings_is_private")
+  @@index([lot_condition], map: "idx_auction_listings_lot_condition")
+  @@index([minimum_bid_currency], map: "idx_auction_listings_minimum_bid_currency")
   @@index([seller_profile_id], map: "idx_auction_listings_seller_profile_id")
   @@index([seller_user_id], map: "idx_auction_listings_seller_user_id")
+  @@index([shipping_cost_currency], map: "idx_auction_listings_shipping_cost_currency")
   @@index([status], map: "idx_auction_listings_status")
   @@index([status, category], map: "idx_auction_listings_status_category")
   @@index([subcategory], map: "idx_auction_listings_subcategory")
+  @@index([version], map: "idx_auction_listings_version")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model brands {
   brand_id                          String                              @id(map: "pk_brands") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   brand_name                        String                              @unique
@@ -178,22 +290,42 @@ model brands {
   brand_website                     String?
   created_at                        DateTime?                           @default(now()) @db.Timestamp(6)
   updated_at                        DateTime?                           @db.Timestamp(6)
+  public_id                         String                              @unique @default(dbgenerated("generate_simple_public_id()"))
   auction_listing_product_manifests auction_listing_product_manifests[]
+  buyer_brand_preferences           buyer_brand_preferences[]
   catalog_products                  catalog_products[]
+  lot_listing_product_manifests     lot_listing_product_manifests[]
 
   @@index([brand_name], map: "idx_brands_brand_name")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model buyer_profile_preferences {
-  buyer_profile_preference_id String         @id(map: "pk_buyer_profile_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  buyer_profile_id            String         @db.Uuid
-  user_id                     String         @db.Uuid
-  created_at                  DateTime?      @default(now()) @db.Timestamp(6)
-  updated_at                  DateTime?      @db.Timestamp(6)
-  buyer_profiles              buyer_profiles @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profile_preferences_buyer_profile_id")
-  users                       users          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profile_preferences_user_id")
+  buyer_profile_preference_id String                              @id(map: "pk_buyer_profile_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  buyer_profile_id            String                              @db.Uuid
+  user_id                     String                              @db.Uuid
+  created_at                  DateTime?                           @default(now()) @db.Timestamp(6)
+  updated_at                  DateTime?                           @db.Timestamp(6)
+  preferred_categories        product_category_type[]
+  preferred_subcategories     product_sub_category_type[]
+  budget_min                  Decimal?                            @db.Decimal(16, 4)
+  budget_max                  Decimal?                            @db.Decimal(16, 4)
+  budget_currency             currency_code_type?
+  minimum_discount_percentage Decimal?                            @db.Decimal(5, 2)
+  listing_type_preferences    listing_type_preference[]
+  buyer_segments              buyer_segment_type[]
+  preferred_regions           geographic_preference_region_type[]
+  buyer_profiles              buyer_profiles                      @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profile_preferences_buyer_profile_id")
+  users                       users                               @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profile_preferences_user_id")
+
+  @@index([preferred_categories], map: "idx_buyer_prefs_categories", type: Gin)
+  @@index([listing_type_preferences], map: "idx_buyer_prefs_listing_types", type: Gin)
+  @@index([preferred_regions], map: "idx_buyer_prefs_regions", type: Gin)
+  @@index([buyer_segments], map: "idx_buyer_prefs_segments", type: Gin)
+  @@index([preferred_subcategories], map: "idx_buyer_prefs_subcategories", type: Gin)
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model buyer_profiles {
   buyer_profile_id                                                                  String                         @id(map: "pk_buyer_profiles") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id                                                                           String                         @unique(map: "uk_buyer_profiles_user_id") @db.Uuid
@@ -201,16 +333,23 @@ model buyer_profiles {
   verification_status                                                               buyer_verification_status_type
   created_at                                                                        DateTime?                      @default(now()) @db.Timestamp(6)
   updated_at                                                                        DateTime?                      @db.Timestamp(6)
+  public_id                                                                         String                         @unique @default(dbgenerated("generate_simple_public_id()"))
+  auction_bids                                                                      auction_bids[]
   auction_listings_auction_listings_current_bidder_buyer_profile_idTobuyer_profiles auction_listings[]             @relation("auction_listings_current_bidder_buyer_profile_idTobuyer_profiles")
   auction_listings_auction_listings_winner_buyer_profile_idTobuyer_profiles         auction_listings[]             @relation("auction_listings_winner_buyer_profile_idTobuyer_profiles")
+  buyer_brand_preferences                                                           buyer_brand_preferences[]
   buyer_profile_preferences                                                         buyer_profile_preferences[]
   resale_certificates                                                               resale_certificates?           @relation(fields: [reseller_tax_id], references: [resale_certificate_id], onUpdate: NoAction, map: "fk_buyer_profiles_reseller_tax_id")
   users                                                                             users                          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_profiles_user_id")
+  catalog_offers                                                                    catalog_offers[]
+  lot_offers                                                                        lot_offers[]
+  orders                                                                            orders[]
 
   @@index([user_id], map: "idx_buyer_profiles_user_id")
   @@index([verification_status], map: "idx_buyer_profiles_verification_status")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model catalog_listing_images {
   catalog_listing_image_id String           @id(map: "pk_catalog_listing_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   catalog_listing_id       String           @db.Uuid
@@ -221,38 +360,60 @@ model catalog_listing_images {
   @@unique([catalog_listing_id, image_id], map: "uk_catalog_listing_images")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_listing_visibility_rules {
+  rule_id            String               @id(map: "pk_catalog_listing_visibility_rules") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_listing_id String               @db.Uuid
+  rule_type          visibility_rule_type
+  rule_value         String
+  is_inclusion       Boolean?             @default(true)
+  created_at         DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamp(6)
+  catalog_listings   catalog_listings     @relation(fields: [catalog_listing_id], references: [catalog_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listing_visibility_rules_catalog_listing_id")
+
+  @@unique([catalog_listing_id, rule_type, rule_value], map: "uk_catalog_listing_visibility_rules")
+  @@index([catalog_listing_id], map: "idx_catalog_visibility_rules_listing_id")
+  @@index([rule_type, rule_value], map: "idx_catalog_visibility_rules_type_value")
+}
+
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model catalog_listings {
-  catalog_listing_id     String                     @id(map: "pk_catalog_listings") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  seller_profile_id      String                     @db.Uuid
-  seller_user_id         String                     @db.Uuid
-  title                  String
-  description            String?
-  category               product_category_type?
-  category2              product_category_type?
-  category3              product_category_type?
-  subcategory            product_sub_category_type?
-  subcategory2           product_sub_category_type?
-  subcategory3           product_sub_category_type?
-  subcategory4           product_sub_category_type?
-  subcategory5           product_sub_category_type?
-  status                 listing_status_type?
-  default_image_url      String?
-  listing_condition      product_condition_type?
-  cosmetic_condition     String?
-  packaging              packaging_type?
-  shipping_window        Int?
-  minimum_order_value    Decimal?                   @db.Decimal(16, 4)
-  location_address_id    String                     @db.Uuid
-  is_private             Boolean?                   @default(false)
-  visibility_settings    Json?                      @default("{}")
-  created_at             DateTime?                  @default(now()) @db.Timestamp(6)
-  updated_at             DateTime?                  @db.Timestamp(6)
-  catalog_listing_images catalog_listing_images[]
-  addresses              addresses                  @relation(fields: [location_address_id], references: [address_id], onUpdate: NoAction, map: "fk_catalog_listings_location_address_id")
-  seller_profiles        seller_profiles            @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listings_seller_profile_id")
-  users                  users                      @relation(fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listings_seller_user_id")
-  catalog_products       catalog_products[]
+  catalog_listing_id               String                             @id(map: "pk_catalog_listings") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seller_profile_id                String                             @db.Uuid
+  seller_user_id                   String                             @db.Uuid
+  title                            String
+  description                      String
+  category                         product_category_type
+  category2                        product_category_type?
+  category3                        product_category_type?
+  subcategory                      product_sub_category_type
+  subcategory2                     product_sub_category_type?
+  subcategory3                     product_sub_category_type?
+  subcategory4                     product_sub_category_type?
+  subcategory5                     product_sub_category_type?
+  status                           listing_status_type?
+  default_image_url                String?
+  listing_condition                product_condition_type
+  cosmetic_condition               String?
+  packaging                        packaging_type
+  shipping_window                  Int?
+  minimum_order_value              Decimal?                           @db.Decimal(16, 4)
+  location_address_id              String                             @db.Uuid
+  is_private                       Boolean?                           @default(false)
+  created_at                       DateTime?                          @default(now()) @db.Timestamp(6)
+  updated_at                       DateTime?                          @db.Timestamp(6)
+  public_id                        String                             @unique @default(dbgenerated("generate_simple_public_id()"))
+  minimum_order_value_currency     currency_code_type?
+  duplicate_check_hash             String?                            @db.VarChar(64)
+  sub_heading                      String?
+  catalog_listing_images           catalog_listing_images[]
+  catalog_listing_visibility_rules catalog_listing_visibility_rules[]
+  addresses                        addresses                          @relation(fields: [location_address_id], references: [address_id], onUpdate: NoAction, map: "fk_catalog_listings_location_address_id")
+  seller_profiles                  seller_profiles                    @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listings_seller_profile_id")
+  users                            users                              @relation(fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_listings_seller_user_id")
+  catalog_offers                   catalog_offers[]
+  catalog_products                 catalog_products[]
 
   @@index([category], map: "idx_catalog_listings_category")
   @@index([created_at], map: "idx_catalog_listings_created_at")
@@ -263,6 +424,203 @@ model catalog_listings {
   @@index([subcategory], map: "idx_catalog_listings_subcategory")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_offer_item_changes {
+  catalog_offer_item_change_id   String                         @id(map: "pk_catalog_offer_item_changes") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_offer_id               String                         @db.Uuid
+  catalog_offer_item_id          String?                        @db.Uuid
+  change_type                    catalog_offer_item_change_type
+  changed_by_user_id             String                         @db.Uuid
+  negotiation_round              Int
+  new_catalog_product_id         String?                        @db.Uuid
+  new_catalog_product_variant_id String?                        @db.Uuid
+  new_requested_quantity         Int?
+  new_buyer_offer_price          Decimal?                       @db.Decimal(16, 4)
+  new_buyer_offer_price_currency currency_code_type?
+  previous_quantity              Int?
+  new_quantity                   Int?
+  previous_buyer_price           Decimal?                       @db.Decimal(16, 4)
+  new_buyer_price                Decimal?                       @db.Decimal(16, 4)
+  change_reason                  String?
+  created_at                     DateTime?                      @default(now()) @db.Timestamp(6)
+  public_id                      String                         @unique @default(dbgenerated("generate_simple_public_id()"))
+  previous_price                 Decimal?                       @db.Decimal(16, 4)
+  previous_price_currency        currency_code_type?
+  change_summary                 String?
+  auto_generated                 Boolean?                       @default(false)
+  system_action                  Boolean?                       @default(false)
+  catalog_offers                 catalog_offers                 @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_item_changes_catalog_offer_id")
+  catalog_offer_items            catalog_offer_items?           @relation(fields: [catalog_offer_item_id], references: [catalog_offer_item_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_item_changes_catalog_offer_item_id")
+  users                          users                          @relation(fields: [changed_by_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_item_changes_changed_by_user_id")
+  catalog_products               catalog_products?              @relation(fields: [new_catalog_product_id], references: [catalog_product_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_item_changes_new_catalog_product_id")
+  catalog_product_variants       catalog_product_variants?      @relation(fields: [new_catalog_product_variant_id], references: [catalog_product_variant_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_item_changes_new_catalog_product_variant_id")
+
+  @@index([created_at], map: "idx_catalog_item_changes_created")
+  @@index([catalog_offer_item_id], map: "idx_catalog_item_changes_item_id")
+  @@index([catalog_offer_id], map: "idx_catalog_item_changes_offer_id")
+  @@index([public_id], map: "idx_catalog_item_changes_public_id")
+  @@index([catalog_offer_id, negotiation_round], map: "idx_catalog_item_changes_round")
+  @@index([change_type], map: "idx_catalog_item_changes_type")
+  @@index([changed_by_user_id], map: "idx_catalog_item_changes_user")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_offer_items {
+  catalog_offer_item_id         String                          @id(map: "pk_catalog_offer_items") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_offer_id              String                          @db.Uuid
+  catalog_product_id            String?                         @db.Uuid
+  catalog_product_variant_id    String?                         @db.Uuid
+  requested_quantity            Int
+  seller_offer_price            Decimal?                        @db.Decimal(16, 4)
+  seller_offer_price_currency   currency_code_type?
+  buyer_offer_price             Decimal?                        @db.Decimal(16, 4)
+  buyer_offer_price_currency    currency_code_type?
+  current_buyer_negotiation_id  String?                         @db.Uuid
+  current_seller_negotiation_id String?                         @db.Uuid
+  negotiation_status            offer_negotiation_status_type?  @default(BUYER_OFFERED)
+  item_version                  Int?                            @default(1)
+  item_status                   catalog_offer_item_status_type? @default(ACTIVE)
+  replaced_by_item_id           String?                         @db.Uuid
+  added_in_round                Int?                            @default(1)
+  removed_in_round              Int?
+  created_at                    DateTime?                       @default(now()) @db.Timestamp(6)
+  updated_at                    DateTime?                       @db.Timestamp(6)
+  final_agreed_price            Decimal?                        @db.Decimal(16, 4)
+  final_agreed_price_currency   currency_code_type?
+  final_agreed_quantity         Int?
+  agreed_at                     DateTime?                       @db.Timestamp(6)
+  public_id                     String                          @unique @default(dbgenerated("generate_simple_public_id()"))
+  catalog_offer_item_changes    catalog_offer_item_changes[]
+  catalog_offers                catalog_offers                  @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_items_catalog_offer_id")
+  catalog_products              catalog_products?               @relation(fields: [catalog_product_id], references: [catalog_product_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_items_catalog_product_id")
+  catalog_product_variants      catalog_product_variants?       @relation(fields: [catalog_product_variant_id], references: [catalog_product_variant_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_items_catalog_product_variant_id")
+  current_buyer_negotiation     catalog_offer_negotiations?     @relation("CurrentBuyerNeg", fields: [current_buyer_negotiation_id], references: [catalog_offer_negotiation_id], onUpdate: NoAction, map: "fk_catalog_offer_items_current_buyer_negotiation")
+  current_seller_negotiation    catalog_offer_negotiations?     @relation("CurrentSellerNeg", fields: [current_seller_negotiation_id], references: [catalog_offer_negotiation_id], onUpdate: NoAction, map: "fk_catalog_offer_items_current_seller_negotiation")
+  catalog_offer_items           catalog_offer_items?            @relation("catalog_offer_itemsTocatalog_offer_items", fields: [replaced_by_item_id], references: [catalog_offer_item_id], onUpdate: NoAction, map: "fk_catalog_offer_items_replaced_by_item_id")
+  other_catalog_offer_items     catalog_offer_items[]           @relation("catalog_offer_itemsTocatalog_offer_items")
+  negotiations                  catalog_offer_negotiations[]    @relation("ItemNegotiations")
+
+  @@index([current_buyer_negotiation_id], map: "idx_catalog_offer_items_current_buyer_neg")
+  @@index([current_seller_negotiation_id], map: "idx_catalog_offer_items_current_seller_neg")
+  @@index([negotiation_status], map: "idx_catalog_offer_items_negotiation_status")
+  @@index([catalog_offer_id], map: "idx_catalog_offer_items_offer_id")
+  @@index([catalog_product_id], map: "idx_catalog_offer_items_product_id")
+  @@index([catalog_offer_id, added_in_round], map: "idx_catalog_offer_items_round_added")
+  @@index([item_status], map: "idx_catalog_offer_items_status")
+  @@index([catalog_product_variant_id], map: "idx_catalog_offer_items_variant_id")
+  @@index([catalog_offer_id, item_version], map: "idx_catalog_offer_items_version")
+  @@index([public_id], map: "idx_catalog_offer_items_public_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_offer_negotiations {
+  catalog_offer_negotiation_id     String                               @id(map: "pk_catalog_offer_negotiations") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_offer_id                 String                               @db.Uuid
+  catalog_offer_item_id            String                               @db.Uuid
+  parent_negotiation_id            String?                              @db.Uuid
+  negotiation_round                Int                                  @default(1)
+  is_current_offer                 Boolean?                             @default(true)
+  action_type                      offer_negotiation_action_type
+  offered_by_user_id               String                               @db.Uuid
+  offer_price_per_unit             Decimal                              @db.Decimal(16, 4)
+  offer_price_currency             currency_code_type
+  offer_quantity                   Int
+  offer_status                     offer_negotiation_offer_status_type? @default(PENDING)
+  offer_message                    String?
+  valid_until                      DateTime?                            @db.Timestamp(6)
+  responded_at                     DateTime?                            @db.Timestamp(6)
+  includes_item_changes            Boolean?                             @default(false)
+  item_change_summary              String?
+  created_at                       DateTime?                            @default(now()) @db.Timestamp(6)
+  updated_at                       DateTime?                            @db.Timestamp(6)
+  public_id                        String                               @unique @default(dbgenerated("generate_simple_public_id()"))
+  expires_at                       DateTime?                            @db.Timestamp(6)
+  auto_expired                     Boolean?                             @default(false)
+  auto_accepted                    Boolean?                             @default(false)
+  auto_accept_reason               String?
+  system_generated                 Boolean?                             @default(false)
+  current_buyer_items              catalog_offer_items[]                @relation("CurrentBuyerNeg")
+  current_seller_items             catalog_offer_items[]                @relation("CurrentSellerNeg")
+  catalog_offers                   catalog_offers                       @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_negotiations_catalog_offer_id")
+  catalog_offer_item               catalog_offer_items                  @relation("ItemNegotiations", fields: [catalog_offer_item_id], references: [catalog_offer_item_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_negotiations_catalog_offer_item_id")
+  users                            users                                @relation(fields: [offered_by_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offer_negotiations_offered_by_user_id")
+  catalog_offer_negotiations       catalog_offer_negotiations?          @relation("catalog_offer_negotiationsTocatalog_offer_negotiations", fields: [parent_negotiation_id], references: [catalog_offer_negotiation_id], onUpdate: NoAction, map: "fk_catalog_offer_negotiations_parent_negotiation_id")
+  other_catalog_offer_negotiations catalog_offer_negotiations[]         @relation("catalog_offer_negotiationsTocatalog_offer_negotiations")
+  order_items                      order_items[]
+
+  @@index([action_type], map: "idx_catalog_negotiations_action_type")
+  @@index([created_at], map: "idx_catalog_negotiations_created_at")
+  @@index([catalog_offer_item_id], map: "idx_catalog_negotiations_item_id")
+  @@index([catalog_offer_id], map: "idx_catalog_negotiations_offer_id")
+  @@index([offered_by_user_id], map: "idx_catalog_negotiations_offered_by")
+  @@index([parent_negotiation_id], map: "idx_catalog_negotiations_parent_id")
+  @@index([public_id], map: "idx_catalog_negotiations_public_id")
+  @@index([catalog_offer_item_id, negotiation_round], map: "idx_catalog_negotiations_round")
+  @@index([offer_status], map: "idx_catalog_negotiations_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_offers {
+  catalog_offer_id                                   String                                  @id(map: "pk_catalog_offers") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_listing_id                                 String                                  @db.Uuid
+  seller_user_id                                     String                                  @db.Uuid
+  seller_profile_id                                  String                                  @db.Uuid
+  buyer_user_id                                      String                                  @db.Uuid
+  buyer_profile_id                                   String                                  @db.Uuid
+  offer_status                                       offer_status_type?                      @default(ACTIVE)
+  total_offer_value                                  Decimal?                                @db.Decimal(16, 4)
+  total_offer_value_currency                         currency_code_type?
+  created_at                                         DateTime?                               @default(now()) @db.Timestamp(6)
+  updated_at                                         DateTime?                               @db.Timestamp(6)
+  expires_at                                         DateTime?                               @db.Timestamp(6)
+  public_id                                          String                                  @unique @default(dbgenerated("generate_simple_public_id()"))
+  current_round                                      Int?                                    @default(1)
+  last_action_by_user_id                             String?                                 @db.Uuid
+  last_action_at                                     DateTime?                               @default(now()) @db.Timestamp(6)
+  rejection_reason                                   String?
+  rejection_category                                 offer_rejection_category_type?
+  rejected_at                                        DateTime?                               @db.Timestamp(6)
+  rejected_by_user_id                                String?                                 @db.Uuid
+  reopen_deadline                                    DateTime?                               @db.Timestamp(6)
+  can_reopen                                         Boolean?                                @default(true)
+  auto_expire_at                                     DateTime?                               @db.Timestamp(6)
+  expired_reason                                     String?
+  offer_message                                      String?
+  catalog_offer_alternative_suggestions              catalog_offer_alternative_suggestions[]
+  catalog_offer_audit_log                            catalog_offer_audit_log[]
+  catalog_offer_item_changes                         catalog_offer_item_changes[]
+  catalog_offer_items                                catalog_offer_items[]
+  catalog_offer_minimum_terms                        catalog_offer_minimum_terms[]
+  catalog_offer_negotiations                         catalog_offer_negotiations[]
+  users_catalog_offers_last_action_by_user_idTousers users?                                  @relation("catalog_offers_last_action_by_user_idTousers", fields: [last_action_by_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  users_catalog_offers_rejected_by_user_idTousers    users?                                  @relation("catalog_offers_rejected_by_user_idTousers", fields: [rejected_by_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  buyer_profiles                                     buyer_profiles                          @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offers_buyer_profile_id")
+  users_catalog_offers_buyer_user_idTousers          users                                   @relation("catalog_offers_buyer_user_idTousers", fields: [buyer_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offers_buyer_user_id")
+  catalog_listings                                   catalog_listings                        @relation(fields: [catalog_listing_id], references: [catalog_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offers_catalog_listing_id")
+  seller_profiles                                    seller_profiles                         @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offers_seller_profile_id")
+  users_catalog_offers_seller_user_idTousers         users                                   @relation("catalog_offers_seller_user_idTousers", fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_offers_seller_user_id")
+  orders                                             orders[]
+
+  @@index([buyer_user_id], map: "idx_catalog_offers_buyer_id")
+  @@index([buyer_user_id, offer_status], map: "idx_catalog_offers_buyer_status")
+  @@index([created_at], map: "idx_catalog_offers_created_at")
+  @@index([catalog_listing_id], map: "idx_catalog_offers_listing_id")
+  @@index([public_id], map: "idx_catalog_offers_public_id")
+  @@index([seller_user_id], map: "idx_catalog_offers_seller_id")
+  @@index([seller_profile_id], map: "idx_catalog_offers_seller_profile_id")
+  @@index([seller_user_id, offer_status], map: "idx_catalog_offers_seller_status")
+  @@index([offer_status], map: "idx_catalog_offers_status")
+  @@index([auto_expire_at], map: "idx_catalog_offers_auto_expire_at")
+  @@index([current_round], map: "idx_catalog_offers_current_round")
+  @@index([last_action_at], map: "idx_catalog_offers_last_action_at")
+  @@index([rejection_category], map: "idx_catalog_offers_rejection_category")
+  @@index([reopen_deadline], map: "idx_catalog_offers_reopen_deadline")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model catalog_product_images {
   catalog_product_image_id String           @id(map: "pk_catalog_product_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   catalog_product_id       String           @db.Uuid
@@ -273,85 +631,346 @@ model catalog_product_images {
   @@unique([catalog_product_id, image_id], map: "uk_catalog_product_images")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_product_variant_attributes {
+  catalog_product_variant_attribute_id String                   @id(map: "pk_catalog_product_variant_attributes") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_product_variant_id           String                   @db.Uuid
+  variant_attribute_id                 String                   @db.Uuid
+  attribute_value                      String
+  created_at                           DateTime?                @default(now()) @db.Timestamp(6)
+  variant_attributes                   variant_attributes       @relation(fields: [variant_attribute_id], references: [variant_attribute_id], onUpdate: NoAction, map: "fk_catalog_product_variant_attributes_attribute_id")
+  catalog_product_variants             catalog_product_variants @relation(fields: [catalog_product_variant_id], references: [catalog_product_variant_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_product_variant_attributes_variant_id")
+
+  @@unique([catalog_product_variant_id, variant_attribute_id], map: "uk_catalog_product_variant_attributes")
+  @@index([variant_attribute_id], map: "idx_catalog_variant_attrs_attribute_id")
+  @@index([attribute_value], map: "idx_catalog_variant_attrs_value")
+  @@index([catalog_product_variant_id], map: "idx_catalog_variant_attrs_variant_id")
+}
+
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model catalog_product_variant_images {
+  catalog_product_variant_image_id String                   @id(map: "pk_catalog_product_variant_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_product_variant_id       String                   @db.Uuid
+  image_id                         String                   @db.Uuid
+  is_primary                       Boolean?                 @default(false)
+  sort_order                       Int?                     @default(0)
+  created_at                       DateTime?                @default(now()) @db.Timestamp(6)
+  images                           images                   @relation(fields: [image_id], references: [image_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_product_variant_images_image_id")
+  catalog_product_variants         catalog_product_variants @relation(fields: [catalog_product_variant_id], references: [catalog_product_variant_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_product_variant_images_variant_id")
+
+  @@unique([catalog_product_variant_id, image_id], map: "uk_catalog_product_variant_images")
+  @@index([image_id], map: "idx_catalog_variant_images_image_id")
+  @@index([catalog_product_variant_id, sort_order], map: "idx_catalog_variant_images_sort_order")
+  @@index([catalog_product_variant_id], map: "idx_catalog_variant_images_variant_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model catalog_product_variants {
+  catalog_product_variant_id            String                                  @id(map: "pk_catalog_product_variants") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  parent_product_id                     String                                  @db.Uuid
+  variant_sku                           String
+  variant_name                          String?
+  title                                 String?
+  description                           String?
+  category                              product_category_type?
+  category2                             product_category_type?
+  category3                             product_category_type?
+  subcategory                           product_sub_category_type?
+  subcategory2                          product_sub_category_type?
+  subcategory3                          product_sub_category_type?
+  subcategory4                          product_sub_category_type?
+  subcategory5                          product_sub_category_type?
+  model_name                            String?
+  packaging                             packaging_type?
+  accessories                           String?
+  is_hazmat                             Boolean?
+  retail_price                          Decimal?                                @db.Decimal(16, 4)
+  offer_price                           Decimal?                                @db.Decimal(16, 4)
+  available_quantity                    Int?                                    @default(0)
+  min_order_quantity                    Int?
+  max_order_quantity                    Int?
+  weight                                Decimal?                                @db.Decimal(10, 2)
+  weight_unit_type                      weight_type?
+  product_height                        Decimal?                                @db.Decimal(10, 2)
+  product_length                        Decimal?                                @db.Decimal(10, 2)
+  product_width                         Decimal?                                @db.Decimal(10, 2)
+  length_unit_type                      length_type?
+  identifier                            String?
+  identifier_type                       product_identifier_type?
+  external_identifier                   String?
+  external_identifier_type              product_external_identifier_type?
+  part_number                           String?
+  default_image_url                     String?
+  product_condition                     product_condition_type?
+  cosmetic_condition                    String?
+  is_active                             Boolean?                                @default(true)
+  sort_order                            Int?                                    @default(0)
+  created_at                            DateTime?                               @default(now()) @db.Timestamp(6)
+  updated_at                            DateTime?                               @db.Timestamp(6)
+  public_id                             String                                  @unique @default(dbgenerated("generate_simple_public_id()"))
+  retail_price_currency                 currency_code_type?
+  offer_price_currency                  currency_code_type?
+  case_pack                             Int?
+  case_weight_type                      weight_type?
+  case_weight                           Decimal?                                @db.Decimal(10, 2)
+  case_dimension_type                   length_type?
+  case_length                           Decimal?                                @db.Decimal(10, 2)
+  case_width                            Decimal?                                @db.Decimal(10, 2)
+  case_height                           Decimal?                                @db.Decimal(10, 2)
+  catalog_offer_alternative_suggestions catalog_offer_alternative_suggestions[]
+  catalog_offer_item_changes            catalog_offer_item_changes[]
+  catalog_offer_items                   catalog_offer_items[]
+  catalog_product_variant_attributes    catalog_product_variant_attributes[]
+  catalog_product_variant_images        catalog_product_variant_images[]
+  catalog_products                      catalog_products                        @relation(fields: [parent_product_id], references: [catalog_product_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_product_variants_parent_product_id")
+  order_items                           order_items[]
+
+  @@unique([parent_product_id, variant_sku], map: "uk_catalog_product_variants_sku_per_parent")
+  @@index([offer_price], map: "idx_catalog_product_variants_offer_price")
+  @@index([offer_price_currency], map: "idx_catalog_product_variants_offer_price_currency")
+  @@index([parent_product_id], map: "idx_catalog_product_variants_parent_id")
+  @@index([variant_sku], map: "idx_catalog_product_variants_sku")
+  @@index([parent_product_id, sort_order], map: "idx_catalog_product_variants_sort_order")
+  @@index([parent_product_id, is_active], map: "idx_catalog_variants_parent_active")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model catalog_products {
-  catalog_product_id       String                            @id(map: "pk_catalog_products") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  catalog_listing_id       String                            @db.Uuid
-  title                    String
-  description              String?
-  category                 product_category_type?
-  category2                product_category_type?
-  category3                product_category_type?
-  subcategory              product_sub_category_type?
-  subcategory2             product_sub_category_type?
-  subcategory3             product_sub_category_type?
-  subcategory4             product_sub_category_type?
-  subcategory5             product_sub_category_type?
-  brand_id                 String                            @db.Uuid
-  product_condition        product_condition_type?
-  cosmetic_condition       String?
-  default_image_url        String?
-  sku                      String                            @unique(map: "idx_catalog_products_sku")
-  identifier               String?
-  identifier_type          product_identifier_type?
-  external_identifier      String?
-  external_identifier_type product_external_identifier_type?
-  part_number              String?
-  model_name               String?
-  packaging                packaging_type?
-  parent_sku               String?
-  parent_product_id        String?                           @db.Uuid
-  variant_attributes       Json?                             @default("{}")
-  retail_price             Decimal?                          @db.Decimal(16, 4)
-  offer_price              Decimal?                          @db.Decimal(16, 4)
-  available_quantity       Int?
-  min_order_quantity       Int?
-  max_order_quantity       Int?
-  weight                   Decimal?                          @db.Decimal(10, 2)
-  weight_unit_type         weight_type?
-  product_height           Decimal?                          @db.Decimal(10, 2)
-  product_length           Decimal?                          @db.Decimal(10, 2)
-  product_width            Decimal?                          @db.Decimal(10, 2)
-  length_unit_type         length_type?
-  accessories              String?
-  is_hazmat                Boolean?                          @default(false)
-  status                   catalog_product_status_type?
-  created_at               DateTime?                         @default(now()) @db.Timestamp(6)
-  updated_at               DateTime?                         @db.Timestamp(6)
-  catalog_product_images   catalog_product_images[]
-  brands                   brands                            @relation(fields: [brand_id], references: [brand_id], onUpdate: NoAction, map: "fk_catalog_products_brand_id")
-  catalog_listings         catalog_listings                  @relation(fields: [catalog_listing_id], references: [catalog_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_products_catalog_listing_id")
-  catalog_products         catalog_products?                 @relation("catalog_productsTocatalog_products", fields: [parent_product_id], references: [catalog_product_id], onUpdate: NoAction, map: "fk_catalog_products_parent_product_id")
-  other_catalog_products   catalog_products[]                @relation("catalog_productsTocatalog_products")
+  catalog_product_id         String                            @id(map: "pk_catalog_products") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_listing_id         String                            @db.Uuid
+  title                      String
+  description                String?
+  category                   product_category_type?
+  category2                  product_category_type?
+  category3                  product_category_type?
+  subcategory                product_sub_category_type?
+  subcategory2               product_sub_category_type?
+  subcategory3               product_sub_category_type?
+  subcategory4               product_sub_category_type?
+  subcategory5               product_sub_category_type?
+  brand_id                   String                            @db.Uuid
+  product_condition          product_condition_type?
+  cosmetic_condition         String?
+  default_image_url          String?
+  sku                        String
+  external_identifier        String?
+  external_identifier_type   product_external_identifier_type?
+  part_number                String?
+  model_name                 String?
+  packaging                  packaging_type?
+  retail_price               Decimal?                          @db.Decimal(16, 4)
+  offer_price                Decimal?                          @db.Decimal(16, 4)
+  min_order_quantity         Int?
+  max_order_quantity         Int?
+  weight                     Decimal?                          @db.Decimal(10, 2)
+  weight_unit_type           weight_type?
+  product_height             Decimal?                          @db.Decimal(10, 2)
+  product_length             Decimal?                          @db.Decimal(10, 2)
+  product_width              Decimal?                          @db.Decimal(10, 2)
+  length_unit_type           length_type?
+  accessories                String?
+  is_hazmat                  Boolean?                          @default(false)
+  status                     catalog_product_status_type?
+  created_at                 DateTime?                         @default(now()) @db.Timestamp(6)
+  updated_at                 DateTime?                         @db.Timestamp(6)
+  public_id                  String                            @unique @default(dbgenerated("generate_simple_public_id()"))
+  retail_price_currency      currency_code_type?
+  offer_price_currency       currency_code_type?
+  case_pack                  Int?
+  case_weight_type           weight_type?
+  case_weight                Decimal?                          @db.Decimal(10, 2)
+  case_dimension_type        length_type?
+  case_length                Decimal?                          @db.Decimal(10, 2)
+  case_width                 Decimal?                          @db.Decimal(10, 2)
+  case_height                Decimal?                          @db.Decimal(10, 2)
+  catalog_offer_item_changes catalog_offer_item_changes[]
+  catalog_offer_items        catalog_offer_items[]
+  catalog_product_images     catalog_product_images[]
+  catalog_product_variants   catalog_product_variants[]
+  brands                     brands                            @relation(fields: [brand_id], references: [brand_id], onUpdate: NoAction, map: "fk_catalog_products_brand_id")
+  catalog_listings           catalog_listings                  @relation(fields: [catalog_listing_id], references: [catalog_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_catalog_products_catalog_listing_id")
+  order_items                order_items[]
 
   @@unique([catalog_listing_id, sku], map: "uk_catalog_products_sku_listing")
   @@index([brand_id, category], map: "idx_catalog_products_brand_category")
   @@index([brand_id], map: "idx_catalog_products_brand_id")
   @@index([catalog_listing_id], map: "idx_catalog_products_catalog_listing_id")
   @@index([category], map: "idx_catalog_products_category")
-  @@index([identifier], map: "idx_catalog_products_identifier")
+  @@index([created_at], map: "idx_catalog_products_created_at")
+  @@index([external_identifier], map: "idx_catalog_products_external_identifier")
   @@index([catalog_listing_id, status], map: "idx_catalog_products_listing_status")
   @@index([offer_price], map: "idx_catalog_products_offer_price")
-  @@index([parent_product_id], map: "idx_catalog_products_parent_product_id")
+  @@index([retail_price_currency], map: "idx_catalog_products_retail_price_currency")
+  @@index([sku], map: "idx_catalog_products_sku")
   @@index([status], map: "idx_catalog_products_status")
   @@index([subcategory], map: "idx_catalog_products_subcategory")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model images {
-  image_id               String                   @id(map: "pk_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  image_url              String
-  alt_text               String?
-  sort_order             Int?
-  created_at             DateTime?                @default(now()) @db.Timestamp(6)
-  auction_listing_images auction_listing_images[]
-  catalog_listing_images catalog_listing_images[]
-  catalog_product_images catalog_product_images[]
+  image_id                       String                           @id(map: "pk_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  image_url                      String
+  alt_text                       String?
+  sort_order                     Int?
+  created_at                     DateTime?                        @default(now()) @db.Timestamp(6)
+  original_url                   String?
+  s3_key                         String?
+  public_id                      String                           @unique(map: "idx_images_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  original_s3_key                String?
+  original_image_url             String?
+  auction_listing_images         auction_listing_images[]
+  catalog_listing_images         catalog_listing_images[]
+  catalog_product_images         catalog_product_images[]
+  catalog_product_variant_images catalog_product_variant_images[]
+  lot_listing_images             lot_listing_images[]
 
   @@index([created_at], map: "idx_images_created_at")
+  @@index([original_s3_key], map: "idx_images_original_s3_key")
+  @@index([original_url], map: "idx_images_original_url")
+  @@index([s3_key], map: "idx_images_s3_key")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order_items {
+  order_item_id                       String                             @id(map: "pk_order_items") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id                            String                             @db.Uuid
+  auction_listing_product_manifest_id String?                            @db.Uuid
+  catalog_product_id                  String?                            @db.Uuid
+  catalog_product_variant_id          String?                            @db.Uuid
+  final_negotiation_id                String?                            @db.Uuid
+  quantity                            Int
+  unit_price                          Decimal                            @db.Decimal(16, 4)
+  unit_price_currency                 currency_code_type
+  total_price                         Decimal                            @db.Decimal(16, 4)
+  total_price_currency                currency_code_type
+  created_at                          DateTime?                          @default(now()) @db.Timestamp(6)
+  lot_listing_product_manifest_id     String?                            @db.Uuid
+  auction_listing_product_manifests   auction_listing_product_manifests? @relation(fields: [auction_listing_product_manifest_id], references: [auction_listing_product_manifest_id], onUpdate: NoAction, map: "fk_order_items_auction_listing_product_manifest_id")
+  catalog_products                    catalog_products?                  @relation(fields: [catalog_product_id], references: [catalog_product_id], onUpdate: NoAction, map: "fk_order_items_catalog_product_id")
+  catalog_product_variants            catalog_product_variants?          @relation(fields: [catalog_product_variant_id], references: [catalog_product_variant_id], onUpdate: NoAction, map: "fk_order_items_catalog_product_variant_id")
+  catalog_offer_negotiations          catalog_offer_negotiations?        @relation(fields: [final_negotiation_id], references: [catalog_offer_negotiation_id], onUpdate: NoAction, map: "fk_order_items_final_negotiation_id")
+  lot_listing_product_manifests       lot_listing_product_manifests?     @relation(fields: [lot_listing_product_manifest_id], references: [lot_listing_product_manifest_id], onUpdate: NoAction, map: "fk_order_items_lot_listing_product_manifest_id")
+  orders                              orders                             @relation(fields: [order_id], references: [order_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_order_items_order_id")
+
+  @@index([auction_listing_product_manifest_id], map: "idx_order_items_auction_manifest_id")
+  @@index([catalog_product_id], map: "idx_order_items_catalog_product_id")
+  @@index([catalog_product_variant_id], map: "idx_order_items_catalog_variant_id")
+  @@index([created_at], map: "idx_order_items_created_at")
+  @@index([final_negotiation_id], map: "idx_order_items_final_negotiation")
+  @@index([order_id], map: "idx_order_items_order_id")
+  @@index([lot_listing_product_manifest_id], map: "idx_order_items_lot_manifest_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order_status_history {
+  order_status_history_id String             @id(map: "pk_order_status_history") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id                String             @db.Uuid
+  previous_status         order_status_type?
+  new_status              order_status_type
+  changed_by_user_id      String             @db.Uuid
+  change_reason           String?
+  timestamp               DateTime?          @default(now()) @db.Timestamp(6)
+  users                   users              @relation(fields: [changed_by_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_order_status_history_changed_by_user_id")
+  orders                  orders             @relation(fields: [order_id], references: [order_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_order_status_history_order_id")
+
+  @@index([changed_by_user_id], map: "idx_order_status_history_changed_by")
+  @@index([new_status], map: "idx_order_status_history_new_status")
+  @@index([order_id], map: "idx_order_status_history_order_id")
+  @@index([timestamp], map: "idx_order_status_history_timestamp")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model orders {
+  order_id                                        String                 @id(map: "pk_orders") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_number                                    String?                 @unique @db.VarChar(50)
+  seller_order_number                             Int?
+  buyer_user_id                                   String                 @db.Uuid
+  buyer_profile_id                                String                 @db.Uuid
+  seller_user_id                                  String                 @db.Uuid
+  seller_profile_id                               String                 @db.Uuid
+  auction_listing_id                              String?                @db.Uuid
+  catalog_offer_id                                String?                @db.Uuid
+  order_type                                      order_type
+  order_status                                    order_status_type?     @default(PENDING)
+  total_amount                                    Decimal                @db.Decimal(16, 4)
+  total_amount_currency                           currency_code_type
+  shipping_cost                                   Decimal?               @default(0) @db.Decimal(16, 4)
+  shipping_cost_currency                          currency_code_type?
+  tax_amount                                      Decimal?               @default(0) @db.Decimal(16, 4)
+  tax_amount_currency                             currency_code_type?
+  shipping_address_id                             String?                @db.Uuid
+  billing_address_id                              String?                @db.Uuid
+  payment_due_date                                DateTime?              @db.Timestamp(6)
+  shipping_date                                   DateTime?              @db.Timestamp(6)
+  delivery_date                                   DateTime?              @db.Timestamp(6)
+  created_at                                      DateTime?              @default(now()) @db.Timestamp(6)
+  updated_at                                      DateTime?              @db.Timestamp(6)
+  public_id                                       String                 @unique @default(dbgenerated("generate_simple_public_id()"))
+  lot_offer_id                                    String?                @db.Uuid
+  order_items                                     order_items[]
+  order_status_history                            order_status_history[]
+  auction_listings                                auction_listings?      @relation(fields: [auction_listing_id], references: [auction_listing_id], onUpdate: NoAction, map: "fk_orders_auction_listing_id")
+  addresses_orders_billing_address_idToaddresses  addresses?             @relation("orders_billing_address_idToaddresses", fields: [billing_address_id], references: [address_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_orders_billing_address_id")
+  buyer_profiles                                  buyer_profiles         @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onUpdate: NoAction, map: "fk_orders_buyer_profile_id")
+  users_orders_buyer_user_idTousers               users                  @relation("orders_buyer_user_idTousers", fields: [buyer_user_id], references: [user_id], onUpdate: NoAction, map: "fk_orders_buyer_user_id")
+  catalog_offers                                  catalog_offers?        @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onUpdate: NoAction, map: "fk_orders_catalog_offer_id")
+  lot_offers                                      lot_offers?            @relation(fields: [lot_offer_id], references: [lot_offer_id], onUpdate: NoAction, map: "fk_orders_lot_offer_id")
+  seller_profiles                                 seller_profiles        @relation(fields: [seller_profile_id], references: [seller_profile_id], onUpdate: NoAction, map: "fk_orders_seller_profile_id")
+  users_orders_seller_user_idTousers              users                  @relation("orders_seller_user_idTousers", fields: [seller_user_id], references: [user_id], onUpdate: NoAction, map: "fk_orders_seller_user_id")
+  addresses_orders_shipping_address_idToaddresses addresses?             @relation("orders_shipping_address_idToaddresses", fields: [shipping_address_id], references: [address_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_orders_shipping_address_id")
+  payments                                        payments[]
+
+  @@unique([seller_user_id, seller_order_number], map: "uk_orders_seller_sequential")
+  @@index([auction_listing_id], map: "idx_orders_auction_listing_id")
+  @@index([buyer_user_id], map: "idx_orders_buyer_user_id")
+  @@index([catalog_offer_id], map: "idx_orders_catalog_offer_id")
+  @@index([created_at], map: "idx_orders_created_at")
+  @@index([order_type], map: "idx_orders_order_type")
+  @@index([public_id], map: "idx_orders_public_id")
+  @@index([order_number], map: "idx_orders_public_number")
+  @@index([seller_user_id, seller_order_number], map: "idx_orders_seller_sequential")
+  @@index([seller_user_id], map: "idx_orders_seller_user_id")
+  @@index([order_status], map: "idx_orders_status")
+  @@index([lot_offer_id], map: "idx_orders_lot_offer_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model payments {
+  payment_id                      String               @id(map: "pk_payments") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id                        String               @db.Uuid
+  payment_method                  payment_method_type
+  payment_provider                String?              @db.VarChar(50)
+  payment_provider_transaction_id String?              @db.VarChar(100)
+  payment_amount                  Decimal              @db.Decimal(16, 4)
+  payment_amount_currency         currency_code_type
+  payment_status                  payment_status_type? @default(PENDING)
+  payment_date                    DateTime?            @db.Timestamp(6)
+  processed_at                    DateTime?            @db.Timestamp(6)
+  created_at                      DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at                      DateTime?            @db.Timestamp(6)
+  public_id                       String               @unique @default(dbgenerated("generate_simple_public_id()"))
+  orders                          orders               @relation(fields: [order_id], references: [order_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_payments_order_id")
+
+  @@index([created_at], map: "idx_payments_created_at")
+  @@index([order_id], map: "idx_payments_order_id")
+  @@index([payment_method], map: "idx_payments_payment_method")
+  @@index([processed_at], map: "idx_payments_processed_at")
+  @@index([payment_provider_transaction_id], map: "idx_payments_provider_transaction_id")
+  @@index([public_id], map: "idx_payments_public_id")
+  @@index([payment_status], map: "idx_payments_status")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model resale_certificates {
   resale_certificate_id      String                                @id(map: "pk_resale_certificates") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id                    String                                @db.Uuid
@@ -387,6 +1006,7 @@ model resale_certificates {
   is_active                  Boolean?                              @default(true)
   created_at                 DateTime?                             @default(now()) @db.Timestamp(6)
   updated_at                 DateTime?                             @db.Timestamp(6)
+  public_id                  String                                @unique(map: "idx_resale_certificates_public_id") @default(dbgenerated("generate_simple_public_id()"))
   buyer_profiles             buyer_profiles[]
   users                      users                                 @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_resale_certificates_user_id")
 
@@ -395,8 +1015,28 @@ model resale_certificates {
   @@index([issuing_state], map: "idx_resale_certificates_issuing_state")
   @@index([certificate_status], map: "idx_resale_certificates_status")
   @@index([user_id], map: "idx_resale_certificates_user_id")
+  @@index([verification_status], map: "idx_resale_certificates_verification_status")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model seller_order_counters {
+  seller_order_counter_id String          @id(map: "pk_seller_order_counters") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seller_user_id          String          @db.Uuid
+  seller_profile_id       String          @db.Uuid
+  year                    Int
+  last_order_number       Int?            @default(0)
+  created_at              DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at              DateTime?       @default(now()) @db.Timestamp(6)
+  seller_profiles         seller_profiles @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_order_counters_seller_profile_id")
+  users                   users           @relation(fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_order_counters_seller_user_id")
+
+  @@unique([seller_user_id, year], map: "uk_seller_order_counters_seller_year")
+  @@index([seller_user_id], map: "idx_seller_order_counters_seller_id")
+  @@index([seller_user_id, year], map: "idx_seller_order_counters_seller_year")
+  @@index([year], map: "idx_seller_order_counters_year")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model seller_profile_preferences {
   seller_profile_preference_id String          @id(map: "pk_seller_profile_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   seller_profile_id            String          @db.Uuid
@@ -407,14 +1047,22 @@ model seller_profile_preferences {
   users                        users           @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_profile_preferences_user_id")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model seller_profiles {
   seller_profile_id          String                       @id(map: "pk_seller_profiles") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id                    String                       @unique(map: "uk_seller_profiles_user_id") @db.Uuid
   last_active                DateTime?                    @db.Timestamp(6)
   created_at                 DateTime?                    @default(now()) @db.Timestamp(6)
   updated_at                 DateTime?                    @db.Timestamp(6)
+  public_id                  String                       @unique(map: "idx_seller_profiles_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  auction_bids               auction_bids[]
   auction_listings           auction_listings[]
   catalog_listings           catalog_listings[]
+  catalog_offers             catalog_offers[]
+  lot_listings               lot_listings[]
+  lot_offers                 lot_offers[]
+  orders                     orders[]
+  seller_order_counters      seller_order_counters[]
   seller_profile_preferences seller_profile_preferences[]
   users                      users                        @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_seller_profiles_user_id")
 
@@ -422,21 +1070,23 @@ model seller_profiles {
   @@index([user_id], map: "idx_seller_profiles_user_id")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model user_addresses {
-  user_addresses_id String        @id(map: "pk_user_addresses") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id           String        @db.Uuid
-  address_id        String        @db.Uuid
-  address_type      address_type?
-  created_at        DateTime?     @default(now()) @db.Timestamp(6)
-  updated_at        DateTime?     @db.Timestamp(6)
-  addresses         addresses     @relation(fields: [address_id], references: [address_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_addresses_address_id")
-  users             users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_addresses_user_id")
+  user_address_id String        @id(map: "pk_user_addresses") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id         String        @db.Uuid
+  address_id      String        @db.Uuid
+  address_type    address_type?
+  created_at      DateTime?     @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?     @db.Timestamp(6)
+  addresses       addresses     @relation(fields: [address_id], references: [address_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_addresses_address_id")
+  users           users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_addresses_user_id")
 
   @@unique([user_id, address_id, address_type], map: "uk_user_addresses_user_address_type")
   @@index([address_type], map: "idx_user_addresses_address_type")
   @@index([user_id], map: "idx_user_addresses_user_id")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model user_preferences {
   user_preference_id String    @id(map: "pk_user_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id            String    @db.Uuid
@@ -446,6 +1096,7 @@ model user_preferences {
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model users {
   user_id                                                         String                       @id(map: "pk_users") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   username                                                        String                       @unique
@@ -463,28 +1114,530 @@ model users {
   risk_score                                                      Decimal?                     @default(0.0) @db.Decimal(5, 2)
   created_at                                                      DateTime?                    @default(now()) @db.Timestamp(6)
   updated_at                                                      DateTime?                    @db.Timestamp(6)
+  public_id                                                       String                       @unique(map: "idx_users_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  job_title                                                       String?
+  auction_bid_history                                             auction_bid_history[]
+  auction_bids_auction_bids_bidder_user_idTousers                 auction_bids[]               @relation("auction_bids_bidder_user_idTousers")
+  auction_bids_auction_bids_seller_user_idTousers                 auction_bids[]               @relation("auction_bids_seller_user_idTousers")
   auction_listings_auction_listings_current_bidder_user_idTousers auction_listings[]           @relation("auction_listings_current_bidder_user_idTousers")
   auction_listings_auction_listings_seller_user_idTousers         auction_listings[]           @relation("auction_listings_seller_user_idTousers")
   auction_listings_auction_listings_winner_user_idTousers         auction_listings[]           @relation("auction_listings_winner_user_idTousers")
   buyer_profile_preferences                                       buyer_profile_preferences[]
   buyer_profiles                                                  buyer_profiles?
   catalog_listings                                                catalog_listings[]
+  catalog_offer_audit_log                                         catalog_offer_audit_log[]
+  catalog_offer_item_changes                                      catalog_offer_item_changes[]
+  catalog_offer_negotiations                                      catalog_offer_negotiations[]
+  catalog_offers_catalog_offers_last_action_by_user_idTousers     catalog_offers[]             @relation("catalog_offers_last_action_by_user_idTousers")
+  catalog_offers_catalog_offers_rejected_by_user_idTousers        catalog_offers[]             @relation("catalog_offers_rejected_by_user_idTousers")
+  catalog_offers_catalog_offers_buyer_user_idTousers              catalog_offers[]             @relation("catalog_offers_buyer_user_idTousers")
+  catalog_offers_catalog_offers_seller_user_idTousers             catalog_offers[]             @relation("catalog_offers_seller_user_idTousers")
+  lot_listings                                                    lot_listings[]
+  lot_offer_audit_log                                             lot_offer_audit_log[]
+  lot_offer_negotiations                                          lot_offer_negotiations[]
+  lot_offers_lot_offers_buyer_user_idTousers                      lot_offers[]                 @relation("lot_offers_buyer_user_idTousers")
+  lot_offers_lot_offers_last_action_by_user_idTousers             lot_offers[]                 @relation("lot_offers_last_action_by_user_idTousers")
+  lot_offers_lot_offers_rejected_by_user_idTousers                lot_offers[]                 @relation("lot_offers_rejected_by_user_idTousers")
+  lot_offers_lot_offers_seller_user_idTousers                     lot_offers[]                 @relation("lot_offers_seller_user_idTousers")
+  order_status_history                                            order_status_history[]
+  orders_orders_buyer_user_idTousers                              orders[]                     @relation("orders_buyer_user_idTousers")
+  orders_orders_seller_user_idTousers                             orders[]                     @relation("orders_seller_user_idTousers")
   resale_certificates                                             resale_certificates[]
+  seller_order_counters                                           seller_order_counters[]
   seller_profile_preferences                                      seller_profile_preferences[]
   seller_profiles                                                 seller_profiles?
   user_addresses                                                  user_addresses[]
   user_preferences                                                user_preferences[]
 
+  @@index([cognito_id], map: "idx_users_cognito_id")
+  @@index([created_at], map: "idx_users_created_at")
   @@index([email], map: "idx_users_email")
   @@index([user_type], map: "idx_users_user_type")
   @@index([username], map: "idx_users_username")
-  @@index([cognito_id], map: "idx_users_cognito_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model variant_attribute_values {
+  variant_attribute_value_id String             @id(map: "pk_variant_attribute_values") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  variant_attribute_id       String             @db.Uuid
+  value                      String
+  display_value              String
+  color_hex                  String?
+  sort_order                 Int?               @default(0)
+  is_active                  Boolean?           @default(true)
+  created_at                 DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at                 DateTime?          @db.Timestamp(6)
+  public_id                  String             @unique(map: "idx_variant_attribute_values_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  variant_attributes         variant_attributes @relation(fields: [variant_attribute_id], references: [variant_attribute_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_variant_attribute_values_variant_attribute_id")
+
+  @@unique([variant_attribute_id, value], map: "uk_variant_attribute_values")
+  @@index([variant_attribute_id], map: "idx_variant_attribute_values_attribute_id")
+  @@index([variant_attribute_id, sort_order], map: "idx_variant_attribute_values_sort_order")
+  @@index([value], map: "idx_variant_attribute_values_value")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model variant_attributes {
+  variant_attribute_id               String                               @id(map: "pk_variant_attributes") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                               String                               @unique(map: "uk_variant_attributes_name")
+  display_name                       String
+  attribute_type                     variation_option_type
+  is_required                        Boolean?                             @default(false)
+  sort_order                         Int?                                 @default(0)
+  is_active                          Boolean?                             @default(true)
+  created_at                         DateTime?                            @default(now()) @db.Timestamp(6)
+  updated_at                         DateTime?                            @db.Timestamp(6)
+  public_id                          String                               @unique(map: "idx_variant_attributes_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  catalog_product_variant_attributes catalog_product_variant_attributes[]
+  variant_attribute_values           variant_attribute_values[]
+
+  @@index([name], map: "idx_variant_attributes_name")
+  @@index([sort_order], map: "idx_variant_attributes_sort_order")
+  @@index([attribute_type], map: "idx_variant_attributes_type")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model catalog_offer_alternative_suggestions {
+  suggestion_id                String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_offer_id             String                    @db.Uuid
+  suggested_product_variant_id String?                   @db.Uuid
+  suggested_price              Decimal?                  @db.Decimal(16, 4)
+  suggested_price_currency     currency_code_type?
+  available_quantity           Int?
+  product_name                 String?
+  suggestion_message           String?
+  created_at                   DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at                   DateTime?                 @default(now()) @db.Timestamp(6)
+  public_id                    String                    @unique(map: "uk_alternative_suggestions_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  catalog_product_variants     catalog_product_variants? @relation(fields: [suggested_product_variant_id], references: [catalog_product_variant_id], onDelete: NoAction, onUpdate: NoAction, map: "catalog_offer_alternative_sug_suggested_product_variant_id_fkey")
+  catalog_offers               catalog_offers            @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([created_at], map: "idx_alternative_suggestions_created_at")
+  @@index([catalog_offer_id], map: "idx_alternative_suggestions_offer_id")
+  @@index([public_id], map: "idx_alternative_suggestions_public_id")
+  @@index([suggested_product_variant_id], map: "idx_alternative_suggestions_variant_id")
+}
+
+model catalog_offer_audit_log {
+  audit_id             String                          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_offer_id     String                          @db.Uuid
+  action_type          String
+  performed_by_user_id String                          @db.Uuid
+  old_status           offer_status_type?
+  new_status           offer_status_type?
+  changes_summary      Json?
+  metadata             Json?
+  created_at           DateTime?                       @default(now()) @db.Timestamp(6)
+  public_id            String                          @unique(map: "uk_audit_log_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  system_generated     Boolean?                        @default(false)
+  auto_action_type     catalog_offer_auto_action_type?
+  catalog_offers       catalog_offers                  @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onDelete: Cascade, onUpdate: NoAction)
+  users                users                           @relation(fields: [performed_by_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([action_type], map: "idx_audit_log_action_type")
+  @@index([created_at], map: "idx_audit_log_created_at")
+  @@index([catalog_offer_id], map: "idx_audit_log_offer_id")
+  @@index([performed_by_user_id], map: "idx_audit_log_performed_by")
+  @@index([public_id], map: "idx_audit_log_public_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model catalog_offer_minimum_terms {
+  minimum_terms_id        String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  catalog_offer_id        String              @db.Uuid
+  minimum_unit_price      Decimal?            @db.Decimal(16, 4)
+  minimum_total_order     Decimal?            @db.Decimal(16, 4)
+  minimum_quantity        Int?
+  currency_code           currency_code_type?
+  minimum_order_frequency String?
+  payment_terms           String?
+  delivery_requirements   String?
+  terms_message           String?
+  valid_until             DateTime?           @db.Timestamp(6)
+  created_at              DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at              DateTime?           @default(now()) @db.Timestamp(6)
+  public_id               String              @unique(map: "uk_minimum_terms_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  catalog_offers          catalog_offers      @relation(fields: [catalog_offer_id], references: [catalog_offer_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([created_at], map: "idx_minimum_terms_created_at")
+  @@index([catalog_offer_id], map: "idx_minimum_terms_offer_id")
+  @@index([public_id], map: "idx_minimum_terms_public_id")
+  @@index([valid_until], map: "idx_minimum_terms_valid_until")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model buyer_brand_preferences {
+  buyer_brand_preference_id String         @id(map: "pk_buyer_brand_preferences") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  buyer_profile_id          String         @db.Uuid
+  brand_id                  String         @db.Uuid
+  created_at                DateTime?      @default(now()) @db.Timestamp(6)
+  updated_at                DateTime?      @db.Timestamp(6)
+  public_id                 String         @unique(map: "idx_buyer_brand_prefs_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  brands                    brands         @relation(fields: [brand_id], references: [brand_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_brand_preferences_brand_id")
+  buyer_profiles            buyer_profiles @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_buyer_brand_preferences_buyer_profile_id")
+
+  @@unique([buyer_profile_id, brand_id], map: "uk_buyer_brand_preferences_profile_brand")
+  @@index([brand_id], map: "idx_buyer_brand_prefs_brand_id")
+  @@index([buyer_profile_id], map: "idx_buyer_brand_prefs_buyer_profile_id")
+  @@index([created_at], map: "idx_buyer_brand_prefs_created_at")
+}
+
+model lot_listing_images {
+  lot_listing_image_id String       @id(map: "pk_lot_listing_images") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lot_listing_id       String       @db.Uuid
+  image_id             String       @db.Uuid
+  images               images       @relation(fields: [image_id], references: [image_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listing_images_image_id")
+  lot_listings         lot_listings @relation(fields: [lot_listing_id], references: [lot_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listing_images_lot_listing_id")
+
+  @@unique([lot_listing_id, image_id], map: "uk_lot_listing_images")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model lot_listing_product_manifests {
+  lot_listing_product_manifest_id String                            @id(map: "pk_lot_listing_product_manifests") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lot_listing_id                  String                            @db.Uuid
+  category                        product_category_type?
+  subcategory                     product_sub_category_type?
+  title                           String
+  description                     String?
+  brand_id                        String                            @db.Uuid
+  sku                             String
+  identifier                      String?
+  identifier_type                 product_identifier_type?
+  external_identifier             String?
+  external_identifier_type        product_external_identifier_type?
+  part_number                     String?
+  model_name                      String?
+  product_condition               product_condition_type?
+  cosmetic_condition              String?
+  available_quantity              Int?
+  retail_price                    Decimal?                          @db.Decimal(16, 4)
+  retail_price_currency           currency_code_type?
+  ext_retail                      Decimal?                          @db.Decimal(16, 4)
+  ext_retail_currency             currency_code_type?
+  is_hazmat                       Boolean?                          @default(false)
+  lot_id                          String?
+  pallet_id                       String?
+  department                      String?
+  accessories                     String?
+  weight                          Decimal?                          @db.Decimal(10, 2)
+  product_weight_type             weight_type?
+  product_height                  Decimal?                          @db.Decimal(10, 2)
+  product_length                  Decimal?                          @db.Decimal(10, 2)
+  product_width                   Decimal?                          @db.Decimal(10, 2)
+  product_length_type             length_type?
+  case_pack                       Int?
+  case_weight_type                weight_type?
+  case_weight                     Decimal?                          @db.Decimal(10, 2)
+  case_dimension_type             length_type?
+  case_length                     Decimal?                          @db.Decimal(10, 2)
+  case_width                      Decimal?                          @db.Decimal(10, 2)
+  case_height                     Decimal?                          @db.Decimal(10, 2)
+  created_at                      DateTime?                         @default(now()) @db.Timestamp(6)
+  updated_at                      DateTime?                         @db.Timestamp(6)
+  brands                          brands                            @relation(fields: [brand_id], references: [brand_id], onUpdate: NoAction, map: "fk_lot_listing_product_manifests_brand_id")
+  lot_listings                    lot_listings                      @relation(fields: [lot_listing_id], references: [lot_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listing_product_manifests_lot_listing_id")
+  order_items                     order_items[]
+
+  @@unique([lot_listing_id, sku], map: "uk_lot_manifests_sku_per_listing")
+  @@index([brand_id], map: "idx_lot_manifests_brand_id")
+  @@index([category], map: "idx_lot_manifests_category")
+  @@index([product_condition], map: "idx_lot_manifests_condition")
+  @@index([identifier], map: "idx_lot_manifests_identifier")
+  @@index([lot_listing_id], map: "idx_lot_manifests_lot_listing_id")
+  @@index([sku], map: "idx_lot_manifests_sku")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model lot_listing_tags {
+  lot_listing_id String       @db.Uuid
+  tag_id         String       @db.Uuid
+  created_at     DateTime?    @default(now()) @db.Timestamp(6)
+  lot_listings   lot_listings @relation(fields: [lot_listing_id], references: [lot_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listing_tags_listing")
+  tags           tags         @relation(fields: [tag_id], references: [tag_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listing_tags_tag")
+
+  @@id([lot_listing_id, tag_id], map: "pk_lot_listing_tags")
+  @@index([created_at], map: "idx_lot_listing_tags_created")
+  @@index([lot_listing_id], map: "idx_lot_listing_tags_listing")
+  @@index([tag_id], map: "idx_lot_listing_tags_tag")
+}
+
+model lot_listing_visibility_rules {
+  rule_id        String               @id(map: "pk_lot_listing_visibility_rules") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lot_listing_id String               @db.Uuid
+  rule_type      visibility_rule_type
+  rule_value     String
+  is_inclusion   Boolean?             @default(true)
+  created_at     DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?            @default(now()) @db.Timestamp(6)
+  lot_listings   lot_listings         @relation(fields: [lot_listing_id], references: [lot_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listing_visibility_rules_lot_listing_id")
+
+  @@unique([lot_listing_id, rule_type, rule_value], map: "uk_lot_listing_visibility_rules")
+  @@index([lot_listing_id], map: "idx_lot_visibility_rules_listing_id")
+  @@index([rule_type, rule_value], map: "idx_lot_visibility_rules_type_value")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model lot_listings {
+  lot_listing_id                  String                          @id(map: "pk_lot_listings") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  seller_profile_id               String                          @db.Uuid
+  seller_user_id                  String                          @db.Uuid
+  title                           String
+  short_title                     String?
+  sub_heading                     String?
+  description                     String?
+  short_description               String?
+  listing_label                   String?
+  listing_type                    lot_listing_type?
+  source_type                     listing_source_type?
+  source_name                     listing_source_name?
+  category                        product_category_type?
+  category2                       product_category_type?
+  category3                       product_category_type?
+  subcategory                     product_sub_category_type?
+  subcategory2                    product_sub_category_type?
+  subcategory3                    product_sub_category_type?
+  subcategory4                    product_sub_category_type?
+  subcategory5                    product_sub_category_type?
+  category_percent_estimates      Json?
+  status                          listing_status_type?            @default(DRAFT)
+  default_image_url               String?
+  lot_condition                   lot_condition_type?
+  cosmetic_condition              String?
+  sample_sku_details              String?
+  manifest_snapshot_file_s3_key   String?
+  load_type                       load_type?
+  expiry_date                     DateTime?                       @db.Timestamp(6)
+  total_units                     Int?
+  estimated_case_packs            Int?
+  piece_count                     Int?
+  estimated_retail_value          Decimal?                        @db.Decimal(16, 4)
+  estimated_retail_value_currency currency_code_type?
+  asking_price                    Decimal?                        @db.Decimal(16, 4)
+  asking_price_currency           currency_code_type?
+  shipping_cost                   Decimal?                        @db.Decimal(16, 4)
+  shipping_cost_currency          currency_code_type?
+  estimated_weight                Decimal?                        @db.Decimal(10, 2)
+  weight_type                     weight_type?
+  location_address_id             String?                         @db.Uuid
+  lot_shipping_type               shipping_type?
+  lot_freight_type                freight_type?
+  lot_packaging                   lot_packaging_type?
+  number_of_pallets               Int?
+  pallet_spaces                   Int?
+  pallet_length                   Decimal?                        @db.Decimal(10, 2)
+  pallet_width                    Decimal?                        @db.Decimal(10, 2)
+  pallet_height                   Decimal?                        @db.Decimal(10, 2)
+  pallet_dimension_type           length_type?
+  pallet_stackable                Boolean?                        @default(false)
+  number_of_truckloads            Int?
+  number_of_shipments             Int?
+  is_refrigerated                 Boolean?                        @default(false)
+  is_fda_registered               Boolean?                        @default(false)
+  is_hazmat                       Boolean?                        @default(false)
+  is_private                      Boolean?                        @default(false)
+  resale_requirement              String?
+  accessories                     String?
+  inspection_status               listing_inspection_status?
+  seller_notes                    String?
+  shipping_notes                  String?
+  additional_information          String?
+  offer_requirements              String?
+  created_at                      DateTime?                       @default(now()) @db.Timestamp(6)
+  updated_at                      DateTime?                       @db.Timestamp(6)
+  public_id                       String                          @unique(map: "idx_lot_listings_public_id") @default(dbgenerated("generate_numeric_public_id()"))
+  category4                       product_category_type?
+  category5                       product_category_type?
+  lot_listing_images              lot_listing_images[]
+  lot_listing_product_manifests   lot_listing_product_manifests[]
+  lot_listing_tags                lot_listing_tags[]
+  lot_listing_visibility_rules    lot_listing_visibility_rules[]
+  addresses                       addresses?                      @relation(fields: [location_address_id], references: [address_id], onUpdate: NoAction, map: "fk_lot_listings_location_address_id")
+  seller_profiles                 seller_profiles                 @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listings_seller_profile_id")
+  users                           users                           @relation(fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_listings_seller_user_id")
+  lot_offers                      lot_offers[]
+
+  @@index([asking_price], map: "idx_lot_listings_asking_price")
+  @@index([category], map: "idx_lot_listings_category")
+  @@index([category_percent_estimates], map: "idx_lot_listings_category_estimates", type: Gin)
+  @@index([created_at], map: "idx_lot_listings_created_at")
+  @@index([expiry_date], map: "idx_lot_listings_expiry_date")
+  @@index([inspection_status], map: "idx_lot_listings_inspection_status")
+  @@index([is_private], map: "idx_lot_listings_is_private")
+  @@index([listing_type], map: "idx_lot_listings_listing_type")
+  @@index([load_type], map: "idx_lot_listings_load_type")
+  @@index([lot_condition], map: "idx_lot_listings_lot_condition")
+  @@index([seller_profile_id], map: "idx_lot_listings_seller_profile_id")
+  @@index([seller_user_id], map: "idx_lot_listings_seller_user_id")
+  @@index([source_name], map: "idx_lot_listings_source_name")
+  @@index([source_type], map: "idx_lot_listings_source_type")
+  @@index([status], map: "idx_lot_listings_status")
+  @@index([status, category], map: "idx_lot_listings_status_category")
+  @@index([subcategory], map: "idx_lot_listings_subcategory")
+  @@index([category4], map: "idx_lot_listings_category4")
+  @@index([category5], map: "idx_lot_listings_category5")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model lot_offer_audit_log {
+  audit_id             String             @id(map: "pk_lot_offer_audit_log") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lot_offer_id         String             @db.Uuid
+  action_type          String
+  performed_by_user_id String             @db.Uuid
+  old_status           offer_status_type?
+  new_status           offer_status_type?
+  changes_summary      Json?
+  metadata             Json?
+  system_generated     Boolean?           @default(false)
+  created_at           DateTime?          @default(now()) @db.Timestamp(6)
+  public_id            String             @unique(map: "uk_lot_offer_audit_log_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  lot_offers           lot_offers         @relation(fields: [lot_offer_id], references: [lot_offer_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offer_audit_log_lot_offer_id")
+  users                users              @relation(fields: [performed_by_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_lot_offer_audit_log_performed_by_user_id")
+
+  @@index([action_type], map: "idx_lot_audit_log_action_type")
+  @@index([created_at], map: "idx_lot_audit_log_created_at")
+  @@index([lot_offer_id], map: "idx_lot_audit_log_offer_id")
+  @@index([performed_by_user_id], map: "idx_lot_audit_log_performed_by")
+  @@index([public_id], map: "idx_lot_audit_log_public_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model lot_offer_negotiations {
+  lot_offer_negotiation_id     String                               @id(map: "pk_lot_offer_negotiations") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lot_offer_id                 String                               @db.Uuid
+  parent_negotiation_id        String?                              @db.Uuid
+  negotiation_round            Int                                  @default(1)
+  is_current_offer             Boolean?                             @default(true)
+  action_type                  offer_negotiation_action_type
+  offered_by_user_id           String                               @db.Uuid
+  offer_amount                 Decimal                              @db.Decimal(16, 4)
+  offer_amount_currency        currency_code_type
+  offer_status                 offer_negotiation_offer_status_type? @default(PENDING)
+  offer_message                String?
+  valid_until                  DateTime?                            @db.Timestamp(6)
+  responded_at                 DateTime?                            @db.Timestamp(6)
+  expires_at                   DateTime?                            @db.Timestamp(6)
+  auto_expired                 Boolean?                             @default(false)
+  auto_accepted                Boolean?                             @default(false)
+  auto_accept_reason           String?
+  system_generated             Boolean?                             @default(false)
+  created_at                   DateTime?                            @default(now()) @db.Timestamp(6)
+  updated_at                   DateTime?                            @db.Timestamp(6)
+  public_id                    String                               @unique @default(dbgenerated("generate_simple_public_id()"))
+  lot_offers                   lot_offers                           @relation(fields: [lot_offer_id], references: [lot_offer_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offer_negotiations_lot_offer_id")
+  users                        users                                @relation(fields: [offered_by_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offer_negotiations_offered_by_user_id")
+  lot_offer_negotiations       lot_offer_negotiations?              @relation("lot_offer_negotiationsTolot_offer_negotiations", fields: [parent_negotiation_id], references: [lot_offer_negotiation_id], onUpdate: NoAction, map: "fk_lot_offer_negotiations_parent_negotiation_id")
+  other_lot_offer_negotiations lot_offer_negotiations[]             @relation("lot_offer_negotiationsTolot_offer_negotiations")
+
+  @@index([action_type], map: "idx_lot_negotiations_action_type")
+  @@index([created_at], map: "idx_lot_negotiations_created_at")
+  @@index([lot_offer_id], map: "idx_lot_negotiations_lot_offer_id")
+  @@index([offered_by_user_id], map: "idx_lot_negotiations_offered_by")
+  @@index([parent_negotiation_id], map: "idx_lot_negotiations_parent_id")
+  @@index([public_id], map: "idx_lot_negotiations_public_id")
+  @@index([lot_offer_id, negotiation_round], map: "idx_lot_negotiations_round")
+  @@index([offer_status], map: "idx_lot_negotiations_status")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model lot_offers {
+  lot_offer_id                                   String                         @id(map: "pk_lot_offers") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lot_listing_id                                 String                         @db.Uuid
+  seller_user_id                                 String                         @db.Uuid
+  seller_profile_id                              String                         @db.Uuid
+  buyer_user_id                                  String                         @db.Uuid
+  buyer_profile_id                               String                         @db.Uuid
+  offer_status                                   offer_status_type?             @default(ACTIVE)
+  offer_amount                                   Decimal                        @db.Decimal(16, 4)
+  offer_amount_currency                          currency_code_type
+  current_round                                  Int?                           @default(1)
+  last_action_by_user_id                         String?                        @db.Uuid
+  last_action_at                                 DateTime?                      @default(now()) @db.Timestamp(6)
+  created_at                                     DateTime?                      @default(now()) @db.Timestamp(6)
+  updated_at                                     DateTime?                      @db.Timestamp(6)
+  expires_at                                     DateTime?                      @db.Timestamp(6)
+  auto_expire_at                                 DateTime?                      @db.Timestamp(6)
+  expired_reason                                 String?
+  rejection_reason                               String?
+  rejection_category                             offer_rejection_category_type?
+  rejected_at                                    DateTime?                      @db.Timestamp(6)
+  rejected_by_user_id                            String?                        @db.Uuid
+  reopen_deadline                                DateTime?                      @db.Timestamp(6)
+  can_reopen                                     Boolean?                       @default(true)
+  offer_message                                  String?
+  public_id                                      String                         @unique(map: "idx_lot_offers_public_id") @default(dbgenerated("generate_simple_public_id()"))
+  lot_offer_audit_log                            lot_offer_audit_log[]
+  lot_offer_negotiations                         lot_offer_negotiations[]
+  buyer_profiles                                 buyer_profiles                 @relation(fields: [buyer_profile_id], references: [buyer_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offers_buyer_profile_id")
+  users_lot_offers_buyer_user_idTousers          users                          @relation("lot_offers_buyer_user_idTousers", fields: [buyer_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offers_buyer_user_id")
+  users_lot_offers_last_action_by_user_idTousers users?                         @relation("lot_offers_last_action_by_user_idTousers", fields: [last_action_by_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_lot_offers_last_action_by_user_id")
+  lot_listings                                   lot_listings                   @relation(fields: [lot_listing_id], references: [lot_listing_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offers_lot_listing_id")
+  users_lot_offers_rejected_by_user_idTousers    users?                         @relation("lot_offers_rejected_by_user_idTousers", fields: [rejected_by_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_lot_offers_rejected_by_user_id")
+  seller_profiles                                seller_profiles                @relation(fields: [seller_profile_id], references: [seller_profile_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offers_seller_profile_id")
+  users_lot_offers_seller_user_idTousers         users                          @relation("lot_offers_seller_user_idTousers", fields: [seller_user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lot_offers_seller_user_id")
+  orders                                         orders[]
+
+  @@index([auto_expire_at], map: "idx_lot_offers_auto_expire_at")
+  @@index([buyer_profile_id], map: "idx_lot_offers_buyer_profile_id")
+  @@index([buyer_user_id, offer_status], map: "idx_lot_offers_buyer_status")
+  @@index([buyer_user_id], map: "idx_lot_offers_buyer_user_id")
+  @@index([created_at], map: "idx_lot_offers_created_at")
+  @@index([current_round], map: "idx_lot_offers_current_round")
+  @@index([last_action_at], map: "idx_lot_offers_last_action_at")
+  @@index([lot_listing_id], map: "idx_lot_offers_lot_listing_id")
+  @@index([rejection_category], map: "idx_lot_offers_rejection_category")
+  @@index([reopen_deadline], map: "idx_lot_offers_reopen_deadline")
+  @@index([seller_profile_id], map: "idx_lot_offers_seller_profile_id")
+  @@index([seller_user_id, offer_status], map: "idx_lot_offers_seller_status")
+  @@index([seller_user_id], map: "idx_lot_offers_seller_user_id")
+  @@index([offer_status], map: "idx_lot_offers_status")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tags {
+  tag_id           String             @id(map: "pk_tags") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String             @unique
+  slug             String             @unique
+  description      String?
+  category         String?
+  color            String?
+  is_active        Boolean?           @default(true)
+  usage_count      Int?               @default(0)
+  created_at       DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?          @db.Timestamp(6)
+  lot_listing_tags lot_listing_tags[]
+
+  @@index([is_active, usage_count(sort: Desc)], map: "idx_tags_active_usage")
+  @@index([category], map: "idx_tags_category")
+  @@index([name], map: "idx_tags_name")
+  @@index([slug], map: "idx_tags_slug")
 }
 
 enum address_type {
   DEFAULT
   SHIPPING
   BILLING
+}
+
+enum auction_bid_action_type {
+  BID_PLACED
+  BID_RETRACTED
+  AUCTION_WON
+  AUCTION_ENDED
+}
+
+enum auction_bid_type {
+  REGULAR
+  BUY_NOW
 }
 
 enum auction_status_type {
@@ -513,6 +1666,22 @@ enum buyer_verification_status_type {
   PENDING
   VERIFIED
   REJECTED
+}
+
+enum catalog_offer_item_change_type {
+  ITEM_ADDED
+  ITEM_REMOVED
+  QUANTITY_CHANGED
+  ITEM_REPLACED
+  PRICE_CHANGED
+  TERMS_UPDATED
+  AUTO_ACCEPTED
+}
+
+enum catalog_offer_item_status_type {
+  ACTIVE
+  REMOVED
+  REPLACED
 }
 
 enum catalog_product_status_type {
@@ -813,12 +1982,45 @@ enum lot_packaging_type {
   FLOOR_LOADED
 }
 
+enum order_status_type {
+  PENDING
+  CONFIRMED
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  DISPUTED
+}
+
+enum order_type {
+  AUCTION
+  CATALOG
+  LOT
+}
+
 enum packaging_type {
   ORIGINAL_PACKAGING_SEALED
   ORIGINAL_PACKAGING_OPENED
   NO_RETAIL_PACKAGING
   DAMAGED_PACKAGING
   REPACKAGED_BROWN_BOX
+}
+
+enum payment_method_type {
+  CREDIT_CARD
+  BANK_TRANSFER
+  PAYPAL
+  STRIPE
+  CHECK
+}
+
+enum payment_status_type {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  DISPUTED
 }
 
 enum product_category_type {
@@ -1142,6 +2344,15 @@ enum variation_option_type {
   FLAVOR
 }
 
+enum visibility_rule_type {
+  BUYER_SEGMENT
+  LOCATION_COUNTRY
+  LOCATION_STATE
+  LOCATION_CITY
+  LOCATION_ZIP
+  LOCATION_REGION
+}
+
 enum weight_type {
   MICROGRAM
   MILLIGRAM
@@ -1153,4 +2364,249 @@ enum weight_type {
   OUNCE
   POUND
   STONE
+}
+
+/// This enum is commented in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+enum geographic_preference_region_type {
+  NORTHEAST_US
+  MIDWEST_US
+  SOUTH_US
+  WEST_US
+}
+
+/// This enum is commented in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+enum listing_type_preference {
+  AUCTION
+  CATALOG
+  BOTH
+}
+
+/// This enum is commented in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+enum catalog_offer_auto_action_type {
+  SELLER_ADD_PRODUCT_AUTO_ACCEPT
+  SELLER_UPDATE_ITEM_AUTO_ACCEPT
+  SELLER_BULK_MODIFY_AUTO_ACCEPT
+  SELLER_PRICE_ADJUSTMENT_AUTO_ACCEPT
+  SELLER_QUANTITY_UPDATE_AUTO_ACCEPT
+  SYSTEM_AUTO_ORDER_CREATION
+}
+
+enum offer_negotiation_action_type {
+  BUYER_OFFER
+  SELLER_COUNTER
+  BUYER_COUNTER
+  SELLER_ACCEPT
+  BUYER_ACCEPT
+  SELLER_REJECT
+  BUYER_REJECT
+  SELLER_OFFER
+  SYSTEM_AUTO_ACCEPT
+}
+
+enum offer_negotiation_offer_status_type {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COUNTERED
+  EXPIRED
+  SUPERSEDED
+}
+
+enum offer_negotiation_status_type {
+  BUYER_OFFERED
+  SELLER_COUNTERED
+  BUYER_COUNTERED
+  AGREED
+  REJECTED
+  EXPIRED
+  BUYER_REJECT
+  SELLER_REJECT
+  PENDING_BUYER_RESPONSE
+  PENDING_SELLER_RESPONSE
+}
+
+enum offer_rejection_category_type {
+  PRICING_TOO_LOW
+  PRICING_TOO_HIGH
+  BUDGET_CONSTRAINTS
+  INVENTORY_UNAVAILABLE
+  DELIVERY_TIMELINE_TOO_LONG
+  FOUND_BETTER_ALTERNATIVE
+  PROJECT_CANCELLED
+  OTHER
+}
+
+enum offer_status_type {
+  ACTIVE
+  NEGOTIATING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum listing_inspection_status {
+  UNINSPECTED
+  AS_IS
+  VISUAL_CHECK_ONLY
+  TESTED
+  CERTIFIED
+}
+
+enum listing_source_name {
+  AMAZON
+  WALMART
+  TARGET
+  COSTCO
+  SAMS_CLUB
+  BJS_WHOLESALE
+  BEST_BUY
+  HOME_DEPOT
+  LOWES
+  WAYFAIR
+  KOHLS
+  MACYS
+  NORDSTROM
+  NORDSTROM_RACK
+  DICKS_SPORTING_GOODS
+  TRACTOR_SUPPLY
+  DOLLAR_GENERAL
+  FAMILY_DOLLAR
+  FIVE_BELOW
+  CVS
+  WALGREENS
+  ULTA
+  SEPHORA
+  BED_BATH_BEYOND
+  OVERSTOCK
+  OFFICE_DEPOT
+  OFFICEMAX
+  STAPLES
+  ACE_HARDWARE
+  ACADEMY_SPORTS
+  ASHLEY_FURNITURE
+  OTHER
+}
+
+enum listing_source_type {
+  RETAILER_STORE_RETURNS
+  RETAILER_ECOMMERCE_RETURNS
+  RETAILER_SHELF_PULLS
+  RETAILER_OVERSTOCKS_CLOSEOUTS
+  THREE_PL_CONSOLIDATED_RETURNS
+  THREE_PL_UNCLAIMED_ABANDONED_FREIGHT
+  DISTRIBUTOR_OVERSTOCKS_CLOSEOUTS
+  BRAND_MANUFACTURER_RETURNS_REFURB_EXCESS
+  MARKETPLACE_FBA_3P_RETURNS
+}
+
+enum load_program_type {
+  AMAZON_RETURNS_PALLETS
+  AMAZON_TRUCKLOADS
+  AMAZON_SMALLS_LOADS
+  AMAZON_MEDIUM_LOADS
+  AMAZON_BIGS_LOADS
+  AMAZON_HIGH_RETAIL_LOADS
+  AMAZON_APPAREL_LOADS
+  AMAZON_LPN_PALLETS
+  AMAZON_LPN_LOADS
+  AMAZON_FC_LOADS
+  AMAZON_FC_RETURNS_LOADS
+  AMAZON_MIXED_GM_LOADS
+  AMAZON_HPC_LOADS
+  AMAZON_BULK_LOADS_MECH_LIFT
+  AMAZON_RECYCLE_LOADS
+  AMAZON_MONSTERS
+  AMAZON_COFFIN_BOX_LOADS_LEX
+  WALMART_GENERAL_MERCHANDISE_LOADS
+  WALMART_STORE_RETURNS
+  WALMART_DOTCOM_RETURNS
+  WALMART_OVERSTOCK_LOADS
+  WALMART_SHELF_PULL_LOADS
+  WALMART_ELECTRONICS_LOADS
+  WALMART_APPAREL_LOADS
+  WALMART_SPORTING_GOODS_LOADS
+  WALMART_BICYCLE_LOADS
+  TARGET_STORE_RETURNS
+  TARGET_SALVAGE_LOADS
+  TARGET_GM_LOADS
+  TARGET_RAW_LOADS
+  TARGET_HIGH_PIECE_COUNT_LOADS
+  TARGET_BULLSEYE_LOADS
+  TARGET_CASE_PACK_LOADS
+  TARGET_IRC_LOADS
+  TARGET_GM_DC_LOADS
+  TARGET_TOY_LOADS
+  TARGET_APPAREL_LOADS
+  TARGET_SHOE_LOADS
+  TARGET_FURNITURE_LOADS
+  TARGET_TALL_PALLETS
+  COSTCO_MEMBER_RETURNS
+  COSTCO_GRADE_A_B_LOADS
+  COSTCO_GRADE_C_D_LOADS
+  COSTCO_OVERSTOCK_LOADS
+  COSTCO_MIXED_GM_LOADS
+  CVS_HBA_LOADS
+  CVS_SHELF_PULL_LOADS
+  CVS_HIGH_PIECE_COUNT_LOADS
+  WALGREENS_HBA_LOADS
+  WALGREENS_SHELF_PULL_LOADS
+  WALGREENS_GM_LOADS
+  BEST_BUY_RETURNS_LOADS
+  BEST_BUY_SALVAGE_ELECTRONICS_LOADS
+  BEST_BUY_SCRATCH_AND_DENT_APPLIANCE_LOADS
+  HOME_DEPOT_RETURNS_LOADS
+  HOME_DEPOT_SHELF_PULL_LOADS
+  HOME_DEPOT_OVERSTOCK_LOADS
+  HOME_DEPOT_TIER_1_LOADS
+  HOME_DEPOT_TIER_2_LOADS
+  HOME_DEPOT_TIER_3_LOADS
+  HOME_DEPOT_TURBO_LOADS
+  HOME_DEPOT_OPE_LOADS
+  HOME_DEPOT_SMALL_HPC_LOADS
+  LOWES_RETURNS_LOADS
+  LOWES_GM_LOADS
+  LOWES_SHELF_PULL_LOADS
+  LOWES_OVERSTOCK_LOADS
+  SAMS_CLUB_GM_LOADS
+  SAMS_CLUB_RETURNS_LOADS
+  SAMS_CLUB_OVERSTOCK_LOADS
+  WAYFAIR_FURNITURE_RETURNS_LOADS
+  WAYFAIR_BOX_DAMAGE_LOADS
+  WAYFAIR_OVERSTOCK_FURNITURE_LOADS
+  WAYFAIR_MIXED_FURNITURE_LOADS
+  MACYS_LOADS
+  MACYS_APPAREL_LOADS
+  KOHLS_LOADS
+  KOHLS_GM_LOADS
+  JC_PENNEY_LOADS
+  NORDSTROM_LOADS
+  NORDSTROM_RACK_LOADS
+  BLOOMINGDALES_LOADS
+  SEARS_LOADS
+  DEPARTMENT_STORE_GM_LOADS
+  TJ_MAXX_CLOTHING_LOADS
+  TJ_MAXX_SEASONAL_LOADS
+  DOLLAR_GENERAL_LOADS
+  THREE_PL_CONSOLIDATED_RETURNS
+  THREE_PL_MIXED_GM_LOADS
+  THREE_PL_LPN_STICKERED_PALLETS
+  THREE_PL_MAIL_RETURN_LOADS
+  THREE_PL_UNMANIFESTED_ASSORTED_LOADS
+  THREE_PL_ABANDONED_FREIGHT_LOADS
+}
+
+enum load_type {
+  CASE_PACK
+  PALLET
+  GAYLORD
+  MIXED_LOT
+  LESS_THAN_TRUCKLOAD
+  FULL_TRUCKLOAD
+  MULTIPLE_TRUCKLOADS
+}
+
+enum lot_listing_type {
+  MANIFESTED
+  UNMANIFESTED
+  PARTIALLY_MANIFESTED
 }

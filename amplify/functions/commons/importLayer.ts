@@ -1,5 +1,8 @@
 import * as fs from "fs/promises";
 import * as path from "path";
+
+import sharp from "sharp";
+
 import { PrismaClient } from "../lambda-layers/core-layer/nodejs/prisma/generated/client";
 
 // Define a generic type or use any if the type is not known beforehand
@@ -22,6 +25,7 @@ let module: PackageLoaderLayer | null = null;
 // amplify/functions/layer/nodejs/myScript.ts file
 export interface PackageLoaderLayer {
   prismaClient(prismaDataSourceUrl: string): PrismaClient | null;
+  sharpInstance(buffer: Buffer): sharp.Sharp;
 }
 
 export const importModuleFromLayer = async () => {

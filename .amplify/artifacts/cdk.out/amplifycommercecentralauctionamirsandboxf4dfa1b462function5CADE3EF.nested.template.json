@@ -1,0 +1,710 @@
+{
+ "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"AmplifySandbox\",\"createdWith\":\"1.14.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+ "Resources": {
+  "querydatalambdaServiceRoleF2DF15EC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "query-data"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/query-data-lambda/ServiceRole/Resource"
+   }
+  },
+  "querydatalambdaServiceRoleDefaultPolicyEF8F9C9D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ssm:GetParameters",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":ssm:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":parameter/amplify/commercecentralauction/amir-sandbox-f4dfa1b462/db_connection_details"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":ssm:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":parameter/amplify/shared/commerce-central-auction/db_connection_details"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "querydatalambdaServiceRoleDefaultPolicyEF8F9C9D",
+    "Roles": [
+     {
+      "Ref": "querydatalambdaServiceRoleF2DF15EC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/query-data-lambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "querydatalambdaAC824AEA": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "b998805215c68f4d1cbe0495812b3abdd8d00a6afe15176f139647992c2655a5.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DB_CONNECTION_DETAILS": "<value will be resolved during runtime>",
+      "AMPLIFY_SSM_ENV_CONFIG": "{\"DB_CONNECTION_DETAILS\":{\"path\":\"/amplify/commercecentralauction/amir-sandbox-f4dfa1b462/db_connection_details\",\"sharedPath\":\"/amplify/shared/commerce-central-auction/db_connection_details\"}}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "Layers": [
+     {
+      "Ref": "commerceCentralLambdaLayer9938622C"
+     }
+    ],
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "querydatalambdaServiceRoleF2DF15EC",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "query-data"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "querydatalambdaServiceRoleF2DF15EC"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/query-data-lambda/Resource",
+    "aws:asset:path": "asset.b998805215c68f4d1cbe0495812b3abdd8d00a6afe15176f139647992c2655a5",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "createauctionlistingfromfilelambdaServiceRoleAB175130": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "create-auction-listing-from-file"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/create-auction-listing-from-file-lambda/ServiceRole/Resource"
+   }
+  },
+  "createauctionlistingfromfilelambdaServiceRoleDefaultPolicy563440C8": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ssm:GetParameters",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":ssm:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":parameter/amplify/commercecentralauction/amir-sandbox-f4dfa1b462/db_connection_details"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":ssm:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":parameter/amplify/shared/commerce-central-auction/db_connection_details"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":ssm:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":parameter/amplify/resource_reference/commercecentralauction/amir-sandbox-f4dfa1b462/COMMERCE_CENTRAL_STORAGE_BUCKET_NAME"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "createauctionlistingfromfilelambdaServiceRoleDefaultPolicy563440C8",
+    "Roles": [
+     {
+      "Ref": "createauctionlistingfromfilelambdaServiceRoleAB175130"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/create-auction-listing-from-file-lambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "createauctionlistingfromfilelambdaBC2BF541": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "cb71b4a2303e12331ae57e5a31dd2db9f80869c3125184d7638beeb9aabaa748.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DB_CONNECTION_DETAILS": "<value will be resolved during runtime>",
+      "AMPLIFY_SSM_ENV_CONFIG": "{\"DB_CONNECTION_DETAILS\":{\"path\":\"/amplify/commercecentralauction/amir-sandbox-f4dfa1b462/db_connection_details\",\"sharedPath\":\"/amplify/shared/commerce-central-auction/db_connection_details\"},\"COMMERCE_CENTRAL_STORAGE_BUCKET_NAME\":{\"path\":\"/amplify/resource_reference/commercecentralauction/amir-sandbox-f4dfa1b462/COMMERCE_CENTRAL_STORAGE_BUCKET_NAME\"}}",
+      "COMMERCE_CENTRAL_STORAGE_BUCKET_NAME": "<value will be resolved during runtime>"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "Layers": [
+     {
+      "Ref": "commerceCentralLambdaLayer9938622C"
+     }
+    ],
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "createauctionlistingfromfilelambdaServiceRoleAB175130",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "create-auction-listing-from-file"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "createauctionlistingfromfilelambdaServiceRoleAB175130"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/create-auction-listing-from-file-lambda/Resource",
+    "aws:asset:path": "asset.cb71b4a2303e12331ae57e5a31dd2db9f80869c3125184d7638beeb9aabaa748",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "commerceCentralLambdaLayer9938622C": {
+   "Type": "AWS::Lambda::LayerVersion",
+   "Properties": {
+    "Content": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "0fb1d53e79327c28c18a07c4c7ff0a3cae7392bb76757acc4244776a07c81a48.zip"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/commerceCentralLambdaLayer/Resource",
+    "aws:asset:path": "asset.0fb1d53e79327c28c18a07c4c7ff0a3cae7392bb76757acc4244776a07c81a48",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Content"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/03OuwqDQBCF4WexHydGkyJlFFIFC4W0Mq6jrJcVnN1IEN89qBBSfZzm54R4vl0w8GgWX1Wd3+sSl5TFcpVbUh3QLMXS01BWVJix4lYw3Xk4o6weDWgacMnGniGpzeYKEhUkwlbwvgESYexUxzYmYThquCS1+UWe9OHpxZNsI6nN/15XyFhGNymGvZdbarRpVtgOYSundxji+YqB14rW/uSM1QNjdvgFNKcP7+MAAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Outputs": {
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "querydatalambdaAC824AEA",
+     "Arn"
+    ]
+   }
+  },
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "createauctionlistingfromfilelambdaBC2BF541",
+     "Arn"
+    ]
+   }
+  },
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Ref": {
+   "Value": {
+    "Ref": "querydatalambdaAC824AEA"
+   }
+  },
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694ARef": {
+   "Value": {
+    "Ref": "createauctionlistingfromfilelambdaBC2BF541"
+   }
+  },
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref": {
+   "Value": {
+    "Ref": "createauctionlistingfromfilelambdaServiceRoleAB175130"
+   }
+  }
+ }
+}

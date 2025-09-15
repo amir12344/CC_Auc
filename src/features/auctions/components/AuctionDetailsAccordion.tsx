@@ -1,15 +1,17 @@
-'use client';
+"use client";
 
-import { FileText, Info, Package, Truck } from 'lucide-react';
-import type React from 'react';
+import type React from "react";
+
+import { FileText, Info, Package, Truck } from "lucide-react";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/src/components/ui/accordion';
+} from "@/src/components/ui/accordion";
 
-import type { Auction } from '../types';
+import type { Auction } from "../types";
 
 interface AuctionDetailsAccordionProps {
   /** Auction data object */
@@ -38,7 +40,7 @@ interface AuctionDetailsAccordionProps {
  */
 export const AuctionDetailsAccordion: React.FC<
   AuctionDetailsAccordionProps
-> = ({ auction, className, defaultOpenSections = ['details'] }) => {
+> = ({ auction, className, defaultOpenSections = ["details"] }) => {
   return (
     <div
       className={`rounded-xl border border-gray-200 bg-white p-8 shadow-sm ${className}`}
@@ -49,7 +51,7 @@ export const AuctionDetailsAccordion: React.FC<
           <FileText className="h-6 w-6 text-gray-600" />
         </div>
         <div>
-          <h3 className="font-bold text-2xl text-gray-900">
+          <h3 className="text-2xl font-bold text-gray-900">
             Additional Information
           </h3>
           <p className="mt-1 text-gray-600">
@@ -71,10 +73,10 @@ export const AuctionDetailsAccordion: React.FC<
           <AccordionTrigger className="px-8 py-6 transition-colors hover:bg-gray-50 hover:no-underline">
             <div className="flex w-full items-center gap-4">
               <div className="rounded-lg bg-green-50 p-3">
-                <Package className="h-6 w-6" style={{ color: '#43CD66' }} />
+                <Package className="h-6 w-6" style={{ color: "#43CD66" }} />
               </div>
               <div className="text-left">
-                <span className="font-bold text-gray-900 text-xl">
+                <span className="text-xl font-bold text-gray-900">
                   Details & Specifications
                 </span>
                 <p className="mt-1 text-gray-600">
@@ -88,49 +90,70 @@ export const AuctionDetailsAccordion: React.FC<
               <div className="divide-y divide-gray-200">
                 {/* Dynamic details from auction properties */}
                 {[
-                  { key: 'DESCRIPTION', value: auction.description || 'No description available' },
-                  { key: 'CONDITION', value: auction.lot_condition || 'Not specified' },
-                  { key: 'COSMETIC CONDITION', value: auction.cosmetic_condition || 'Not specified' },
-                  { key: 'ACCESSORIES', value: auction.accessories || 'Not specified' },
-                  { key: 'QUANTITY', value: auction.total_units ? `${auction.total_units} Units` : 'Not specified' },
                   {
-                    key: 'EXT. RETAIL', value: auction.total_ex_retail_price ?
-                      new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(auction.total_ex_retail_price) : 'Not specified'
+                    key: "DESCRIPTION",
+                    value: auction.description || "No description available",
+                  },
+                  {
+                    key: "CONDITION",
+                    value: auction.lot_condition || "Not specified",
+                  },
+                  {
+                    key: "COSMETIC CONDITION",
+                    value: auction.cosmetic_condition || "Not specified",
+                  },
+                  {
+                    key: "ACCESSORIES",
+                    value: auction.accessories || "Not specified",
+                  },
+                  {
+                    key: "QUANTITY",
+                    value: auction.total_units
+                      ? `${auction.total_units} Units`
+                      : "Not specified",
+                  },
+                  {
+                    key: "EXT. RETAIL",
+                    value: auction.total_ex_retail_price
+                      ? new Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        }).format(auction.total_ex_retail_price)
+                      : "Not specified",
                   },
                 ].map(({ key, value }, index) => (
                   <div
-                    className={`px-8 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'} transition-colors hover:bg-blue-50/30`}
+                    className={`px-8 py-4 ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"} transition-colors hover:bg-blue-50/30`}
                     key={key}
                   >
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                       <div className="sm:w-1/3">
-                        <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                        <h4 className="text-sm font-semibold tracking-wide text-gray-900 uppercase">
                           {key}
                         </h4>
                       </div>
                       <div className="sm:w-2/3">
-                        <p className="text-gray-700 leading-relaxed">
-                          {value}
-                        </p>
+                        <p className="leading-relaxed text-gray-700">{value}</p>
                       </div>
                     </div>
                   </div>
-                )
-                )}
+                ))}
               </div>
 
               {/* Enhanced Seller Notes */}
               {auction.seller_notes && (
-                <div className="border-gray-200 border-t bg-green-50 px-8 py-6">
+                <div className="border-t border-gray-200 bg-green-50 px-8 py-6">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 rounded-lg bg-green-100 p-2">
-                      <Info className="h-5 w-5" style={{ color: '#43CD66' }} />
+                      <Info className="h-5 w-5" style={{ color: "#43CD66" }} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="mb-3 font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                      <h4 className="mb-3 text-sm font-semibold tracking-wide text-gray-900 uppercase">
                         Seller Notes
                       </h4>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="leading-relaxed text-gray-700">
                         {auction.seller_notes}
                       </p>
                     </div>
@@ -149,10 +172,10 @@ export const AuctionDetailsAccordion: React.FC<
           <AccordionTrigger className="px-8 py-6 transition-colors hover:bg-gray-50 hover:no-underline">
             <div className="flex w-full items-center gap-4">
               <div className="rounded-lg bg-green-50 p-3">
-                <Truck className="h-6 w-6" style={{ color: '#43CD66' }} />
+                <Truck className="h-6 w-6" style={{ color: "#43CD66" }} />
               </div>
               <div className="text-left">
-                <span className="font-bold text-gray-900 text-xl">
+                <span className="text-xl font-bold text-gray-900">
                   Shipping & Logistics
                 </span>
                 <p className="mt-1 text-gray-600">
@@ -166,59 +189,83 @@ export const AuctionDetailsAccordion: React.FC<
               {/* Dynamic shipping details from auction properties */}
               <div className="divide-y divide-gray-200">
                 {[
-                  { key: 'SHIPPING TYPE', value: auction.auction_shipping_type || 'Not specified' },
-                  { key: 'FREIGHT TYPE', value: auction.auction_freight_type || 'Not specified' },
-                  { key: 'NUMBER OF PALLETS', value: auction.number_of_pallets || 'Not specified' },
-                  { key: 'NUMBER OF SHIPMENTS', value: auction.number_of_shipments || 'Not specified' },
-                  { key: 'NUMBER OF TRUCKLOADS', value: auction.number_of_truckloads || 'Not specified' },
-                  { key: 'ESTIMATED WEIGHT', value: auction.estimated_weight && auction.weight_type ? `${auction.estimated_weight} ${auction.weight_type}` : 'Not specified' },
-                  { key: 'LOT PACKAGING', value: auction.lot_packaging || 'Not specified' },
-                  { key: 'HAZMAT', value: auction.is_hazmat ? 'Yes' : 'No' },
-                  { key: 'PALLET SPACES', value: auction.pallet_spaces || 'Not specified' },
+                  {
+                    key: "SHIPPING TYPE",
+                    value: auction.auction_shipping_type || "Not specified",
+                  },
+                  {
+                    key: "FREIGHT TYPE",
+                    value: auction.auction_freight_type || "Not specified",
+                  },
+                  {
+                    key: "NUMBER OF PALLETS",
+                    value: auction.number_of_pallets || "Not specified",
+                  },
+                  {
+                    key: "NUMBER OF SHIPMENTS",
+                    value: auction.number_of_shipments || "Not specified",
+                  },
+                  {
+                    key: "NUMBER OF TRUCKLOADS",
+                    value: auction.number_of_truckloads || "Not specified",
+                  },
+                  {
+                    key: "ESTIMATED WEIGHT",
+                    value:
+                      auction.estimated_weight && auction.weight_type
+                        ? `${auction.estimated_weight} ${auction.weight_type}`
+                        : "Not specified",
+                  },
+                  {
+                    key: "LOT PACKAGING",
+                    value: auction.lot_packaging || "Not specified",
+                  },
+                  { key: "HAZMAT", value: auction.is_hazmat ? "Yes" : "No" },
+                  {
+                    key: "PALLET SPACES",
+                    value: auction.pallet_spaces || "Not specified",
+                  },
                 ].map(({ key, value }, index) => (
                   <div
-                    className={`px-8 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'} transition-colors hover:bg-indigo-50/30`}
+                    className={`px-8 py-4 ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"} transition-colors hover:bg-indigo-50/30`}
                     key={key}
                   >
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                       <div className="sm:w-1/3">
-                        <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                        <h4 className="text-sm font-semibold tracking-wide text-gray-900 uppercase">
                           {key}
                         </h4>
                       </div>
                       <div className="sm:w-2/3">
-                        <p className="text-gray-700 leading-relaxed">
-                          {value}
-                        </p>
+                        <p className="leading-relaxed text-gray-700">{value}</p>
                       </div>
                     </div>
                   </div>
-                )
-                )}
+                ))}
               </div>
 
               {/* Enhanced Shipping Notes */}
-              <div className="border-gray-200 border-t bg-green-50 px-8 py-6">
+              <div className="border-t border-gray-200 bg-green-50 px-8 py-6">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 rounded-lg bg-green-100 p-2">
-                    <Info className="h-5 w-5" style={{ color: '#43CD66' }} />
+                    <Info className="h-5 w-5" style={{ color: "#43CD66" }} />
                   </div>
                   <div className="flex-1">
-                    <h4 className="mb-3 font-semibold text-gray-900 text-sm uppercase tracking-wide">
+                    <h4 className="mb-3 text-sm font-semibold tracking-wide text-gray-900 uppercase">
                       Shipping Notes
                     </h4>
-                    <p className="text-gray-700 leading-relaxed">
-                      {auction.shipping_notes || 'NA'}
+                    <p className="leading-relaxed text-gray-700">
+                      {auction.shipping_notes || "NA"}
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Enhanced Shipping Information Link */}
-              <div className="border-gray-200 border-t bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6">
+              <div className="border-t border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6">
                 <div className="flex items-center gap-4">
                   <div className="rounded-lg bg-green-50 p-2 shadow-sm">
-                    <Truck className="h-5 w-5" style={{ color: '#43CD66' }} />
+                    <Truck className="h-5 w-5" style={{ color: "#43CD66" }} />
                   </div>
                   <div>
                     <p className="font-medium text-gray-700">
@@ -244,4 +291,4 @@ export const AuctionDetailsAccordion: React.FC<
   );
 };
 
-AuctionDetailsAccordion.displayName = 'AuctionDetailsAccordion';
+AuctionDetailsAccordion.displayName = "AuctionDetailsAccordion";

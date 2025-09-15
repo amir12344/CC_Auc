@@ -1,5 +1,7 @@
 import { PrismaClient } from "./prisma/generated/client/index.js";
 
+const sharp = require("sharp");
+
 export function prismaClient(prismaDataSourceUrl) {
   try {
     const prismaClient = new PrismaClient({
@@ -37,6 +39,16 @@ export function prismaClient(prismaDataSourceUrl) {
     return prismaClient;
   } catch (err) {
     console.error("Error occurred while creating prisma client");
+    console.error(err);
+    return null;
+  }
+}
+
+export function sharpInstance(buffer) {
+  try {
+    return sharp(buffer);
+  } catch (err) {
+    console.error("Error occurred while creating sharp instance");
     console.error(err);
     return null;
   }

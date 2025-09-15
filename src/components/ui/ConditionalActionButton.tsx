@@ -1,16 +1,18 @@
-'use client';
+"use client";
 
-import { Loader2, Lock } from 'lucide-react';
-import { type ReactNode, useState } from 'react';
-import { LoginPromptModal } from '@/src/components/auth/LoginPromptModal';
-import { Button, type ButtonProps } from '@/src/components/ui/button';
-import { usePublicPageAuth } from '@/src/hooks/useAuthState';
+import { useState, type ReactNode } from "react";
 
-interface ConditionalActionButtonProps extends Omit<ButtonProps, 'onClick'> {
+import { Loader2, Lock } from "lucide-react";
+
+import { LoginPromptModal } from "@/src/components/auth/LoginPromptModal";
+import { Button, type ButtonProps } from "@/src/components/ui/button";
+import { usePublicPageAuth } from "@/src/hooks/useAuthState";
+
+interface ConditionalActionButtonProps extends Omit<ButtonProps, "onClick"> {
   /** Action to perform when authenticated */
   onAuthenticatedClick: () => void;
   /** Action that triggers the login prompt */
-  triggerAction?: 'view_manifest' | 'place_bid' | 'buy_now' | 'view_details';
+  triggerAction?: "view_manifest" | "place_bid" | "buy_now" | "view_details";
   /** Item name for context in login prompt */
   itemName?: string;
   /** Text to show for guests */
@@ -22,7 +24,7 @@ interface ConditionalActionButtonProps extends Omit<ButtonProps, 'onClick'> {
   /** Icon for authenticated users */
   authenticatedIcon?: ReactNode;
   /** Required user type ('buyer' | 'seller'), if any */
-  requiredUserType?: 'buyer' | 'seller';
+  requiredUserType?: "buyer" | "seller";
   /** Message to show for wrong user type */
   wrongUserTypeMessage?: string;
   /** Show loading state */
@@ -41,7 +43,7 @@ interface ConditionalActionButtonProps extends Omit<ButtonProps, 'onClick'> {
  */
 export function ConditionalActionButton({
   onAuthenticatedClick,
-  triggerAction = 'view_details',
+  triggerAction = "view_details",
   itemName,
   guestText,
   authenticatedText,
@@ -74,7 +76,7 @@ export function ConditionalActionButton({
       // For now, just show alert
       alert(
         wrongUserTypeMessage ||
-        `This action requires a ${requiredUserType} account.`
+          `This action requires a ${requiredUserType} account.`
       );
       return;
     }
@@ -100,7 +102,7 @@ export function ConditionalActionButton({
       return (
         <>
           {guestIcon || <Lock className="mr-2 h-4 w-4" />}
-          {guestText || children || 'Sign In Required'}
+          {guestText || children || "Sign In Required"}
         </>
       );
     }
@@ -127,16 +129,16 @@ export function ConditionalActionButton({
    */
   const getButtonVariant = () => {
     if (isSecondary && !isAuthenticated) {
-      return 'outline';
+      return "outline";
     }
-    return buttonProps.variant || 'default';
+    return buttonProps.variant || "default";
   };
 
   /**
    * Get button classes based on auth state
    */
   const getButtonClasses = () => {
-    const baseClasses = className || '';
+    const baseClasses = className || "";
 
     if (!isAuthenticated) {
       if (isSecondary) {
@@ -173,7 +175,7 @@ export function ConditionalActionButton({
         itemName={itemName}
         onClose={() => setShowLoginPrompt(false)}
         returnUrl={
-          typeof window !== 'undefined' ? window.location.href : undefined
+          typeof window !== "undefined" ? window.location.href : undefined
         }
         triggerAction={triggerAction}
       />

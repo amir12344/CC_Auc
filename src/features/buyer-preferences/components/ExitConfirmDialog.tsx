@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
+
+import { Button } from "@/src/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
-} from '@/src/components/ui/dialog';
-import { Button } from '@/src/components/ui/button';
+} from "@/src/components/ui/dialog";
 
 interface ExitConfirmDialogProps {
   isOpen: boolean;
@@ -19,7 +20,7 @@ interface ExitConfirmDialogProps {
 export const ExitConfirmDialog: React.FC<ExitConfirmDialogProps> = ({
   isOpen,
   onConfirm,
-  onCancel
+  onCancel,
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onCancel}>
@@ -29,22 +30,19 @@ export const ExitConfirmDialog: React.FC<ExitConfirmDialogProps> = ({
             Confirm exit
           </DialogTitle>
           <DialogDescription className="text-gray-600">
-            Are you sure you want to exit without finishing answering questions about your preferences?
+            Are you sure you want to exit without finishing answering questions
+            about your preferences?
           </DialogDescription>
         </DialogHeader>
-        
-        <div className="flex justify-end gap-3 mt-6">
-          <Button
-            variant="outline"
-            onClick={onCancel}
-            className="px-6"
-          >
+
+        <div className="mt-6 flex justify-end gap-3">
+          <Button variant="outline" onClick={onCancel} className="px-6">
             Back
           </Button>
           <Button
             variant="default"
             onClick={onConfirm}
-            className="px-6 bg-gray-900 hover:bg-gray-800"
+            className="bg-gray-900 px-6 hover:bg-gray-800"
           >
             Exit
           </Button>
@@ -52,4 +50,4 @@ export const ExitConfirmDialog: React.FC<ExitConfirmDialogProps> = ({
       </DialogContent>
     </Dialog>
   );
-}; 
+};

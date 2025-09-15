@@ -1,3 +1,2 @@
-export * from './users';
-export * from './insights';
-
+export * from "./users";
+export * from "./insights";

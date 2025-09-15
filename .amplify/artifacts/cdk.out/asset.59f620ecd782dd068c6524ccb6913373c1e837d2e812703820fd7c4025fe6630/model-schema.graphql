@@ -1,0 +1,15 @@
+type EarlyAccessRegistration @model @auth(rules: [{allow: public, provider: apiKey, operations: [create, read]}])
+{
+  firstName: String!
+  lastName: String!
+  companyName: String
+  email: String!
+  phoneNumber: String
+  termsAccepted: Boolean!
+  registrationDate: AWSDateTime!
+}
+
+type Query {
+  queryData(modelName: String, operation: String, query: String): String @function(name: "FnQueryData") @auth(rules: [{allow: public, provider: apiKey}])
+  createAuctionListingFromFile(listingDetailsFilePath: String!, manifestFilePath: String!, sellerId: String, sellerProfileId: String, cognitoId: String, visibility: String): String @function(name: "FnCreateAuctionListingFromFile") @auth(rules: [{allow: public, provider: apiKey}])
+}

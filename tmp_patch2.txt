@@ -1,0 +1,60 @@
+*** Begin Patch
+*** Update File: src/lib/auth/server-auth.ts
+@@
+-        } catch (error) {
+-          // Check if user is actually authenticated but there's a temporary issue
+-          if (authCookies.hasValidCookies && isTemporaryError(error)) {
+-            const cachedUserRole = getCachedUserRole(request)
+-            let verificationStatus: 'pending' | 'verified' | 'rejected' | null =
+-              null
+-
+-            // For buyer users, get verification status from cookies
+-            if (cachedUserRole === 'buyer') {
+-              const cookieVerificationStatus =
+-                (request.cookies.get('verification-status')?.value as
+-                  | 'pending'
+-                  | 'verified'
+-                  | 'rejected') || 'pending'
+-              verificationStatus = cookieVerificationStatus
+-            }
+-
+-            return {
+-              isAuthenticated: true,
+-              userRole: cachedUserRole,
+-              username: getCachedUsername(request),
+-              verificationStatus,
+-            }
+-          }
+-
+-          return { isAuthenticated: false }
+-        }
++        } catch (error) {
++          // Check if user is actually authenticated but there's a temporary issue
++          const cachedUserRole = getCachedUserRole(request)
++          const hasRoleCookie = Boolean(cachedUserRole)
++          const temporaryOrAuthLag = isTemporaryError(error) || isAuthLagError(error)
++
++          if ((authCookies.hasValidCookies || hasRoleCookie) && temporaryOrAuthLag) {
++            let verificationStatus: 'pending' | 'verified' | 'rejected' | null = null
++
++            // For buyer users, get verification status from cookies
++            if (cachedUserRole === 'buyer') {
++              const cookieVerificationStatus =
++                (request.cookies.get('verification-status')?.value as
++                  | 'pending'
++                  | 'verified'
++                  | 'rejected') || 'pending'
++              verificationStatus = cookieVerificationStatus
++            }
++
++            return {
++              isAuthenticated: true,
++              userRole: cachedUserRole,
++              username: getCachedUsername(request),
++              verificationStatus,
++            }
++          }
++
++          return { isAuthenticated: false }
++        }
+*** End Patch

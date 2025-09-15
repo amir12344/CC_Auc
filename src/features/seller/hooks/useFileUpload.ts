@@ -1,9 +1,10 @@
-import { fetchAuthSession, getCurrentUser } from 'aws-amplify/auth';
-import { uploadData } from 'aws-amplify/storage';
-import { useCallback } from 'react';
+import { useCallback } from "react";
+
+import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
+import { uploadData } from "aws-amplify/storage";
 
 // Constants
-export const ACCEPTED_FILE_TYPES = '.xlsx,.xls,.csv';
+export const ACCEPTED_FILE_TYPES = ".xlsx,.xls,.csv";
 export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 
 // Helper to get identityId from the auth session - Amplify Gen 2 pattern
@@ -12,18 +13,18 @@ async function getCurrentIdentityId(): Promise<string> {
     const session = await fetchAuthSession();
     const identityId = session.identityId;
     if (!identityId) {
-      throw new Error('Identity ID not found in auth session.');
+      throw new Error("Identity ID not found in auth session.");
     }
     return identityId;
   } catch (error) {
     if (
       error instanceof Error &&
-      error.name === 'UserUnAuthenticatedException'
+      error.name === "UserUnAuthenticatedException"
     ) {
-      throw new Error('Please sign in to upload files.');
+      throw new Error("Please sign in to upload files.");
     }
     throw new Error(
-      'Could not resolve user identity. Please try signing out and back in.'
+      "Could not resolve user identity. Please try signing out and back in."
     );
   }
 }
@@ -34,11 +35,11 @@ const validateFile = (file: File): string | null => {
     return `File size must be less than ${MAX_FILE_SIZE / 1024 / 1024}MB`;
   }
 
-  const allowedTypes = ['.xlsx', '.xls', '.csv'];
-  const fileExtension = `.${file.name.split('.').pop()?.toLowerCase()}`;
+  const allowedTypes = [".xlsx", ".xls", ".csv"];
+  const fileExtension = `.${file.name.split(".").pop()?.toLowerCase()}`;
 
   if (!allowedTypes.includes(fileExtension)) {
-    return 'Please select a valid Excel file (.xlsx, .xls, .csv)';
+    return "Please select a valid Excel file (.xlsx, .xls, .csv)";
   }
 
   return null;
@@ -48,7 +49,7 @@ const validateFile = (file: File): string | null => {
 const generateFileName = (originalName: string, prefix: string): string => {
   const timestamp = Date.now();
   const randomSuffix = Math.random().toString(36).substring(2, 8);
-  const fileExtension = originalName.split('.').pop();
+  const fileExtension = originalName.split(".").pop();
   return `${prefix}-${timestamp}-${randomSuffix}.${fileExtension}`;
 };
 
@@ -62,7 +63,8 @@ export interface FileUploadResult {
     file: File,
     folderPath: string,
     filePrefix: string,
-    progressType: string
+    progressType: string,
+    subfolderAfterIdentity?: string
   ) => Promise<string>;
   getCurrentUserAndIdentity: () => Promise<{
     userId: string;
@@ -82,21 +84,28 @@ export const useFileUpload = (
       file: File,
       folderPath: string,
       filePrefix: string,
-      progressType: string
+      progressType: string,
+      subfolderAfterIdentity?: string
     ): Promise<string> => {
       const fileName = generateFileName(file.name, filePrefix);
-      const identityId = await getCurrentIdentityId();
-      const fullPath = `${folderPath}${identityId}/${fileName}`;
+      const cleanedSub = subfolderAfterIdentity
+        ? `${subfolderAfterIdentity}`.replace(/^\/+|\/+$/g, "") + "/"
+        : "";
 
       try {
         // Amplify Gen 2 pattern: Following official documentation with private/ access control
         const result = await uploadData({
-          path: fullPath,
+          // Follow Amplify docs: use path callback to get identityId
+          // https://docs.amplify.aws/nextjs/build-a-backend/storage/upload-files/
+          path: ({ identityId }) => {
+            if (!identityId) {
+              throw new Error("Please sign in to upload files.");
+            }
+            return `${folderPath}${identityId}/${cleanedSub}${fileName}`;
+          },
           data: file,
           options: {
-            contentType:
-              file.type ||
-              'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            contentType: file.type || "application/octet-stream",
             onProgress: ({ transferredBytes, totalBytes }) => {
               if (totalBytes && options?.onProgressUpdate) {
                 const progress = Math.round(
@@ -112,12 +121,12 @@ export const useFileUpload = (
       } catch (error) {
         // Amplify Gen 2: Better error handling with specific error types
         if (error instanceof Error) {
-          if (error.name === 'NetworkError') {
+          if (error.name === "NetworkError") {
             throw new Error(
               `Network error uploading ${progressType} file. Please check your connection.`
             );
           }
-          if (error.name === 'StorageError') {
+          if (error.name === "StorageError") {
             throw new Error(
               `Storage error uploading ${progressType} file. Please try again.`
             );

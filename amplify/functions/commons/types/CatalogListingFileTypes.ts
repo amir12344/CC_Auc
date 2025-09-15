@@ -1,0 +1,69 @@
+export interface CatalogOfferListingData {
+  IMAGE: string;
+  NAME: string;
+  SUBHEADER: string;
+  DESCRIPTION: string;
+  CATEGORY1: string;
+  CATEGORY2?: string;
+  CATEGORY3?: string;
+  SUBCATEGORY1: string;
+  SUBCATEGORY2?: string;
+  SUBCATEGORY3?: string;
+  SUBCATEGORY4?: string;
+  SUBCATEGORY5?: string;
+  CONDITION: string;
+  COSMETIC_CONDITION?: string;
+  PACKAGING: string;
+  SHIPPING_WINDOW: string;
+  MINIMUM_ORDER_VALUE: string;
+  LOCATION?: string;
+  WAREHOUSE_LOCATION_ADDRESS1: string;
+  WAREHOUSE_LOCATION_ADDRESS2?: string;
+  WAREHOUSE_LOCATION_ADDRESS3?: string;
+  WAREHOUSE_LOCATION_CITY: string;
+  WAREHOUSE_LOCATION_STATE: string;
+  WAREHOUSE_LOCATION_STATE_CODE: string;
+  WAREHOUSE_LOCATION_COUNTRY: string;
+  WAREHOUSE_LOCATION_COUNTRY_CODE: string;
+  WAREHOUSE_LOCATION_ZIPCODE: string;
+}
+
+export interface CatalogProductData {
+  IMAGE: string;
+  BRAND: string;
+  CATEGORY: string;
+  SUBCATEGORY: string;
+  PACKAGING: string;
+  PRODUCT_NAME: string;
+  IDENTIFIER: string;
+  IDENTIFIER_TYPE: string;
+  MODEL?: string;
+  SKU: string;
+  DESCRIPTION?: string;
+  IS_PARENT?: string; // Datatype in excel is string, with raw: false it remains as string ("TRUE"/"FALSE")
+  VARIATION_THEME: string;
+  VARIATION_VALUE: string;
+  PARENT_SKU: string;
+  MPN?: string;
+  UNIT_RETAIL: string;
+  OFFER_PRICE: string;
+  TOTAL_UNITS: string;
+  TOTAL_OFFER_PRICE?: string;
+  UNIT_NET_WEIGHT_TYPE?: string;
+  UNIT_NET_WEIGHT?: string;
+  UNIT_DIMENSION_TYPE?: string;
+  UNIT_LENGTH?: string;
+  UNIT_WIDTH?: string;
+  UNIT_HEIGHT?: string;
+  CONDITION: string;
+  COSMETIC_CONDITION?: string;
+  ACCESSORIES?: string;
+  HAZMAT: string;
+  CASE_PACK?: string;
+  CASE_WEIGHT_TYPE?: string;
+  CASE_WEIGHT?: string;
+  CASE_DIMENSION_TYPE?: string;
+  CASE_LENGTH?: string;
+  CASE_WIDTH?: string;
+  CASE_HEIGHT?: string;
+}

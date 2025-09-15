@@ -1,20 +1,68 @@
-'use client';
+"use client";
 
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 // Link is used in the Button component
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
+
+import { Button } from "@/src/components/ui/button";
+import { Skeleton } from "@/src/components/ui/skeleton";
 import {
-  selectIsAuthenticated,
-  selectUserType,
+  selectAuthLoading,
   selectCanAccessBuyerRoutes,
   selectCanAccessSellerRoutes,
-  selectAuthLoading
-} from '@/src/features/authentication/store/authSelectors';
-import { Button } from '@/src/components/ui/button';
-import { Skeleton } from '@/src/components/ui/skeleton';
-import { UserDropdown } from './UserDropdown';
-import { MyDealsDropdown } from './MyDealsDropdown';
-import { SellerListingsDropdown } from './SellerListingsDropdown';
+  selectIsAuthenticated,
+  selectUserType,
+} from "@/src/features/authentication/store/authSelectors";
+
+// Lazy-load dropdown menus to keep header light; placeholders preserve layout
+const DynamicMyDealsDropdown = dynamic(
+  () => import("./MyDealsDropdown").then((m) => m.MyDealsDropdown),
+  {
+    ssr: false,
+    loading: () => (
+      <Button
+        type="button"
+        size="sm"
+        variant="ghost"
+        aria-disabled="true"
+        className="cursor-default text-base font-medium text-[#D8F4CC]"
+      >
+        Deals
+      </Button>
+    ),
+  }
+);
+
+const DynamicSellerListingsDropdown = dynamic(
+  () =>
+    import("./SellerListingsDropdown").then((m) => m.SellerListingsDropdown),
+  {
+    ssr: false,
+    loading: () => (
+      <Button
+        type="button"
+        size="sm"
+        variant="ghost"
+        aria-disabled="true"
+        className="cursor-default text-base font-medium text-[#D8F4CC]"
+      >
+        Listings
+      </Button>
+    ),
+  }
+);
+
+const DynamicUserDropdown = dynamic(
+  () => import("./UserDropdown").then((m) => m.UserDropdown),
+  {
+    ssr: false,
+    loading: () => (
+      <Skeleton className="h-10 w-10 rounded-full bg-[#43CD66]/20" />
+    ),
+  }
+);
 
 /**
  * Client-side header component for user authentication status
@@ -23,6 +71,7 @@ import { SellerListingsDropdown } from './SellerListingsDropdown';
  */
 export function HeaderClient() {
   const [isMounted, setIsMounted] = useState(false);
+  const hasPrefetched = useRef(false);
 
   // Redux selectors for auth state
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -50,48 +99,63 @@ export function HeaderClient() {
   if (!isAuthenticated) {
     return (
       <div className="flex items-center space-x-2">
-        <Button
-          variant="default"
-          size="sm"
-          className="bg-[#43CD66] text-[#102D21] hover:bg-[#43CD66]/90 font-medium"
-          onClick={() => window.location.href = '/auth/login'}
-        >
-          Login
-        </Button>
+        <Link href="/auth/login" passHref>
+          <Button
+            asChild
+            className="rounded-full border border-transparent bg-[#43CD66] px-4 font-medium text-[#1C1E21] transition-all duration-200 hover:border-[#43CD66] hover:bg-[#43CD66]/10 hover:text-[#43CD66]"
+            size="sm"
+            variant="default"
+          >
+            <span>Login</span>
+          </Button>
+        </Link>
 
-        <Button
-          variant="outline"
-          size="sm"
-          className="hidden sm:flex border-[#43CD66] text-[#43CD66] hover:bg-[#43CD66]/10 font-medium"
-          onClick={() => window.location.href = '/auth/select-user-type'}
-        >
-          Sign Up
-        </Button>
+        <Link href="/auth/select-user-type" passHref>
+          <Button
+            asChild
+            className="rounded-full border border-[#43CD66]/50 bg-[#43CD66]/10 px-4 font-medium text-[#43CD66] transition-all duration-200 hover:border-[#43CD66] hover:bg-[#43CD66] hover:text-[#1C1E21]"
+            size="sm"
+            variant="outline"
+          >
+            <span>Sign Up</span>
+          </Button>
+        </Link>
       </div>
     );
   }
 
   // If we're authenticated, show the appropriate navigation based on user type
   return (
-    <div className="flex items-center space-x-3">
+    <div
+      className="flex items-center space-x-3"
+      // Preload dropdown chunks on first hover to remove click delay
+      onPointerEnter={() => {
+        if (hasPrefetched.current) return;
+        hasPrefetched.current = true;
+        void Promise.all([
+          import("./MyDealsDropdown"),
+          import("./SellerListingsDropdown"),
+          import("./UserDropdown"),
+        ]);
+      }}
+    >
       {/* Desktop View */}
-      <div className="hidden md:flex items-center space-x-3">
+      <div className="hidden items-center space-x-3 md:flex">
         {/* My Deals Dropdown - Only for buyers */}
-        {canAccessBuyerRoutes && <MyDealsDropdown />}
+        {canAccessBuyerRoutes && <DynamicMyDealsDropdown />}
 
         {/* Seller Listings Dropdown - Only for sellers */}
-        {canAccessSellerRoutes && <SellerListingsDropdown />}
+        {canAccessSellerRoutes && <DynamicSellerListingsDropdown />}
 
         {/* User Dropdown - works for both buyers and sellers */}
-        <UserDropdown />
+        <DynamicUserDropdown />
       </div>
 
       {/* Mobile View */}
-      <div className="md:hidden flex items-center space-x-2">
+      <div className="flex items-center space-x-2 md:hidden">
         {/* User Dropdown for mobile - works for both buyers and sellers */}
-        <UserDropdown />
+        <DynamicUserDropdown />
       </div>
     </div>
   );
 }
-

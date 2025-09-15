@@ -1,0 +1,1256 @@
+{
+ "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"AmplifySandbox\",\"createdWith\":\"1.4.0\",\"stackType\":\"storage-S3\",\"metadata\":{}}",
+ "Resources": {
+  "commerceCentralStorageBucketD7FCF380": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "CorsConfiguration": {
+     "CorsRules": [
+      {
+       "AllowedHeaders": [
+        "*"
+       ],
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "PUT",
+        "POST",
+        "DELETE"
+       ],
+       "AllowedOrigins": [
+        "*"
+       ],
+       "ExposedHeaders": [
+        "x-amz-server-side-encryption",
+        "x-amz-request-id",
+        "x-amz-id-2",
+        "ETag"
+       ],
+       "MaxAge": 3000
+      }
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "commerceCentralStorage"
+     },
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/commerceCentralStorage/Bucket/Resource"
+   }
+  },
+  "commerceCentralStorageBucketPolicyD49A2F4B": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "commerceCentralStorageBucketD7FCF380"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "commerceCentralStorageBucketD7FCF380",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:PutBucketPolicy",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "commerceCentralStorageBucketD7FCF380",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/commerceCentralStorage/Bucket/Policy/Resource"
+   }
+  },
+  "commerceCentralStorageBucketAutoDeleteObjectsCustomResource6BA1A760": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "commerceCentralStorageBucketD7FCF380"
+    }
+   },
+   "DependsOn": [
+    "commerceCentralStorageBucketPolicyD49A2F4B"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/commerceCentralStorage/Bucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": {
+     "Fn::FindInMap": [
+      "LatestNodeRuntimeMap",
+      {
+       "Ref": "AWS::Region"
+      },
+      "value"
+     ]
+    },
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "commerceCentralStorageBucketD7FCF380"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+    "aws:asset:property": "Code"
+   }
+  },
+  "COMMERCECENTRALSTORAGEBUCKETNAMEParameter6E1DF0B0": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/amplify/resource_reference/commercecentralauction/amir-sandbox-f4dfa1b462/COMMERCE_CENTRAL_STORAGE_BUCKET_NAME",
+    "Tags": {
+     "amplify:deployment-type": "sandbox",
+     "created-by": "amplify"
+    },
+    "Type": "String",
+    "Value": {
+     "Ref": "commerceCentralStorageBucketD7FCF380"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/COMMERCE_CENTRAL_STORAGE_BUCKET_NAMEParameter/Resource"
+   }
+  },
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462storageAccess4D86FD9E4": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/ReSellCertificates/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/ReSellCertificates/public/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionListings/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionManifests/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogListings/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogSKUs/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:ListBucket",
+       "Condition": {
+        "StringLike": {
+         "s3:prefix": [
+          "ReSellCertificates/private/${cognito-identity.amazonaws.com:sub}/*",
+          "ReSellCertificates/private/${cognito-identity.amazonaws.com:sub}/",
+          "ReSellCertificates/public/*",
+          "ReSellCertificates/public/",
+          "AuctionListings/private/${cognito-identity.amazonaws.com:sub}/*",
+          "AuctionListings/private/${cognito-identity.amazonaws.com:sub}/",
+          "AuctionManifests/private/${cognito-identity.amazonaws.com:sub}/*",
+          "AuctionManifests/private/${cognito-identity.amazonaws.com:sub}/",
+          "CatalogListings/private/${cognito-identity.amazonaws.com:sub}/*",
+          "CatalogListings/private/${cognito-identity.amazonaws.com:sub}/",
+          "CatalogSKUs/private/${cognito-identity.amazonaws.com:sub}/*",
+          "CatalogSKUs/private/${cognito-identity.amazonaws.com:sub}/"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "commerceCentralStorageBucketD7FCF380",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "s3:PutObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/ReSellCertificates/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionListings/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionManifests/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogListings/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogSKUs/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:DeleteObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/ReSellCertificates/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionListings/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionManifests/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogListings/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogSKUs/private/${cognito-identity.amazonaws.com:sub}/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "amplifycommercecentralauctionamirsandboxf4dfa1b462storageAccess4D86FD9E4",
+    "Roles": [
+     {
+      "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/amplify-commercecentralauction-amir-sandbox-f4dfa1b462--storageAccess4/Resource"
+   }
+  },
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462storageAccess53AEB16A8": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionListings/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionManifests/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogListings/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogSKUs/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/Images/Auction/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:ListBucket",
+       "Condition": {
+        "StringLike": {
+         "s3:prefix": [
+          "AuctionListings/private/*",
+          "AuctionListings/private/",
+          "AuctionManifests/private/*",
+          "AuctionManifests/private/",
+          "CatalogListings/private/*",
+          "CatalogListings/private/",
+          "CatalogSKUs/private/*",
+          "CatalogSKUs/private/",
+          "Images/Auction/*",
+          "Images/Auction/"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "commerceCentralStorageBucketD7FCF380",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "s3:PutObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionListings/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionManifests/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogListings/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogSKUs/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/Images/Auction/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:DeleteObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionListings/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/AuctionManifests/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogListings/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/CatalogSKUs/private/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "commerceCentralStorageBucketD7FCF380",
+             "Arn"
+            ]
+           },
+           "/Images/Auction/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "amplifycommercecentralauctionamirsandboxf4dfa1b462storageAccess53AEB16A8",
+    "Roles": [
+     {
+      "Ref": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/amplify-commercecentralauction-amir-sandbox-f4dfa1b462--storageAccess5/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12LzQ7BQBDHn8V9OygOjjiTRh9AxnY0o3ZXdqYa2fTdpakgTr//Zw7z9RJmE+wks1WT3fgM6UCiVJWKtjHYySnJAtK2tQ2p2V38W40owo3t8xuPvjciDlKpkX1dYERHSnFYfUxvGB2k7//97M2uFQ3uSBLaaGmofvUe73f29d+qiOHBFcUtCpmNCGmpWLOve+NDRXCV6SPPYb6C2eQqzFlsvbIjOI58AdosT24IAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Mappings": {
+  "LatestNodeRuntimeMap": {
+   "af-south-1": {
+    "value": "nodejs20.x"
+   },
+   "ap-east-1": {
+    "value": "nodejs20.x"
+   },
+   "ap-east-2": {
+    "value": "nodejs20.x"
+   },
+   "ap-northeast-1": {
+    "value": "nodejs20.x"
+   },
+   "ap-northeast-2": {
+    "value": "nodejs20.x"
+   },
+   "ap-northeast-3": {
+    "value": "nodejs20.x"
+   },
+   "ap-south-1": {
+    "value": "nodejs20.x"
+   },
+   "ap-south-2": {
+    "value": "nodejs20.x"
+   },
+   "ap-southeast-1": {
+    "value": "nodejs20.x"
+   },
+   "ap-southeast-2": {
+    "value": "nodejs20.x"
+   },
+   "ap-southeast-3": {
+    "value": "nodejs20.x"
+   },
+   "ap-southeast-4": {
+    "value": "nodejs20.x"
+   },
+   "ap-southeast-5": {
+    "value": "nodejs20.x"
+   },
+   "ap-southeast-7": {
+    "value": "nodejs20.x"
+   },
+   "ca-central-1": {
+    "value": "nodejs20.x"
+   },
+   "ca-west-1": {
+    "value": "nodejs20.x"
+   },
+   "cn-north-1": {
+    "value": "nodejs20.x"
+   },
+   "cn-northwest-1": {
+    "value": "nodejs20.x"
+   },
+   "eu-central-1": {
+    "value": "nodejs20.x"
+   },
+   "eu-central-2": {
+    "value": "nodejs20.x"
+   },
+   "eu-isoe-west-1": {
+    "value": "nodejs18.x"
+   },
+   "eu-north-1": {
+    "value": "nodejs20.x"
+   },
+   "eu-south-1": {
+    "value": "nodejs20.x"
+   },
+   "eu-south-2": {
+    "value": "nodejs20.x"
+   },
+   "eu-west-1": {
+    "value": "nodejs20.x"
+   },
+   "eu-west-2": {
+    "value": "nodejs20.x"
+   },
+   "eu-west-3": {
+    "value": "nodejs20.x"
+   },
+   "il-central-1": {
+    "value": "nodejs20.x"
+   },
+   "me-central-1": {
+    "value": "nodejs20.x"
+   },
+   "me-south-1": {
+    "value": "nodejs20.x"
+   },
+   "mx-central-1": {
+    "value": "nodejs20.x"
+   },
+   "sa-east-1": {
+    "value": "nodejs20.x"
+   },
+   "us-east-1": {
+    "value": "nodejs20.x"
+   },
+   "us-east-2": {
+    "value": "nodejs20.x"
+   },
+   "us-gov-east-1": {
+    "value": "nodejs20.x"
+   },
+   "us-gov-west-1": {
+    "value": "nodejs20.x"
+   },
+   "us-iso-east-1": {
+    "value": "nodejs18.x"
+   },
+   "us-iso-west-1": {
+    "value": "nodejs18.x"
+   },
+   "us-isob-east-1": {
+    "value": "nodejs18.x"
+   },
+   "us-isob-west-1": {
+    "value": "nodejs18.x"
+   },
+   "us-west-1": {
+    "value": "nodejs20.x"
+   },
+   "us-west-2": {
+    "value": "nodejs20.x"
+   }
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": {
+   "Type": "String"
+  },
+  "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref": {
+   "Type": "String"
+  }
+ },
+ "Outputs": {
+  "amplifycommercecentralauctionamirsandboxf4dfa1b462storagecommerceCentralStorageBucket3AB1F8A2Ref": {
+   "Value": {
+    "Ref": "commerceCentralStorageBucketD7FCF380"
+   }
+  }
+ }
+}

@@ -1,11 +1,29 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Product } from '@/src/types';
-import { featuredDeals, trendingDeals, spotlightDeal, moreDeals, bargainListings, amazonListings } from '@/src/mocks/productData';
+import { useEffect, useMemo, useState } from "react";
+
+import {
+  amazonListings,
+  bargainListings,
+  featuredDeals,
+  moreDeals,
+  spotlightDeal,
+  trendingDeals,
+} from "@/src/mocks/productData";
+import { Product } from "@/src/types";
 
 export const useProducts = () => {
-  const allMockProducts = [...spotlightDeal, ...trendingDeals, ...featuredDeals, ...moreDeals, ...bargainListings, ...amazonListings];
+  const allMockProducts = useMemo(
+    () => [
+      ...spotlightDeal,
+      ...trendingDeals,
+      ...featuredDeals,
+      ...moreDeals,
+      ...bargainListings,
+      ...amazonListings,
+    ],
+    []
+  );
   const [products, setProducts] = useState<Product[]>(allMockProducts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,12 +34,12 @@ export const useProducts = () => {
       setProducts(allMockProducts);
       setLoading(false);
     }, 500);
-    
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [allMockProducts]);
 
   const getNewArrivals = () => {
-    const newItems = featuredDeals.filter(p => p.label === 'NEW');
+    const newItems = featuredDeals.filter((p) => p.label === "NEW");
     if (newItems.length > 0) return newItems.slice(0, 8);
     // Fallback: return first few featured items if no 'NEW' label found
     return featuredDeals.slice(0, 8);
@@ -44,8 +62,10 @@ export const useProducts = () => {
   };
 
   const getProductsByCategory = (category: string) => {
-    if (!category || category.toLowerCase() === 'all') return products;
-    return products.filter(p => p.category.toLowerCase().includes(category.toLowerCase()));
+    if (!category || category.toLowerCase() === "all") return products;
+    return products.filter((p) =>
+      p.category.toLowerCase().includes(category.toLowerCase())
+    );
   };
 
   return {
@@ -57,6 +77,6 @@ export const useProducts = () => {
     getTrendingProducts,
     getBargainListings,
     getAmazonListings,
-    getProductsByCategory
+    getProductsByCategory,
   };
 };

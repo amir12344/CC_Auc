@@ -1,0 +1,1613 @@
+{
+  "version": "41.0.0",
+  "artifacts": {
+    "amplify-commercecentralauction-amir-sandbox-f4dfa1b462.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "amplify-commercecentralauction-amir-sandbox-f4dfa1b462": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "amplify:deployment-type": "sandbox",
+          "created-by": "amplify"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2bc549e91492e29ae1fe64559e2ff92f8e538532cd4e9d7c080ce292ded3135f.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "amplify-commercecentralauction-amir-sandbox-f4dfa1b462.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "amplify-commercecentralauction-amir-sandbox-f4dfa1b462.assets"
+      ],
+      "metadata": {
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "amplify:deployment-type",
+                "Value": "sandbox"
+              },
+              {
+                "Key": "created-by",
+                "Value": "amplify"
+              }
+            ]
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/deploymentType": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deploymentType"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/region": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "region"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifyAuth/UserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthUserPool4BA7F805"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifyAuth/UserPoolAppClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthUserPoolAppClient2626C6F8"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifyAuth/IdentityPool": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthIdentityPool3FDE84CC"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifyAuth/authenticatedUserRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthauthenticatedUserRoleD8DA3689"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifyAuth/unauthenticatedUserRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthunauthenticatedUserRole2B524D9E"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifyAuth/IdentityPoolRoleAttachment": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthIdentityPoolRoleAttachment045F17C8"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthUserPoolB1292815Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthUserPoolB1292815Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthUserPoolAppClient3F825478Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthUserPoolAppClient3F825478Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth/amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/auth.NestedStack/auth.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "auth179371D7"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/userPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userPoolId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/webClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webClientId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/identityPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "identityPoolId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/authRegion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "authRegion"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/allowUnauthenticatedIdentities": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "allowUnauthenticatedIdentities"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/signupAttributes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "signupAttributes"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/usernameAttributes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "usernameAttributes"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/verificationMechanisms": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "verificationMechanisms"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/passwordPolicyMinLength": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "passwordPolicyMinLength"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/passwordPolicyRequirements": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "passwordPolicyRequirements"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/mfaConfiguration": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mfaConfiguration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/mfaTypes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mfaTypes"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/socialProviders": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "socialProviders"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/oauthCognitoDomain": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthCognitoDomain"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/oauthScope": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthScope"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/oauthRedirectSignIn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthRedirectSignIn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/oauthRedirectSignOut": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthRedirectSignOut"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/oauthResponseType": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthResponseType"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/oauthClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthClientId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/groups": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "groups"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/GraphQLAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPI42A6FA33"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/GraphQLAPI/TransformerSchema": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPITransformerSchemaFF50A789"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/GraphQLAPI/DefaultApiKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPIDefaultApiKey1C8ED374"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/GraphQLAPI/NONE_DS": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "NONE_DS"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/GraphQLAPI/NONE_DS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPINONEDS684BF699"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "NONE_DS"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/AmplifyManagedTableIsCompleteRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyManagedTableIsCompleteRoleF825222C"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/AmplifyManagedTableOnEventRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyManagedTableOnEventRoleB4E71DEA"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/AmplifyManagedTableOnEventRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyManagedTableOnEventRoleDefaultPolicyF6DABCB6"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/TableManagerCustomProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TableManagerCustomProviderframeworkonEvent1DFC2ECC"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/TableManagerCustomProvider/framework-isComplete/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TableManagerCustomProviderframeworkisComplete2E51021B"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/AmplifyTableWaiterStateMachine/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyTableWaiterStateMachineRole470BE899"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/AmplifyTableWaiterStateMachine/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyTableWaiterStateMachineRoleDefaultPolicy89F3836A"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/AmplifyTableWaiterStateMachine/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyTableWaiterStateMachine060600BC"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager/amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent4BA42F36Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent4BA42F36Arn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyTableManager.NestedStack/AmplifyTableManager.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource86290833"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/DynamoDBModelTableReadIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableReadIOPS"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/DynamoDBModelTableWriteIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableWriteIOPS"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/DynamoDBBillingMode": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBBillingMode"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/DynamoDBEnablePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnablePointInTimeRecovery"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/DynamoDBEnableServerSideEncryption": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnableServerSideEncryption"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/HasEnvironmentParameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HasEnvironmentParameter"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/ShouldUsePayPerRequestBilling": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ShouldUsePayPerRequestBilling"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/ShouldUsePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ShouldUsePointInTimeRecovery"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/EarlyAccessRegistrationTable": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/EarlyAccessRegistrationTable/Default/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EarlyAccessRegistrationTable"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/CustomTableEarlyAccessRegistrationTable": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/GetAttEarlyAccessRegistrationTableStreamArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetAttEarlyAccessRegistrationTableStreamArn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/GetAttEarlyAccessRegistrationTableName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetAttEarlyAccessRegistrationTableName"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/EarlyAccessRegistrationIAMRole": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistrationIAMRole"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/EarlyAccessRegistrationIAMRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EarlyAccessRegistrationIAMRole6A3D304B"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistrationIAMRole"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/EarlyAccessRegistrationDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistrationTable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/EarlyAccessRegistrationDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EarlyAccessRegistrationDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "EarlyAccessRegistrationTable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/QuerygetEarlyAccessRegistrationauth0Function/QuerygetEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetEarlyAccessRegistrationauth0FunctionQuerygetEarlyAccessRegistrationauth0FunctionAppSyncFunction5E4E2574"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/QuerygetEarlyAccessRegistrationpostAuth0Function/QuerygetEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetEarlyAccessRegistrationpostAuth0FunctionQuerygetEarlyAccessRegistrationpostAuth0FunctionAppSyncFunctionAFC7D4AE"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/QueryGetEarlyAccessRegistrationDataResolverFn/QueryGetEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryGetEarlyAccessRegistrationDataResolverFnQueryGetEarlyAccessRegistrationDataResolverFnAppSyncFunction3E9F29E0"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryGetEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/queryGetEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.getEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/QuerylistEarlyAccessRegistrationsauth0Function/QuerylistEarlyAccessRegistrationsauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistEarlyAccessRegistrationsauth0FunctionQuerylistEarlyAccessRegistrationsauth0FunctionAppSyncFunctionCFE2F037"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistEarlyAccessRegistrationsauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/QuerylistEarlyAccessRegistrationspostAuth0Function/QuerylistEarlyAccessRegistrationspostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistEarlyAccessRegistrationspostAuth0FunctionQuerylistEarlyAccessRegistrationspostAuth0FunctionAppSyncFunctionFB518C54"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistEarlyAccessRegistrationspostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/QueryListEarlyAccessRegistrationsDataResolverFn/QueryListEarlyAccessRegistrationsDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryListEarlyAccessRegistrationsDataResolverFnQueryListEarlyAccessRegistrationsDataResolverFnAppSyncFunction32A3D00F"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryListEarlyAccessRegistrationsDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/queryListEarlyAccessRegistrationsResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ListEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.listEarlyAccessRegistrations"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationcreateEarlyAccessRegistrationinit0Function/MutationcreateEarlyAccessRegistrationinit0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateEarlyAccessRegistrationinit0FunctionMutationcreateEarlyAccessRegistrationinit0FunctionAppSyncFunction1B3A1E08"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateEarlyAccessRegistrationinit0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationcreateEarlyAccessRegistrationauth0Function/MutationcreateEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateEarlyAccessRegistrationauth0FunctionMutationcreateEarlyAccessRegistrationauth0FunctionAppSyncFunction0E043E8B"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationcreateEarlyAccessRegistrationpostAuth0Function/MutationcreateEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateEarlyAccessRegistrationpostAuth0FunctionMutationcreateEarlyAccessRegistrationpostAuth0FunctionAppSyncFunction60737F7C"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationCreateEarlyAccessRegistrationDataResolverFn/MutationCreateEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationCreateEarlyAccessRegistrationDataResolverFnMutationCreateEarlyAccessRegistrationDataResolverFnAppSyncFunction2C584F1B"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationCreateEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/mutationCreateEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.createEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationupdateEarlyAccessRegistrationinit0Function/MutationupdateEarlyAccessRegistrationinit0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateEarlyAccessRegistrationinit0FunctionMutationupdateEarlyAccessRegistrationinit0FunctionAppSyncFunctionD0F9E2F8"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateEarlyAccessRegistrationinit0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationupdateEarlyAccessRegistrationauth0Function/MutationupdateEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateEarlyAccessRegistrationauth0FunctionMutationupdateEarlyAccessRegistrationauth0FunctionAppSyncFunctionCBE445B3"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationupdateEarlyAccessRegistrationpostAuth0Function/MutationupdateEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateEarlyAccessRegistrationpostAuth0FunctionMutationupdateEarlyAccessRegistrationpostAuth0FunctionAppSyncFunction84D84C71"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationUpdateEarlyAccessRegistrationDataResolverFn/MutationUpdateEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationUpdateEarlyAccessRegistrationDataResolverFnMutationUpdateEarlyAccessRegistrationDataResolverFnAppSyncFunction2FEB3173"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationUpdateEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/mutationUpdateEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.updateEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationdeleteEarlyAccessRegistrationauth0Function/MutationdeleteEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteEarlyAccessRegistrationauth0FunctionMutationdeleteEarlyAccessRegistrationauth0FunctionAppSyncFunctionB3857A24"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationdeleteEarlyAccessRegistrationpostAuth0Function/MutationdeleteEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteEarlyAccessRegistrationpostAuth0FunctionMutationdeleteEarlyAccessRegistrationpostAuth0FunctionAppSyncFunctionB12264E3"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/MutationDeleteEarlyAccessRegistrationDataResolverFn/MutationDeleteEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationDeleteEarlyAccessRegistrationDataResolverFnMutationDeleteEarlyAccessRegistrationDataResolverFnAppSyncFunction9FC7AD9C"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationDeleteEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/mutationDeleteEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.deleteEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptiononCreateEarlyAccessRegistrationauth0Function/SubscriptiononCreateEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateEarlyAccessRegistrationauth0FunctionSubscriptiononCreateEarlyAccessRegistrationauth0FunctionAppSyncFunctionF29059AD"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononCreateEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptiononCreateEarlyAccessRegistrationpostAuth0Function/SubscriptiononCreateEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateEarlyAccessRegistrationpostAuth0FunctionSubscriptiononCreateEarlyAccessRegistrationpostAuth0FunctionAppSyncFunction34F92B57"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononCreateEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptionOnCreateEarlyAccessRegistrationDataResolverFn/SubscriptionOnCreateEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnCreateEarlyAccessRegistrationDataResolverFnSubscriptionOnCreateEarlyAccessRegistrationDataResolverFnAppSyncFunction11914773"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnCreateEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/subscriptionOnCreateEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onCreateEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptiononUpdateEarlyAccessRegistrationauth0Function/SubscriptiononUpdateEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateEarlyAccessRegistrationauth0FunctionSubscriptiononUpdateEarlyAccessRegistrationauth0FunctionAppSyncFunctionB0C8FA4A"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononUpdateEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptiononUpdateEarlyAccessRegistrationpostAuth0Function/SubscriptiononUpdateEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateEarlyAccessRegistrationpostAuth0FunctionSubscriptiononUpdateEarlyAccessRegistrationpostAuth0FunctionAppSyncFunction7CA7A0B9"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononUpdateEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptionOnUpdateEarlyAccessRegistrationDataResolverFn/SubscriptionOnUpdateEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnUpdateEarlyAccessRegistrationDataResolverFnSubscriptionOnUpdateEarlyAccessRegistrationDataResolverFnAppSyncFunction6CB61F52"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnUpdateEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/subscriptionOnUpdateEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onUpdateEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptiononDeleteEarlyAccessRegistrationauth0Function/SubscriptiononDeleteEarlyAccessRegistrationauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteEarlyAccessRegistrationauth0FunctionSubscriptiononDeleteEarlyAccessRegistrationauth0FunctionAppSyncFunctionB0FA7C6B"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononDeleteEarlyAccessRegistrationauth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptiononDeleteEarlyAccessRegistrationpostAuth0Function/SubscriptiononDeleteEarlyAccessRegistrationpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteEarlyAccessRegistrationpostAuth0FunctionSubscriptiononDeleteEarlyAccessRegistrationpostAuth0FunctionAppSyncFunction2B961977"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononDeleteEarlyAccessRegistrationpostAuth0Function"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/SubscriptionOnDeleteEarlyAccessRegistrationDataResolverFn/SubscriptionOnDeleteEarlyAccessRegistrationDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnDeleteEarlyAccessRegistrationDataResolverFnSubscriptionOnDeleteEarlyAccessRegistrationDataResolverFnAppSyncFunctionC8ACF6AE"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnDeleteEarlyAccessRegistrationDataResolverFn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/subscriptionOnDeleteEarlyAccessRegistrationResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteEarlyAccessRegistrationResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onDeleteEarlyAccessRegistration"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResourceC51E6184Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent4BA42F36Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResourceC51E6184Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyTableMana6AEC1B10"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/EarlyAccessRegistration.NestedStack/EarlyAccessRegistration.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataEarlyAccessRegistrationNestedStackEarlyAccessRegistrationNestedStackResource75001868"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/HasEnvironmentParameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HasEnvironmentParameter"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnQueryDataLambdaDataSource"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnQueryDataLambdaDataSourceServiceRole48400A0B"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnQueryDataLambdaDataSourceServiceRoleDefaultPolicyC78C6857"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnQueryDataLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnQueryDataLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnQueryDataLambdaDataSource"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/InvokeFnQueryDataLambdaDataSource/InvokeFnQueryDataLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnQueryDataLambdaDataSourceInvokeFnQueryDataLambdaDataSourceAppSyncFunction50353DD0"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnQueryDataLambdaDataSource"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/queryQueryDataResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryqueryDataResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.queryData"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCreateAuctionListingFromFileLambdaDataSource"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCreateAuctionListingFromFileLambdaDataSourceServiceRole7E6A6368"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCreateAuctionListingFromFileLambdaDataSourceServiceRoleDefaultPolicy339481CE"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/FnCreateAuctionListingFromFileLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCreateAuctionListingFromFileLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCreateAuctionListingFromFileLambdaDataSource"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/InvokeFnCreateAuctionListingFromFileLambdaDataSource/InvokeFnCreateAuctionListingFromFileLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnCreateAuctionListingFromFileLambdaDataSourceInvokeFnCreateAuctionListingFromFileLambdaDataSourceAppSyncFunction83B0EFEF"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnCreateAuctionListingFromFileLambdaDataSource"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/queryCreateAuctionListingFromFileResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerycreateAuctionListingFromFileResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.createAuctionListingFromFile"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/QueryQueryDataAuthFN/QueryQueryDataAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryQueryDataAuthFNQueryQueryDataAuthFNAppSyncFunction1C345242"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryQueryDataAuthFN"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/QueryCreateAuctionListingFromFileAuthFN/QueryCreateAuctionListingFromFileAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryCreateAuctionListingFromFileAuthFNQueryCreateAuctionListingFromFileAuthFNAppSyncFunction49D77657"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryCreateAuctionListingFromFileAuthFN"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputs.amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputs.amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPINONEDS3B64ED9EName"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/FunctionDirectiveStack.NestedStack/FunctionDirectiveStack.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataFunctionDirectiveStackNestedStackFunctionDirectiveStackNestedStackResource1246A302"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucket9CCB4ACA"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucketPolicyF1C1C548"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucketAutoDeleteObjectsCustomResource437F26F5"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentAwsCliLayerE322F905"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/CustomResource-1536MiB/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB21775929"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/DynamoDBModelTableReadIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableReadIOPS"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/DynamoDBModelTableWriteIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableWriteIOPS"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/DynamoDBBillingMode": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBBillingMode"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/DynamoDBEnablePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnablePointInTimeRecovery"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/DynamoDBEnableServerSideEncryption": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnableServerSideEncryption"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/LatestNodeRuntimeMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LatestNodeRuntimeMap"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-singleton",
+            "data": true
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+            "data": 2
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-singleton",
+            "data": true
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+            "data": 2
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBServiceRoleA41FC8C2"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBServiceRoleDefaultPolicyFF1C635B"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBC5D8AB21"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/modelIntrospectionSchemaBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketF566B665"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/modelIntrospectionSchemaBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketPolicy4DAB0D15"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/modelIntrospectionSchemaBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketAutoDeleteObjectsCustomResourceFE57309F"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/modelIntrospectionSchemaBucketDeployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketDeploymentAwsCliLayer13C432F7"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/modelIntrospectionSchemaBucketDeployment/CustomResource-1536MiB/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketDeploymentCustomResource1536MiB104B97EC"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/AMPLIFY_DATA_GRAPHQL_ENDPOINTParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATAGRAPHQLENDPOINTParameter1C2CBB16"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_BUCKET_NAMEParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATAMODELINTROSPECTIONSCHEMABUCKETNAMEParameter47BF4F44"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_KEYParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATAMODELINTROSPECTIONSCHEMAKEYParameterB6AEAE8A"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/AMPLIFY_DATA_DEFAULT_NAMEParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATADEFAULTNAMEParameterE7C23CC4"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthUserPoolB1292815Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthUserPoolB1292815Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthunauthenticatedUserRoleFD1598BBRef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthIdentityPoolA2439572Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputs.amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputs.amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30ApiId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30GraphQLUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPI406B7F30GraphQLUrl"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB4EC574B0DestinationBucketArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB4EC574B0DestinationBucketArn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data/amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPIDefaultApiKey62D9D147ApiKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462dataamplifyDataGraphQLAPIDefaultApiKey62D9D147ApiKey"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/data.NestedStack/data.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "data7552DF31"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/query-data-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "querydatalambdaServiceRoleF2DF15EC"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/query-data-lambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "querydatalambdaServiceRoleDefaultPolicyEF8F9C9D"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/query-data-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "querydatalambdaAC824AEA"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/create-auction-listing-from-file-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "createauctionlistingfromfilelambdaServiceRoleAB175130"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/create-auction-listing-from-file-lambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "createauctionlistingfromfilelambdaServiceRoleDefaultPolicy563440C8"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/create-auction-listing-from-file-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "createauctionlistingfromfilelambdaBC2BF541"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/commerceCentralLambdaLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "commerceCentralLambdaLayer9938622C"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Arn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694AArn"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462functionquerydatalambdaC818D3D7Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694ARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambda399E694ARef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function/amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/function.NestedStack/function.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "function1351588B"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/definedFunctions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "definedFunctions"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/awsAppsyncApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncApiId"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/awsAppsyncApiEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncApiEndpoint"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/awsAppsyncAuthenticationType": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncAuthenticationType"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/awsAppsyncRegion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncRegion"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/amplifyApiModelSchemaS3Uri": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyApiModelSchemaS3Uri"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/awsAppsyncApiKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncApiKey"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/awsAppsyncAdditionalAuthenticationTypes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncAdditionalAuthenticationTypes"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/commerceCentralStorage/Bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "commerceCentralStorageBucketD7FCF380"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/commerceCentralStorage/Bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "commerceCentralStorageBucketPolicyD49A2F4B"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/commerceCentralStorage/Bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "commerceCentralStorageBucketAutoDeleteObjectsCustomResource6BA1A760"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/LatestNodeRuntimeMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LatestNodeRuntimeMap"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/COMMERCE_CENTRAL_STORAGE_BUCKET_NAMEParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "COMMERCECENTRALSTORAGEBUCKETNAMEParameter6E1DF0B0"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/amplify-commercecentralauction-amir-sandbox-f4dfa1b462--storageAccess4/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462storageAccess4D86FD9E4"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/amplify-commercecentralauction-amir-sandbox-f4dfa1b462--storageAccess5/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462storageAccess53AEB16A8"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputs.amplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462authNestedStackauthNestedStackResource50A7F032Outputsamplifycommercecentralauctionamirsandboxf4dfa1b462authamplifyAuthauthenticatedUserRoleE554DD8ERef"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/reference-to-amplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputs.amplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifycommercecentralauctionamirsandboxf4dfa1b462functionNestedStackfunctionNestedStackResourceEB8CF98EOutputsamplifycommercecentralauctionamirsandboxf4dfa1b462functioncreateauctionlistingfromfilelambdaServiceRole26EDA958Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage/amplifycommercecentralauctionamirsandboxf4dfa1b462storagecommerceCentralStorageBucket3AB1F8A2Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifycommercecentralauctionamirsandboxf4dfa1b462storagecommerceCentralStorageBucket3AB1F8A2Ref"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storage.NestedStack/storage.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "storage0EC3F24A"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/storageRegion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "storageRegion"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/bucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "bucketName"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/buckets": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "buckets"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/amplify-commercecentralauction-amir-sandbox-f4dfa1b462/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "amplify-commercecentralauction-amir-sandbox-f4dfa1b462"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "minimumCliVersion": "2.1005.0"
+}

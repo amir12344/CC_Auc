@@ -1,8 +1,22 @@
-'use client';
+"use client";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { memo, useCallback } from 'react';
+import { useRouter } from "next/navigation";
+import { memo, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  CreditCard,
+  LogOut,
+  Settings,
+  ShoppingBag,
+  Store,
+  User,
+  UserCircle,
+  Users,
+} from "lucide-react";
+
+import { Avatar, AvatarFallback } from "@/src/components/ui/avatar";
+import { Button } from "@/src/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,29 +25,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback } from '@/src/components/ui/avatar';
-import { Button } from '@/src/components/ui/button';
+} from "@/src/components/ui/dropdown-menu";
+import { authService } from "@/src/features/authentication/services/authService";
 import {
-  selectUserProfile,
+  selectIsBuyer,
+  selectIsSeller,
   selectUserDisplayName,
   selectUserInitials,
-  selectIsBuyer,
-  selectIsSeller
-} from '@/src/features/authentication/store/authSelectors';
-import { AppDispatch } from '@/src/lib/store';
-import {
-  User,
-  Settings,
-  CreditCard,
-  Users,
-  LogOut,
-  UserCircle,
-  ShoppingBag,
-  Store
-} from 'lucide-react';
-import { authService } from '@/src/features/authentication/services/authService';
-import { initializeAuth } from '@/src/features/authentication/store/authSlice';
+  selectUserProfile,
+} from "@/src/features/authentication/store/authSelectors";
+import { initializeAuth } from "@/src/features/authentication/store/authSlice";
+import { AppDispatch } from "@/src/lib/store";
 
 /**
  * User dropdown menu component that appears when clicking on user avatar
@@ -54,21 +56,22 @@ export const UserDropdown = memo(function UserDropdown() {
   const handleSignOut = useCallback(async () => {
     try {
       await authService.signOut();
-      // Manually dispatch initializeAuth to update the state to signed-out
-      await dispatch(initializeAuth()).unwrap();
-      // Redirect to marketplace after successful logout
-      router.push('/marketplace');
-    } catch (error) {
-      console.error('Failed to sign out:', error);
-      // Fallback: force reload to clear state and redirect
-      window.location.href = '/marketplace';
+    } finally {
+      // Always sync local state and redirect, even if Amplify isn't configured on this page
+      await dispatch(initializeAuth())
+        .unwrap()
+        .catch(() => undefined);
+      router.push("/auth/login");
     }
   }, [dispatch, router]);
 
   // Navigation handlers
-  const handleNavigation = useCallback((path: string) => {
-    router.push(path);
-  }, [router]);
+  const handleNavigation = useCallback(
+    (path: string) => {
+      router.push(path);
+    },
+    [router]
+  );
 
   if (!userProfile) return null;
 
@@ -77,11 +80,11 @@ export const UserDropdown = memo(function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-10 w-10 rounded-full hover:bg-[#43CD66]/10 transition-colors cursor-pointer"
+          className="relative h-10 w-10 cursor-pointer rounded-full transition-colors hover:bg-[#43CD66]/10"
           size="sm"
         >
           <Avatar className="h-9 w-9">
-            <AvatarFallback className="bg-[#43CD66] text-[#102D21] font-medium text-sm">
+            <AvatarFallback className="bg-[#43CD66] text-sm font-medium text-[#102D21]">
               {userInitials}
             </AvatarFallback>
           </Avatar>
@@ -90,31 +93,31 @@ export const UserDropdown = memo(function UserDropdown() {
 
       <DropdownMenuContent className="w-64" align="end" forceMount>
         {/* User Info Header */}
-        <DropdownMenuLabel className="p-4 border-b bg-gray-50/50">
+        <DropdownMenuLabel className="border-b bg-gray-50/50 p-4">
           <div className="flex items-center space-x-3">
             <Avatar className="h-10 w-10">
-              <AvatarFallback className="bg-[#43CD66] text-[#102D21] font-medium">
+              <AvatarFallback className="bg-[#43CD66] font-medium text-[#102D21]">
                 {userInitials}
               </AvatarFallback>
             </Avatar>
-            <div className="flex flex-col space-y-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
+            <div className="flex min-w-0 flex-col space-y-1">
+              <p className="truncate text-sm font-medium text-gray-900">
                 {userDisplayName}
               </p>
-              <p className="text-xs text-gray-500 truncate">
+              <p className="truncate text-xs text-gray-500">
                 {userProfile.email}
               </p>
-              <div className="flex items-center mt-1">
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700">
+              <div className="mt-1 flex items-center">
+                <span className="bg-primary-100 text-primary-700 inline-flex items-center rounded-full px-2 py-1 text-xs font-medium">
                   {isBuyer && (
                     <>
-                      <ShoppingBag className="w-3 h-3 mr-1" />
+                      <ShoppingBag className="mr-1 h-3 w-3" />
                       Buyer
                     </>
                   )}
                   {isSeller && (
                     <>
-                      <Store className="w-3 h-3 mr-1" />
+                      <Store className="mr-1 h-3 w-3" />
                       Seller
                     </>
                   )}
@@ -126,8 +129,8 @@ export const UserDropdown = memo(function UserDropdown() {
 
         {isBuyer && (
           <DropdownMenuItem
-            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-            onClick={() => handleNavigation('/buyer/account')}
+            className="cursor-pointer p-3 transition-colors hover:bg-gray-50 focus:bg-gray-50"
+            onClick={() => handleNavigation("/buyer/account")}
           >
             <Settings className="mr-3 h-4 w-4 text-gray-500" />
             <span className="text-sm text-gray-700">Account Settings</span>
@@ -137,8 +140,8 @@ export const UserDropdown = memo(function UserDropdown() {
         {/* Preferences - Buyer specific */}
         {isBuyer && (
           <DropdownMenuItem
-            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-            onClick={() => handleNavigation('/buyer/account/preferences')}
+            className="cursor-pointer p-3 transition-colors hover:bg-gray-50 focus:bg-gray-50"
+            onClick={() => handleNavigation("/buyer/account/preferences")}
           >
             <Settings className="mr-3 h-4 w-4 text-gray-500" />
             <span className="text-sm text-gray-700">Preferences</span>
@@ -148,8 +151,8 @@ export const UserDropdown = memo(function UserDropdown() {
         {/* My Deals - Role specific */}
         {isBuyer && (
           <DropdownMenuItem
-            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-            onClick={() => handleNavigation('/buyer/deals')}
+            className="cursor-pointer p-3 transition-colors hover:bg-gray-50 focus:bg-gray-50"
+            onClick={() => handleNavigation("/buyer/deals")}
           >
             <ShoppingBag className="mr-3 h-4 w-4 text-gray-500" />
             <span className="text-sm text-gray-700">My Deals</span>
@@ -158,20 +161,19 @@ export const UserDropdown = memo(function UserDropdown() {
 
         {isSeller && (
           <DropdownMenuItem
-            className="cursor-pointer p-3 hover:bg-gray-50 transition-colors focus:bg-gray-50"
-            onClick={() => handleNavigation('/seller/dashboard')}
+            className="cursor-pointer p-3 transition-colors hover:bg-gray-50 focus:bg-gray-50"
+            onClick={() => handleNavigation("/seller/dashboard")}
           >
             <Store className="mr-3 h-4 w-4 text-gray-500" />
             <span className="text-sm text-gray-700">Seller Dashboard</span>
           </DropdownMenuItem>
         )}
 
-
         <DropdownMenuSeparator className="my-1" />
 
         {/* Sign Out */}
         <DropdownMenuItem
-          className="cursor-pointer p-3 hover:bg-red-50 text-red-600 hover:text-red-700 transition-colors focus:bg-red-50 focus:text-red-700"
+          className="cursor-pointer p-3 text-red-600 transition-colors hover:bg-red-50 hover:text-red-700 focus:bg-red-50 focus:text-red-700"
           onClick={handleSignOut}
         >
           <LogOut className="mr-3 h-4 w-4" />
@@ -180,4 +182,4 @@ export const UserDropdown = memo(function UserDropdown() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}); 
+});

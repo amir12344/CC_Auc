@@ -1,3 +1,3 @@
-export { default as MegaMenu } from './MegaMenu'
-export * from './types'
-export * from './megaMenuData' 
+export { default as MegaMenu } from "./MegaMenu";
+export * from "./types";
+export * from "./megaMenuData";

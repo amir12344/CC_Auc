@@ -10,7 +10,7 @@ function configureAmplifySingleton() {
       isServerConfigured = true
       // console.log('Amplify configured for a server-side or shared context')
     } catch (error) {
-      // Log the error but don't necessarily throw,
+      // Log the error but don't necessarily throw, 
       // as client-side might also pick this up if imported directly.
       // Client-side configuration should primarily be handled by ConfigureAmplifyClientSide.tsx
       console.error('Error configuring Amplify via amplify-config.ts:', error)

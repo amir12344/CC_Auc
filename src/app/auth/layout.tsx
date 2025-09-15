@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { ClientProviders } from '@/src/components/providers/ClientProviders';
+import { ClientProviders } from "@/src/components/providers/ClientProviders";
 
 export default function AuthLayout({
   children,
@@ -10,11 +10,8 @@ export default function AuthLayout({
   return (
     <ClientProviders>
       <div className="min-h-screen bg-white">
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </div>
     </ClientProviders>
   );
 }
-

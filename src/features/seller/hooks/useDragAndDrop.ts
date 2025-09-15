@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
 export interface DragState {
   [key: string]: boolean;
@@ -8,7 +8,11 @@ export interface UseDragAndDropResult {
   dragState: DragState;
   handleDragOver: (e: React.DragEvent, type: string) => void;
   handleDragLeave: (e: React.DragEvent, type: string) => void;
-  handleDrop: (e: React.DragEvent, type: string, onFileSelect: (file: File) => void) => void;
+  handleDrop: (
+    e: React.DragEvent,
+    type: string,
+    onFileSelect: (file: File) => void
+  ) => void;
   resetDragState: () => void;
 }
 
@@ -17,36 +21,39 @@ export interface UseDragAndDropResult {
  * Provides drag state management and event handlers
  */
 export const useDragAndDrop = (initialKeys: string[]): UseDragAndDropResult => {
-  const [dragState, setDragState] = useState<DragState>(() => 
+  const [dragState, setDragState] = useState<DragState>(() =>
     initialKeys.reduce((acc, key) => ({ ...acc, [key]: false }), {})
   );
 
   const handleDragOver = useCallback((e: React.DragEvent, type: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setDragState(prev => ({ ...prev, [type]: true }));
+    setDragState((prev) => ({ ...prev, [type]: true }));
   }, []);
 
   const handleDragLeave = useCallback((e: React.DragEvent, type: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setDragState(prev => ({ ...prev, [type]: false }));
+    setDragState((prev) => ({ ...prev, [type]: false }));
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent, type: string, onFileSelect: (file: File) => void) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragState(prev => ({ ...prev, [type]: false }));
+  const handleDrop = useCallback(
+    (e: React.DragEvent, type: string, onFileSelect: (file: File) => void) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setDragState((prev) => ({ ...prev, [type]: false }));
 
-    const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) {
-      const file = files[0];
-      onFileSelect(file);
-    }
-  }, []);
+      const files = Array.from(e.dataTransfer.files);
+      if (files.length > 0) {
+        const file = files[0];
+        onFileSelect(file);
+      }
+    },
+    []
+  );
 
   const resetDragState = useCallback(() => {
-    setDragState(prev => 
+    setDragState((prev) =>
       Object.keys(prev).reduce((acc, key) => ({ ...acc, [key]: false }), {})
     );
   }, []);
@@ -58,4 +65,4 @@ export const useDragAndDrop = (initialKeys: string[]): UseDragAndDropResult => {
     handleDrop,
     resetDragState,
   };
-}; 
+};

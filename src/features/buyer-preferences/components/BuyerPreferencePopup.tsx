@@ -1,129 +1,167 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+
+import { X } from "lucide-react";
+
+import { Button } from "@/src/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/src/components/ui/dialog';
-import { Button } from '@/src/components/ui/button';
-import { Progress } from '@/src/components/ui/progress';
-import { X, Loader2 } from 'lucide-react';
-import { BuyerPreferences } from '../types/preferences';
-import { PREFERENCE_STEPS, DEFAULT_PREFERENCES } from '../data/preferenceOptions';
-import { ExitConfirmDialog } from './ExitConfirmDialog';
-import { NavigationButtons } from './NavigationButtons';
+} from "@/src/components/ui/dialog";
+import { clearPreferenceListings } from "@/src/features/marketplace-catalog/store/preferenceListingsSlice";
+import { useAppDispatch } from "@/src/lib/store";
 
-// Loading component for step transitions
-const StepLoader = () => (
-  <div className="flex items-center justify-center p-8">
-    <div className="flex items-center gap-2 text-muted-foreground">
-      <Loader2 className="h-4 w-4 animate-spin" />
-      <span className="text-sm">Loading step...</span>
-    </div>
-  </div>
-);
+import {
+  DEFAULT_PREFERENCES,
+  PREFERENCE_STEPS,
+} from "../data/preferenceOptions";
+import {
+  setBuyerPreferences,
+  transformLocalPreferencesToApiFormat,
+} from "../services/buyerPreferenceService";
+import { setBuyerPreferences as setBuyerPreferencesAction } from "../store/buyerPreferencesSlice";
+import type {
+  BuyerPreferences,
+  StepComponentProps,
+} from "../types/preferences";
+import { ExitConfirmDialog } from "./ExitConfirmDialog";
+import { NavigationButtons } from "./NavigationButtons";
+// Direct imports for step components
+import { AuctionCatalogStep } from "./steps/AuctionCatalogStep";
+import { BrandsStep } from "./steps/BrandsStep";
+import { BudgetStep } from "./steps/BudgetStep";
+import { CategoryStep } from "./steps/CategoryStep";
+import { ConditionStep } from "./steps/ConditionStep";
+import { RegionsStep } from "./steps/RegionsStep";
+import { WhereYouSellStep } from "./steps/WhereYouSellStep";
 
-// Dynamic imports using Next.js dynamic for better optimization
-const BrandsStep = dynamic(
-  () => import('./steps/BrandsStep').then(module => ({ default: module.BrandsStep })),
-  { 
-    loading: StepLoader,
-    ssr: false // Client-side only for better performance with preference state
-  }
-);
-
-const CategoryStep = dynamic(
-  () => import('./steps/CategoryStep').then(module => ({ default: module.CategoryStep })),
-  { 
-    loading: StepLoader,
-    ssr: false
-  }
-);
-
-const BudgetStep = dynamic(
-  () => import('./steps/BudgetStep').then(module => ({ default: module.BudgetStep })),
-  { 
-    loading: StepLoader,
-    ssr: false
-  }
-);
-
-const AuctionCatalogStep = dynamic(
-  () => import('./steps/AuctionCatalogStep').then(module => ({ default: module.AuctionCatalogStep })),
-  { 
-    loading: StepLoader,
-    ssr: false
-  }
-);
-
-const WhereYouSellStep = dynamic(
-  () => import('./steps/WhereYouSellStep').then(module => ({ default: module.WhereYouSellStep })),
-  { 
-    loading: StepLoader,
-    ssr: false
-  }
-);
+// Type-safe component map
+const STEP_COMPONENTS: Record<
+  string,
+  React.ComponentType<StepComponentProps>
+> = {
+  AuctionCatalogStep,
+  BrandsStep,
+  BudgetStep,
+  CategoryStep,
+  ConditionStep,
+  WhereYouSellStep,
+  RegionsStep,
+} as const;
 
 interface BuyerPreferencePopupProps {
   isOpen: boolean;
   onClose: () => void;
-  onComplete: (preferences: BuyerPreferences) => void;
+  onComplete: () => void;
   onSkip: () => void;
   initialPreferences?: Partial<BuyerPreferences>;
 }
 
-export const BuyerPreferencePopup: React.FC<BuyerPreferencePopupProps> = ({
+export const BuyerPreferencePopup = ({
   isOpen,
   onClose,
   onComplete,
   onSkip,
-  initialPreferences = {}
-}) => {
+  initialPreferences = {},
+}: BuyerPreferencePopupProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [preferences, setPreferences] = useState<BuyerPreferences>({
     ...DEFAULT_PREFERENCES,
-    ...initialPreferences
+    ...initialPreferences,
+    preferredRegions: initialPreferences.preferredRegions ?? [],
+    completedAt: initialPreferences.completedAt ?? null,
   });
   const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
 
   // Reset to first step when popup opens
   useEffect(() => {
     if (isOpen) {
       setCurrentStep(0);
+      setError(null);
     }
   }, [isOpen]);
 
   const totalSteps = PREFERENCE_STEPS.length;
   const currentStepData = PREFERENCE_STEPS[currentStep];
-  const progress = ((currentStep + 1) / totalSteps) * 100;
 
-  const updatePreferences = useCallback((updates: Partial<BuyerPreferences>) => {
-    setPreferences(prev => ({ ...prev, ...updates }));
-  }, []);
+  const updatePreferences = useCallback(
+    (updates: Partial<BuyerPreferences>) => {
+      setPreferences((prev) => ({ ...prev, ...updates }));
+    },
+    []
+  );
 
-  const handleComplete = useCallback(() => {
-    const completedPreferences = {
-      ...preferences,
-      isCompleted: true,
-      completedAt: new Date()
-    };
-    onComplete(completedPreferences);
-  }, [preferences, onComplete]);
+  const handleComplete = useCallback(async () => {
+    setIsSaving(true);
+    setError(null);
+
+    try {
+      const completedPreferences = {
+        ...preferences,
+        isCompleted: true,
+        completedAt: new Date(),
+      };
+
+      // Transform and send to API
+      const apiPreferences =
+        transformLocalPreferencesToApiFormat(completedPreferences);
+      apiPreferences.requestType = "CREATE";
+      const response = await setBuyerPreferences(apiPreferences);
+
+      if (!response.success) {
+        setError(response.message || "Failed to save preferences");
+        setIsSaving(false);
+        return;
+      }
+
+      // Update Redux and clear preference listings cache
+      dispatch(
+        setBuyerPreferencesAction({
+          preferredCategories: apiPreferences.preferredCategories,
+          preferredSubcategories: apiPreferences.preferredSubcategories,
+          budgetMin: apiPreferences.budgetMin ?? null,
+          budgetMax: apiPreferences.budgetMax ?? null,
+          budgetCurrency: apiPreferences.budgetCurrency,
+          minimumDiscountPercentage:
+            apiPreferences.minimumDiscountPercentage ?? 0,
+          listingTypePreferences: apiPreferences.listingTypePreferences,
+          buyerSegments: apiPreferences.buyerSegments,
+          preferredRegions: apiPreferences.preferredRegions,
+          preferredBrandIds: apiPreferences.preferredBrandIds,
+        })
+      );
+      dispatch(clearPreferenceListings());
+
+      // Complete the popup - no need to store in local storage as we're using API
+      onComplete();
+    } catch (err) {
+      setError(
+        `An unexpected error occurred while saving preferences: ${err instanceof Error ? err.message : "Unknown error"}`
+      );
+      setIsSaving(false);
+    }
+  }, [preferences, onComplete, dispatch]);
 
   const handleNext = useCallback(() => {
     if (currentStep < totalSteps - 1) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     } else {
-      handleComplete();
+      handleComplete().catch(() => {
+        // Error is already handled in handleComplete
+        setIsSaving(false);
+      });
     }
   }, [currentStep, totalSteps, handleComplete]);
 
   const handleBack = useCallback(() => {
     if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+      setCurrentStep((prev) => prev - 1);
     }
   }, [currentStep]);
 
@@ -140,99 +178,117 @@ export const BuyerPreferencePopup: React.FC<BuyerPreferencePopupProps> = ({
     setShowExitConfirm(false);
   }, []);
 
-  const stepProps = useMemo(() => ({
-    preferences,
-    updatePreferences,
-    onNext: handleNext,
-    onBack: handleBack,
-    isFirstStep: currentStep === 0,
-    isLastStep: currentStep === totalSteps - 1
-  }), [preferences, updatePreferences, handleNext, handleBack, currentStep, totalSteps]);
+  const stepProps = useMemo(
+    () => ({
+      preferences,
+      updatePreferences,
+      onNext: handleNext,
+      onBack: handleBack,
+      isFirstStep: currentStep === 0,
+      isLastStep: currentStep === totalSteps - 1,
+    }),
+    [
+      preferences,
+      updatePreferences,
+      handleNext,
+      handleBack,
+      currentStep,
+      totalSteps,
+    ]
+  );
 
   const renderCurrentStep = () => {
-    switch (currentStepData.component) {
-      case 'BrandsStep':
-        return <BrandsStep {...stepProps} />;
-      case 'CategoryStep':
-        return <CategoryStep {...stepProps} />;
-      case 'BudgetStep':
-        return <BudgetStep {...stepProps} />;
-      case 'AuctionCatalogStep':
-        return <AuctionCatalogStep {...stepProps} />;
-      case 'WhereYouSellStep':
-        return <WhereYouSellStep {...stepProps} />;
-      default:
-        return <div>Step not found</div>;
+    const StepComponent = STEP_COMPONENTS[currentStepData.component];
+
+    if (!StepComponent) {
+      return (
+        <div className="p-4 text-red-600">
+          Component &quot;{currentStepData.component}&quot; not found. Please
+          check the component configuration.
+        </div>
+      );
     }
+
+    return <StepComponent {...stepProps} />;
   };
 
   return (
     <>
-      <Dialog open={isOpen} onOpenChange={handleCloseAttempt}>
-        <DialogContent 
-          className="max-w-2xl h-[90vh] flex flex-col p-0" 
-          hideCloseButton={true}
+      <Dialog
+        onOpenChange={(open) => {
+          if (!open) setShowExitConfirm(true);
+        }}
+        open={isOpen}
+      >
+        <DialogContent
           aria-describedby="preference-popup-description"
+          className="flex max-h-[90vh] max-w-md flex-col overflow-hidden p-0 sm:max-w-lg md:max-w-2xl"
+          hideCloseButton={true}
         >
           {/* Header */}
-          <DialogHeader className="p-6 pb-4 border-b">
+          <DialogHeader className="border-b p-6 pb-3">
             <div className="flex items-center justify-between">
               <div className="flex-1">
                 <DialogTitle className="text-xl font-semibold">
-                  Personalize your homepage
+                  Set your Preferences
                 </DialogTitle>
               </div>
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleCloseAttempt}
                 className="h-8 w-8 p-0"
+                onClick={handleCloseAttempt}
+                size="sm"
+                variant="ghost"
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
-            
-            {/* Progress Bar */}
-            <div className="mt-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-muted-foreground">
-                  Step {currentStep + 1} of {totalSteps}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  {Math.round(progress)}%
-                </span>
-              </div>
-              <Progress value={progress} className="h-2" />
-            </div>
           </DialogHeader>
 
           {/* Step Content */}
-          <div className="flex flex-col flex-1 overflow-hidden">
-            <div className="px-6 pt-6 pb-2 flex-shrink-0">
-              <h2 className="text-lg font-medium text-foreground">
+          <div className="flex flex-1 flex-col overflow-hidden">
+            <div className="flex-shrink-0 px-6 pt-0 pb-2">
+              <h2 className="text-foreground text-lg font-medium">
                 {currentStepData.title}
               </h2>
-              {currentStepData.description && (
-                <p className="text-sm text-muted-foreground mt-1">
-                  {currentStepData.description}
-                </p>
-              )}
             </div>
+
+            {/* Error Display */}
+            {error && (
+              <div className="mx-6 mb-4 rounded-md bg-red-50 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <X className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-red-800">{error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Step Component */}
             <div className="flex-1 overflow-y-auto px-6 pb-6">
-              {renderCurrentStep()}
+              <React.Suspense
+                fallback={
+                  <div className="flex h-32 items-center justify-center">
+                    <div className="text-sm text-gray-500">Loading step...</div>
+                  </div>
+                }
+              >
+                {renderCurrentStep()}
+              </React.Suspense>
             </div>
           </div>
 
           {/* Navigation */}
-          <div className="border-t p-6 flex-shrink-0">
+          <div className="flex-shrink-0 border-t p-6">
             <NavigationButtons
               currentStep={currentStep}
-              totalSteps={totalSteps}
+              isSaving={isSaving}
               onBack={handleBack}
               onNext={handleNext}
               onSkip={onSkip}
+              totalSteps={totalSteps}
             />
           </div>
         </DialogContent>
@@ -241,9 +297,9 @@ export const BuyerPreferencePopup: React.FC<BuyerPreferencePopupProps> = ({
       {/* Exit Confirmation Dialog */}
       <ExitConfirmDialog
         isOpen={showExitConfirm}
-        onConfirm={handleConfirmExit}
         onCancel={handleCancelExit}
+        onConfirm={handleConfirmExit}
       />
     </>
   );
-}; 
+};

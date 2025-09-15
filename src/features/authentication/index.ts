@@ -1,16 +1,19 @@
 // Authentication feature barrel exports
 
-// Store exports
-export { authSlice, login, logout, setUserType } from './store/authSlice';
 export {
-  selectIsAuthenticated,
-  selectUserType,
-  selectAuthToken,
   selectAuthInfo,
+  selectAuthToken,
+  selectIsAuthenticated,
   selectIsBuyer,
-  selectIsSeller
-} from './store/authSelectors';
-
-
+  selectIsSeller,
+  selectUserType,
+} from "./store/authSelectors";
+// Store exports
 // Re-export auth slice as default for store configuration
-export { default as authReducer } from './store/authSlice'; 
+export {
+  authSlice,
+  default as authReducer,
+  login,
+  logout,
+  setUserType,
+} from "./store/authSlice";

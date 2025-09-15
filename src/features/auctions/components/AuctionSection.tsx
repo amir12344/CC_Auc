@@ -1,12 +1,16 @@
-'use client';
+"use client";
 
-import { memo, useCallback, useEffect, useState } from 'react';
-import { ErrorBoundary } from '@/src/components/ErrorBoundary';
-import { Skeleton } from '@/src/components/ui/skeleton';
-import { ProductSection } from '@/src/features/marketplace-catalog/components/ProductSection';
-import { fetchAuctionListings } from '../services/auctionQueryService';
-import type { Auction } from '../types';
-import AuctionCard from './AuctionCard';
+import { memo } from "react";
+
+import { useQuery } from "@tanstack/react-query";
+
+import { ErrorBoundary } from "@/src/components/ErrorBoundary";
+import { Skeleton } from "@/src/components/ui/skeleton";
+import { ProductSection } from "@/src/features/marketplace-catalog/components/ProductSection";
+
+import { fetchAuctionListings } from "../services/auctionQueryService";
+import type { AuctionListingItem } from "../types";
+import AuctionCard from "./AuctionCard";
 
 /**
  * AuctionSection - Client Component for displaying auction listings
@@ -14,41 +18,27 @@ import AuctionCard from './AuctionCard';
  *
  * Features:
  * - Fetches auction data from API using the queryData function
- * - Service returns already transformed UI-ready Auction objects
+ * - Service returns already transformed UI-ready AuctionListingItem objects
  * - Uses carousel layout for horizontal scrolling
  * - Error boundary for individual auction cards
  * - Loading states and empty states
  */
 export const AuctionSection = memo(() => {
-  const [auctionList, setAuctionList] = useState<Auction[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  /**
-   * Fetch auctions using centralized service
-   * Service now returns already transformed Auction objects
-   */
-  const fetchAuctions = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      // Service returns already transformed Auction objects
-      const auctions = await fetchAuctionListings();
-      setAuctionList(auctions);
-    } catch (apiError) {
-      setError(
-        `Failed to load auctions: ${apiError instanceof Error ? apiError.message : 'Unknown error'}`
-      );
-      setAuctionList([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchAuctions();
-  }, [fetchAuctions]);
+  const {
+    data: auctionList,
+    isLoading: loading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["auctionListings"],
+    queryFn: fetchAuctionListings,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
+    refetchOnWindowFocus: true,
+    retry: 3,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30_000),
+    throwOnError: false,
+  });
 
   /**
    * Loading state - shows skeleton cards while data is being fetched
@@ -73,7 +63,7 @@ export const AuctionSection = memo(() => {
   /**
    * Error state - shows when API call fails
    */
-  if (error) {
+  if (isError) {
     return (
       <ProductSection
         layout="carousel"
@@ -81,7 +71,7 @@ export const AuctionSection = memo(() => {
         viewAllLink="/collections/auctions"
       >
         <div className="col-span-full mt-4 text-center text-gray-500">
-          <p>{error}</p>
+          <p>Failed to load auctions: {error?.message ?? "Unknown error"}</p>
           <p className="mt-1 text-sm">Please refresh the page to try again.</p>
         </div>
       </ProductSection>
@@ -117,7 +107,7 @@ export const AuctionSection = memo(() => {
       title="Live Auctions"
       viewAllLink="/collections/auctions"
     >
-      {auctionList.map((auction: Auction) => (
+      {auctionList.map((auction: AuctionListingItem) => (
         <ErrorBoundary
           fallback={<Skeleton className="aspect-square w-full rounded-lg" />}
           key={auction.id}
@@ -129,4 +119,4 @@ export const AuctionSection = memo(() => {
   );
 });
 
-AuctionSection.displayName = 'AuctionSection';
+AuctionSection.displayName = "AuctionSection";

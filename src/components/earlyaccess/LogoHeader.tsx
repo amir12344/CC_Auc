@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Logo from '@/src/features/website/components/ui/Logo';
+import React from "react";
+
+import Logo from "@/src/features/website/components/ui/Logo";
 
 export default function LogoHeader() {
   return (

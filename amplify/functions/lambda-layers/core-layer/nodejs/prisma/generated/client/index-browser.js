@@ -138,12 +138,42 @@ exports.Prisma.AddressesScalarFieldEnum = {
   latitude: 'latitude',
   longitude: 'longitude',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id'
 };
 
 exports.Prisma.RelationLoadStrategy = {
   query: 'query',
   join: 'join'
+};
+
+exports.Prisma.Auction_bid_historyScalarFieldEnum = {
+  auction_bid_history_id: 'auction_bid_history_id',
+  auction_listing_id: 'auction_listing_id',
+  previous_bid_amount: 'previous_bid_amount',
+  new_bid_amount: 'new_bid_amount',
+  bid_amount_currency: 'bid_amount_currency',
+  bidder_user_id: 'bidder_user_id',
+  action_type: 'action_type',
+  timestamp: 'timestamp',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Auction_bidsScalarFieldEnum = {
+  auction_bid_id: 'auction_bid_id',
+  auction_listing_id: 'auction_listing_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  bidder_user_id: 'bidder_user_id',
+  bidder_buyer_profile_id: 'bidder_buyer_profile_id',
+  bid_amount: 'bid_amount',
+  bid_amount_currency: 'bid_amount_currency',
+  bid_type: 'bid_type',
+  is_winning_bid: 'is_winning_bid',
+  bid_timestamp: 'bid_timestamp',
+  created_at: 'created_at',
+  public_id: 'public_id',
+  bid_sequence_number: 'bid_sequence_number'
 };
 
 exports.Prisma.Auction_listing_imagesScalarFieldEnum = {
@@ -184,6 +214,25 @@ exports.Prisma.Auction_listing_product_manifestsScalarFieldEnum = {
   product_width: 'product_width',
   product_length_type: 'product_length_type',
   created_at: 'created_at',
+  updated_at: 'updated_at',
+  retail_price_currency: 'retail_price_currency',
+  ext_retail_currency: 'ext_retail_currency',
+  case_pack: 'case_pack',
+  case_weight_type: 'case_weight_type',
+  case_weight: 'case_weight',
+  case_dimension_type: 'case_dimension_type',
+  case_length: 'case_length',
+  case_width: 'case_width',
+  case_height: 'case_height'
+};
+
+exports.Prisma.Auction_listing_visibility_rulesScalarFieldEnum = {
+  rule_id: 'rule_id',
+  auction_listing_id: 'auction_listing_id',
+  rule_type: 'rule_type',
+  rule_value: 'rule_value',
+  is_inclusion: 'is_inclusion',
+  created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
@@ -215,7 +264,6 @@ exports.Prisma.Auction_listingsScalarFieldEnum = {
   is_fda_registered: 'is_fda_registered',
   is_hazmat: 'is_hazmat',
   is_private: 'is_private',
-  visibility_settings: 'visibility_settings',
   location_address_id: 'location_address_id',
   auction_shipping_type: 'auction_shipping_type',
   auction_freight_type: 'auction_freight_type',
@@ -243,7 +291,16 @@ exports.Prisma.Auction_listingsScalarFieldEnum = {
   auction_status: 'auction_status',
   auction_end_time: 'auction_end_time',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  shipping_cost_currency: 'shipping_cost_currency',
+  total_ex_retail_price_currency: 'total_ex_retail_price_currency',
+  estimated_retail_value_currency: 'estimated_retail_value_currency',
+  minimum_bid_currency: 'minimum_bid_currency',
+  current_bid_currency: 'current_bid_currency',
+  bid_increment_value_currency: 'bid_increment_value_currency',
+  short_title: 'short_title',
+  version: 'version'
 };
 
 exports.Prisma.BrandsScalarFieldEnum = {
@@ -252,7 +309,8 @@ exports.Prisma.BrandsScalarFieldEnum = {
   brand_description: 'brand_description',
   brand_website: 'brand_website',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id'
 };
 
 exports.Prisma.Buyer_profile_preferencesScalarFieldEnum = {
@@ -260,7 +318,16 @@ exports.Prisma.Buyer_profile_preferencesScalarFieldEnum = {
   buyer_profile_id: 'buyer_profile_id',
   user_id: 'user_id',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  preferred_categories: 'preferred_categories',
+  preferred_subcategories: 'preferred_subcategories',
+  budget_min: 'budget_min',
+  budget_max: 'budget_max',
+  budget_currency: 'budget_currency',
+  minimum_discount_percentage: 'minimum_discount_percentage',
+  listing_type_preferences: 'listing_type_preferences',
+  buyer_segments: 'buyer_segments',
+  preferred_regions: 'preferred_regions'
 };
 
 exports.Prisma.Buyer_profilesScalarFieldEnum = {
@@ -269,13 +336,24 @@ exports.Prisma.Buyer_profilesScalarFieldEnum = {
   reseller_tax_id: 'reseller_tax_id',
   verification_status: 'verification_status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id'
 };
 
 exports.Prisma.Catalog_listing_imagesScalarFieldEnum = {
   catalog_listing_image_id: 'catalog_listing_image_id',
   catalog_listing_id: 'catalog_listing_id',
   image_id: 'image_id'
+};
+
+exports.Prisma.Catalog_listing_visibility_rulesScalarFieldEnum = {
+  rule_id: 'rule_id',
+  catalog_listing_id: 'catalog_listing_id',
+  rule_type: 'rule_type',
+  rule_value: 'rule_value',
+  is_inclusion: 'is_inclusion',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.Catalog_listingsScalarFieldEnum = {
@@ -301,15 +379,198 @@ exports.Prisma.Catalog_listingsScalarFieldEnum = {
   minimum_order_value: 'minimum_order_value',
   location_address_id: 'location_address_id',
   is_private: 'is_private',
-  visibility_settings: 'visibility_settings',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  minimum_order_value_currency: 'minimum_order_value_currency',
+  duplicate_check_hash: 'duplicate_check_hash',
+  sub_heading: 'sub_heading'
+};
+
+exports.Prisma.Catalog_offer_item_changesScalarFieldEnum = {
+  catalog_offer_item_change_id: 'catalog_offer_item_change_id',
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_offer_item_id: 'catalog_offer_item_id',
+  change_type: 'change_type',
+  changed_by_user_id: 'changed_by_user_id',
+  negotiation_round: 'negotiation_round',
+  new_catalog_product_id: 'new_catalog_product_id',
+  new_catalog_product_variant_id: 'new_catalog_product_variant_id',
+  new_requested_quantity: 'new_requested_quantity',
+  new_buyer_offer_price: 'new_buyer_offer_price',
+  new_buyer_offer_price_currency: 'new_buyer_offer_price_currency',
+  previous_quantity: 'previous_quantity',
+  new_quantity: 'new_quantity',
+  previous_buyer_price: 'previous_buyer_price',
+  new_buyer_price: 'new_buyer_price',
+  change_reason: 'change_reason',
+  created_at: 'created_at',
+  public_id: 'public_id',
+  previous_price: 'previous_price',
+  previous_price_currency: 'previous_price_currency',
+  change_summary: 'change_summary',
+  auto_generated: 'auto_generated',
+  system_action: 'system_action'
+};
+
+exports.Prisma.Catalog_offer_itemsScalarFieldEnum = {
+  catalog_offer_item_id: 'catalog_offer_item_id',
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_product_id: 'catalog_product_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  requested_quantity: 'requested_quantity',
+  seller_offer_price: 'seller_offer_price',
+  seller_offer_price_currency: 'seller_offer_price_currency',
+  buyer_offer_price: 'buyer_offer_price',
+  buyer_offer_price_currency: 'buyer_offer_price_currency',
+  current_buyer_negotiation_id: 'current_buyer_negotiation_id',
+  current_seller_negotiation_id: 'current_seller_negotiation_id',
+  negotiation_status: 'negotiation_status',
+  item_version: 'item_version',
+  item_status: 'item_status',
+  replaced_by_item_id: 'replaced_by_item_id',
+  added_in_round: 'added_in_round',
+  removed_in_round: 'removed_in_round',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  final_agreed_price: 'final_agreed_price',
+  final_agreed_price_currency: 'final_agreed_price_currency',
+  final_agreed_quantity: 'final_agreed_quantity',
+  agreed_at: 'agreed_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Catalog_offer_negotiationsScalarFieldEnum = {
+  catalog_offer_negotiation_id: 'catalog_offer_negotiation_id',
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_offer_item_id: 'catalog_offer_item_id',
+  parent_negotiation_id: 'parent_negotiation_id',
+  negotiation_round: 'negotiation_round',
+  is_current_offer: 'is_current_offer',
+  action_type: 'action_type',
+  offered_by_user_id: 'offered_by_user_id',
+  offer_price_per_unit: 'offer_price_per_unit',
+  offer_price_currency: 'offer_price_currency',
+  offer_quantity: 'offer_quantity',
+  offer_status: 'offer_status',
+  offer_message: 'offer_message',
+  valid_until: 'valid_until',
+  responded_at: 'responded_at',
+  includes_item_changes: 'includes_item_changes',
+  item_change_summary: 'item_change_summary',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  expires_at: 'expires_at',
+  auto_expired: 'auto_expired',
+  auto_accepted: 'auto_accepted',
+  auto_accept_reason: 'auto_accept_reason',
+  system_generated: 'system_generated'
+};
+
+exports.Prisma.Catalog_offersScalarFieldEnum = {
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_listing_id: 'catalog_listing_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  buyer_user_id: 'buyer_user_id',
+  buyer_profile_id: 'buyer_profile_id',
+  offer_status: 'offer_status',
+  total_offer_value: 'total_offer_value',
+  total_offer_value_currency: 'total_offer_value_currency',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  expires_at: 'expires_at',
+  public_id: 'public_id',
+  current_round: 'current_round',
+  last_action_by_user_id: 'last_action_by_user_id',
+  last_action_at: 'last_action_at',
+  rejection_reason: 'rejection_reason',
+  rejection_category: 'rejection_category',
+  rejected_at: 'rejected_at',
+  rejected_by_user_id: 'rejected_by_user_id',
+  reopen_deadline: 'reopen_deadline',
+  can_reopen: 'can_reopen',
+  auto_expire_at: 'auto_expire_at',
+  expired_reason: 'expired_reason',
+  offer_message: 'offer_message'
 };
 
 exports.Prisma.Catalog_product_imagesScalarFieldEnum = {
   catalog_product_image_id: 'catalog_product_image_id',
   catalog_product_id: 'catalog_product_id',
   image_id: 'image_id'
+};
+
+exports.Prisma.Catalog_product_variant_attributesScalarFieldEnum = {
+  catalog_product_variant_attribute_id: 'catalog_product_variant_attribute_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  variant_attribute_id: 'variant_attribute_id',
+  attribute_value: 'attribute_value',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Catalog_product_variant_imagesScalarFieldEnum = {
+  catalog_product_variant_image_id: 'catalog_product_variant_image_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  image_id: 'image_id',
+  is_primary: 'is_primary',
+  sort_order: 'sort_order',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Catalog_product_variantsScalarFieldEnum = {
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  parent_product_id: 'parent_product_id',
+  variant_sku: 'variant_sku',
+  variant_name: 'variant_name',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  category2: 'category2',
+  category3: 'category3',
+  subcategory: 'subcategory',
+  subcategory2: 'subcategory2',
+  subcategory3: 'subcategory3',
+  subcategory4: 'subcategory4',
+  subcategory5: 'subcategory5',
+  model_name: 'model_name',
+  packaging: 'packaging',
+  accessories: 'accessories',
+  is_hazmat: 'is_hazmat',
+  retail_price: 'retail_price',
+  offer_price: 'offer_price',
+  available_quantity: 'available_quantity',
+  min_order_quantity: 'min_order_quantity',
+  max_order_quantity: 'max_order_quantity',
+  weight: 'weight',
+  weight_unit_type: 'weight_unit_type',
+  product_height: 'product_height',
+  product_length: 'product_length',
+  product_width: 'product_width',
+  length_unit_type: 'length_unit_type',
+  identifier: 'identifier',
+  identifier_type: 'identifier_type',
+  external_identifier: 'external_identifier',
+  external_identifier_type: 'external_identifier_type',
+  part_number: 'part_number',
+  default_image_url: 'default_image_url',
+  product_condition: 'product_condition',
+  cosmetic_condition: 'cosmetic_condition',
+  is_active: 'is_active',
+  sort_order: 'sort_order',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  retail_price_currency: 'retail_price_currency',
+  offer_price_currency: 'offer_price_currency',
+  case_pack: 'case_pack',
+  case_weight_type: 'case_weight_type',
+  case_weight: 'case_weight',
+  case_dimension_type: 'case_dimension_type',
+  case_length: 'case_length',
+  case_width: 'case_width',
+  case_height: 'case_height'
 };
 
 exports.Prisma.Catalog_productsScalarFieldEnum = {
@@ -330,19 +591,13 @@ exports.Prisma.Catalog_productsScalarFieldEnum = {
   cosmetic_condition: 'cosmetic_condition',
   default_image_url: 'default_image_url',
   sku: 'sku',
-  identifier: 'identifier',
-  identifier_type: 'identifier_type',
   external_identifier: 'external_identifier',
   external_identifier_type: 'external_identifier_type',
   part_number: 'part_number',
   model_name: 'model_name',
   packaging: 'packaging',
-  parent_sku: 'parent_sku',
-  parent_product_id: 'parent_product_id',
-  variant_attributes: 'variant_attributes',
   retail_price: 'retail_price',
   offer_price: 'offer_price',
-  available_quantity: 'available_quantity',
   min_order_quantity: 'min_order_quantity',
   max_order_quantity: 'max_order_quantity',
   weight: 'weight',
@@ -355,7 +610,17 @@ exports.Prisma.Catalog_productsScalarFieldEnum = {
   is_hazmat: 'is_hazmat',
   status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  retail_price_currency: 'retail_price_currency',
+  offer_price_currency: 'offer_price_currency',
+  case_pack: 'case_pack',
+  case_weight_type: 'case_weight_type',
+  case_weight: 'case_weight',
+  case_dimension_type: 'case_dimension_type',
+  case_length: 'case_length',
+  case_width: 'case_width',
+  case_height: 'case_height'
 };
 
 exports.Prisma.ImagesScalarFieldEnum = {
@@ -363,7 +628,83 @@ exports.Prisma.ImagesScalarFieldEnum = {
   image_url: 'image_url',
   alt_text: 'alt_text',
   sort_order: 'sort_order',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  original_url: 'original_url',
+  s3_key: 's3_key',
+  public_id: 'public_id',
+  original_s3_key: 'original_s3_key',
+  original_image_url: 'original_image_url'
+};
+
+exports.Prisma.Order_itemsScalarFieldEnum = {
+  order_item_id: 'order_item_id',
+  order_id: 'order_id',
+  auction_listing_product_manifest_id: 'auction_listing_product_manifest_id',
+  catalog_product_id: 'catalog_product_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  final_negotiation_id: 'final_negotiation_id',
+  quantity: 'quantity',
+  unit_price: 'unit_price',
+  unit_price_currency: 'unit_price_currency',
+  total_price: 'total_price',
+  total_price_currency: 'total_price_currency',
+  created_at: 'created_at',
+  lot_listing_product_manifest_id: 'lot_listing_product_manifest_id'
+};
+
+exports.Prisma.Order_status_historyScalarFieldEnum = {
+  order_status_history_id: 'order_status_history_id',
+  order_id: 'order_id',
+  previous_status: 'previous_status',
+  new_status: 'new_status',
+  changed_by_user_id: 'changed_by_user_id',
+  change_reason: 'change_reason',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.OrdersScalarFieldEnum = {
+  order_id: 'order_id',
+  order_number: 'order_number',
+  seller_order_number: 'seller_order_number',
+  buyer_user_id: 'buyer_user_id',
+  buyer_profile_id: 'buyer_profile_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  auction_listing_id: 'auction_listing_id',
+  catalog_offer_id: 'catalog_offer_id',
+  order_type: 'order_type',
+  order_status: 'order_status',
+  total_amount: 'total_amount',
+  total_amount_currency: 'total_amount_currency',
+  shipping_cost: 'shipping_cost',
+  shipping_cost_currency: 'shipping_cost_currency',
+  tax_amount: 'tax_amount',
+  tax_amount_currency: 'tax_amount_currency',
+  shipping_address_id: 'shipping_address_id',
+  billing_address_id: 'billing_address_id',
+  payment_due_date: 'payment_due_date',
+  shipping_date: 'shipping_date',
+  delivery_date: 'delivery_date',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  lot_offer_id: 'lot_offer_id'
+};
+
+exports.Prisma.PaymentsScalarFieldEnum = {
+  payment_id: 'payment_id',
+  order_id: 'order_id',
+  payment_method: 'payment_method',
+  payment_provider: 'payment_provider',
+  payment_provider_transaction_id: 'payment_provider_transaction_id',
+  payment_amount: 'payment_amount',
+  payment_amount_currency: 'payment_amount_currency',
+  payment_status: 'payment_status',
+  payment_date: 'payment_date',
+  processed_at: 'processed_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
 };
 
 exports.Prisma.Resale_certificatesScalarFieldEnum = {
@@ -400,6 +741,17 @@ exports.Prisma.Resale_certificatesScalarFieldEnum = {
   compliance_notes: 'compliance_notes',
   is_active: 'is_active',
   created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Seller_order_countersScalarFieldEnum = {
+  seller_order_counter_id: 'seller_order_counter_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  year: 'year',
+  last_order_number: 'last_order_number',
+  created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
@@ -416,11 +768,12 @@ exports.Prisma.Seller_profilesScalarFieldEnum = {
   user_id: 'user_id',
   last_active: 'last_active',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  public_id: 'public_id'
 };
 
 exports.Prisma.User_addressesScalarFieldEnum = {
-  user_addresses_id: 'user_addresses_id',
+  user_address_id: 'user_address_id',
   user_id: 'user_id',
   address_id: 'address_id',
   address_type: 'address_type',
@@ -451,6 +804,306 @@ exports.Prisma.UsersScalarFieldEnum = {
   account_locked: 'account_locked',
   risk_score: 'risk_score',
   created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  job_title: 'job_title'
+};
+
+exports.Prisma.Variant_attribute_valuesScalarFieldEnum = {
+  variant_attribute_value_id: 'variant_attribute_value_id',
+  variant_attribute_id: 'variant_attribute_id',
+  value: 'value',
+  display_value: 'display_value',
+  color_hex: 'color_hex',
+  sort_order: 'sort_order',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Variant_attributesScalarFieldEnum = {
+  variant_attribute_id: 'variant_attribute_id',
+  name: 'name',
+  display_name: 'display_name',
+  attribute_type: 'attribute_type',
+  is_required: 'is_required',
+  sort_order: 'sort_order',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Catalog_offer_alternative_suggestionsScalarFieldEnum = {
+  suggestion_id: 'suggestion_id',
+  catalog_offer_id: 'catalog_offer_id',
+  suggested_product_variant_id: 'suggested_product_variant_id',
+  suggested_price: 'suggested_price',
+  suggested_price_currency: 'suggested_price_currency',
+  available_quantity: 'available_quantity',
+  product_name: 'product_name',
+  suggestion_message: 'suggestion_message',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Catalog_offer_audit_logScalarFieldEnum = {
+  audit_id: 'audit_id',
+  catalog_offer_id: 'catalog_offer_id',
+  action_type: 'action_type',
+  performed_by_user_id: 'performed_by_user_id',
+  old_status: 'old_status',
+  new_status: 'new_status',
+  changes_summary: 'changes_summary',
+  metadata: 'metadata',
+  created_at: 'created_at',
+  public_id: 'public_id',
+  system_generated: 'system_generated',
+  auto_action_type: 'auto_action_type'
+};
+
+exports.Prisma.Catalog_offer_minimum_termsScalarFieldEnum = {
+  minimum_terms_id: 'minimum_terms_id',
+  catalog_offer_id: 'catalog_offer_id',
+  minimum_unit_price: 'minimum_unit_price',
+  minimum_total_order: 'minimum_total_order',
+  minimum_quantity: 'minimum_quantity',
+  currency_code: 'currency_code',
+  minimum_order_frequency: 'minimum_order_frequency',
+  payment_terms: 'payment_terms',
+  delivery_requirements: 'delivery_requirements',
+  terms_message: 'terms_message',
+  valid_until: 'valid_until',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Buyer_brand_preferencesScalarFieldEnum = {
+  buyer_brand_preference_id: 'buyer_brand_preference_id',
+  buyer_profile_id: 'buyer_profile_id',
+  brand_id: 'brand_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Lot_listing_imagesScalarFieldEnum = {
+  lot_listing_image_id: 'lot_listing_image_id',
+  lot_listing_id: 'lot_listing_id',
+  image_id: 'image_id'
+};
+
+exports.Prisma.Lot_listing_product_manifestsScalarFieldEnum = {
+  lot_listing_product_manifest_id: 'lot_listing_product_manifest_id',
+  lot_listing_id: 'lot_listing_id',
+  category: 'category',
+  subcategory: 'subcategory',
+  title: 'title',
+  description: 'description',
+  brand_id: 'brand_id',
+  sku: 'sku',
+  identifier: 'identifier',
+  identifier_type: 'identifier_type',
+  external_identifier: 'external_identifier',
+  external_identifier_type: 'external_identifier_type',
+  part_number: 'part_number',
+  model_name: 'model_name',
+  product_condition: 'product_condition',
+  cosmetic_condition: 'cosmetic_condition',
+  available_quantity: 'available_quantity',
+  retail_price: 'retail_price',
+  retail_price_currency: 'retail_price_currency',
+  ext_retail: 'ext_retail',
+  ext_retail_currency: 'ext_retail_currency',
+  is_hazmat: 'is_hazmat',
+  lot_id: 'lot_id',
+  pallet_id: 'pallet_id',
+  department: 'department',
+  accessories: 'accessories',
+  weight: 'weight',
+  product_weight_type: 'product_weight_type',
+  product_height: 'product_height',
+  product_length: 'product_length',
+  product_width: 'product_width',
+  product_length_type: 'product_length_type',
+  case_pack: 'case_pack',
+  case_weight_type: 'case_weight_type',
+  case_weight: 'case_weight',
+  case_dimension_type: 'case_dimension_type',
+  case_length: 'case_length',
+  case_width: 'case_width',
+  case_height: 'case_height',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Lot_listing_tagsScalarFieldEnum = {
+  lot_listing_id: 'lot_listing_id',
+  tag_id: 'tag_id',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Lot_listing_visibility_rulesScalarFieldEnum = {
+  rule_id: 'rule_id',
+  lot_listing_id: 'lot_listing_id',
+  rule_type: 'rule_type',
+  rule_value: 'rule_value',
+  is_inclusion: 'is_inclusion',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Lot_listingsScalarFieldEnum = {
+  lot_listing_id: 'lot_listing_id',
+  seller_profile_id: 'seller_profile_id',
+  seller_user_id: 'seller_user_id',
+  title: 'title',
+  short_title: 'short_title',
+  sub_heading: 'sub_heading',
+  description: 'description',
+  short_description: 'short_description',
+  listing_label: 'listing_label',
+  listing_type: 'listing_type',
+  source_type: 'source_type',
+  source_name: 'source_name',
+  category: 'category',
+  category2: 'category2',
+  category3: 'category3',
+  subcategory: 'subcategory',
+  subcategory2: 'subcategory2',
+  subcategory3: 'subcategory3',
+  subcategory4: 'subcategory4',
+  subcategory5: 'subcategory5',
+  category_percent_estimates: 'category_percent_estimates',
+  status: 'status',
+  default_image_url: 'default_image_url',
+  lot_condition: 'lot_condition',
+  cosmetic_condition: 'cosmetic_condition',
+  sample_sku_details: 'sample_sku_details',
+  manifest_snapshot_file_s3_key: 'manifest_snapshot_file_s3_key',
+  load_type: 'load_type',
+  expiry_date: 'expiry_date',
+  total_units: 'total_units',
+  estimated_case_packs: 'estimated_case_packs',
+  piece_count: 'piece_count',
+  estimated_retail_value: 'estimated_retail_value',
+  estimated_retail_value_currency: 'estimated_retail_value_currency',
+  asking_price: 'asking_price',
+  asking_price_currency: 'asking_price_currency',
+  shipping_cost: 'shipping_cost',
+  shipping_cost_currency: 'shipping_cost_currency',
+  estimated_weight: 'estimated_weight',
+  weight_type: 'weight_type',
+  location_address_id: 'location_address_id',
+  lot_shipping_type: 'lot_shipping_type',
+  lot_freight_type: 'lot_freight_type',
+  lot_packaging: 'lot_packaging',
+  number_of_pallets: 'number_of_pallets',
+  pallet_spaces: 'pallet_spaces',
+  pallet_length: 'pallet_length',
+  pallet_width: 'pallet_width',
+  pallet_height: 'pallet_height',
+  pallet_dimension_type: 'pallet_dimension_type',
+  pallet_stackable: 'pallet_stackable',
+  number_of_truckloads: 'number_of_truckloads',
+  number_of_shipments: 'number_of_shipments',
+  is_refrigerated: 'is_refrigerated',
+  is_fda_registered: 'is_fda_registered',
+  is_hazmat: 'is_hazmat',
+  is_private: 'is_private',
+  resale_requirement: 'resale_requirement',
+  accessories: 'accessories',
+  inspection_status: 'inspection_status',
+  seller_notes: 'seller_notes',
+  shipping_notes: 'shipping_notes',
+  additional_information: 'additional_information',
+  offer_requirements: 'offer_requirements',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id',
+  category4: 'category4',
+  category5: 'category5'
+};
+
+exports.Prisma.Lot_offer_audit_logScalarFieldEnum = {
+  audit_id: 'audit_id',
+  lot_offer_id: 'lot_offer_id',
+  action_type: 'action_type',
+  performed_by_user_id: 'performed_by_user_id',
+  old_status: 'old_status',
+  new_status: 'new_status',
+  changes_summary: 'changes_summary',
+  metadata: 'metadata',
+  system_generated: 'system_generated',
+  created_at: 'created_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Lot_offer_negotiationsScalarFieldEnum = {
+  lot_offer_negotiation_id: 'lot_offer_negotiation_id',
+  lot_offer_id: 'lot_offer_id',
+  parent_negotiation_id: 'parent_negotiation_id',
+  negotiation_round: 'negotiation_round',
+  is_current_offer: 'is_current_offer',
+  action_type: 'action_type',
+  offered_by_user_id: 'offered_by_user_id',
+  offer_amount: 'offer_amount',
+  offer_amount_currency: 'offer_amount_currency',
+  offer_status: 'offer_status',
+  offer_message: 'offer_message',
+  valid_until: 'valid_until',
+  responded_at: 'responded_at',
+  expires_at: 'expires_at',
+  auto_expired: 'auto_expired',
+  auto_accepted: 'auto_accepted',
+  auto_accept_reason: 'auto_accept_reason',
+  system_generated: 'system_generated',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  public_id: 'public_id'
+};
+
+exports.Prisma.Lot_offersScalarFieldEnum = {
+  lot_offer_id: 'lot_offer_id',
+  lot_listing_id: 'lot_listing_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  buyer_user_id: 'buyer_user_id',
+  buyer_profile_id: 'buyer_profile_id',
+  offer_status: 'offer_status',
+  offer_amount: 'offer_amount',
+  offer_amount_currency: 'offer_amount_currency',
+  current_round: 'current_round',
+  last_action_by_user_id: 'last_action_by_user_id',
+  last_action_at: 'last_action_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  expires_at: 'expires_at',
+  auto_expire_at: 'auto_expire_at',
+  expired_reason: 'expired_reason',
+  rejection_reason: 'rejection_reason',
+  rejection_category: 'rejection_category',
+  rejected_at: 'rejected_at',
+  rejected_by_user_id: 'rejected_by_user_id',
+  reopen_deadline: 'reopen_deadline',
+  can_reopen: 'can_reopen',
+  offer_message: 'offer_message',
+  public_id: 'public_id'
+};
+
+exports.Prisma.TagsScalarFieldEnum = {
+  tag_id: 'tag_id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  category: 'category',
+  color: 'color',
+  is_active: 'is_active',
+  usage_count: 'usage_count',
+  created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
@@ -474,11 +1127,550 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.addressesOrderByRelevanceFieldEnum = {
+  address_id: 'address_id',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  address1: 'address1',
+  address2: 'address2',
+  address3: 'address3',
+  city: 'city',
+  province: 'province',
+  province_code: 'province_code',
+  country: 'country',
+  country_code: 'country_code',
+  zip: 'zip',
+  phone: 'phone',
+  company: 'company',
+  public_id: 'public_id'
+};
+
+exports.Prisma.auction_bid_historyOrderByRelevanceFieldEnum = {
+  auction_bid_history_id: 'auction_bid_history_id',
+  auction_listing_id: 'auction_listing_id',
+  bidder_user_id: 'bidder_user_id'
+};
+
+exports.Prisma.auction_bidsOrderByRelevanceFieldEnum = {
+  auction_bid_id: 'auction_bid_id',
+  auction_listing_id: 'auction_listing_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  bidder_user_id: 'bidder_user_id',
+  bidder_buyer_profile_id: 'bidder_buyer_profile_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.auction_listing_imagesOrderByRelevanceFieldEnum = {
+  auction_listing_image_id: 'auction_listing_image_id',
+  auction_listing_id: 'auction_listing_id',
+  image_id: 'image_id'
+};
+
+exports.Prisma.auction_listing_product_manifestsOrderByRelevanceFieldEnum = {
+  auction_listing_product_manifest_id: 'auction_listing_product_manifest_id',
+  auction_listing_id: 'auction_listing_id',
+  title: 'title',
+  description: 'description',
+  brand_id: 'brand_id',
+  sku: 'sku',
+  identifier: 'identifier',
+  external_identifier: 'external_identifier',
+  part_number: 'part_number',
+  model_name: 'model_name',
+  cosmetic_condition: 'cosmetic_condition',
+  lot_id: 'lot_id',
+  pallet_id: 'pallet_id',
+  department: 'department',
+  accessories: 'accessories'
+};
+
+exports.Prisma.auction_listing_visibility_rulesOrderByRelevanceFieldEnum = {
+  rule_id: 'rule_id',
+  auction_listing_id: 'auction_listing_id',
+  rule_value: 'rule_value'
+};
+
+exports.Prisma.auction_listingsOrderByRelevanceFieldEnum = {
+  auction_listing_id: 'auction_listing_id',
+  seller_profile_id: 'seller_profile_id',
+  seller_user_id: 'seller_user_id',
+  title: 'title',
+  description: 'description',
+  default_image_url: 'default_image_url',
+  cosmetic_condition: 'cosmetic_condition',
+  location_address_id: 'location_address_id',
+  resale_requirement: 'resale_requirement',
+  accessories: 'accessories',
+  inspection_status: 'inspection_status',
+  seller_notes: 'seller_notes',
+  shipping_notes: 'shipping_notes',
+  additional_information: 'additional_information',
+  bidding_requirements: 'bidding_requirements',
+  winner_user_id: 'winner_user_id',
+  winner_buyer_profile_id: 'winner_buyer_profile_id',
+  current_bidder_user_id: 'current_bidder_user_id',
+  current_bidder_buyer_profile_id: 'current_bidder_buyer_profile_id',
+  public_id: 'public_id',
+  short_title: 'short_title'
+};
+
+exports.Prisma.brandsOrderByRelevanceFieldEnum = {
+  brand_id: 'brand_id',
+  brand_name: 'brand_name',
+  brand_description: 'brand_description',
+  brand_website: 'brand_website',
+  public_id: 'public_id'
+};
+
+exports.Prisma.buyer_profile_preferencesOrderByRelevanceFieldEnum = {
+  buyer_profile_preference_id: 'buyer_profile_preference_id',
+  buyer_profile_id: 'buyer_profile_id',
+  user_id: 'user_id'
+};
+
+exports.Prisma.buyer_profilesOrderByRelevanceFieldEnum = {
+  buyer_profile_id: 'buyer_profile_id',
+  user_id: 'user_id',
+  reseller_tax_id: 'reseller_tax_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.catalog_listing_imagesOrderByRelevanceFieldEnum = {
+  catalog_listing_image_id: 'catalog_listing_image_id',
+  catalog_listing_id: 'catalog_listing_id',
+  image_id: 'image_id'
+};
+
+exports.Prisma.catalog_listing_visibility_rulesOrderByRelevanceFieldEnum = {
+  rule_id: 'rule_id',
+  catalog_listing_id: 'catalog_listing_id',
+  rule_value: 'rule_value'
+};
+
+exports.Prisma.catalog_listingsOrderByRelevanceFieldEnum = {
+  catalog_listing_id: 'catalog_listing_id',
+  seller_profile_id: 'seller_profile_id',
+  seller_user_id: 'seller_user_id',
+  title: 'title',
+  description: 'description',
+  default_image_url: 'default_image_url',
+  cosmetic_condition: 'cosmetic_condition',
+  location_address_id: 'location_address_id',
+  public_id: 'public_id',
+  duplicate_check_hash: 'duplicate_check_hash',
+  sub_heading: 'sub_heading'
+};
+
+exports.Prisma.catalog_offer_item_changesOrderByRelevanceFieldEnum = {
+  catalog_offer_item_change_id: 'catalog_offer_item_change_id',
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_offer_item_id: 'catalog_offer_item_id',
+  changed_by_user_id: 'changed_by_user_id',
+  new_catalog_product_id: 'new_catalog_product_id',
+  new_catalog_product_variant_id: 'new_catalog_product_variant_id',
+  change_reason: 'change_reason',
+  public_id: 'public_id',
+  change_summary: 'change_summary'
+};
+
+exports.Prisma.catalog_offer_itemsOrderByRelevanceFieldEnum = {
+  catalog_offer_item_id: 'catalog_offer_item_id',
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_product_id: 'catalog_product_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  current_buyer_negotiation_id: 'current_buyer_negotiation_id',
+  current_seller_negotiation_id: 'current_seller_negotiation_id',
+  replaced_by_item_id: 'replaced_by_item_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.catalog_offer_negotiationsOrderByRelevanceFieldEnum = {
+  catalog_offer_negotiation_id: 'catalog_offer_negotiation_id',
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_offer_item_id: 'catalog_offer_item_id',
+  parent_negotiation_id: 'parent_negotiation_id',
+  offered_by_user_id: 'offered_by_user_id',
+  offer_message: 'offer_message',
+  item_change_summary: 'item_change_summary',
+  public_id: 'public_id',
+  auto_accept_reason: 'auto_accept_reason'
+};
+
+exports.Prisma.catalog_offersOrderByRelevanceFieldEnum = {
+  catalog_offer_id: 'catalog_offer_id',
+  catalog_listing_id: 'catalog_listing_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  buyer_user_id: 'buyer_user_id',
+  buyer_profile_id: 'buyer_profile_id',
+  public_id: 'public_id',
+  last_action_by_user_id: 'last_action_by_user_id',
+  rejection_reason: 'rejection_reason',
+  rejected_by_user_id: 'rejected_by_user_id',
+  expired_reason: 'expired_reason',
+  offer_message: 'offer_message'
+};
+
+exports.Prisma.catalog_product_imagesOrderByRelevanceFieldEnum = {
+  catalog_product_image_id: 'catalog_product_image_id',
+  catalog_product_id: 'catalog_product_id',
+  image_id: 'image_id'
+};
+
+exports.Prisma.catalog_product_variant_attributesOrderByRelevanceFieldEnum = {
+  catalog_product_variant_attribute_id: 'catalog_product_variant_attribute_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  variant_attribute_id: 'variant_attribute_id',
+  attribute_value: 'attribute_value'
+};
+
+exports.Prisma.catalog_product_variant_imagesOrderByRelevanceFieldEnum = {
+  catalog_product_variant_image_id: 'catalog_product_variant_image_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  image_id: 'image_id'
+};
+
+exports.Prisma.catalog_product_variantsOrderByRelevanceFieldEnum = {
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  parent_product_id: 'parent_product_id',
+  variant_sku: 'variant_sku',
+  variant_name: 'variant_name',
+  title: 'title',
+  description: 'description',
+  model_name: 'model_name',
+  accessories: 'accessories',
+  identifier: 'identifier',
+  external_identifier: 'external_identifier',
+  part_number: 'part_number',
+  default_image_url: 'default_image_url',
+  cosmetic_condition: 'cosmetic_condition',
+  public_id: 'public_id'
+};
+
+exports.Prisma.catalog_productsOrderByRelevanceFieldEnum = {
+  catalog_product_id: 'catalog_product_id',
+  catalog_listing_id: 'catalog_listing_id',
+  title: 'title',
+  description: 'description',
+  brand_id: 'brand_id',
+  cosmetic_condition: 'cosmetic_condition',
+  default_image_url: 'default_image_url',
+  sku: 'sku',
+  external_identifier: 'external_identifier',
+  part_number: 'part_number',
+  model_name: 'model_name',
+  accessories: 'accessories',
+  public_id: 'public_id'
+};
+
+exports.Prisma.imagesOrderByRelevanceFieldEnum = {
+  image_id: 'image_id',
+  image_url: 'image_url',
+  alt_text: 'alt_text',
+  original_url: 'original_url',
+  s3_key: 's3_key',
+  public_id: 'public_id',
+  original_s3_key: 'original_s3_key',
+  original_image_url: 'original_image_url'
+};
+
+exports.Prisma.order_itemsOrderByRelevanceFieldEnum = {
+  order_item_id: 'order_item_id',
+  order_id: 'order_id',
+  auction_listing_product_manifest_id: 'auction_listing_product_manifest_id',
+  catalog_product_id: 'catalog_product_id',
+  catalog_product_variant_id: 'catalog_product_variant_id',
+  final_negotiation_id: 'final_negotiation_id',
+  lot_listing_product_manifest_id: 'lot_listing_product_manifest_id'
+};
+
+exports.Prisma.order_status_historyOrderByRelevanceFieldEnum = {
+  order_status_history_id: 'order_status_history_id',
+  order_id: 'order_id',
+  changed_by_user_id: 'changed_by_user_id',
+  change_reason: 'change_reason'
+};
+
+exports.Prisma.ordersOrderByRelevanceFieldEnum = {
+  order_id: 'order_id',
+  order_number: 'order_number',
+  buyer_user_id: 'buyer_user_id',
+  buyer_profile_id: 'buyer_profile_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  auction_listing_id: 'auction_listing_id',
+  catalog_offer_id: 'catalog_offer_id',
+  shipping_address_id: 'shipping_address_id',
+  billing_address_id: 'billing_address_id',
+  public_id: 'public_id',
+  lot_offer_id: 'lot_offer_id'
+};
+
+exports.Prisma.paymentsOrderByRelevanceFieldEnum = {
+  payment_id: 'payment_id',
+  order_id: 'order_id',
+  payment_provider: 'payment_provider',
+  payment_provider_transaction_id: 'payment_provider_transaction_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.resale_certificatesOrderByRelevanceFieldEnum = {
+  resale_certificate_id: 'resale_certificate_id',
+  user_id: 'user_id',
+  certificate_number: 'certificate_number',
+  issuing_jurisdiction: 'issuing_jurisdiction',
+  business_legal_name: 'business_legal_name',
+  business_street_address: 'business_street_address',
+  business_city: 'business_city',
+  business_zip_code: 'business_zip_code',
+  federal_tax_id: 'federal_tax_id',
+  state_tax_id: 'state_tax_id',
+  naics_code: 'naics_code',
+  industry_description: 'industry_description',
+  authorized_signatory_name: 'authorized_signatory_name',
+  authorized_signatory_title: 'authorized_signatory_title',
+  product_categories_covered: 'product_categories_covered',
+  document_storage_path: 'document_storage_path',
+  document_url: 'document_url',
+  compliance_notes: 'compliance_notes',
+  public_id: 'public_id'
+};
+
+exports.Prisma.seller_order_countersOrderByRelevanceFieldEnum = {
+  seller_order_counter_id: 'seller_order_counter_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id'
+};
+
+exports.Prisma.seller_profile_preferencesOrderByRelevanceFieldEnum = {
+  seller_profile_preference_id: 'seller_profile_preference_id',
+  seller_profile_id: 'seller_profile_id',
+  user_id: 'user_id'
+};
+
+exports.Prisma.seller_profilesOrderByRelevanceFieldEnum = {
+  seller_profile_id: 'seller_profile_id',
+  user_id: 'user_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.user_addressesOrderByRelevanceFieldEnum = {
+  user_address_id: 'user_address_id',
+  user_id: 'user_id',
+  address_id: 'address_id'
+};
+
+exports.Prisma.user_preferencesOrderByRelevanceFieldEnum = {
+  user_preference_id: 'user_preference_id',
+  user_id: 'user_id'
+};
+
+exports.Prisma.usersOrderByRelevanceFieldEnum = {
+  user_id: 'user_id',
+  username: 'username',
+  cognito_id: 'cognito_id',
+  email: 'email',
+  phone: 'phone',
+  title: 'title',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  company: 'company',
+  avatar_url: 'avatar_url',
+  public_id: 'public_id',
+  job_title: 'job_title'
+};
+
+exports.Prisma.variant_attribute_valuesOrderByRelevanceFieldEnum = {
+  variant_attribute_value_id: 'variant_attribute_value_id',
+  variant_attribute_id: 'variant_attribute_id',
+  value: 'value',
+  display_value: 'display_value',
+  color_hex: 'color_hex',
+  public_id: 'public_id'
+};
+
+exports.Prisma.variant_attributesOrderByRelevanceFieldEnum = {
+  variant_attribute_id: 'variant_attribute_id',
+  name: 'name',
+  display_name: 'display_name',
+  public_id: 'public_id'
+};
+
+exports.Prisma.catalog_offer_alternative_suggestionsOrderByRelevanceFieldEnum = {
+  suggestion_id: 'suggestion_id',
+  catalog_offer_id: 'catalog_offer_id',
+  suggested_product_variant_id: 'suggested_product_variant_id',
+  product_name: 'product_name',
+  suggestion_message: 'suggestion_message',
+  public_id: 'public_id'
+};
+
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+
+exports.Prisma.catalog_offer_audit_logOrderByRelevanceFieldEnum = {
+  audit_id: 'audit_id',
+  catalog_offer_id: 'catalog_offer_id',
+  action_type: 'action_type',
+  performed_by_user_id: 'performed_by_user_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.catalog_offer_minimum_termsOrderByRelevanceFieldEnum = {
+  minimum_terms_id: 'minimum_terms_id',
+  catalog_offer_id: 'catalog_offer_id',
+  minimum_order_frequency: 'minimum_order_frequency',
+  payment_terms: 'payment_terms',
+  delivery_requirements: 'delivery_requirements',
+  terms_message: 'terms_message',
+  public_id: 'public_id'
+};
+
+exports.Prisma.buyer_brand_preferencesOrderByRelevanceFieldEnum = {
+  buyer_brand_preference_id: 'buyer_brand_preference_id',
+  buyer_profile_id: 'buyer_profile_id',
+  brand_id: 'brand_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.lot_listing_imagesOrderByRelevanceFieldEnum = {
+  lot_listing_image_id: 'lot_listing_image_id',
+  lot_listing_id: 'lot_listing_id',
+  image_id: 'image_id'
+};
+
+exports.Prisma.lot_listing_product_manifestsOrderByRelevanceFieldEnum = {
+  lot_listing_product_manifest_id: 'lot_listing_product_manifest_id',
+  lot_listing_id: 'lot_listing_id',
+  title: 'title',
+  description: 'description',
+  brand_id: 'brand_id',
+  sku: 'sku',
+  identifier: 'identifier',
+  external_identifier: 'external_identifier',
+  part_number: 'part_number',
+  model_name: 'model_name',
+  cosmetic_condition: 'cosmetic_condition',
+  lot_id: 'lot_id',
+  pallet_id: 'pallet_id',
+  department: 'department',
+  accessories: 'accessories'
+};
+
+exports.Prisma.lot_listing_tagsOrderByRelevanceFieldEnum = {
+  lot_listing_id: 'lot_listing_id',
+  tag_id: 'tag_id'
+};
+
+exports.Prisma.lot_listing_visibility_rulesOrderByRelevanceFieldEnum = {
+  rule_id: 'rule_id',
+  lot_listing_id: 'lot_listing_id',
+  rule_value: 'rule_value'
+};
+
+exports.Prisma.lot_listingsOrderByRelevanceFieldEnum = {
+  lot_listing_id: 'lot_listing_id',
+  seller_profile_id: 'seller_profile_id',
+  seller_user_id: 'seller_user_id',
+  title: 'title',
+  short_title: 'short_title',
+  sub_heading: 'sub_heading',
+  description: 'description',
+  short_description: 'short_description',
+  listing_label: 'listing_label',
+  default_image_url: 'default_image_url',
+  cosmetic_condition: 'cosmetic_condition',
+  sample_sku_details: 'sample_sku_details',
+  manifest_snapshot_file_s3_key: 'manifest_snapshot_file_s3_key',
+  location_address_id: 'location_address_id',
+  resale_requirement: 'resale_requirement',
+  accessories: 'accessories',
+  seller_notes: 'seller_notes',
+  shipping_notes: 'shipping_notes',
+  additional_information: 'additional_information',
+  offer_requirements: 'offer_requirements',
+  public_id: 'public_id'
+};
+
+exports.Prisma.lot_offer_audit_logOrderByRelevanceFieldEnum = {
+  audit_id: 'audit_id',
+  lot_offer_id: 'lot_offer_id',
+  action_type: 'action_type',
+  performed_by_user_id: 'performed_by_user_id',
+  public_id: 'public_id'
+};
+
+exports.Prisma.lot_offer_negotiationsOrderByRelevanceFieldEnum = {
+  lot_offer_negotiation_id: 'lot_offer_negotiation_id',
+  lot_offer_id: 'lot_offer_id',
+  parent_negotiation_id: 'parent_negotiation_id',
+  offered_by_user_id: 'offered_by_user_id',
+  offer_message: 'offer_message',
+  auto_accept_reason: 'auto_accept_reason',
+  public_id: 'public_id'
+};
+
+exports.Prisma.lot_offersOrderByRelevanceFieldEnum = {
+  lot_offer_id: 'lot_offer_id',
+  lot_listing_id: 'lot_listing_id',
+  seller_user_id: 'seller_user_id',
+  seller_profile_id: 'seller_profile_id',
+  buyer_user_id: 'buyer_user_id',
+  buyer_profile_id: 'buyer_profile_id',
+  last_action_by_user_id: 'last_action_by_user_id',
+  expired_reason: 'expired_reason',
+  rejection_reason: 'rejection_reason',
+  rejected_by_user_id: 'rejected_by_user_id',
+  offer_message: 'offer_message',
+  public_id: 'public_id'
+};
+
+exports.Prisma.tagsOrderByRelevanceFieldEnum = {
+  tag_id: 'tag_id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  category: 'category',
+  color: 'color'
+};
+exports.currency_code_type = exports.$Enums.currency_code_type = {
+  USD: 'USD',
+  CAD: 'CAD',
+  MXN: 'MXN',
+  GBP: 'GBP',
+  EUR: 'EUR',
+  CHF: 'CHF',
+  DKK: 'DKK',
+  CZK: 'CZK',
+  RUB: 'RUB',
+  TRY: 'TRY',
+  INR: 'INR',
+  CNY: 'CNY',
+  HKD: 'HKD',
+  ILS: 'ILS',
+  KRW: 'KRW',
+  SGD: 'SGD',
+  JPY: 'JPY',
+  AUD: 'AUD',
+  NZD: 'NZD'
+};
+
+exports.auction_bid_action_type = exports.$Enums.auction_bid_action_type = {
+  BID_PLACED: 'BID_PLACED',
+  BID_RETRACTED: 'BID_RETRACTED',
+  AUCTION_WON: 'AUCTION_WON',
+  AUCTION_ENDED: 'AUCTION_ENDED'
+};
+
+exports.auction_bid_type = exports.$Enums.auction_bid_type = {
+  REGULAR: 'REGULAR',
+  BUY_NOW: 'BUY_NOW'
+};
+
 exports.product_category_type = exports.$Enums.product_category_type = {
   HOME_KITCHEN_ORGANIZATION: 'HOME_KITCHEN_ORGANIZATION',
   APPAREL: 'APPAREL',
@@ -749,6 +1941,15 @@ exports.length_type = exports.$Enums.length_type = {
   NAUTICAL_MILE: 'NAUTICAL_MILE'
 };
 
+exports.visibility_rule_type = exports.$Enums.visibility_rule_type = {
+  BUYER_SEGMENT: 'BUYER_SEGMENT',
+  LOCATION_COUNTRY: 'LOCATION_COUNTRY',
+  LOCATION_STATE: 'LOCATION_STATE',
+  LOCATION_CITY: 'LOCATION_CITY',
+  LOCATION_ZIP: 'LOCATION_ZIP',
+  LOCATION_REGION: 'LOCATION_REGION'
+};
+
 exports.listing_status_type = exports.$Enums.listing_status_type = {
   DRAFT: 'DRAFT',
   ACTIVE: 'ACTIVE',
@@ -808,6 +2009,30 @@ exports.auction_status_type = exports.$Enums.auction_status_type = {
   ENDED: 'ENDED'
 };
 
+exports.listing_type_preference = exports.$Enums.listing_type_preference = {
+  AUCTION: 'AUCTION',
+  CATALOG: 'CATALOG',
+  BOTH: 'BOTH'
+};
+
+exports.buyer_segment_type = exports.$Enums.buyer_segment_type = {
+  DISCOUNT_RETAIL: 'DISCOUNT_RETAIL',
+  STOCKX: 'STOCKX',
+  AMAZON_OR_WALMART: 'AMAZON_OR_WALMART',
+  LIVE_SELLER_MARKETPLACES: 'LIVE_SELLER_MARKETPLACES',
+  RESELLER_MARKETPLACES: 'RESELLER_MARKETPLACES',
+  OFF_PRICE_RETAIL: 'OFF_PRICE_RETAIL',
+  EXPORTER: 'EXPORTER',
+  REFURBISHER_REPAIR_SHOP: 'REFURBISHER_REPAIR_SHOP'
+};
+
+exports.geographic_preference_region_type = exports.$Enums.geographic_preference_region_type = {
+  NORTHEAST_US: 'NORTHEAST_US',
+  MIDWEST_US: 'MIDWEST_US',
+  SOUTH_US: 'SOUTH_US',
+  WEST_US: 'WEST_US'
+};
+
 exports.buyer_verification_status_type = exports.$Enums.buyer_verification_status_type = {
   PENDING: 'PENDING',
   VERIFIED: 'VERIFIED',
@@ -822,10 +2047,112 @@ exports.packaging_type = exports.$Enums.packaging_type = {
   REPACKAGED_BROWN_BOX: 'REPACKAGED_BROWN_BOX'
 };
 
+exports.catalog_offer_item_change_type = exports.$Enums.catalog_offer_item_change_type = {
+  ITEM_ADDED: 'ITEM_ADDED',
+  ITEM_REMOVED: 'ITEM_REMOVED',
+  QUANTITY_CHANGED: 'QUANTITY_CHANGED',
+  ITEM_REPLACED: 'ITEM_REPLACED',
+  PRICE_CHANGED: 'PRICE_CHANGED',
+  TERMS_UPDATED: 'TERMS_UPDATED',
+  AUTO_ACCEPTED: 'AUTO_ACCEPTED'
+};
+
+exports.offer_negotiation_status_type = exports.$Enums.offer_negotiation_status_type = {
+  BUYER_OFFERED: 'BUYER_OFFERED',
+  SELLER_COUNTERED: 'SELLER_COUNTERED',
+  BUYER_COUNTERED: 'BUYER_COUNTERED',
+  AGREED: 'AGREED',
+  REJECTED: 'REJECTED',
+  EXPIRED: 'EXPIRED',
+  BUYER_REJECT: 'BUYER_REJECT',
+  SELLER_REJECT: 'SELLER_REJECT',
+  PENDING_BUYER_RESPONSE: 'PENDING_BUYER_RESPONSE',
+  PENDING_SELLER_RESPONSE: 'PENDING_SELLER_RESPONSE'
+};
+
+exports.catalog_offer_item_status_type = exports.$Enums.catalog_offer_item_status_type = {
+  ACTIVE: 'ACTIVE',
+  REMOVED: 'REMOVED',
+  REPLACED: 'REPLACED'
+};
+
+exports.offer_negotiation_action_type = exports.$Enums.offer_negotiation_action_type = {
+  BUYER_OFFER: 'BUYER_OFFER',
+  SELLER_COUNTER: 'SELLER_COUNTER',
+  BUYER_COUNTER: 'BUYER_COUNTER',
+  SELLER_ACCEPT: 'SELLER_ACCEPT',
+  BUYER_ACCEPT: 'BUYER_ACCEPT',
+  SELLER_REJECT: 'SELLER_REJECT',
+  BUYER_REJECT: 'BUYER_REJECT',
+  SELLER_OFFER: 'SELLER_OFFER',
+  SYSTEM_AUTO_ACCEPT: 'SYSTEM_AUTO_ACCEPT'
+};
+
+exports.offer_negotiation_offer_status_type = exports.$Enums.offer_negotiation_offer_status_type = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  COUNTERED: 'COUNTERED',
+  EXPIRED: 'EXPIRED',
+  SUPERSEDED: 'SUPERSEDED'
+};
+
+exports.offer_status_type = exports.$Enums.offer_status_type = {
+  ACTIVE: 'ACTIVE',
+  NEGOTIATING: 'NEGOTIATING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  EXPIRED: 'EXPIRED'
+};
+
+exports.offer_rejection_category_type = exports.$Enums.offer_rejection_category_type = {
+  PRICING_TOO_LOW: 'PRICING_TOO_LOW',
+  PRICING_TOO_HIGH: 'PRICING_TOO_HIGH',
+  BUDGET_CONSTRAINTS: 'BUDGET_CONSTRAINTS',
+  INVENTORY_UNAVAILABLE: 'INVENTORY_UNAVAILABLE',
+  DELIVERY_TIMELINE_TOO_LONG: 'DELIVERY_TIMELINE_TOO_LONG',
+  FOUND_BETTER_ALTERNATIVE: 'FOUND_BETTER_ALTERNATIVE',
+  PROJECT_CANCELLED: 'PROJECT_CANCELLED',
+  OTHER: 'OTHER'
+};
+
 exports.catalog_product_status_type = exports.$Enums.catalog_product_status_type = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
   OUT_OF_STOCK: 'OUT_OF_STOCK'
+};
+
+exports.order_status_type = exports.$Enums.order_status_type = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  PAID: 'PAID',
+  SHIPPED: 'SHIPPED',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED',
+  DISPUTED: 'DISPUTED'
+};
+
+exports.order_type = exports.$Enums.order_type = {
+  AUCTION: 'AUCTION',
+  CATALOG: 'CATALOG',
+  LOT: 'LOT'
+};
+
+exports.payment_method_type = exports.$Enums.payment_method_type = {
+  CREDIT_CARD: 'CREDIT_CARD',
+  BANK_TRANSFER: 'BANK_TRANSFER',
+  PAYPAL: 'PAYPAL',
+  STRIPE: 'STRIPE',
+  CHECK: 'CHECK'
+};
+
+exports.payment_status_type = exports.$Enums.payment_status_type = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED',
+  DISPUTED: 'DISPUTED'
 };
 
 exports.us_state_type = exports.$Enums.us_state_type = {
@@ -1095,25 +2422,145 @@ exports.user_type = exports.$Enums.user_type = {
   BUYER_AND_SELLER: 'BUYER_AND_SELLER'
 };
 
+exports.variation_option_type = exports.$Enums.variation_option_type = {
+  SIZE: 'SIZE',
+  COLOR: 'COLOR',
+  MATERIAL: 'MATERIAL',
+  STYLE: 'STYLE',
+  CAPACITY: 'CAPACITY',
+  FLAVOR: 'FLAVOR'
+};
+
+exports.catalog_offer_auto_action_type = exports.$Enums.catalog_offer_auto_action_type = {
+  SELLER_ADD_PRODUCT_AUTO_ACCEPT: 'SELLER_ADD_PRODUCT_AUTO_ACCEPT',
+  SELLER_UPDATE_ITEM_AUTO_ACCEPT: 'SELLER_UPDATE_ITEM_AUTO_ACCEPT',
+  SELLER_BULK_MODIFY_AUTO_ACCEPT: 'SELLER_BULK_MODIFY_AUTO_ACCEPT',
+  SELLER_PRICE_ADJUSTMENT_AUTO_ACCEPT: 'SELLER_PRICE_ADJUSTMENT_AUTO_ACCEPT',
+  SELLER_QUANTITY_UPDATE_AUTO_ACCEPT: 'SELLER_QUANTITY_UPDATE_AUTO_ACCEPT',
+  SYSTEM_AUTO_ORDER_CREATION: 'SYSTEM_AUTO_ORDER_CREATION'
+};
+
+exports.lot_listing_type = exports.$Enums.lot_listing_type = {
+  MANIFESTED: 'MANIFESTED',
+  UNMANIFESTED: 'UNMANIFESTED',
+  PARTIALLY_MANIFESTED: 'PARTIALLY_MANIFESTED'
+};
+
+exports.listing_source_type = exports.$Enums.listing_source_type = {
+  RETAILER_STORE_RETURNS: 'RETAILER_STORE_RETURNS',
+  RETAILER_ECOMMERCE_RETURNS: 'RETAILER_ECOMMERCE_RETURNS',
+  RETAILER_SHELF_PULLS: 'RETAILER_SHELF_PULLS',
+  RETAILER_OVERSTOCKS_CLOSEOUTS: 'RETAILER_OVERSTOCKS_CLOSEOUTS',
+  THREE_PL_CONSOLIDATED_RETURNS: 'THREE_PL_CONSOLIDATED_RETURNS',
+  THREE_PL_UNCLAIMED_ABANDONED_FREIGHT: 'THREE_PL_UNCLAIMED_ABANDONED_FREIGHT',
+  DISTRIBUTOR_OVERSTOCKS_CLOSEOUTS: 'DISTRIBUTOR_OVERSTOCKS_CLOSEOUTS',
+  BRAND_MANUFACTURER_RETURNS_REFURB_EXCESS: 'BRAND_MANUFACTURER_RETURNS_REFURB_EXCESS',
+  MARKETPLACE_FBA_3P_RETURNS: 'MARKETPLACE_FBA_3P_RETURNS'
+};
+
+exports.listing_source_name = exports.$Enums.listing_source_name = {
+  AMAZON: 'AMAZON',
+  WALMART: 'WALMART',
+  TARGET: 'TARGET',
+  COSTCO: 'COSTCO',
+  SAMS_CLUB: 'SAMS_CLUB',
+  BJS_WHOLESALE: 'BJS_WHOLESALE',
+  BEST_BUY: 'BEST_BUY',
+  HOME_DEPOT: 'HOME_DEPOT',
+  LOWES: 'LOWES',
+  WAYFAIR: 'WAYFAIR',
+  KOHLS: 'KOHLS',
+  MACYS: 'MACYS',
+  NORDSTROM: 'NORDSTROM',
+  NORDSTROM_RACK: 'NORDSTROM_RACK',
+  DICKS_SPORTING_GOODS: 'DICKS_SPORTING_GOODS',
+  TRACTOR_SUPPLY: 'TRACTOR_SUPPLY',
+  DOLLAR_GENERAL: 'DOLLAR_GENERAL',
+  FAMILY_DOLLAR: 'FAMILY_DOLLAR',
+  FIVE_BELOW: 'FIVE_BELOW',
+  CVS: 'CVS',
+  WALGREENS: 'WALGREENS',
+  ULTA: 'ULTA',
+  SEPHORA: 'SEPHORA',
+  BED_BATH_BEYOND: 'BED_BATH_BEYOND',
+  OVERSTOCK: 'OVERSTOCK',
+  OFFICE_DEPOT: 'OFFICE_DEPOT',
+  OFFICEMAX: 'OFFICEMAX',
+  STAPLES: 'STAPLES',
+  ACE_HARDWARE: 'ACE_HARDWARE',
+  ACADEMY_SPORTS: 'ACADEMY_SPORTS',
+  ASHLEY_FURNITURE: 'ASHLEY_FURNITURE',
+  OTHER: 'OTHER'
+};
+
+exports.load_type = exports.$Enums.load_type = {
+  CASE_PACK: 'CASE_PACK',
+  PALLET: 'PALLET',
+  GAYLORD: 'GAYLORD',
+  MIXED_LOT: 'MIXED_LOT',
+  LESS_THAN_TRUCKLOAD: 'LESS_THAN_TRUCKLOAD',
+  FULL_TRUCKLOAD: 'FULL_TRUCKLOAD',
+  MULTIPLE_TRUCKLOADS: 'MULTIPLE_TRUCKLOADS'
+};
+
+exports.listing_inspection_status = exports.$Enums.listing_inspection_status = {
+  UNINSPECTED: 'UNINSPECTED',
+  AS_IS: 'AS_IS',
+  VISUAL_CHECK_ONLY: 'VISUAL_CHECK_ONLY',
+  TESTED: 'TESTED',
+  CERTIFIED: 'CERTIFIED'
+};
+
 exports.Prisma.ModelName = {
   addresses: 'addresses',
+  auction_bid_history: 'auction_bid_history',
+  auction_bids: 'auction_bids',
   auction_listing_images: 'auction_listing_images',
   auction_listing_product_manifests: 'auction_listing_product_manifests',
+  auction_listing_visibility_rules: 'auction_listing_visibility_rules',
   auction_listings: 'auction_listings',
   brands: 'brands',
   buyer_profile_preferences: 'buyer_profile_preferences',
   buyer_profiles: 'buyer_profiles',
   catalog_listing_images: 'catalog_listing_images',
+  catalog_listing_visibility_rules: 'catalog_listing_visibility_rules',
   catalog_listings: 'catalog_listings',
+  catalog_offer_item_changes: 'catalog_offer_item_changes',
+  catalog_offer_items: 'catalog_offer_items',
+  catalog_offer_negotiations: 'catalog_offer_negotiations',
+  catalog_offers: 'catalog_offers',
   catalog_product_images: 'catalog_product_images',
+  catalog_product_variant_attributes: 'catalog_product_variant_attributes',
+  catalog_product_variant_images: 'catalog_product_variant_images',
+  catalog_product_variants: 'catalog_product_variants',
   catalog_products: 'catalog_products',
   images: 'images',
+  order_items: 'order_items',
+  order_status_history: 'order_status_history',
+  orders: 'orders',
+  payments: 'payments',
   resale_certificates: 'resale_certificates',
+  seller_order_counters: 'seller_order_counters',
   seller_profile_preferences: 'seller_profile_preferences',
   seller_profiles: 'seller_profiles',
   user_addresses: 'user_addresses',
   user_preferences: 'user_preferences',
-  users: 'users'
+  users: 'users',
+  variant_attribute_values: 'variant_attribute_values',
+  variant_attributes: 'variant_attributes',
+  catalog_offer_alternative_suggestions: 'catalog_offer_alternative_suggestions',
+  catalog_offer_audit_log: 'catalog_offer_audit_log',
+  catalog_offer_minimum_terms: 'catalog_offer_minimum_terms',
+  buyer_brand_preferences: 'buyer_brand_preferences',
+  lot_listing_images: 'lot_listing_images',
+  lot_listing_product_manifests: 'lot_listing_product_manifests',
+  lot_listing_tags: 'lot_listing_tags',
+  lot_listing_visibility_rules: 'lot_listing_visibility_rules',
+  lot_listings: 'lot_listings',
+  lot_offer_audit_log: 'lot_offer_audit_log',
+  lot_offer_negotiations: 'lot_offer_negotiations',
+  lot_offers: 'lot_offers',
+  tags: 'tags'
 };
 
 /**

@@ -1,16 +1,25 @@
 // Updated Auth interfaces for Amplify Gen 2 integration
 export interface AuthToken {
-  userType: 'buyer' | 'seller' | null;
+  userType: "buyer" | "seller" | null;
   token: string;
+}
+
+// User verification status interface
+export interface UserVerificationStatus {
+  verification_status: "pending" | "approved" | "rejected" | null;
+  account_locked: boolean;
+  user_id: string;
 }
 
 export interface AuthState {
   isAuthenticated: boolean;
-  userType: 'buyer' | 'seller' | null;
+  userType: "buyer" | "seller" | null;
   token: string | null;
   user: AmplifyUser | null;
   isLoading: boolean;
   error: string | null;
+  verificationStatus: string | null;
+  accountLocked: boolean;
 }
 
 // Amplify User interface matching your custom attributes
@@ -26,21 +35,16 @@ export interface AmplifyUser {
     given_name?: string;
     family_name?: string;
     // Custom full name attribute
-    'custom:fullName'?: string;
+    "custom:fullName"?: string;
     // Custom attributes (legacy - for backward compatibility)
-    'custom:firstName': string;
-    'custom:lastName': string;
+    "custom:firstName": string;
+    "custom:lastName": string;
     // New buyer-specific attributes
-    'custom:jobTitle'?: string;
-    'custom:companyName'?: string;
+    "custom:jobTitle"?: string;
+    "custom:companyName"?: string;
     // Shared attributes
-    'custom:userRole': 'buyer' | 'seller';
-    'custom:termsAccepted': string;
-    // Reseller Certificate Attributes
-    'custom:hasCert'?: string;
-    'custom:certPaths'?: string;
-    'custom:certUploadDate'?: string;
-    'custom:certStatus'?: 'pending' | 'approved' | 'rejected';
+    "custom:userRole": "buyer" | "seller";
+    "custom:termsAccepted": string;
   };
   signInDetails?: {
     loginId: string;
@@ -56,16 +60,15 @@ export interface UserProfile {
   firstName: string;
   lastName: string;
   fullName: string;
-  userType: 'buyer' | 'seller';
+  userType: "buyer" | "seller";
   phoneNumber?: string;
   // New buyer profile fields
   jobTitle?: string;
   companyName?: string;
   termsAccepted: boolean;
-  // Seller-specific fields
-  hasResellerCertificate?: boolean;
-  certificateStatus?: 'pending' | 'approved' | 'rejected';
-  certificateUploadDate?: Date;
+  // Verification status fields
+  verificationStatus?: string | null;
+  accountLocked?: boolean;
   // Timestamps
   createdAt: Date;
   lastLoginAt?: Date;
@@ -75,7 +78,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  userType: 'buyer' | 'seller';
+  userType: "buyer" | "seller";
 }
 
 export interface LoginCredentials {
@@ -86,7 +89,7 @@ export interface LoginCredentials {
 export interface LoginResponse {
   success: boolean;
   token?: string;
-  userType?: 'buyer' | 'seller';
+  userType?: "buyer" | "seller";
   error?: string;
 }
 
@@ -98,13 +101,14 @@ export interface SessionData {
   idToken: string | null;
   refreshToken: string | null;
   tokenExpiry: number | null;
+  verificationStatus: string | null;
+  accountLocked: boolean;
 }
 
 // Route protection types
 export interface ProtectedRouteProps {
   children: React.ReactNode;
-  allowedUserTypes?: ('buyer' | 'seller')[];
+  allowedUserTypes?: ("buyer" | "seller")[];
   redirectTo?: string;
   fallback?: React.ReactNode;
 }
-

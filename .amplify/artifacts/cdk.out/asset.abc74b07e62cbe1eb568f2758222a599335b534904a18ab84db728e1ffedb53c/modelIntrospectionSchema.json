@@ -1,0 +1,184 @@
+{
+    "version": 1,
+    "models": {
+        "EarlyAccessRegistration": {
+            "name": "EarlyAccessRegistration",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "firstName": {
+                    "name": "firstName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lastName": {
+                    "name": "lastName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "companyName": {
+                    "name": "companyName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "phoneNumber": {
+                    "name": "phoneNumber",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "termsAccepted": {
+                    "name": "termsAccepted",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "registrationDate": {
+                    "name": "registrationDate",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "EarlyAccessRegistrations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "provider": "apiKey",
+                                "operations": [
+                                    "create",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "primaryKeyInfo": {
+                "isCustomPrimaryKey": false,
+                "primaryKeyFieldName": "id",
+                "sortKeyFieldNames": []
+            }
+        }
+    },
+    "enums": {},
+    "nonModels": {},
+    "queries": {
+        "queryData": {
+            "name": "queryData",
+            "isArray": false,
+            "type": "String",
+            "isRequired": false,
+            "arguments": {
+                "modelName": {
+                    "name": "modelName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                },
+                "operation": {
+                    "name": "operation",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                },
+                "query": {
+                    "name": "query",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                }
+            }
+        },
+        "createAuctionListingFromFile": {
+            "name": "createAuctionListingFromFile",
+            "isArray": false,
+            "type": "String",
+            "isRequired": false,
+            "arguments": {
+                "listingDetailsFilePath": {
+                    "name": "listingDetailsFilePath",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true
+                },
+                "manifestFilePath": {
+                    "name": "manifestFilePath",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true
+                },
+                "sellerId": {
+                    "name": "sellerId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                },
+                "sellerProfileId": {
+                    "name": "sellerProfileId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                },
+                "cognitoId": {
+                    "name": "cognitoId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                },
+                "visibility": {
+                    "name": "visibility",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                }
+            }
+        }
+    }
+}

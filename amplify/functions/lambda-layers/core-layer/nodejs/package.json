@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "dependencies": {},
+  "dependencies": {
+    "sharp": "^0.34.2"
+  },
   "devDependencies": {},
   "author": "wizard22",
   "license": "UNLICENSED"

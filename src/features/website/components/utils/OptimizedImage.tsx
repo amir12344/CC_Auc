@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, memo } from 'react';
-import Image, { ImageProps } from 'next/image';
-import { motion } from 'framer-motion';
-import { useIntersectionObserver } from '@/src/hooks/useIntersectionObserver';
+import Image, { ImageProps } from "next/image";
+import { memo, useEffect, useRef, useState } from "react";
 
-interface OptimizedImageProps extends Omit<ImageProps, 'onLoad' | 'onError'> {
+import { motion } from "framer-motion";
+
+import { useIntersectionObserver } from "@/src/hooks/useIntersectionObserver";
+
+interface OptimizedImageProps extends Omit<ImageProps, "onLoad" | "onError"> {
   fallbackSrc?: string;
   loadingComponent?: React.ReactNode;
   fadeInDuration?: number;
@@ -21,12 +23,12 @@ function OptimizedImage({
   alt,
   width,
   height,
-  fallbackSrc = '/images/placeholder.jpg',
+  fallbackSrc = "/images/placeholder.jpg",
   loadingComponent,
   fadeInDuration = 0.5,
   priority = false,
   disableAnimation = false,
-  sizes = '100vw',
+  sizes = "100vw",
   quality = 85,
   ...props
 }: OptimizedImageProps) {
@@ -38,8 +40,8 @@ function OptimizedImage({
   const { isVisible } = useIntersectionObserver({
     elementRef,
     threshold: 0.1,
-    rootMargin: '200px',
-    freezeOnceVisible: true
+    rootMargin: "200px",
+    freezeOnceVisible: true,
   });
 
   // Update image source when prop changes
@@ -66,7 +68,7 @@ function OptimizedImage({
   };
 
   // Generate a unique ID for the image
-  const imageId = `image-${alt?.replace(/\s+/g, '-')}-${Math.floor(Math.random() * 1000)}`;
+  const imageId = `image-${alt?.replace(/\s+/g, "-")}-${Math.floor(Math.random() * 1000)}`;
 
   // Determine if we should render the image
   const shouldRenderImage = priority || isVisible;
@@ -77,8 +79,8 @@ function OptimizedImage({
       id={imageId}
       className="relative overflow-hidden"
       style={{
-        width: typeof width === 'number' ? `${width}px` : width,
-        height: typeof height === 'number' ? `${height}px` : height
+        width: typeof width === "number" ? `${width}px` : width,
+        height: typeof height === "number" ? `${height}px` : height,
       }}
     >
       {isLoading && loadingComponent ? (
@@ -87,9 +89,9 @@ function OptimizedImage({
         </div>
       ) : null}
 
-      {shouldRenderImage && (
-        disableAnimation ? (
-          <div className="w-full h-full">
+      {shouldRenderImage &&
+        (disableAnimation ? (
+          <div className="h-full w-full">
             <Image
               src={imgSrc}
               alt={alt}
@@ -108,7 +110,7 @@ function OptimizedImage({
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoading ? 0 : 1 }}
             transition={{ duration: fadeInDuration }}
-            className="w-full h-full"
+            className="h-full w-full"
           >
             <Image
               src={imgSrc}
@@ -123,8 +125,7 @@ function OptimizedImage({
               {...props}
             />
           </motion.div>
-        )
-      )}
+        ))}
     </div>
   );
 }

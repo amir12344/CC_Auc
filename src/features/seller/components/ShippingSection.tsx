@@ -1,6 +1,5 @@
-'use client';
+"use client";
 
-import { Truck } from 'lucide-react';
 import type {
   FieldErrors,
   FieldValues,
@@ -8,26 +7,30 @@ import type {
   PathValue,
   UseFormRegister,
   UseFormSetValue,
-} from 'react-hook-form';
-import { Badge } from '@/src/components/ui/badge';
+} from "react-hook-form";
+
+import { Truck } from "lucide-react";
+
+import { Badge } from "@/src/components/ui/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/src/components/ui/card';
-import { Input } from '@/src/components/ui/input';
+} from "@/src/components/ui/card";
+import { Input } from "@/src/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/src/components/ui/select';
-import { Separator } from '@/src/components/ui/separator';
-import { Textarea } from '@/src/components/ui/textarea';
-import { FormField } from './shared/FormField';
+} from "@/src/components/ui/select";
+import { Separator } from "@/src/components/ui/separator";
+import { Textarea } from "@/src/components/ui/textarea";
+
+import { FormField } from "./shared/FormField";
 
 // Shipping form data interface based on exact reference specification
 export interface ShippingFormData {
@@ -82,7 +85,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             <Truck className="h-6 w-6 text-green-600" />
           </div>
           <div>
-            <CardTitle className='text-gray-900 text-xl'>
+            <CardTitle className="text-xl text-gray-900">
               Shipping & Handling
             </CardTitle>
             <CardDescription>
@@ -90,7 +93,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               listing
             </CardDescription>
           </div>
-          <Badge className='ml-auto border-red-200 bg-red-100 text-red-700'>
+          <Badge className="ml-auto border-red-200 bg-red-100 text-red-700">
             Required
           </Badge>
         </div>
@@ -98,13 +101,13 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
       <CardContent className="space-y-8">
         {/* Required Shipping Fields */}
         <div className="space-y-4">
-          <div className='mb-4 flex items-center gap-2'>
+          <div className="mb-4 flex items-center gap-2">
             <h3 className="font-semibold text-gray-900">
               Required Shipping Information
             </h3>
             <Separator className="flex-1" />
           </div>
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Shipping Type* */}
             <FormField
               error={getErrorMessage(errors.shippingType)}
@@ -113,7 +116,10 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             >
               <Select
                 onValueChange={(value) =>
-                  setValue('shippingType' as Path<T>, value as PathValue<T, Path<T>>)
+                  setValue(
+                    "shippingType" as Path<T>,
+                    value as PathValue<T, Path<T>>
+                  )
                 }
               >
                 <SelectTrigger className="!h-12 w-full">
@@ -135,7 +141,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               required
             >
               <Input
-                {...register('shipFromLocation' as Path<T>)}
+                {...register("shipFromLocation" as Path<T>)}
                 className="h-12"
                 placeholder="e.g., Zip Code: 46131 – Franklin, IN"
               />
@@ -144,12 +150,12 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
 
           {/* Warehouse / Facility Location Section - Hidden from buyer */}
           <div className="space-y-4">
-            <div className='mb-4 flex items-center gap-2'>
+            <div className="mb-4 flex items-center gap-2">
               <h3 className="font-semibold text-gray-900">
                 Warehouse / Facility Location
               </h3>
               <Badge
-                className='border-orange-200 bg-orange-50 text-orange-700 text-xs'
+                className="border-orange-200 bg-orange-50 text-xs text-orange-700"
                 variant="outline"
               >
                 Hidden from buyer
@@ -157,7 +163,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               <Separator className="flex-1" />
             </div>
 
-            <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {/* Address 1* */}
               <FormField
                 error={getErrorMessage(errors.warehouseAddress1)}
@@ -165,7 +171,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
                 required
               >
                 <Input
-                  {...register('warehouseAddress1' as Path<T>)}
+                  {...register("warehouseAddress1" as Path<T>)}
                   className="h-12"
                   placeholder="Street address"
                 />
@@ -177,7 +183,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
                 label="Address 2"
               >
                 <Input
-                  {...register('warehouseAddress2' as Path<T>)}
+                  {...register("warehouseAddress2" as Path<T>)}
                   className="h-12"
                   placeholder="Apartment, suite, etc. (optional)"
                 />
@@ -190,7 +196,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
                 required
               >
                 <Input
-                  {...register('warehouseCity' as Path<T>)}
+                  {...register("warehouseCity" as Path<T>)}
                   className="h-12"
                   placeholder="City"
                 />
@@ -203,7 +209,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
                 required
               >
                 <Input
-                  {...register('warehouseState' as Path<T>)}
+                  {...register("warehouseState" as Path<T>)}
                   className="h-12"
                   placeholder="State"
                 />
@@ -216,7 +222,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
                 required
               >
                 <Input
-                  {...register('warehouseZipcode' as Path<T>)}
+                  {...register("warehouseZipcode" as Path<T>)}
                   className="h-12"
                   placeholder="Zipcode"
                 />
@@ -229,7 +235,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
                 required
               >
                 <Input
-                  {...register('warehouseCountry' as Path<T>)}
+                  {...register("warehouseCountry" as Path<T>)}
                   className="h-12"
                   placeholder="Country"
                 />
@@ -237,7 +243,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             </div>
           </div>
 
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Freight Type* */}
             <FormField
               error={getErrorMessage(errors.freightType)}
@@ -246,7 +252,10 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             >
               <Select
                 onValueChange={(value) =>
-                  setValue('freightType' as Path<T>, value as PathValue<T, Path<T>>)
+                  setValue(
+                    "freightType" as Path<T>,
+                    value as PathValue<T, Path<T>>
+                  )
                 }
               >
                 <SelectTrigger className="!h-12 w-full">
@@ -270,7 +279,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               required
             >
               <Input
-                {...register('estimatedWeight' as Path<T>, {
+                {...register("estimatedWeight" as Path<T>, {
                   valueAsNumber: true,
                 })}
                 className="h-12"
@@ -288,7 +297,10 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             >
               <Select
                 onValueChange={(value) =>
-                  setValue('packagingFormat' as Path<T>, value as PathValue<T, Path<T>>)
+                  setValue(
+                    "packagingFormat" as Path<T>,
+                    value as PathValue<T, Path<T>>
+                  )
                 }
               >
                 <SelectTrigger className="!h-12 w-full">
@@ -307,7 +319,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
           </div>
 
           {/* Yes/No Required Fields Row */}
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Refrigerated? Yes / No */}
             <FormField
               error={getErrorMessage(errors.refrigerated)}
@@ -315,7 +327,10 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             >
               <Select
                 onValueChange={(value) =>
-                  setValue('refrigerated' as Path<T>, value as PathValue<T, Path<T>>)
+                  setValue(
+                    "refrigerated" as Path<T>,
+                    value as PathValue<T, Path<T>>
+                  )
                 }
               >
                 <SelectTrigger className="!h-12 w-full">
@@ -336,7 +351,10 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             >
               <Select
                 onValueChange={(value) =>
-                  setValue('containsHazardousMaterials' as Path<T>, value as PathValue<T, Path<T>>)
+                  setValue(
+                    "containsHazardousMaterials" as Path<T>,
+                    value as PathValue<T, Path<T>>
+                  )
                 }
               >
                 <SelectTrigger className="!h-12 w-full">
@@ -353,7 +371,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
 
         {/* Optional Shipping Fields */}
         <div className="space-y-4">
-          <div className='mb-4 flex items-center gap-2'>
+          <div className="mb-4 flex items-center gap-2">
             <h3 className="font-semibold text-gray-700">
               Additional Shipping Details
             </h3>
@@ -363,18 +381,18 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
             <Separator className="flex-1" />
           </div>
 
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Shipping Cost (if applicable) */}
             <FormField
               error={getErrorMessage(errors.shippingCost)}
               label="Shipping Cost"
             >
               <div className="relative">
-                <span className='-translate-y-1/2 absolute top-1/2 left-3 transform text-gray-500'>
+                <span className="absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-500">
                   $
                 </span>
                 <Input
-                  {...register('shippingCost' as Path<T>, {
+                  {...register("shippingCost" as Path<T>, {
                     valueAsNumber: true,
                   })}
                   className="h-12 pl-8"
@@ -391,7 +409,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               label="Number of Pallets"
             >
               <Input
-                {...register('numberOfPallets' as Path<T>, {
+                {...register("numberOfPallets" as Path<T>, {
                   valueAsNumber: true,
                 })}
                 className="h-12"
@@ -406,7 +424,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               label="Number of Truckloads"
             >
               <Input
-                {...register('numberOfTruckloads' as Path<T>, {
+                {...register("numberOfTruckloads" as Path<T>, {
                   valueAsNumber: true,
                 })}
                 className="h-12"
@@ -421,7 +439,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               label="Number of Shipments"
             >
               <Input
-                {...register('numberOfShipments' as Path<T>, {
+                {...register("numberOfShipments" as Path<T>, {
                   valueAsNumber: true,
                 })}
                 className="h-12"
@@ -439,7 +457,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               label="Shipping Notes"
             >
               <Textarea
-                {...register('shippingNotes' as Path<T>)}
+                {...register("shippingNotes" as Path<T>)}
                 className="resize-none"
                 placeholder='Example: "This lot ships on 1 pallet. W 40" x L 48" x H 65".'
                 rows={3}
@@ -452,7 +470,7 @@ export function ShippingSection<T extends FieldValues = FieldValues>({
               label="Additional Information"
             >
               <Textarea
-                {...register('additionalInformation' as Path<T>)}
+                {...register("additionalInformation" as Path<T>)}
                 className="resize-none"
                 placeholder="Enter any additional shipping information"
                 rows={3}

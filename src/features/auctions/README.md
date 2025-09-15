@@ -26,6 +26,7 @@ src/features/auctions/
 ## 🚀 Features
 
 ### Core Functionality
+
 - **Auction Listings** - Professional auction cards in marketplace carousel
 - **Detailed Auction Pages** - Comprehensive auction information display
 - **Image Gallery** - Multi-image support with thumbnails and lightbox
@@ -34,6 +35,7 @@ src/features/auctions/
 - **Information Organization** - Collapsible sections for details and shipping
 
 ### Technical Features
+
 - **Performance Optimized** - React.memo, useCallback, useMemo throughout
 - **Responsive Design** - Mobile-first approach with perfect scaling
 - **Accessibility** - WCAG compliant with ARIA labels and keyboard navigation
@@ -52,35 +54,45 @@ src/features/auctions/
 ## 📱 Components Overview
 
 ### AuctionCard
+
 Displays auction listings in marketplace carousel.
+
 - Optimized performance with memoization
 - Hover effects on images only
 - Company name and bid information display
 - Links to auction detail pages
 
 ### AuctionGallery
+
 Professional image gallery for auction details.
+
 - Multiple image support with thumbnails
 - Lightbox modal with keyboard navigation
 - Responsive design with optimized loading
 - Accessibility features
 
 ### AuctionBiddingArea
+
 Complete bidding interface and auction information.
+
 - Current bid display with validation
 - Additional charges breakdown
 - Countdown timer and key metrics
 - Action buttons for manifest and watchlist
 
 ### AuctionManifest
+
 Professional manifest table with advanced features.
+
 - Filtering and search functionality
 - Filter chips for quick access
 - Variance alert display
 - Download functionality placeholder
 
 ### AuctionDetailsAccordion
+
 Organized display of auction details and shipping.
+
 - Collapsible sections to save space
 - Professional key-value pair display
 - Icons for different information types
@@ -89,29 +101,25 @@ Organized display of auction details and shipping.
 ## 🔧 Usage
 
 ### Basic Import
+
 ```typescript
-import { 
-  AuctionCard, 
-  AuctionSection, 
-  AuctionDetailClient 
-} from '@/src/features/auctions/components';
+import { AuctionCard, AuctionDetailClient, AuctionSection } from "@/src/features/auctions/components";
 ```
 
 ### Data Access
+
 ```typescript
-import { 
-  getAuctionById, 
-  getActiveAuctions 
-} from '@/src/features/auctions/data/auctionData';
+import { getActiveAuctions, getAuctionById } from "@/src/features/auctions/data/auctionData";
 ```
 
 ### Utilities
+
 ```typescript
-import { 
-  formatAuctionCurrency, 
+import {
+  calculateMinimumBid,
+  formatAuctionCurrency,
   formatBidCount,
-  calculateMinimumBid 
-} from '@/src/features/auctions/utils/auction-utils';
+} from "@/src/features/auctions/utils/auction-utils";
 ```
 
 ## 🔄 API Integration Ready
@@ -126,6 +134,7 @@ All components are designed for easy API integration:
 ## 📋 Mock Data
 
 The system includes comprehensive mock data with:
+
 - 3 detailed auction items
 - Complete manifest information
 - Shipping and logistics details
@@ -135,6 +144,7 @@ The system includes comprehensive mock data with:
 ## 🎯 Production Ready
 
 This auction system is fully production-ready with:
+
 - Enterprise-level code quality
 - Comprehensive error handling
 - Performance optimizations
@@ -145,6 +155,7 @@ This auction system is fully production-ready with:
 ## 📚 Documentation
 
 Each component includes comprehensive JSDoc documentation explaining:
+
 - Purpose and functionality
 - Props and interfaces
 - Usage examples
@@ -153,6 +164,5 @@ Each component includes comprehensive JSDoc documentation explaining:
 
 ---
 
-**Status:** ✅ COMPLETE - Ready for production use
-**Last Updated:** Phase 2 Implementation
-**Next Steps:** API integration and real-time features 
+**Status:** ✅ COMPLETE - Ready for production use **Last Updated:** Phase 2 Implementation **Next Steps:** API
+integration and real-time features

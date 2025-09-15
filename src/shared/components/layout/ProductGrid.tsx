@@ -1,67 +1,82 @@
-import { cn } from "@/src/lib/utils"
-import { Card, CardContent } from '@/src/components/ui/card'
-import { Badge } from '@/src/components/ui/badge'
-import { Button } from '@/src/components/ui/button'
-import { Star, MapPin, Package, ArrowRight } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import type { Product } from '@/src/features/collections/types/collections'
+import Image from "next/image";
+import Link from "next/link";
+
+import { ArrowRight, MapPin, Package, Star } from "lucide-react";
+
+import { Badge } from "@/src/components/ui/badge";
+import { Button } from "@/src/components/ui/button";
+import { Card, CardContent } from "@/src/components/ui/card";
+import type { Product } from "@/src/features/collections/types/collections";
+import { cn } from "@/src/lib/utils";
 
 interface ProductGridProps {
-  products: Product[]
-  className?: string
-  showPagination?: boolean
-  itemsPerPage?: number
+  products: Product[];
+  className?: string;
+  showPagination?: boolean;
+  itemsPerPage?: number;
 }
 
-export const ProductGrid = ({ 
-  products, 
+export const ProductGrid = ({
+  products,
   className,
   showPagination = false,
-  itemsPerPage = 12
+  itemsPerPage = 12,
 }: ProductGridProps) => {
   if (products.length === 0) {
     return (
-      <div className="text-center py-12">
-        <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">No Products Found</h3>
-        <p className="text-gray-500">Try adjusting your filters or search terms.</p>
+      <div className="py-12 text-center">
+        <Package className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+        <h3 className="mb-2 text-xl font-semibold text-gray-700">
+          No Products Found
+        </h3>
+        <p className="text-gray-500">
+          Try adjusting your filters or search terms.
+        </p>
       </div>
-    )
+    );
   }
 
   return (
-    <div className={cn("grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6", className)}>
+    <div
+      className={cn(
+        "grid grid-cols-2 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4",
+        className
+      )}
+    >
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
-  )
-}
+  );
+};
 
 interface ProductCardProps {
-  product: Product
+  product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const discountPercent = product.discount ? Math.round(product.discount) : null
-  const originalPrice = discountPercent ? product.price / (1 - discountPercent / 100) : null
+  const discountPercent = product.discount
+    ? Math.round(product.discount)
+    : null;
+  const originalPrice = discountPercent
+    ? product.price / (1 - discountPercent / 100)
+    : null;
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm hover:shadow-xl hover:-translate-y-1">
+    <Card className="group border-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-xl">
       <div className="relative overflow-hidden rounded-t-lg">
         <Image
           src={product.image}
           alt={product.title}
           width={300}
           height={200}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        
+
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
           {discountPercent && (
-            <Badge className="bg-red-500 hover:bg-red-600 text-white font-semibold">
+            <Badge className="bg-red-500 font-semibold text-white hover:bg-red-600">
               -{discountPercent}%
             </Badge>
           )}
@@ -82,7 +97,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         )}
       </div>
 
-      <CardContent className="p-4 space-y-3">
+      <CardContent className="space-y-3 p-4">
         {/* Category */}
         {product.category && (
           <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -91,14 +106,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
         )}
 
         {/* Title */}
-        <h3 className="font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
           {product.title}
         </h3>
 
         {/* Location */}
         {product.location && (
           <div className="flex items-center gap-1 text-sm text-gray-500">
-            <MapPin className="w-3 h-3" />
+            <MapPin className="h-3 w-3" />
             <span>{product.location}</span>
           </div>
         )}
@@ -118,16 +133,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 <Star
                   key={i}
                   className={cn(
-                    "w-3 h-3",
+                    "h-3 w-3",
                     i < Math.floor(product.rating!)
-                      ? "text-yellow-400 fill-current"
+                      ? "fill-current text-yellow-400"
                       : "text-gray-300"
                   )}
                 />
               ))}
             </div>
             <span className="text-sm text-gray-600">
-              {product.rating} {product.reviewCount && `(${product.reviewCount})`}
+              {product.rating}{" "}
+              {product.reviewCount && `(${product.reviewCount})`}
             </span>
           </div>
         )}
@@ -148,12 +164,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Action Button */}
         <Link href={`/marketplace/product/${product.id}`} className="block">
-          <Button className="w-full group/btn">
+          <Button className="group/btn w-full">
             View Details
-            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
           </Button>
         </Link>
       </CardContent>
     </Card>
-  )
-} 
+  );
+};

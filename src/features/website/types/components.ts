@@ -1,23 +1,23 @@
 // Button component types
 export interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
   onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
   className?: string;
   icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
+  iconPosition?: "left" | "right";
 }
 
 // Card component types
 export interface CardProps {
   children: React.ReactNode;
   className?: string;
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  padding?: "none" | "sm" | "md" | "lg";
   bordered?: boolean;
   elevated?: boolean;
 }
@@ -27,24 +27,23 @@ export interface SectionProps {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  background?: 'white' | 'light' | 'primary' | 'gradient';
-  paddingY?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  background?: "white" | "light" | "primary" | "gradient";
+  paddingY?: "none" | "sm" | "md" | "lg" | "xl";
 }
 
 // Container component types
 export interface ContainerProps {
   children: React.ReactNode;
   className?: string;
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  maxWidth?: "sm" | "md" | "lg" | "xl" | "full";
   padding?: boolean;
 }
-
 
 // Icon component types
 export interface IconProps {
   name: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  color?: 'default' | 'primary' | 'secondary' | 'muted';
+  size?: "sm" | "md" | "lg" | "xl";
+  color?: "default" | "primary" | "secondary" | "muted";
   className?: string;
 }
 
@@ -55,10 +54,10 @@ export interface OptimizedImageProps {
   width: number;
   height: number;
   className?: string;
-  objectFit?: 'cover' | 'contain' | 'fill' | 'none';
+  objectFit?: "cover" | "contain" | "fill" | "none";
   priority?: boolean;
-  loading?: 'lazy' | 'eager';
-  placeholder?: 'blur-sm' | 'empty';
+  loading?: "lazy" | "eager";
+  placeholder?: "blur-sm" | "empty";
   blurDataURL?: string;
 }
 
@@ -114,4 +113,3 @@ export interface FAQItemProps {
   isOpen?: boolean;
   onToggle?: () => void;
 }
-
